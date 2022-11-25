@@ -1,0 +1,25 @@
+name: Gastronomicon
+
+author: SchnTgaiSpock
+
+description: A Slimefun addon that adds even more food to the game. Works best with ExoticGarden
+
+main: io.github.schntgaispock.strophodungeons.Gastronomicon
+
+website: https://github.com/SchnTgaiSpock/Gastronomicon
+
+version: ${project.version}
+
+api-version: 1.14
+
+depend:
+- Slimefun
+
+softdepend:
+- SlimeHUD
+
+commands:
+  strophodungeons:
+    description: /gastronomicon
+    aliases: [gastro, gn]
+    usage: Press [tab] for usage hints
