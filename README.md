@@ -1,7 +1,7 @@
-# Gastronomicon - WIP
+# Gastronomicon (WIP)
 
 A Slimefun addon that adds even more foodstuffs to the game. Best used along with [ExoticGarden](https://github.com/TheBusyBiscuit/ExoticGarden).
-
+<!-- 
 ## Gameplay
 
 ### Food, food, and more food
@@ -10,7 +10,7 @@ Recipes for most food items don't actually appear in the guide, but they can sti
 
 ### Workstations
 
-#### Culinary Crafting Table
+#### Culinary Workbench
 
 The Culinary Crafting Table has 9 slots for ingredients, and a slot for tools. It has both shaped and shapeless recipes.
 
@@ -24,4 +24,4 @@ The Tempered Pot must be placed on top of a fire, campfire, or their soul equiva
 
 ### Distillery
 
-The Distillery should be kept in a dark environment (light level < 5) in order to produce high quality brews
+The Distillery should be kept in a dark environment (light level < 5) in order to produce high quality brews -->
