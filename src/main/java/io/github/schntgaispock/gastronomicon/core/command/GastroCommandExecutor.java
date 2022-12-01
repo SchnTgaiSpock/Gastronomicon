@@ -8,9 +8,9 @@ import org.bukkit.entity.Player;
 import io.github.schntgaispock.gastronomicon.Gastronomicon;
 
 /**
- * Functionality for the '/strophodungeons' command
+ * Functionality for the '/sastronomicon' command
  */
-public class SDCommandExecutor implements CommandExecutor {
+public class GastroCommandExecutor implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -30,10 +30,10 @@ public class SDCommandExecutor implements CommandExecutor {
     private void sendInfo(Player player) {
         player.sendMessage(
             "",
-            "§7§lStrophodungeons §f- §8Version " + Gastronomicon.getInstance().getPluginVersion(),
+            "§#4ee530§lGastronomicon §8- §7Version " + Gastronomicon.getInstance().getPluginVersion(),
             "§f------",
-            "§7§lWiki §f- §8https://github.com/SchnTgaiSpock/Strophpdungeons/wiki",
-            "§7§lIssues §f- §8https://github.com/SchnTgaiSpock/Strophpdungeons/issues",
+            "§#4ee530§lWiki §f- §7https://github.com/SchnTgaiSpock/Gastronomicon/wiki",
+            "§#4ee530§lIssues §f- §7https://github.com/SchnTgaiSpock/Gastronomicon/issues",
             ""
         );
     }

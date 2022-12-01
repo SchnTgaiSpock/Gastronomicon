@@ -1,6 +1,8 @@
 package io.github.schntgaispock.gastronomicon;
 
 
+import java.util.concurrent.ThreadLocalRandom;
+
 import javax.annotation.Nonnull;
 
 import org.bstats.bukkit.Metrics;
@@ -20,9 +22,10 @@ public class Gastronomicon extends AbstractAddon {
     
     private static @Getter Gastronomicon instance;
     private static @Getter String dungeonWorldName;
+    private static @Getter ThreadLocalRandom random = ThreadLocalRandom.current();
 
     public Gastronomicon() {
-        super("SchnTgaiSpock", "Strophodungeons", "master", "options.auto-update");
+        super("SchnTgaiSpock", "Gastronomicon", "master", "options.auto-update");
     }
 
     @Override
@@ -31,7 +34,7 @@ public class Gastronomicon extends AbstractAddon {
         instance = this;
 
         getLogger().info("#========================================#");
-        getLogger().info("#    Strophodungeons by SchnTgaiSpock    #");
+        getLogger().info("#    Gastronomicon by SchnTgaiSpock    #");
         getLogger().info("#========================================#");
 
         Metrics metrics = new Metrics(this, 16941);
@@ -43,10 +46,10 @@ public class Gastronomicon extends AbstractAddon {
         if (getInstance().getServer().getPluginManager().isPluginEnabled("SlimeHUD")) {
             try {
                 getLogger().info("SlimeHUD was found on this server!");
-                getLogger().info("Setting up Strophodungeons for SlimeHUD...");
+                getLogger().info("Setting up Gastronomicon for SlimeHUD...");
                 SlimeHUDSetup.setup();
             } catch (NoClassDefFoundError e) {
-                getLogger().warning("This server is using an old version of SlimeHUD that is incompatitable with this version of Strophodungeons.");
+                getLogger().warning("This server is using an old version of SlimeHUD that is incompatitable with this version of Gastronomicon.");
                 getLogger().warning("Please update SlimeHUD to version 1.2.0 or higher!");
             }
         }

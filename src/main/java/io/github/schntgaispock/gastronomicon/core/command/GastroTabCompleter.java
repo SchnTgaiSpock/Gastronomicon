@@ -9,9 +9,9 @@ import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 
 /**
- * Tab completion for the '/strophodungeons' command
+ * Tab completion for the '/sastronomicon' command
  */
-public class SDTabCompleter implements TabCompleter {
+public class GastroTabCompleter implements TabCompleter {
 
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
