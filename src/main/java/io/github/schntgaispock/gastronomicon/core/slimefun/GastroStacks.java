@@ -1,9 +1,12 @@
 package io.github.schntgaispock.gastronomicon.core.slimefun;
 
 import org.bukkit.Material;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 
+import io.github.schntgaispock.gastronomicon.util.stacks.FoodItemStack;
 import io.github.schntgaispock.gastronomicon.util.stacks.ThemedItemStack;
+import io.github.schntgaispock.gastronomicon.core.food.FoodEffect;
 import io.github.schntgaispock.gastronomicon.util.GastroTheme.Theme;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
@@ -25,18 +28,68 @@ public class GastroStacks {
     );
 
     public static final ItemStack GUIDE_ITEM_RAW_INGREDIENTS = new CustomItemStack(
-        Material.CRAFTING_TABLE,
+        Material.SUGAR,
         Theme.INGREDIENT.getColor() + "Raw Ingredients"
     );
 
     public static final ItemStack GUIDE_ITEM_FOOD = new CustomItemStack(
-        Material.CRAFTING_TABLE,
+        Material.COOKED_BEEF,
         Theme.REGULAR_FOOD.getColor() + "Food"
     );
 
     public static final ItemStack GUIDE_ITEM_MAIN = new CustomItemStack(
-        Material.CRAFTING_TABLE,
+        Material.COOKED_BEEF,
         Theme.PERFECT_FOOD.getColor() + "Gastronomicon"
+    );
+
+    public static final ItemStack GUIDE_RECIPE_CULINARY_WORKBENCH = new CustomItemStack(
+        Material.CRAFTING_TABLE,
+        "&bCulinary Workbench",
+        "Craft this item as shown in a",
+        "Culinary Workbench with the tool(s)",
+        "listed below."
+    );
+
+    public static final ItemStack GUIDE_RECIPE_ENHANCED_OVEN = new CustomItemStack(
+        Material.BLAST_FURNACE,
+        "&bEnhanced Oven",
+        "Craft this item as shown in an",
+        "Enhanced Oven with the tool(s)",
+        "listed below."
+    );
+
+    public static final ItemStack GUIDE_RECIPE_REFRIDGERATOR = new CustomItemStack(
+        Material.IRON_BLOCK,
+        "&bRefridgerator",
+        "Craft this item as shown in a",
+        "Refridgerator with the tool(s)",
+        "listed below."
+    );
+
+    public static final ItemStack GUIDE_RECIPE_MILL = new CustomItemStack(
+        Material.STONE_BRICK_SLAB,
+        "&bMill",
+        "Craft this item as shown in a",
+        "Mill with the tool(s) listed",
+        "below."
+    );
+
+    public static final ItemStack GUIDE_RECIPE_DISTILLERY = new CustomItemStack(
+        Material.BARREL,
+        "&bDistillery",
+        "Craft this item as shown in a",
+        "Distillery with the tool(s)",
+        "listed below."
+    );
+
+    public static final ItemStack GUIDE_TOOLS_REQUIRED = new CustomItemStack(
+        Material.LIGHT_BLUE_STAINED_GLASS_PANE,
+        Theme.MECHANICAL.getColor() + "Tools Required:"
+    );
+
+    public static final ItemStack GUIDE_NO_TOOLS_REQUIRED = new CustomItemStack(
+        Material.BARRIER,
+        "&cNone"
     );
 
 
@@ -65,7 +118,7 @@ public class GastroStacks {
         "GN_KITCHEN_KNIFE",
         Material.IRON_SWORD,
         "Kitchen Knife"
-    );
+    ).addFlags(ItemFlag.HIDE_ATTRIBUTES);
 
     public static final SlimefunItemStack ROLLING_PIN = ThemedItemStack.of(
         Theme.WTOOL,
@@ -84,7 +137,7 @@ public class GastroStacks {
     public static final SlimefunItemStack MORTAR_AND_PESTLE = ThemedItemStack.of(
         Theme.WTOOL,
         "GN_MORTAR_AND_PESTLE",
-        Material.BUCKET,
+        Material.BOWL,
         "Mortar and Pestle"
     );
 
@@ -93,14 +146,14 @@ public class GastroStacks {
         "GN_PEELER",
         Material.IRON_HOE,
         "Peeler"
-    );
+    ).addFlags(ItemFlag.HIDE_ATTRIBUTES);
 
     // Enhanced Oven
 
     public static final SlimefunItemStack BAKING_TRAY = ThemedItemStack.of(
         Theme.WTOOL,
         "GN_BAKING_TRAY",
-        Material.LIGHT_WEIGHTED_PRESSURE_PLATE,
+        Material.LIGHT_GRAY_CARPET,
         "Baking Tray"
     );
 
@@ -120,7 +173,21 @@ public class GastroStacks {
 
     // -- Traps --
 
-    public static final SlimefunItemStack CRAP_TRAP = ThemedItemStack.of(
+    public static final SlimefunItemStack STEEL_WIRE = ThemedItemStack.of(
+        Theme.TRAP,
+        "GN_STEEL_WIRE",
+        Material.STRING,
+        "Steel Wire"
+    );
+
+    public static final SlimefunItemStack STEEL_SPRING = ThemedItemStack.of(
+        Theme.TRAP,
+        "GN_STEEL_SPRING",
+        Material.STRING,
+        "Steel Spring"
+    );
+
+    public static final SlimefunItemStack CRAB_TRAP = ThemedItemStack.of(
         Theme.TRAP,
         "GN_CRAB_TRAP",
         Material.OAK_TRAPDOOR,
@@ -401,4 +468,15 @@ public class GastroStacks {
     
     // ---- Food ----
 
+    public static final FoodItemStack ONIGIRI = FoodItemStack.of(
+        "GN_ONIGIRI",
+        "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjljMmRkZjJiZDc0YTQ2NTVlOGYwMTUzYTc0NTNlNjdkYjJhMjFkYmZhYzY3NTY3ODk0ODFhZGJlYzQ4M2EifX19",
+        "Onigiri",
+        3,
+        3,
+        new FoodEffect[] {
+            FoodEffect.heal(1)
+        },
+        "temporary"
+    );
 }

@@ -9,7 +9,7 @@ import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 
 /**
- * Tab completion for the '/sastronomicon' command
+ * Tab completion for the '/gastronomicon' command
  */
 public class GastroTabCompleter implements TabCompleter {
 

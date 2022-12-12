@@ -4,7 +4,7 @@ author: SchnTgaiSpock
 
 description: A Slimefun addon that adds even more food to the game. Works best with ExoticGarden
 
-main: io.github.schntgaispock.sastronomicon.Gastronomicon
+main: io.github.schntgaispock.gastronomicon.Gastronomicon
 
 website: https://github.com/SchnTgaiSpock/Gastronomicon
 
@@ -17,9 +17,10 @@ depend:
 
 softdepend:
 - SlimeHUD
+- ExoticGarden
 
 commands:
-  sastronomicon:
+  gastronomicon:
     description: /gastronomicon
     aliases: [gastro, gn]
     usage: Press [tab] for usage hints

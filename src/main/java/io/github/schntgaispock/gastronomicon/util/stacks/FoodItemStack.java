@@ -1,47 +1,73 @@
 package io.github.schntgaispock.gastronomicon.util.stacks;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 
-import org.bukkit.Material;
-
+import io.github.schntgaispock.gastronomicon.core.food.FoodEffect;
 import io.github.schntgaispock.gastronomicon.util.GastroTheme.Theme;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
+import io.github.thebusybiscuit.slimefun4.utils.ChatUtils;
+import io.github.thebusybiscuit.slimefun4.utils.LoreBuilder;
 import lombok.Getter;
 
 @SuppressWarnings("null")
-public class FoodItemStack extends ThemedItemStack {
+@Getter
+public class FoodItemStack extends SlimefunItemStack {
 
-    @Nonnull @Getter String[] effects;
+    private final int hunger;
+    private final int saturation;
+    private final String texture;
+    private final @Nonnull FoodEffect[] effects;
 
     @ParametersAreNonnullByDefault
-    protected FoodItemStack(String id, Material material, String name, String[] effects, String... lore) {
-        super(id, material, name, lore);
+    protected FoodItemStack(String id, String texture, String name, int hunger, int saturation, FoodEffect[] effects, String... lore) {
+        super(id, texture, name, lore);
+
+        this.hunger = hunger;
+        this.saturation = saturation;
+        this.texture = texture;
+        this.effects = effects;
     }
 
     @ParametersAreNonnullByDefault
-    public static FoodItemStack of(String id, Material material, String name, String[] effects, String... lore) {
-        if (id == null || material == null) return null;
+    public static FoodItemStack of(String id, String texture, String name, int hunger, int saturation, FoodEffect[] effects, String... lore) {
+        if (id == null || texture == null) return null;
 
-        String[] fLore = new String[lore.length + 1];
-        fLore[0] = "";
+        List<String> fLore = new LinkedList<String>();
 
-        for (int i = 0; i < lore.length; i++) {
-            fLore[i + 1] = Theme.REGULAR_FOOD.getLoreColor() + lore[i];
+        fLore.add(LoreBuilder.hunger(hunger));
+        fLore.add("");
+        fLore.add("&7Effects when consumed:");
+        for (FoodEffect effect : effects) {
+            fLore.add("&8‑ " + effect.getDescription());
+        }
+        fLore.add("");
+        for (String loreLine : lore) {
+            fLore.add(Theme.REGULAR_FOOD.getLoreColor() + loreLine);
         }
 
-        return new FoodItemStack(id, material, Theme.REGULAR_FOOD.getColor() + name, effects, fLore);
+        return new FoodItemStack(id, texture, Theme.REGULAR_FOOD.getColor() + name, hunger, saturation, effects, fLore.toArray(String[]::new));
     }
 
     @ParametersAreNonnullByDefault
     public FoodItemStack asPerfect(String... lore) {
-        String[] fLore = new String[lore.length + 1];
-        fLore[0] = "";
+        List<String> fLore = new LinkedList<String>();
 
-        for (int i = 0; i < lore.length; i++) {
-            fLore[i + 1] = Theme.PERFECT_FOOD.getLoreColor() + lore[i];
+        fLore.add(LoreBuilder.hunger(hunger));
+        fLore.add("");
+        fLore.add("&7Effects when consumed:");
+        for (FoodEffect effect : effects) {
+            fLore.add("&8‑ " + effect.getPerfectDescription());
+        }
+        fLore.add("");
+        for (String loreLine : lore) {
+            fLore.add(Theme.PERFECT_FOOD.getLoreColor() + loreLine);
         }
 
-        return new FoodItemStack(getItemId(), getType(), Theme.PERFECT_FOOD.getColor() + getDisplayName(), getEffects(), fLore);
+        return new FoodItemStack("GN_PERFECT" + getItemId().substring(2), getTexture(), Theme.PERFECT_FOOD.getColor() + "Perfect " + ChatUtils.removeColorCodes(getDisplayName()), hunger, saturation, effects, fLore.toArray(String[]::new));
     }
 
 }

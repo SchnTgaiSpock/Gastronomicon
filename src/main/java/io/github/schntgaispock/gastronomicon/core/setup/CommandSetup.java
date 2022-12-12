@@ -11,8 +11,8 @@ public class CommandSetup {
     
     public static void setup() {
         
-        Gastronomicon.getInstance().getCommand("sastronomicon").setExecutor(new GastroCommandExecutor());
-        Gastronomicon.getInstance().getCommand("sastronomicon").setTabCompleter(new GastroTabCompleter());
+        Gastronomicon.getInstance().getCommand("gastronomicon").setExecutor(new GastroCommandExecutor());
+        Gastronomicon.getInstance().getCommand("gastronomicon").setTabCompleter(new GastroTabCompleter());
 
     }
 

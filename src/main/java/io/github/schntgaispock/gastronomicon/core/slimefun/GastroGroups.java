@@ -7,6 +7,7 @@ import lombok.experimental.UtilityClass;
 @UtilityClass
 public class GastroGroups {
 
+    public static final SubGroup DUMMY = new SubGroup("tools", GastroStacks.GUIDE_ITEM_TOOLS);
     public static final SubGroup TOOLS = new SubGroup("tools", GastroStacks.GUIDE_ITEM_TOOLS);
     public static final SubGroup BASIC_MACHINES = new SubGroup("basic_machines", GastroStacks.GUIDE_ITEM_BASIC_MACHINES);
     public static final SubGroup RAW_INGREDIENTS = new SubGroup("raw_ingredients", GastroStacks.GUIDE_ITEM_RAW_INGREDIENTS);

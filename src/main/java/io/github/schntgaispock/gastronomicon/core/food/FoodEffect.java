@@ -8,6 +8,8 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.Sound;
+import org.bukkit.SoundCategory;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -20,7 +22,6 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-@Getter
 @AllArgsConstructor
 public class FoodEffect {
 
@@ -32,8 +33,8 @@ public class FoodEffect {
     private static final double PERFECT_MULTIPLIER_TELEPORT = 1.25;
     private static final int PERFECT_BONUS_POTION_LEVEL = 1;
 
-    private final String description;
-    private final String perfectDescription;
+    private final @Getter String description;
+    private final @Getter String perfectDescription;
     private final BiConsumer<Player, Boolean> application;
 
     /**
@@ -44,10 +45,10 @@ public class FoodEffect {
      * @return A {@code FoodEffect} that heals the player for {@code health} health.
      */
     @ParametersAreNonnullByDefault
-    public static FoodEffect heal(double health) {
-        final double h = GastroUtil.clampLower(health, 1);
-        final double ph = Math.round(h * PERFECT_MULTIPLIER_HEALTH);
-        return new FoodEffect("&aHealth +" + Math.round(h), "&aHealth +" + ph, (Player player, Boolean isPerfect) -> {
+    public static FoodEffect heal(int health) {
+        final int h = GastroUtil.clampLower(health, 1);
+        final int ph = (int) Math.ceil(h * PERFECT_MULTIPLIER_HEALTH);
+        return new FoodEffect("&aHealth +" + h, "&aHealth +" + ph, (Player player, Boolean isPerfect) -> {
             player.setHealth(GastroUtil.clampUpper(player.getHealth() + (isPerfect ? ph : h),
                     player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue()));
         });
@@ -58,7 +59,7 @@ public class FoodEffect {
             int amplifier,
             boolean ambience, boolean particles, boolean icon) {
         final int d = GastroUtil.clampLower(durationSeconds, 1);
-        final int pd = (int) Math.round(d * PERFECT_MULTIPLIER_DURATION);
+        final int pd = (int) Math.ceil(d * PERFECT_MULTIPLIER_DURATION);
         final int a = GastroUtil.clampLower(amplifier, 0);
         final int pa = amplifier + PERFECT_BONUS_POTION_LEVEL;
         return new FoodEffect(
@@ -99,6 +100,11 @@ public class FoodEffect {
     }
 
     @ParametersAreNonnullByDefault
+    public static FoodEffect positivePotionEffect(PotionEffect effect) {
+        return positivePotionEffect(effect.getType(), effect.getDuration(), effect.getAmplifier(), effect.isAmbient(), effect.hasParticles(), effect.hasIcon());
+    }
+
+    @ParametersAreNonnullByDefault
     public static FoodEffect negativePotionEffect(PotionEffectType effectType, int durationSeconds, int amplifier,
             boolean ambience, boolean particles, boolean icon) {
         return potionEffect("&c", effectType, durationSeconds, amplifier, ambience, particles, icon);
@@ -127,9 +133,14 @@ public class FoodEffect {
     }
 
     @ParametersAreNonnullByDefault
+    public static FoodEffect negativePotionEffect(PotionEffect effect) {
+        return negativePotionEffect(effect.getType(), effect.getDuration(), effect.getAmplifier(), effect.isAmbient(), effect.hasParticles(), effect.hasIcon());
+    }
+
+    @ParametersAreNonnullByDefault
     public static FoodEffect xp(int xp) {
         final int x = GastroUtil.clampLower(xp, 1);
-        final int px = (int) Math.round(x * PERFECT_MULTIPLIER_XP);
+        final int px = (int) Math.ceil(x * PERFECT_MULTIPLIER_XP);
         return new FoodEffect("&eXP +" + Math.round(x), "&eXP +" + px, (Player player, Boolean isPerfect) -> {
             player.giveExp(isPerfect ? px : x);
         });
@@ -138,7 +149,7 @@ public class FoodEffect {
     @ParametersAreNonnullByDefault
     public static FoodEffect giveItem(Material material, int amount) {
         final int a = GastroUtil.clampLower(amount, 1);
-        final int pa = (int) Math.round(a * PERFECT_MULTIPLIER_ITEM_AMOUNT);
+        final int pa = (int) Math.ceil(a * PERFECT_MULTIPLIER_ITEM_AMOUNT);
         final String name = material.name();
         return new FoodEffect(
                 "&7Gives " + a + "x " + name,
@@ -182,7 +193,7 @@ public class FoodEffect {
 
     public static FoodEffect air(int amount) {
         final int a = GastroUtil.clampLower(amount, 1);
-        final int pa = (int) Math.round(a * PERFECT_MULTIPLIER_AIR);
+        final int pa = (int) Math.ceil(a * PERFECT_MULTIPLIER_AIR);
         return new FoodEffect("&aAir +" + a, "&aAir +" + pa, (Player player, Boolean isPerfect) -> {
             player.setRemainingAir(GastroUtil.clampUpper(player.getRemainingAir() + (isPerfect ? pa : a), 20));
         });
@@ -190,7 +201,7 @@ public class FoodEffect {
 
     public static FoodEffect teleport(int radius) {
         final int r = GastroUtil.clamp(radius, 1, 10);
-        final int pr = (int) Math.round(r * PERFECT_MULTIPLIER_TELEPORT);
+        final int pr = (int) Math.ceil(r * PERFECT_MULTIPLIER_TELEPORT);
         return new FoodEffect("&7Teleports you " + r + " blocks away", "&7Teleports you " + pr + " blocks away",
                 (Player player, Boolean isPerfect) -> {
                     Location playerLocation = player.getLocation();
@@ -209,12 +220,18 @@ public class FoodEffect {
                                 player.getWorld().getBlockAt(newX, newY, newZ).isEmpty() &&
                                 player.getWorld().getBlockAt(newX, newY + 1, newZ).isEmpty()) {
                             player.teleport(new Location(player.getWorld(), newX, newY, newZ));
-                            // TODO: Play teleport sound
+                            player.playSound(player.getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT,
+                                    SoundCategory.PLAYERS, 1.0f, 1.0f);
                             return;
                         }
                     }
-                    // TODO: Play no teleport sound
+                    player.playSound(player.getLocation(), Sound.ENTITY_ENDERMITE_AMBIENT, SoundCategory.PLAYERS, 1.0f,
+                            1.0f);
                 });
+    }
+
+    public void apply(Player player, boolean isPerfect) {
+        application.accept(player, isPerfect);
     }
 
 }

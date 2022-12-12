@@ -8,7 +8,7 @@ import org.bukkit.entity.Player;
 import io.github.schntgaispock.gastronomicon.Gastronomicon;
 
 /**
- * Functionality for the '/sastronomicon' command
+ * Functionality for the '/gastronomicon' command
  */
 public class GastroCommandExecutor implements CommandExecutor {
 

@@ -21,7 +21,7 @@ public class ThemedItemStack extends SlimefunItemStack {
 
     @Override
     public @Nonnull Material getType() {
-        Material type = getType();
+        Material type = super.getType();
         return (type == null) ? Material.BARRIER : type;
     }
 
@@ -69,5 +69,4 @@ public class ThemedItemStack extends SlimefunItemStack {
         setItemMeta(meta);
         return this;
     }
-    
 }
