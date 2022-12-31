@@ -1,7 +1,6 @@
 package io.github.schntgaispock.gastronomicon.integration;
 
-import org.bukkit.Bukkit;
-
+import io.github.schntgaispock.gastronomicon.Gastronomicon;
 import lombok.Getter;
 import lombok.experimental.UtilityClass;
 
@@ -9,6 +8,6 @@ import lombok.experimental.UtilityClass;
 public class EGIntegration {
 
     @Getter
-    private static boolean available = Bukkit.getPluginManager().isPluginEnabled("ExoticGarden");
+    private static boolean available = Gastronomicon.getPluginManager().isPluginEnabled("ExoticGarden");
     
 }

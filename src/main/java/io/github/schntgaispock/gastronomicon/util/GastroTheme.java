@@ -13,7 +13,7 @@ public final class GastroTheme {
         TRAP("#efaf23"),
         TOOL("#cccccc"),
         RECIPE("#eeeeee"),
-        INGREDIENT("#64ef23"),
+        INGREDIENT("#ffffff"),
         REGULAR_FOOD("#2364ef"),
         PERFECT_FOOD("#af23ef");
 

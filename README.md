@@ -12,7 +12,7 @@ Recipes for most food items don't actually appear in the guide, but they can sti
 
 #### Culinary Workbench
 
-The Culinary Crafting Table has 9 slots for ingredients, and a slot for tools. It has both shaped and shapeless recipes.
+The Culinary Workbench has 9 slots for ingredients, and a slot for tools. It has both shaped and shapeless recipes.
 
 #### Brick Oven / Electric Oven
 

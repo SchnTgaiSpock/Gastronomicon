@@ -1,4 +1,4 @@
-package io.github.schntgaispock.gastronomicon.core.slimefun.items.food;
+package io.github.schntgaispock.gastronomicon.core.items.food;
 
 import javax.annotation.Nonnull;
 
@@ -27,11 +27,11 @@ public class InfiniteGastroFood extends AbstractGastroFood {
         if (sfItem instanceof final AbstractGastroFood food) {
             e.cancel();
             Player p = e.getPlayer();
-            for (FoodEffect effect : food.getFoodEffects()) {
+            for (FoodEffect effect : food.getItem().getEffects()) {
                 effect.apply(p, ChatUtils.removeColorCodes(sfItem.getItemName()).toLowerCase().startsWith("perfect"));
             }
-            p.setFoodLevel(GastroUtil.clampUpper(p.getFoodLevel() + food.getHunger(), 20));
-            p.setSaturation((float) GastroUtil.clampUpper(p.getSaturation() + food.getSaturation(), p.getFoodLevel()));
+            p.setFoodLevel(GastroUtil.clampUpper(p.getFoodLevel() + food.getItem().getHunger(), 20));
+            p.setSaturation((float) GastroUtil.clampUpper(p.getSaturation() + food.getItem().getSaturation(), p.getFoodLevel()));
         }
     }
 }

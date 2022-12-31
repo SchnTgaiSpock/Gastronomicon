@@ -212,9 +212,9 @@ public class FoodEffect {
                     // Performs radius^3 tries, if it can't find a safe spot to teleport to, it
                     // stops
                     for (int i = 0; i < Math.pow(r, 3); i++) {
-                        int newX = playerX + Gastronomicon.getRandom().nextInt(teleportRadius);
-                        int newY = playerY + Gastronomicon.getRandom().nextInt(teleportRadius);
-                        int newZ = playerZ + Gastronomicon.getRandom().nextInt(teleportRadius);
+                        int newX = playerX + GastroUtil.getRandom().nextInt(teleportRadius);
+                        int newY = playerY + GastroUtil.getRandom().nextInt(teleportRadius);
+                        int newZ = playerZ + GastroUtil.getRandom().nextInt(teleportRadius);
 
                         if (player.getWorld().getBlockAt(newX, newY - 1, newZ).getType().isSolid() &&
                                 player.getWorld().getBlockAt(newX, newY, newZ).isEmpty() &&

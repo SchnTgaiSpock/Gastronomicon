@@ -1,13 +1,11 @@
 package io.github.schntgaispock.gastronomicon;
 
-
-import java.util.concurrent.ThreadLocalRandom;
-
 import javax.annotation.Nonnull;
 
 import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
+import org.bukkit.plugin.PluginManager;
 
 import io.github.mooy1.infinitylib.core.AbstractAddon;
 import io.github.schntgaispock.gastronomicon.core.setup.CommandSetup;
@@ -19,10 +17,8 @@ import lombok.Getter;
 @SuppressWarnings("null")
 public class Gastronomicon extends AbstractAddon {
 
-    
     private static @Getter Gastronomicon instance;
-    private static @Getter String dungeonWorldName;
-    private static @Getter ThreadLocalRandom random = ThreadLocalRandom.current();
+    private static final @Getter PluginManager pluginManager = getInstance().getServer().getPluginManager();
 
     public Gastronomicon() {
         super("SchnTgaiSpock", "Gastronomicon", "master", "options.auto-update");
@@ -33,9 +29,9 @@ public class Gastronomicon extends AbstractAddon {
     public void enable() {
         instance = this;
 
-        getLogger().info("#========================================#");
+        getLogger().info("#======================================#");
         getLogger().info("#    Gastronomicon by SchnTgaiSpock    #");
-        getLogger().info("#========================================#");
+        getLogger().info("#======================================#");
 
         Metrics metrics = new Metrics(this, 16941);
 
@@ -43,15 +39,21 @@ public class Gastronomicon extends AbstractAddon {
         ListenerSetup.setup();
         CommandSetup.setup();
 
-        if (getInstance().getServer().getPluginManager().isPluginEnabled("SlimeHUD")) {
+        if (getPluginManager().isPluginEnabled("SlimeHUD")) {
             try {
                 getLogger().info("SlimeHUD was found on this server!");
                 getLogger().info("Setting up Gastronomicon for SlimeHUD...");
                 SlimeHUDSetup.setup();
             } catch (NoClassDefFoundError e) {
-                getLogger().warning("This server is using an old version of SlimeHUD that is incompatitable with this version of Gastronomicon.");
+                getLogger().warning(
+                        "This server is using an old version of SlimeHUD that is incompatitable with this version of Gastronomicon.");
                 getLogger().warning("Please update SlimeHUD to version 1.2.0 or higher!");
             }
+        }
+
+        if (!getPluginManager().isPluginEnabled("ExoticGarden")) {
+            getLogger().warning("ExoticGarden was not found on this server!");
+            getLogger().info("Recipes that require ExoticGarden items will be disabled and hidden.");
         }
     }
 

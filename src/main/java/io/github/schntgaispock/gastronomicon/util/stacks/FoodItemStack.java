@@ -21,15 +21,22 @@ public class FoodItemStack extends SlimefunItemStack {
     private final int saturation;
     private final String texture;
     private final @Nonnull FoodEffect[] effects;
+    private final String[] perfectLore;
 
     @ParametersAreNonnullByDefault
-    protected FoodItemStack(String id, String texture, String name, int hunger, int saturation, FoodEffect[] effects, String... lore) {
+    protected FoodItemStack(String id, String texture, String name, int hunger, int saturation, FoodEffect[] effects, String[] lore, String[] perfectLore) {
         super(id, texture, name, lore);
 
         this.hunger = hunger;
         this.saturation = saturation;
         this.texture = texture;
         this.effects = effects;
+        this.perfectLore = perfectLore;
+    }
+
+    @ParametersAreNonnullByDefault
+    protected FoodItemStack(String id, String texture, String name, int hunger, int saturation, FoodEffect[] effects, String... lore) {
+        this(id, texture, name, hunger, saturation, effects, lore, lore);
     }
 
     @ParametersAreNonnullByDefault
@@ -53,7 +60,7 @@ public class FoodItemStack extends SlimefunItemStack {
     }
 
     @ParametersAreNonnullByDefault
-    public FoodItemStack asPerfect(String... lore) {
+    public FoodItemStack asPerfect() {
         List<String> fLore = new LinkedList<String>();
 
         fLore.add(LoreBuilder.hunger(hunger));
@@ -63,7 +70,7 @@ public class FoodItemStack extends SlimefunItemStack {
             fLore.add("&8‑ " + effect.getPerfectDescription());
         }
         fLore.add("");
-        for (String loreLine : lore) {
+        for (String loreLine : perfectLore) {
             fLore.add(Theme.PERFECT_FOOD.getLoreColor() + loreLine);
         }
 
