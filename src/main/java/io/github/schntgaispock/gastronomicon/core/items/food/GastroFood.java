@@ -1,16 +1,17 @@
 package io.github.schntgaispock.gastronomicon.core.items.food;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Nonnull;
 
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import io.github.schntgaispock.gastronomicon.core.slimefun.GastroStacks;
+import io.github.schntgaispock.gastronomicon.core.items.stacks.FoodItemStack;
 import io.github.schntgaispock.gastronomicon.integration.EGIntegration;
-import io.github.schntgaispock.gastronomicon.util.stacks.FoodItemStack;
+import io.github.schntgaispock.gastronomicon.util.GastroUtil;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.api.events.PlayerRightClickEvent;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
@@ -41,8 +42,7 @@ public class GastroFood extends InfiniteGastroFood implements RecipeDisplayItem 
     @Override
     @Nonnull
     public List<ItemStack> getDisplayRecipes() {
-        final List<ItemStack> recipes = new LinkedList<ItemStack>();
-        recipes.add(GastroStacks.GUIDE_TOOLS_REQUIRED);
+        final List<ItemStack> recipes = new ArrayList<ItemStack>(getTools().length * 2);
         
         for (ItemStack tool : getTools()) {
             recipes.add(new ItemStack(Material.AIR));
@@ -52,19 +52,20 @@ public class GastroFood extends InfiniteGastroFood implements RecipeDisplayItem 
         return recipes;
     }
 
-    private void register(@Nonnull SlimefunAddon addon, boolean isPerfect, boolean requiresEG) {
-        if (!isPerfect) new GastroFood(getItemGroup(), getItem().asPerfect(), getRecipeType(), getRecipe(), getTools()).register(addon, false, requiresEG);
-        if (requiresEG && EGIntegration.isAvailable()) 
-        super.register(addon);
+    @Override
+    @Nonnull
+    public String getRecipeSectionLabel(@Nonnull Player p) {
+        return GastroUtil.formatColors("&7Tools Required:");
     }
 
-    public void register(@Nonnull SlimefunAddon addon, boolean requiresEG) {
-        this.register(addon, false, requiresEG);
+    public void registerIfEG(@Nonnull SlimefunAddon addon) {
+        if (EGIntegration.isAvailable()) register(addon);
     }
 
     @Override
     public void register(@Nonnull SlimefunAddon addon) {
-        this.register(addon, false, false);
+        super.register(addon);
+        new GastroFood(getItemGroup(), getItem().asPerfect(), getRecipeType(), getRecipe(), getTools()).hide().register(addon);
     }
 
 }

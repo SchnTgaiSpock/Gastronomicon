@@ -1,5 +1,6 @@
 package io.github.schntgaispock.gastronomicon.core.recipes;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
@@ -8,52 +9,84 @@ import javax.annotation.Nonnull;
 
 import org.bukkit.inventory.ItemStack;
 
+import io.github.schntgaispock.gastronomicon.core.recipes.GastroRecipe.RecipeShape;
 import io.github.schntgaispock.gastronomicon.core.recipes.components.GroupGastroRecipeComponent;
 import lombok.experimental.UtilityClass;
 
 @UtilityClass
 public class GastroRecipeRegistry {
     
-    private static Map<Integer, Set<AbstractGastroRecipe>> recipes;
-    private static Map<ItemStack, Set<GroupGastroRecipeComponent>> groupComponentsByItemStack;
+    private static Map<Integer, Set<GastroRecipe>> shapedRecipes = new HashMap<>();
+    private static Map<Integer, Set<GastroRecipe>> shapelessRecipes = new HashMap<>();
+    private static Map<ItemStack, Set<GroupGastroRecipeComponent>> groupsByItemStack = new HashMap<>();
+    private static Map<String, GroupGastroRecipeComponent> groupsByName = new HashMap<>();
+
 
     @Nonnull
     public static Set<GroupGastroRecipeComponent> getGroups(ItemStack item) {
-        Set<GroupGastroRecipeComponent> groups = groupComponentsByItemStack.get(item);
+        Set<GroupGastroRecipeComponent> groups = groupsByItemStack.get(item);
         return (groups == null) ? new HashSet<>() : groups;
     }
 
-    public static void registerGroup(GroupGastroRecipeComponent group) {
+    public static GroupGastroRecipeComponent getGroupByName(String name) {
+        return groupsByName.get(name);
+    }
+
+    private static void registerGroup(GroupGastroRecipeComponent group) {
         for (ItemStack itemStack : group.getComponent()) {
-            if (groupComponentsByItemStack.containsKey(itemStack)) {
-                groupComponentsByItemStack.get(itemStack).add(group);
+            if (groupsByItemStack.containsKey(itemStack)) {
+                groupsByItemStack.get(itemStack).add(group);
             } else {
                 Set<GroupGastroRecipeComponent> groups = new HashSet<>();
                 groups.add(group);
-                groupComponentsByItemStack.put(itemStack, groups);
+                groupsByItemStack.put(itemStack, groups);
             }
         }
     }
 
-    /**
-     * s
-     * @param inputHash The hashCode of the inputs
-     * @return
-     */
+    public static void registerGroups(GroupGastroRecipeComponent... groups) {
+        for (GroupGastroRecipeComponent group : groups) {
+            registerGroup(group);
+        }
+    }
+    
     @Nonnull
-    public static Set<AbstractGastroRecipe> getSimilarRecipes(int inputHash) {
-        Set<AbstractGastroRecipe> similarRecipes = recipes.get(inputHash);
+    @SuppressWarnings("null")
+    public static Set<GastroRecipe> getSimilarRecipes(int inputHash, RecipeShape shape) {
+        Set<GastroRecipe> similarRecipes = (switch (shape) {
+            case SHAPED -> shapedRecipes;
+            case SHAPELESS -> shapelessRecipes;
+        }).get(inputHash);
         return (similarRecipes == null) ? new HashSet<>() : similarRecipes;
     }
 
-    public static void registerRecipe(AbstractGastroRecipe recipe) {
+    private static void registerRecipe(GastroRecipe recipe, Map<Integer, Set<GastroRecipe>> registry) {
         int inputHash = recipe.inputHash();
-        if (recipes.containsKey(inputHash)) {
-            recipes.get(inputHash).add(recipe);
+        if (registry.containsKey(inputHash)) {
+            registry.get(inputHash).add(recipe);
         } else {
-            Set<AbstractGastroRecipe> similarRecipes = new HashSet<>();
+            Set<GastroRecipe> similarRecipes = new HashSet<>();
             similarRecipes.add(recipe);
-            recipes.put(inputHash, similarRecipes);
+            registry.put(inputHash, similarRecipes);
+        }
+    }
+
+    public static void registerRecipe(GastroRecipe recipe, RecipeShape shape) {
+        registerRecipe(recipe, switch (shape) {
+            case SHAPED -> shapedRecipes;
+            case SHAPELESS -> shapelessRecipes;
+        });
+    }
+
+    public static void registerShapedRecipes(GastroRecipe... recipes) {
+        for (GastroRecipe recipe : recipes) {
+            registerRecipe(recipe, shapedRecipes);
+        }
+    }
+
+    public static void registerShapelessRecipes(GastroRecipe... recipes) {
+        for (GastroRecipe recipe : recipes) {
+            registerRecipe(recipe, shapelessRecipes);
         }
     }
 

@@ -139,12 +139,6 @@ public class GastroItemSetup {
         ).register(gn);
         new SlimefunItem(
             GastroGroups.TOOLS,
-            GastroStacks.LOBSTER_TRAP,
-            RecipeType.ENHANCED_CRAFTING_TABLE,
-            new ItemStack[] {IRON_BARS, IRON_BARS, IRON_BARS, IRON_BARS, null, IRON_BARS, OAK_SLAB, OAK_SLAB, OAK_SLAB}
-        ).register(gn);
-        new SlimefunItem(
-            GastroGroups.TOOLS,
             GastroStacks.HUNTING_TRAP,
             RecipeType.ENHANCED_CRAFTING_TABLE,
             new ItemStack[] {
@@ -386,14 +380,14 @@ public class GastroItemSetup {
         new UnplaceableItem(
             GastroGroups.FOOD,
             GastroStacks.COOKED_RICE,
-            GastroRecipeType.ENHANCED_OVEN,
+            GastroRecipeType.MULTI_STOVE,
             RecipeShapes.singleCenter(GastroStacks.RICE)
         ).register(gn);
 
         new UnplaceableItem(
             GastroGroups.FOOD,
             GastroStacks.COOKED_RICE,
-            GastroRecipeType.ENHANCED_OVEN,
+            GastroRecipeType.MULTI_STOVE,
             RecipeShapes.singleCenter(GastroStacks.RICE)
         ).register(gn);
 
@@ -401,7 +395,7 @@ public class GastroItemSetup {
 
         new GastroFood(
             GastroGroups.FOOD,
-            GastroStacks.ONIGIRI,
+            GastroStacks.RICE_BALLS,
             GastroRecipeType.CULINARY_WORKBENCH,
             RecipeShapes.collection(GastroStacks.RICE, DRIED_KELP),
             RecipeShapes.collection(GastroStacks.GUIDE_NO_TOOLS_REQUIRED)

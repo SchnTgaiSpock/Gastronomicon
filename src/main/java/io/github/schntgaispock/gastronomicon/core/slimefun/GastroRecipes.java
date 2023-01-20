@@ -19,7 +19,7 @@ public class GastroRecipes {
         public static final RecipeType BREAK = new GastroRecipeType("break", GastroStacks.GUIDE_RECIPE_BREAK);
         public static final RecipeType HARVEST = new GastroRecipeType("break", GastroStacks.GUIDE_RECIPE_HARVEST);
         public static final RecipeType CULINARY_WORKBENCH = new GastroRecipeType("culinary_workbench", GastroStacks.GUIDE_RECIPE_CULINARY_WORKBENCH);
-        public static final RecipeType ENHANCED_OVEN = new GastroRecipeType("enhanced_oven", GastroStacks.GUIDE_RECIPE_ENHANCED_OVEN);
+        public static final RecipeType MULTI_STOVE = new GastroRecipeType("multi_stove", GastroStacks.GUIDE_RECIPE_MULTI_STOVE);
         public static final RecipeType REFRIDGERATOR = new GastroRecipeType("refridgerator", GastroStacks.GUIDE_RECIPE_REFRIDGERATOR);
         public static final RecipeType MILL = new GastroRecipeType("mill", GastroStacks.GUIDE_RECIPE_MILL);
         public static final RecipeType DISTILLERY = new GastroRecipeType("distillery", GastroStacks.GUIDE_RECIPE_DISTILLERY);

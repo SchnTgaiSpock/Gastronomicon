@@ -4,12 +4,16 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 
+import javax.annotation.Nonnull;
+
+import org.bukkit.ChatColor;
 import org.bukkit.inventory.ItemStack;
 
 import lombok.Getter;
 import lombok.experimental.UtilityClass;
 
 @UtilityClass
+@SuppressWarnings("null")
 public class GastroUtil {
     
     private static @Getter ThreadLocalRandom random = ThreadLocalRandom.current();
@@ -51,12 +55,30 @@ public class GastroUtil {
         return thousands[x / 1000] + hundreds[(x / 100) % 10] + tens[(x / 10) % 10] + ones[x % 10];
     }
 
+    @Nonnull
+    public static String formatColors(String str) {
+        return ChatColor.translateAlternateColorCodes('&', str);
+    }
+
     public static int randomRound(double x) {
         final int f = (int) Math.floor(x);
         final int c = (int) Math.ceil(x);
         if (f == c) return f;
 
-        return (random.nextDouble() < (x - f)) ? f : c;
+        return flip(x - f) ? f : c;
+    }
+
+    public static double roundToPrecision(double x, int precision) {
+        final double magn = Math.pow(10, precision);
+        return Math.round(x * magn) / magn;
+    }
+
+    public static double roundToPercent(double x, int precision) {
+        return roundToPrecision(x*100, precision);
+    }
+
+    public static boolean flip(double chance) {
+        return random.nextDouble(1) < chance;
     }
 
     public static <K, V> Map<K, V> toMap(K key, V value) {

@@ -6,20 +6,20 @@ import java.util.Set;
 
 import org.bukkit.inventory.ItemStack;
 
-import io.github.schntgaispock.gastronomicon.core.recipes.components.AbstractGastroRecipeComponent;
+import io.github.schntgaispock.gastronomicon.core.recipes.components.GastroRecipeComponent;
 import lombok.Getter;
 
 @Getter
-public abstract class ShapedGastroRecipe extends AbstractGastroRecipe {
+public class ShapedGastroRecipe extends GastroRecipe {
 
-    private final AbstractGastroRecipeComponent<?>[] inputs;
+    private final GastroRecipeComponent<?>[] inputs;
     private final ItemStack[] outputs;
     private final Set<ItemStack> tools;
 
-    public ShapedGastroRecipe(AbstractGastroRecipeComponent<?>[] inputs, ItemStack[] outputs, Set<ItemStack> tools) {
-        super(Arrays.asList(inputs).stream().map((AbstractGastroRecipeComponent<?> component) -> {
+    public ShapedGastroRecipe(GastroRecipeComponent<?>[] inputs, ItemStack[] outputs, Set<ItemStack> tools, RecipeShape shape) {
+        super(Arrays.asList(inputs).stream().map((GastroRecipeComponent<?> component) -> {
             return component.getDisplayItem();
-        }).toArray(ItemStack[]::new), tools.stream().toList());
+        }).toArray(ItemStack[]::new), tools.stream().toList(), shape);
 
         this.inputs = inputs;
         this.outputs = outputs;
@@ -27,14 +27,14 @@ public abstract class ShapedGastroRecipe extends AbstractGastroRecipe {
     }
 
     @Override
-    public Result matches(ItemStack[] givenRecipe, List<ItemStack> givenTools) {
-        if (givenRecipe.length != inputs.length || !givenTools.containsAll(tools)) return Result.NO_MATCH;
+    public RecipeResult matches(Object[] givenRecipe, List<ItemStack> givenTools) {
+        if (givenRecipe.length != inputs.length || !givenTools.containsAll(tools)) return RecipeResult.NO_MATCH;
 
         for (int i = 0; i < givenRecipe.length; i++) {
-           if (!inputs[i].matches(givenRecipe[i])) return Result.NO_MATCH;
+           if (!inputs[i].matches(givenRecipe[i])) return RecipeResult.NO_MATCH;
         }
 
-        return Result.NO_MATCH;
+        return RecipeResult.SUCCESS;
     }
 
     @Override

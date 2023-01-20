@@ -1,4 +1,4 @@
-package io.github.schntgaispock.gastronomicon.util.stacks;
+package io.github.schntgaispock.gastronomicon.core.items.stacks;
 
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -45,6 +45,11 @@ public class ThemedItemStack extends SlimefunItemStack {
         } else {
             return new ThemedItemStack(id, material, theme.getColor() + name);
         }
+    }
+
+    @ParametersAreNonnullByDefault
+    public static ThemedItemStack ingredient(String id, Material material, String name, String... lore) {
+        return of(Theme.INGREDIENT, id, material, name, lore);
     }
 
     public ThemedItemStack enchant(Enchantment... enchantments) {

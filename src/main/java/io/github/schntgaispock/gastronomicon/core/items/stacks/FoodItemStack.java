@@ -1,4 +1,4 @@
-package io.github.schntgaispock.gastronomicon.util.stacks;
+package io.github.schntgaispock.gastronomicon.core.items.stacks;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -7,6 +7,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 import io.github.schntgaispock.gastronomicon.core.food.FoodEffect;
+import io.github.schntgaispock.gastronomicon.util.GastroUtil;
 import io.github.schntgaispock.gastronomicon.util.GastroTheme.Theme;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.utils.ChatUtils;
@@ -18,13 +19,13 @@ import lombok.Getter;
 public class FoodItemStack extends SlimefunItemStack {
 
     private final int hunger;
-    private final int saturation;
+    private final double saturation;
     private final String texture;
     private final @Nonnull FoodEffect[] effects;
     private final String[] perfectLore;
 
     @ParametersAreNonnullByDefault
-    protected FoodItemStack(String id, String texture, String name, int hunger, int saturation, FoodEffect[] effects, String[] lore, String[] perfectLore) {
+    protected FoodItemStack(String id, String texture, String name, int hunger, double saturation, FoodEffect[] effects, String[] lore, String[] perfectLore) {
         super(id, texture, name, lore);
 
         this.hunger = hunger;
@@ -35,12 +36,12 @@ public class FoodItemStack extends SlimefunItemStack {
     }
 
     @ParametersAreNonnullByDefault
-    protected FoodItemStack(String id, String texture, String name, int hunger, int saturation, FoodEffect[] effects, String... lore) {
+    protected FoodItemStack(String id, String texture, String name, int hunger, double saturation, FoodEffect[] effects, String... lore) {
         this(id, texture, name, hunger, saturation, effects, lore, lore);
     }
 
     @ParametersAreNonnullByDefault
-    public static FoodItemStack of(String id, String texture, String name, int hunger, int saturation, FoodEffect[] effects, String... lore) {
+    public static FoodItemStack of(String id, String texture, String name, int hunger, double saturationRatio, FoodEffect[] effects, String... lore) {
         if (id == null || texture == null) return null;
 
         List<String> fLore = new LinkedList<String>();
@@ -51,13 +52,23 @@ public class FoodItemStack extends SlimefunItemStack {
         for (FoodEffect effect : effects) {
             fLore.add("&8‑ " + effect.getDescription());
         }
-        fLore.add("");
+        if (lore.length != 0) fLore.add("");
         for (String loreLine : lore) {
             fLore.add(Theme.REGULAR_FOOD.getLoreColor() + loreLine);
         }
 
-        return new FoodItemStack(id, texture, Theme.REGULAR_FOOD.getColor() + name, hunger, saturation, effects, fLore.toArray(String[]::new));
+        return new FoodItemStack(id, texture, Theme.REGULAR_FOOD.getColor() + name, hunger, GastroUtil.roundToPrecision(hunger * saturationRatio, 1), effects, fLore.toArray(String[]::new));
     }
+
+    @ParametersAreNonnullByDefault
+    public static FoodItemStack of(String id, String texture, String name, int hunger, double saturationRatio, FoodEffect effect, String... lore) {
+        return of(id, texture, name, hunger, Math.round(hunger*saturationRatio), new FoodEffect[]{ effect }, lore);
+    }
+
+    @ParametersAreNonnullByDefault
+    public static FoodItemStack of(String id, String texture, String name, int hunger, double saturationRatio, String... lore) {
+        return of(id, texture, name, hunger, Math.round(hunger*saturationRatio), new FoodEffect[]{}, lore);
+    }    
 
     @ParametersAreNonnullByDefault
     public FoodItemStack asPerfect() {
@@ -69,7 +80,7 @@ public class FoodItemStack extends SlimefunItemStack {
         for (FoodEffect effect : effects) {
             fLore.add("&8‑ " + effect.getPerfectDescription());
         }
-        fLore.add("");
+        if (perfectLore.length != 0) fLore.add("");
         for (String loreLine : perfectLore) {
             fLore.add(Theme.PERFECT_FOOD.getLoreColor() + loreLine);
         }

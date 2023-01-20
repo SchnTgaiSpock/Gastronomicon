@@ -10,6 +10,7 @@ import org.bukkit.plugin.PluginManager;
 import io.github.mooy1.infinitylib.core.AbstractAddon;
 import io.github.schntgaispock.gastronomicon.core.setup.CommandSetup;
 import io.github.schntgaispock.gastronomicon.core.setup.ListenerSetup;
+import io.github.schntgaispock.gastronomicon.core.setup.RecipeSetup;
 import io.github.schntgaispock.gastronomicon.core.setup.GastroItemSetup;
 import io.github.schntgaispock.gastronomicon.integration.SlimeHUDSetup;
 import lombok.Getter;
@@ -35,6 +36,7 @@ public class Gastronomicon extends AbstractAddon {
 
         Metrics metrics = new Metrics(this, 16941);
 
+        RecipeSetup.setup();
         GastroItemSetup.setup();
         ListenerSetup.setup();
         CommandSetup.setup();
@@ -53,7 +55,7 @@ public class Gastronomicon extends AbstractAddon {
 
         if (!getPluginManager().isPluginEnabled("ExoticGarden")) {
             getLogger().warning("ExoticGarden was not found on this server!");
-            getLogger().info("Recipes that require ExoticGarden items will be disabled and hidden.");
+            getLogger().info("Recipes that require ExoticGarden items will be hidden.");
         }
     }
 

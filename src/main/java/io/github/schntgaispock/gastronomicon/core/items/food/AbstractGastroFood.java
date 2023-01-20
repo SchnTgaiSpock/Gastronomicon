@@ -5,7 +5,7 @@ import javax.annotation.Nonnull;
 import org.bukkit.inventory.ItemStack;
 
 import io.github.schntgaispock.gastronomicon.core.items.UnplaceableItem;
-import io.github.schntgaispock.gastronomicon.util.stacks.FoodItemStack;
+import io.github.schntgaispock.gastronomicon.core.items.stacks.FoodItemStack;
 import io.github.thebusybiscuit.slimefun4.api.events.PlayerRightClickEvent;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
@@ -27,6 +27,11 @@ public abstract class AbstractGastroFood extends UnplaceableItem {
     public void preRegister() {
         addItemHandler((ItemUseHandler) this::onRightClick);
         super.preRegister();
+    }
+
+    public AbstractGastroFood hide() {
+        setHidden(true);
+        return this;
     }
 
     public abstract void onRightClick(@Nonnull PlayerRightClickEvent e);
