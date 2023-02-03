@@ -855,6 +855,33 @@ public class GastroStacks {
         FoodEffect.positivePotionEffect(PotionEffectType.ABSORPTION, 30)
     );
 
+    public static final FoodItemStack FRIED_SHRIMP = FoodItemStack.of(
+        "GN_PAN_SEARED_SALMON",
+        "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjljMmRkZjJiZDc0YTQ2NTVlOGYwMTUzYTc0NTNlNjdkYjJhMjFkYmZhYzY3NTY3ODk0ODFhZGJlYzQ4M2EifX19",
+        "Fried Shrimp",
+        3,
+        1d,
+        FoodEffect.positivePotionEffect(PotionEffectType.ABSORPTION, 30)
+    );
+
+    public static final FoodItemStack TEMPURA_SHRIMP = FoodItemStack.of(
+        "GN_PAN_SEARED_SALMON",
+        "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjljMmRkZjJiZDc0YTQ2NTVlOGYwMTUzYTc0NTNlNjdkYjJhMjFkYmZhYzY3NTY3ODk0ODFhZGJlYzQ4M2EifX19",
+        "Tempura Shrimp",
+        4,
+        1d,
+        FoodEffect.positivePotionEffect(PotionEffectType.ABSORPTION, 30)
+    );
+
+    public static final FoodItemStack TEMPURA_BROCCOLI = FoodItemStack.of(
+        "GN_PAN_SEARED_SALMON",
+        "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjljMmRkZjJiZDc0YTQ2NTVlOGYwMTUzYTc0NTNlNjdkYjJhMjFkYmZhYzY3NTY3ODk0ODFhZGJlYzQ4M2EifX19",
+        "Tempura Broccoli",
+        3,
+        1d,
+        FoodEffect.positivePotionEffect(PotionEffectType.ABSORPTION, 30)
+    );
+
     // Pastas
 
     public static final FoodItemStack CHICKEN_PESTO_PASTA = FoodItemStack.of(

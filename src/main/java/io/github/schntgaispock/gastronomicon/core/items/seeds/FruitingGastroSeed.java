@@ -1,58 +1,69 @@
 package io.github.schntgaispock.gastronomicon.core.items.seeds;
 
-import java.util.Map;
+import java.util.Arrays;
+import java.util.List;
+
+import javax.annotation.ParametersAreNonnullByDefault;
 
 import org.bukkit.Location;
-import org.bukkit.World;
-import org.bukkit.enchantments.Enchantment;
-import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.block.Block;
+import org.bukkit.block.data.Ageable;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.util.Vector;
 
-import io.github.schntgaispock.gastronomicon.util.GastroUtil;
 import io.github.schntgaispock.gastronomicon.util.RecipeShapes;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
+import lombok.Getter;
+import me.mrCookieSlime.Slimefun.api.BlockStorage;
 
 /**
  * For crops that generate a separate block to harvest (e.g. pumpkins, melons)
  */
-public class FruitingGastroSeed extends CropGastroSeed {
+public class FruitingGastroSeed extends SimpleGastroSeed {
 
-    public FruitingGastroSeed(SlimefunItemStack item, ItemStack[] harvestSources,
-            Map<SlimefunItemStack, Double> grownCrops) {
-        super(item, harvestSources, grownCrops);
+    private final @Getter SlimefunItem fruitingBody;
+    private final List<Vector> growthDirections = Arrays.asList(
+        new Vector(-1, 0, 0),
+        new Vector(1, 0, 0),
+        new Vector(0, 0, -1),
+        new Vector(0, 0, 1)
+    );
+
+    @ParametersAreNonnullByDefault
+    @SuppressWarnings("null")
+    public FruitingGastroSeed(SlimefunItemStack item, ItemStack[] harvestSources, String fruitingBodyId) {
+        super(item, harvestSources);
+
+        this.fruitingBody = SlimefunItem.getById(fruitingBodyId);
     }
 
-    public FruitingGastroSeed(SlimefunItemStack item, ItemStack[] harvestSources,
-            SlimefunItemStack grownCrop) {
-        this(item, harvestSources, GastroUtil.toMap(grownCrop, 1.0));
-    }
-
-    public FruitingGastroSeed(SlimefunItemStack item, SlimefunItemStack harvestSource) {
-        this(item, RecipeShapes.singleCenter(harvestSource), harvestSource);
+    @ParametersAreNonnullByDefault
+    public FruitingGastroSeed(SlimefunItemStack item, SlimefunItemStack harvestSource, String fruitingBodyId) {
+        this(item, RecipeShapes.singleCenter(harvestSource), fruitingBodyId);
     }
 
     @Override
-    public void onHarvest(BlockBreakEvent e, ItemStack item) {
-        int sickleTier = 0;
-        final Location location = e.getBlock().getLocation();
-        final World world = location.getWorld();
-
-        final SlimefunItem sfItem = SlimefunItem.getByItem(item);
-        if (sfItem != null) {
-            sickleTier = switch (sfItem.getId()) {
-                case "WOODEN_SICKLE" -> 1;
-                case "STEEL_SICKLE" -> 2;
-                case "REINFORCED_SICKLE" -> 3;
-                default -> 0;
-            };
+    public void tick(Block b) {
+        if (!isMature(b)) {
+            final Ageable cropMeta = (Ageable) b.getBlockData();
+            cropMeta.setAge(cropMeta.getAge() + 1);
+            b.setBlockData(cropMeta);
+        } else {
+            // TODO: make random
+            for (Vector d : growthDirections) {
+                Location growthLocation = d.add(b.getLocation().toVector()).toLocation(b.getWorld());
+                switch (growthLocation.subtract(0, 1, 0).getBlock().getType()) {
+                    case DIRT, GRASS_BLOCK, PODZOL, MYCELIUM, COARSE_DIRT, ROOTED_DIRT, MOSS_BLOCK, MUD:
+                        growthLocation.getBlock().setType(getFruitingBody().getItem().getType());
+                        BlockStorage.addBlockInfo(growthLocation, "id", getFruitingBody().getId());
+                        return;
+                
+                    default:
+                        continue;
+                } 
+            }
         }
-
-        final double _fortune_factor = Math.sqrt(item.getEnchantmentLevel(Enchantment.LOOT_BONUS_BLOCKS) + 1);
-
-        final ItemStack seed = this.getItem().clone();
-        seed.setAmount(GastroUtil.randomRound((sickleTier + 1) * (_fortune_factor + 1) / 2));
-        world.dropItemNaturally(location, item);
     }
 
 }

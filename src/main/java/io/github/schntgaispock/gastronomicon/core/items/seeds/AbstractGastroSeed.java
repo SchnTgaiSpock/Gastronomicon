@@ -1,8 +1,10 @@
 package io.github.schntgaispock.gastronomicon.core.items.seeds;
 
 import java.util.List;
-import java.util.Map;
 
+import javax.annotation.ParametersAreNonnullByDefault;
+
+import org.bukkit.block.Block;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
 
@@ -11,17 +13,12 @@ import io.github.schntgaispock.gastronomicon.core.slimefun.GastroRecipes.GastroR
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockBreakHandler;
-import lombok.Getter;
 
 public abstract class AbstractGastroSeed extends SlimefunItem {
 
-    private @Getter Map<SlimefunItemStack, Double> grownCrops;
-
-    public AbstractGastroSeed(SlimefunItemStack item, ItemStack[] harvestSources,
-            Map<SlimefunItemStack, Double> grownCrops) {
+    @ParametersAreNonnullByDefault
+    public AbstractGastroSeed(SlimefunItemStack item, ItemStack[] harvestSources) {
         super(GastroGroups.RAW_INGREDIENTS, item, GastroRecipeType.BREAK, harvestSources);
-
-        this.grownCrops = grownCrops;
     }
 
     @Override
@@ -37,6 +34,10 @@ public abstract class AbstractGastroSeed extends SlimefunItem {
     }
 
     public abstract void onHarvest(BlockBreakEvent e, ItemStack item);
+
+    public abstract boolean isMature(Block b);
+
+    public abstract void tick(Block b);
 
     // TODO: Pull out sickle checking code
 

@@ -265,7 +265,8 @@ public class GastroItemSetup {
 
         new FruitingGastroSeed(
             GastroStacks.SQUASH_SEEDS,
-            GastroStacks.SQUASH
+            GastroStacks.SQUASH,
+            "GN_SQUASH"
         ).register(gn);
 
         new UnplaceableItem(

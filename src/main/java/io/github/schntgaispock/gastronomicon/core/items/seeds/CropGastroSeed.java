@@ -2,6 +2,8 @@ package io.github.schntgaispock.gastronomicon.core.items.seeds;
 
 import java.util.Map;
 
+import javax.annotation.ParametersAreNonnullByDefault;
+
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.enchantments.Enchantment;
@@ -12,19 +14,27 @@ import io.github.schntgaispock.gastronomicon.util.GastroUtil;
 import io.github.schntgaispock.gastronomicon.util.RecipeShapes;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
+import lombok.Getter;
 
-public class CropGastroSeed extends AbstractGastroSeed {
+public class CropGastroSeed extends SimpleGastroSeed {
 
+    private final @Getter Map<ItemStack, Double> grownCrops;
+
+    @ParametersAreNonnullByDefault
     public CropGastroSeed(SlimefunItemStack item, ItemStack[] harvestSources,
-            Map<SlimefunItemStack, Double> grownCrops) {
-        super(item, harvestSources, grownCrops);
+            Map<ItemStack, Double> grownCrops) {
+        super(item, harvestSources);
+
+        this.grownCrops = grownCrops;
     }
 
+    @ParametersAreNonnullByDefault
     public CropGastroSeed(SlimefunItemStack item, ItemStack[] harvestSources,
-            SlimefunItemStack grownCrop) {
+            ItemStack grownCrop) {
         this(item, harvestSources, GastroUtil.toMap(grownCrop, 1.0));
     }
 
+    @ParametersAreNonnullByDefault
     public CropGastroSeed(SlimefunItemStack item, SlimefunItemStack harvestSource) {
         this(item, RecipeShapes.singleCenter(harvestSource), harvestSource);
     }
@@ -49,12 +59,12 @@ public class CropGastroSeed extends AbstractGastroSeed {
 
         final ItemStack seed = this.getItem().clone();
         seed.setAmount(GastroUtil.randomRound((sickleTier + 1) * (_fortune_factor + 1) / 2));
-        world.dropItemNaturally(location, item);
+        world.dropItemNaturally(location, seed);
 
-        for (Map.Entry<SlimefunItemStack, Double> grownCropsEntry : getGrownCrops().entrySet()) {
+        for (Map.Entry<ItemStack, Double> grownCropsEntry : getGrownCrops().entrySet()) {
             final ItemStack drop = grownCropsEntry.getKey().clone();
             drop.setAmount(GastroUtil.randomRound(grownCropsEntry.getValue() * _fortune_factor));
-            world.dropItemNaturally(location, item);
+            world.dropItemNaturally(location, drop);
         }
     }
 }
