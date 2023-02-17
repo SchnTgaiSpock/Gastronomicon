@@ -27,4 +27,9 @@ public class UnplaceableItem extends SlimefunItem implements NotPlaceable {
             }
         });
     }
+
+    public UnplaceableItem hide() {
+        setHidden(true);
+        return this;
+    }
 }

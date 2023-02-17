@@ -1,71 +1,78 @@
 package io.github.schntgaispock.gastronomicon.core.items.food;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.annotation.Nonnull;
 
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
+import io.github.schntgaispock.gastronomicon.core.food.FoodEffect;
 import io.github.schntgaispock.gastronomicon.core.items.stacks.FoodItemStack;
 import io.github.schntgaispock.gastronomicon.integration.EGIntegration;
 import io.github.schntgaispock.gastronomicon.util.GastroUtil;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.api.events.PlayerRightClickEvent;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
-import io.github.thebusybiscuit.slimefun4.core.attributes.RecipeDisplayItem;
+import io.github.thebusybiscuit.slimefun4.core.handlers.ItemUseHandler;
+import io.github.thebusybiscuit.slimefun4.utils.ChatUtils;
 import lombok.Getter;
 
-public class GastroFood extends InfiniteGastroFood implements RecipeDisplayItem {
+public class GastroFood extends SimpleGastroFood {
 
-    private final @Getter ItemStack[] tools;
+    private final @Getter FoodItemStack item;
+    private final @Getter boolean isPerfect;
     
-    public GastroFood(ItemGroup itemGroup, FoodItemStack item, RecipeType recipeType, ItemStack[] recipe, ItemStack[] tools) {
-        super(itemGroup, item, recipeType, recipe);
+    public GastroFood(ItemGroup itemGroup, FoodItemStack item, boolean isPerfect, RecipeType recipeType, ItemStack[] recipe, ItemStack... tools) {
+        super(itemGroup, item, recipeType, recipe, tools);
 
-        this.tools = tools;
+        this.item = item;
+        this.isPerfect = isPerfect;
+    }
+    
+    public GastroFood(ItemGroup itemGroup, FoodItemStack item, RecipeType recipeType, ItemStack[] recipe, ItemStack... tools) {
+        this(itemGroup, item, false, recipeType, recipe, tools);
+    }
+    
+    @Override
+    public void preRegister() {
+        addItemHandler((ItemUseHandler) this::onRightClick);
+        super.preRegister();
     }
 
-    @Override
     public void onRightClick(@Nonnull PlayerRightClickEvent e) {
         if (e.getPlayer().getFoodLevel() >= 20) {
             e.cancel();
             return; // Can't eat when full
         }
-        super.onRightClick(e);
-        e.getItem().setAmount(e.getItem().getAmount() - 1);
-    }
 
-    @Override
-    @Nonnull
-    public List<ItemStack> getDisplayRecipes() {
-        final List<ItemStack> recipes = new ArrayList<ItemStack>(getTools().length * 2);
-        
-        for (ItemStack tool : getTools()) {
-            recipes.add(new ItemStack(Material.AIR));
-            recipes.add(tool);
+        final SlimefunItem sfItem = SlimefunItem.getByItem(e.getItem());
+        if (sfItem == null) return;
+
+        if (sfItem instanceof final GastroFood food) {
+            e.cancel();
+            Player p = e.getPlayer();
+            for (FoodEffect effect : food.getItem().getEffects()) {
+                effect.apply(p, ChatUtils.removeColorCodes(sfItem.getItemName()).toLowerCase().startsWith("perfect"));
+            }
+            p.setFoodLevel(GastroUtil.clampUpper(p.getFoodLevel() + food.getItem().getHunger(), 20));
+            p.setSaturation((float) GastroUtil.clampUpper(p.getSaturation() + food.getItem().getSaturation(), p.getFoodLevel()));
         }
-
-        return recipes;
-    }
-
-    @Override
-    @Nonnull
-    public String getRecipeSectionLabel(@Nonnull Player p) {
-        return GastroUtil.formatColors("&7Tools Required:");
+        
+        e.getItem().setAmount(e.getItem().getAmount() - 1);
     }
 
     public void registerIfEG(@Nonnull SlimefunAddon addon) {
         if (EGIntegration.isAvailable()) register(addon);
     }
 
+    /**
+     * Will create a hidden perfect version of itself if not already perfect.
+     */
     @Override
     public void register(@Nonnull SlimefunAddon addon) {
         super.register(addon);
-        new GastroFood(getItemGroup(), getItem().asPerfect(), getRecipeType(), getRecipe(), getTools()).hide().register(addon);
+        if (!isPerfect()) new GastroFood(getItemGroup(), getItem().asPerfect(), true, getRecipeType(), getRecipe(), getTools()).hide().register(addon);
     }
 
 }

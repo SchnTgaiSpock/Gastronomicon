@@ -8,6 +8,7 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.plugin.PluginManager;
 
 import io.github.mooy1.infinitylib.core.AbstractAddon;
+import io.github.mooy1.infinitylib.core.AddonConfig;
 import io.github.schntgaispock.gastronomicon.core.setup.CommandSetup;
 import io.github.schntgaispock.gastronomicon.core.setup.ListenerSetup;
 import io.github.schntgaispock.gastronomicon.core.setup.RecipeSetup;
@@ -20,6 +21,8 @@ public class Gastronomicon extends AbstractAddon {
 
     private static @Getter Gastronomicon instance;
     private static final @Getter PluginManager pluginManager = getInstance().getServer().getPluginManager();
+
+    private @Getter AddonConfig playerData;
 
     public Gastronomicon() {
         super("SchnTgaiSpock", "Gastronomicon", "master", "options.auto-update");
@@ -57,6 +60,8 @@ public class Gastronomicon extends AbstractAddon {
             getLogger().warning("ExoticGarden was not found on this server!");
             getLogger().info("Recipes that require ExoticGarden items will be hidden.");
         }
+
+        playerData = new AddonConfig("player.yml");
     }
 
     @Override

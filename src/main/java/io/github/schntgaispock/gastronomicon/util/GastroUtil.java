@@ -5,8 +5,10 @@ import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import lombok.Getter;
@@ -60,6 +62,10 @@ public class GastroUtil {
         return ChatColor.translateAlternateColorCodes('&', str);
     }
 
+    public static boolean flip(double chance) {
+        return random.nextDouble(1) < chance;
+    }
+
     public static int randomRound(double x) {
         final int f = (int) Math.floor(x);
         final int c = (int) Math.ceil(x);
@@ -77,10 +83,6 @@ public class GastroUtil {
         return roundToPrecision(x*100, precision);
     }
 
-    public static boolean flip(double chance) {
-        return random.nextDouble(1) < chance;
-    }
-
     public static <K, V> Map<K, V> toMap(K key, V value) {
         Map<K, V> map = new HashMap<K, V>();
         map.put(key, value);
@@ -94,6 +96,24 @@ public class GastroUtil {
         hash = hash * 31 + (stack.hasItemMeta() ? stack.getItemMeta().hashCode() : 0);
 
         return hash;
+    }
+
+    public static int getFortuneAmount(int fortuneLevel, int sickleTier) {
+        return getFortuneAmount(fortuneLevel, sickleTier + 1);
+    }
+
+    public static int getFortuneAmount(int fortuneLevel, double multiplier) {
+        return randomRound(multiplier * (Math.sqrt(fortuneLevel + 1) + 1) / 2);
+    }
+
+    public static boolean checkPermission(Player player, @Nonnull String permissionNode, @Nullable String message) {
+        if (player.hasPermission(permissionNode)) {
+            return true;
+        }
+
+        if (message != null) player.sendMessage(message);
+        return false;
+
     }
 
 }

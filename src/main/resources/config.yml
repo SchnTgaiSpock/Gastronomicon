@@ -2,3 +2,13 @@ options:
 
   auto-update: true
   
+
+profile:
+  titles:
+    0: Novice Chef
+    1: Chef-in-training
+    20: Chef's Apprentice
+    50: temp
+    75: temp
+    100: temp
+  

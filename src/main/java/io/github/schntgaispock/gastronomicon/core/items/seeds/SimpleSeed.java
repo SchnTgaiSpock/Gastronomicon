@@ -1,9 +1,10 @@
 package io.github.schntgaispock.gastronomicon.core.items.seeds;
 
+import java.util.Arrays;
+import java.util.List;
+
 import javax.annotation.ParametersAreNonnullByDefault;
 
-import org.bukkit.Location;
-import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.data.Ageable;
 import org.bukkit.enchantments.Enchantment;
@@ -14,21 +15,20 @@ import io.github.schntgaispock.gastronomicon.util.GastroUtil;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 
-public class SimpleGastroSeed extends AbstractGastroSeed {
+/**
+ * A SimpleGastroSeed only drops itself when harvested.
+ */
+public class SimpleSeed extends AbstractSeed {
 
     @ParametersAreNonnullByDefault
-    public SimpleGastroSeed(SlimefunItemStack item, ItemStack[] harvestSources) {
-        super(item, harvestSources);
+    public SimpleSeed(SlimefunItemStack item, ItemStack[] gatherSources) {
+        super(item, gatherSources);
     }
 
-
     @Override
-    public void onHarvest(BlockBreakEvent e, ItemStack item) {
-        final Location location = e.getBlock().getLocation();
-        final World world = location.getWorld();
-
+    public List<ItemStack> onHarvest(BlockBreakEvent e, ItemStack item) {
         if (!isMature(e.getBlock())) {
-            world.dropItemNaturally(location, getItem());
+            return Arrays.asList(getItem());
         }
 
         int sickleTier = 0;
@@ -43,11 +43,9 @@ public class SimpleGastroSeed extends AbstractGastroSeed {
             };
         }
 
-        final double _fortune_factor = Math.sqrt(item.getEnchantmentLevel(Enchantment.LOOT_BONUS_BLOCKS) + 1);
-
         final ItemStack seed = this.getItem().clone();
-        seed.setAmount(GastroUtil.randomRound((sickleTier + 1) * (_fortune_factor + 1) / 2));
-        world.dropItemNaturally(location, seed);
+        seed.setAmount(GastroUtil.getFortuneAmount(item.getEnchantmentLevel(Enchantment.LOOT_BONUS_BLOCKS), sickleTier));
+        return Arrays.asList(getItem());
     }
 
     @Override
@@ -56,12 +54,12 @@ public class SimpleGastroSeed extends AbstractGastroSeed {
         return cropMeta.getAge() >= cropMeta.getMaximumAge();
     }
 
-    @Override
-    public void tick(Block b) {
-        if (!isMature(b)) {
-            final Ageable cropMeta = (Ageable) b.getBlockData();
-            cropMeta.setAge(cropMeta.getAge() + 1);
-            b.setBlockData(cropMeta);
-        }
-    }
+    // @Override
+    // public void tick(Block b) {
+    //     if (!isMature(b)) {
+    //         final Ageable cropMeta = (Ageable) b.getBlockData();
+    //         cropMeta.setAge(cropMeta.getAge() + 1);
+    //         b.setBlockData(cropMeta);
+    //     }
+    // }
 }

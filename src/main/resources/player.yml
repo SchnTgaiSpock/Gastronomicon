@@ -1,0 +1,8 @@
+# Format:
+
+player-uuid:
+  proficiencies:
+    ITEM_ID: 0
+  skill-profile:
+    points: 0
+    learned-skills: []

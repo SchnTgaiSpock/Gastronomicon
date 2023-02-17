@@ -1,5 +1,6 @@
 package io.github.schntgaispock.gastronomicon.util;
 
+import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
 import lombok.experimental.UtilityClass;
@@ -10,6 +11,11 @@ public class RecipeShapes {
     public static ItemStack[] single(ItemStack item) {
         final ItemStack[] recipe = new ItemStack[9];
         recipe[0] = item;
+        return recipe;
+    }
+    public static ItemStack[] singleCenter(Material item) {
+        final ItemStack[] recipe = new ItemStack[9];
+        recipe[4] = new ItemStack(item);
         return recipe;
     }
     public static ItemStack[] singleCenter(ItemStack item) {

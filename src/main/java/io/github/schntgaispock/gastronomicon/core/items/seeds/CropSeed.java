@@ -1,11 +1,11 @@
 package io.github.schntgaispock.gastronomicon.core.items.seeds;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
-import org.bukkit.Location;
-import org.bukkit.World;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
@@ -16,34 +16,35 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import lombok.Getter;
 
-public class CropGastroSeed extends SimpleGastroSeed {
+/**
+ * The CropGastroSeed drops additional crops when harvested
+ */
+public class CropSeed extends SimpleSeed {
 
     private final @Getter Map<ItemStack, Double> grownCrops;
 
     @ParametersAreNonnullByDefault
-    public CropGastroSeed(SlimefunItemStack item, ItemStack[] harvestSources,
+    public CropSeed(SlimefunItemStack item, ItemStack[] gatherSources,
             Map<ItemStack, Double> grownCrops) {
-        super(item, harvestSources);
+        super(item, gatherSources);
 
         this.grownCrops = grownCrops;
     }
 
     @ParametersAreNonnullByDefault
-    public CropGastroSeed(SlimefunItemStack item, ItemStack[] harvestSources,
+    public CropSeed(SlimefunItemStack item, ItemStack[] gatherSources,
             ItemStack grownCrop) {
-        this(item, harvestSources, GastroUtil.toMap(grownCrop, 1.0));
+        this(item, gatherSources, GastroUtil.toMap(grownCrop, 1.0));
     }
 
     @ParametersAreNonnullByDefault
-    public CropGastroSeed(SlimefunItemStack item, SlimefunItemStack harvestSource) {
+    public CropSeed(SlimefunItemStack item, SlimefunItemStack harvestSource) {
         this(item, RecipeShapes.singleCenter(harvestSource), harvestSource);
     }
 
     @Override
-    public void onHarvest(BlockBreakEvent e, ItemStack item) {
+    public List<ItemStack> onHarvest(BlockBreakEvent e, ItemStack item) {
         int sickleTier = 0;
-        final Location location = e.getBlock().getLocation();
-        final World world = location.getWorld();
 
         final SlimefunItem sfItem = SlimefunItem.getByItem(item);
         if (sfItem != null) {
@@ -55,16 +56,20 @@ public class CropGastroSeed extends SimpleGastroSeed {
             };
         }
 
-        final double _fortune_factor = Math.sqrt(item.getEnchantmentLevel(Enchantment.LOOT_BONUS_BLOCKS) + 1);
+        List<ItemStack> drops = new ArrayList<>();
+
+        final int fortuneAmount = item.getEnchantmentLevel(Enchantment.LOOT_BONUS_BLOCKS);
 
         final ItemStack seed = this.getItem().clone();
-        seed.setAmount(GastroUtil.randomRound((sickleTier + 1) * (_fortune_factor + 1) / 2));
-        world.dropItemNaturally(location, seed);
+        seed.setAmount(GastroUtil.getFortuneAmount(fortuneAmount, sickleTier));
+        drops.add(seed);
 
         for (Map.Entry<ItemStack, Double> grownCropsEntry : getGrownCrops().entrySet()) {
             final ItemStack drop = grownCropsEntry.getKey().clone();
-            drop.setAmount(GastroUtil.randomRound(grownCropsEntry.getValue() * _fortune_factor));
-            world.dropItemNaturally(location, drop);
+            drop.setAmount(GastroUtil.getFortuneAmount(fortuneAmount, grownCropsEntry.getValue()));
+            drops.add(drop);
         }
+
+        return drops;
     }
 }

@@ -14,11 +14,11 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockBreakHandler;
 
-public abstract class AbstractGastroSeed extends SlimefunItem {
+public abstract class AbstractSeed extends SlimefunItem {
 
     @ParametersAreNonnullByDefault
-    public AbstractGastroSeed(SlimefunItemStack item, ItemStack[] harvestSources) {
-        super(GastroGroups.RAW_INGREDIENTS, item, GastroRecipeType.BREAK, harvestSources);
+    public AbstractSeed(SlimefunItemStack item, ItemStack[] gatherSources) {
+        super(GastroGroups.RAW_INGREDIENTS, item, GastroRecipeType.BREAK, gatherSources);
     }
 
     @Override
@@ -28,16 +28,16 @@ public abstract class AbstractGastroSeed extends SlimefunItem {
             public void onPlayerBreak(BlockBreakEvent e, ItemStack item, List<ItemStack> drops) {
                 drops.clear();
                 // TODO: Check if its fully grown first, probably in the AbstractGastroSeed.onHarvest() method instead
-                onHarvest(e, item);
+                drops.addAll(onHarvest(e, item));
             }
         });
     }
 
-    public abstract void onHarvest(BlockBreakEvent e, ItemStack item);
+    public abstract List<ItemStack> onHarvest(BlockBreakEvent e, ItemStack item);
 
     public abstract boolean isMature(Block b);
 
-    public abstract void tick(Block b);
+    // public abstract void tick(Block b);
 
     // TODO: Pull out sickle checking code
 
