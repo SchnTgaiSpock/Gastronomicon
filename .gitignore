@@ -2,11 +2,12 @@
 /.settings/
 /target/
 /.idea/
+/.vscode/
+.markdownlint.json
 *.iml
 .project
 .classpath
 dependency-reduced-pom.xml
 .DS_Store
-/.vscode/
 eclipse-formatter.xml
 *.py
