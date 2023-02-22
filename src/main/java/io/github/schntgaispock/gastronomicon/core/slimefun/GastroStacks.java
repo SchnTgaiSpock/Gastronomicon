@@ -232,9 +232,9 @@ public class GastroStacks {
 
     public static final SlimefunItemStack STEEL_SICKLE = ThemedItemStack.of(
         Theme.TOOL,
-        "GN_IRON_SICKLE",
+        "GN_STEEL_SICKLE",
         Material.IRON_HOE,
-        "Iron Sickle"
+        "STEEL Sickle"
     );
 
     public static final SlimefunItemStack REINFORCED_SICKLE = ThemedItemStack.of(
@@ -261,7 +261,7 @@ public class GastroStacks {
         Material.BLAST_FURNACE,
         "Multi-Stove",
         LoreBuilder.powerBuffer(600),
-        LoreBuilder.power(150, "/craft")
+        LoreBuilder.power(150, "/Craft")
     );
 
     public static final SlimefunItemStack REFRIDGERATOR = ThemedItemStack.of(
@@ -270,7 +270,7 @@ public class GastroStacks {
         Material.IRON_BLOCK,
         "Refridgerator",
         LoreBuilder.powerBuffer(600),
-        LoreBuilder.power(150, "/craft")
+        LoreBuilder.power(150, "/Craft")
     );
 
     public static final SlimefunItemStack MILL = ThemedItemStack.of(
@@ -405,7 +405,7 @@ public class GastroStacks {
         "Wasabi Plant"
     );
 
-    public static final SlimefunItemStack LEMONGRASS = ThemedItemStack.ingredient( // TODO: Sugar Cane
+    public static final SlimefunItemStack LEMONGRASS = ThemedItemStack.ingredient(
         "GN_LEMONGRASS",
         Material.SUGAR_CANE,
         "Lemongrass"
@@ -413,7 +413,7 @@ public class GastroStacks {
 
     public static final SlimefunItemStack CUCUMBER = ThemedItemStack.ingredient(
         "GN_CUCUMBER",
-        Material.GREEN_CANDLE,
+        Material.SEA_PICKLE,
         "Cucumber"
     );
     public static final SlimefunItemStack BASIL = ThemedItemStack.ingredient(
@@ -447,7 +447,7 @@ public class GastroStacks {
     );
 
     public static final SlimefunItemStack PARSLEY = ThemedItemStack.ingredient(
-        "GN_MINT",
+        "GN_PARSLEY",
         Material.SMALL_DRIPLEAF,
         "Parsley"
     );
@@ -782,7 +782,7 @@ public class GastroStacks {
     );
 
     public static final FoodItemStack TUNA_SANDWICH = FoodItemStack.of(
-        "GN_TUnA_SANDWICH",
+        "GN_TUNA_SANDWICH",
         "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjljMmRkZjJiZDc0YTQ2NTVlOGYwMTUzYTc0NTNlNjdkYjJhMjFkYmZhYzY3NTY3ODk0ODFhZGJlYzQ4M2EifX19",
         "Tuna Sandwich",
         8,

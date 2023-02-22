@@ -51,7 +51,6 @@ public class GastroRecipeRegistry {
     }
     
     @Nonnull
-    @SuppressWarnings("null")
     public static Set<GastroRecipe> getSimilarRecipes(int inputHash, RecipeShape shape) {
         Set<GastroRecipe> similarRecipes = (switch (shape) {
             case SHAPED -> shapedRecipes;

@@ -8,6 +8,6 @@ import lombok.experimental.UtilityClass;
 public class EGIntegration {
 
     @Getter
-    private static boolean available = Gastronomicon.getPluginManager().isPluginEnabled("ExoticGarden");
+    private static boolean available = Gastronomicon.getInstance().getServer().getPluginManager().isPluginEnabled("ExoticGarden");
     
 }

@@ -40,8 +40,8 @@ public class SimpleGastroFood extends UnplaceableItem implements RecipeDisplayIt
         final List<ItemStack> recipes = new ArrayList<ItemStack>(getTools().length * 2);
         
         for (ItemStack tool : getTools()) {
-            recipes.add(new ItemStack(Material.AIR));
             recipes.add(tool);
+            recipes.add(new ItemStack(Material.AIR));
         }
 
         return recipes;

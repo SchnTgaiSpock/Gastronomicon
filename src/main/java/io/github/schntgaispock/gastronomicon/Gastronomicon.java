@@ -1,11 +1,12 @@
 package io.github.schntgaispock.gastronomicon;
 
+import java.util.logging.Level;
+
 import javax.annotation.Nonnull;
 
 import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
-import org.bukkit.plugin.PluginManager;
 
 import io.github.mooy1.infinitylib.core.AbstractAddon;
 import io.github.mooy1.infinitylib.core.AddonConfig;
@@ -16,12 +17,9 @@ import io.github.schntgaispock.gastronomicon.core.setup.GastroItemSetup;
 import io.github.schntgaispock.gastronomicon.integration.SlimeHUDSetup;
 import lombok.Getter;
 
-@SuppressWarnings("null")
 public class Gastronomicon extends AbstractAddon {
 
     private static @Getter Gastronomicon instance;
-    private static final @Getter PluginManager pluginManager = getInstance().getServer().getPluginManager();
-
     private @Getter AddonConfig playerData;
 
     public Gastronomicon() {
@@ -44,10 +42,10 @@ public class Gastronomicon extends AbstractAddon {
         ListenerSetup.setup();
         CommandSetup.setup();
 
-        if (getPluginManager().isPluginEnabled("SlimeHUD")) {
+        if (getInstance().getServer().getPluginManager().isPluginEnabled("SlimeHUD")) {
             try {
-                getLogger().info("SlimeHUD was found on this server!");
-                getLogger().info("Setting up Gastronomicon for SlimeHUD...");
+                log(Level.INFO, "SlimeHUD was found on this server!");
+                log(Level.INFO, "Setting up Gastronomicon for SlimeHUD...");
                 SlimeHUDSetup.setup();
             } catch (NoClassDefFoundError e) {
                 getLogger().warning(
@@ -56,9 +54,9 @@ public class Gastronomicon extends AbstractAddon {
             }
         }
 
-        if (!getPluginManager().isPluginEnabled("ExoticGarden")) {
-            getLogger().warning("ExoticGarden was not found on this server!");
-            getLogger().info("Recipes that require ExoticGarden items will be hidden.");
+        if (!getInstance().getServer().getPluginManager().isPluginEnabled("ExoticGarden")) {
+            log(Level.WARNING, "ExoticGarden was not found on this server!");
+            log(Level.INFO, "Recipes that require ExoticGarden items will be hidden.");
         }
 
         playerData = new AddonConfig("player.yml");

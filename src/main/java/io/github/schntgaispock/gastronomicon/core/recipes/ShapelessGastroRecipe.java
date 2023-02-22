@@ -12,6 +12,7 @@ import io.github.schntgaispock.gastronomicon.core.recipes.components.SingleGastr
 import lombok.Getter;
 
 @Getter
+@SuppressWarnings("deprecation")
 public class ShapelessGastroRecipe extends GastroRecipe {
 
     private final GastroRecipeComponent<?>[] inputs;

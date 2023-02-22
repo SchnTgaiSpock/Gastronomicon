@@ -1,6 +1,7 @@
 package io.github.schntgaispock.gastronomicon.core.command;
 
-import java.util.UUID;
+import java.util.HashMap;
+import java.util.Set;
 
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -8,7 +9,9 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import io.github.mooy1.infinitylib.core.AddonConfig;
 import io.github.schntgaispock.gastronomicon.Gastronomicon;
+import io.github.schntgaispock.gastronomicon.core.items.food.GastroFood;
 import io.github.schntgaispock.gastronomicon.util.GastroUtil;
 
 /**
@@ -26,35 +29,39 @@ public class GastroCommandExecutor implements CommandExecutor {
                     return true;
 
                 case 1:
-                    final UUID uuid = player.getUniqueId();
                     switch (args[0]) {
+                        case "help":
+                            player.sendMessage("The help section is a WIP! " +
+                                    "For now, please see https://github.com/SchnTgaiSpock/Gastronomicon");
+                            return true;
+
                         case "profile":
                             if (!GastroUtil.checkPermission(
                                     player,
                                     "gastronomicon.checkprofile",
-                                    "§#4ee530§lGastronomicon&7> &cYou do not have perission to check another player's profile"))
+                                    "§#4ee530§lGastronomicon&7> &cYou do not have perission to check your profile!"))
                                 return true;
                             player.sendMessage("§#4ee530Proficiencies:");
-                            sendProficiencies(uuid);
+                            sendProficiencies(player, player);
                             player.sendMessage("§#4ee530Skills:");
-                            sendSkills(uuid);
+                            sendSkills(player, player);
                             return true;
                         case "skills":
                             if (!GastroUtil.checkPermission(
                                     player,
                                     "gastronomicon.checkprofile",
-                                    "§#4ee530§lGastronomicon&7> &cYou do not have perission to check another player's profile"))
+                                    "§#4ee530§lGastronomicon&7> &cYou do not have perission to check your skills!"))
                                 return true;
-                            sendSkills(uuid);
+                            sendSkills(player, player);
                             return true;
 
                         case "proficiencies":
                             if (!GastroUtil.checkPermission(
                                     player,
                                     "gastronomicon.checkprofile",
-                                    "§#4ee530§lGastronomicon&7> &cYou do not have perission to check another player's profile"))
+                                    "§#4ee530§lGastronomicon&7> &cYou do not have perission to check your proficiencies!"))
                                 return true;
-                            sendProficiencies(uuid);
+                            sendProficiencies(player, player);
                             return true;
 
                         default:
@@ -67,79 +74,128 @@ public class GastroCommandExecutor implements CommandExecutor {
                             if (!GastroUtil.checkPermission(
                                     player,
                                     "gastronomicon.checkotherprofile",
-                                    "§#4ee530§lGastronomicon&7> &cYou do not have perission to check your profile"))
+                                    "§#4ee530§lGastronomicon&7> &cYou do not have perission to check another player's profile!"))
                                 return true;
 
-                            // TODO: Check another players profile
+                            Player toCheck = Bukkit.getServer().getPlayer(args[1]);
+                            if (toCheck == null)
+                                return false;
+
+                            player.sendMessage("§#4ee530" + toCheck.getName() + "'s Proficiencies:");
+                            sendProficiencies(player, toCheck);
+                            player.sendMessage("§#4ee530" + toCheck.getName() + "'s Skills:");
+                            sendSkills(player, toCheck);
+
+                            return true;
+
                         case "skills":
                             if (!GastroUtil.checkPermission(
                                     player,
                                     "gastronomicon.checkotherprofile",
-                                    "§#4ee530§lGastronomicon&7> &cYou do not have perission to check your skills"))
+                                    "§#4ee530§lGastronomicon&7> &cYou do not have perission to check another player's skills!"))
                                 return true;
 
-                            // TODO: Check another players skills
+                            toCheck = Bukkit.getServer().getPlayer(args[1]);
+                            if (toCheck == null)
+                                return false;
+
+                            sendSkills(player, toCheck);
+
+                            return true;
+
                         case "proficiencies":
                             if (!GastroUtil.checkPermission(
                                     player,
                                     "gastronomicon.checkotherprofile",
-                                    "§#4ee530§lGastronomicon&7> &cYou do not have perission to check your proficiencies"))
+                                    "§#4ee530§lGastronomicon&7> &cYou do not have perission to check another player's proficiencies!"))
                                 return true;
 
-                            // TODO: Check another players prof
+                            toCheck = Bukkit.getServer().getPlayer(args[1]);
+                            if (toCheck == null)
+                                return false;
+
+                            sendProficiencies(player, toCheck);
+
+                            return true;
 
                         default:
                             return false;
                     }
 
                 case 5:
-                    if (args[0].equals("set")) {
+                    AddonConfig playerData = Gastronomicon.getInstance().getPlayerData();
+                    switch (args[0]) {
+                        case "set", "modify":
+                            if (args[1].equals("proficiency")) {
+                                final String foodId = args[2];
+                                final String amount = args[3];
+                                final String playerName = args[4];
 
-                        if (args[1].equals("proficiency")) {
-                            final String food = args[2];
-                            final String amount = args[3];
-                            final String playerName = args[4];
+                                if (!GastroFood.getGastroFoodIds().contains(foodId))
+                                    return false;
 
-                            // TODO: Check if food is a gastronomicon food
+                                try {
+                                    Integer.parseInt(amount);
+                                } catch (NumberFormatException e) {
+                                    return false;
+                                }
 
-                            try {
-                                Integer.parseInt(amount);
-                            } catch (NumberFormatException e) {
-                                return false;
+                                final Player toModify = Bukkit.getServer().getPlayer(playerName);
+                                if (toModify == null)
+                                    return false;
+
+                                if (!GastroUtil.checkPermission(
+                                        player,
+                                        "gastronomicon.checkotherprofile",
+                                        "§#4ee530§lGastronomicon&7> &cYou do not have perission to modify another player's proficiencies!"))
+                                    return true;
+
+                                final String proficiencyPath = player.getUniqueId() + ".proficiencies." + foodId;
+                                if (args[0].equals("set")) {
+                                    playerData.set(proficiencyPath, amount);
+                                } else if (args[0].equals("modify")) {
+                                    playerData.set(proficiencyPath, playerData.getInt(proficiencyPath) + amount);
+                                }
+
+                                playerData.save();
+
+                                return true;
+
+                            } else if (args[1].equals("skill")) {
+                                final String skillName = args[2];
+                                final String action = args[3];
+                                final String playerName = args[4];
+
+                                if (!GastroFood.getSkills().contains(skillName))
+                                    return false;
+
+                                final Player toModify = Bukkit.getServer().getPlayer(playerName);
+                                if (toModify == null)
+                                    return false;
+
+                                if (!GastroUtil.checkPermission(
+                                        player,
+                                        "gastronomicon.checkotherprofile",
+                                        "§#4ee530§lGastronomicon&7> &cYou do not have perission to modify another player's skills!"))
+                                    return true;
+
+                                final String skillsPath = player.getUniqueId() + ".skill-profile.learned-skills";
+                                final Set<String> skillsList = Set
+                                        .of((playerData.getList(skillsPath)).toArray(String[]::new));
+                                if (action.equals("on")) {
+                                    skillsList.add(skillName);
+                                } else if (action.equals("off")) {
+                                    skillsList.remove(skillName);
+                                } else {
+                                    return false;
+                                }
+
+                                return true;
                             }
 
-                            final Player toModify = Bukkit.getServer().getPlayer(playerName);
-                            if (toModify == null)
-                                return false;
-
-                            // TODO: Set proficiency
-
-                            return true;
-                        } else if (args[1].equals("skill")) {
-                            final String skillName = args[2];
-                            final String onOff = args[3];
-                            final String playerName = args[4];
-
-                            // TODO: Check if skill is valid
-
-                            final Player toModify = Bukkit.getServer().getPlayer(playerName);
-                            if (toModify == null)
-                                return false;
-
-                            if (onOff.equals("on")) {
-                                // TODO: on
-                            } else if (onOff.equals("off")) {
-                                // TODO: off
-                            }
-
-                            return true;
-                        } else
+                        default:
                             return false;
-                    } else if (args[0].equals("modify")) {
-                        return true;
-                    } else
-                        return false;
-
+                    }
                 default:
                     break;
             }
@@ -149,12 +205,14 @@ public class GastroCommandExecutor implements CommandExecutor {
 
     }
 
-    private void sendProficiencies(UUID player) {
-        
+    private void sendProficiencies(Player player, Player toCheck) {
+        player.sendMessage(Gastronomicon.getInstance().getPlayerData()
+                .getObject(player.getUniqueId() + ".proficiencies", HashMap.class).toString());
     }
 
-    private void sendSkills(UUID player) {
-
+    private void sendSkills(Player player, Player toCheck) {
+        player.sendMessage(GastroUtil.commaJoin(Gastronomicon.getInstance().getPlayerData()
+                .getList(player.getUniqueId() + ".skill-profile.learned-skills").toArray()));
     }
 
     private void sendInfo(Player player) {

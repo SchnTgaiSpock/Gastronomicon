@@ -6,67 +6,64 @@ import java.util.Map;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
+import org.bukkit.Material;
+import org.bukkit.block.BlockState;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
 
 import io.github.schntgaispock.gastronomicon.util.GastroUtil;
 import io.github.schntgaispock.gastronomicon.util.RecipeShapes;
-import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import lombok.Getter;
 
 /**
- * The CropGastroSeed drops additional crops when harvested
+ * A CropGastroSeed drops additional crops when harvested
  */
 public class CropSeed extends SimpleSeed {
 
     private final @Getter Map<ItemStack, Double> grownCrops;
 
+
     @ParametersAreNonnullByDefault
-    public CropSeed(SlimefunItemStack item, ItemStack[] gatherSources,
+    public CropSeed(SlimefunItemStack item, Material displayBlock, ItemStack[] gatherSources,
             Map<ItemStack, Double> grownCrops) {
-        super(item, gatherSources);
+        super(item, displayBlock, gatherSources);
 
         this.grownCrops = grownCrops;
     }
 
     @ParametersAreNonnullByDefault
-    public CropSeed(SlimefunItemStack item, ItemStack[] gatherSources,
+    public CropSeed(SlimefunItemStack item, Material displayBlock, ItemStack[] gatherSources,
             ItemStack grownCrop) {
-        this(item, gatherSources, GastroUtil.toMap(grownCrop, 1.0));
+        this(item, displayBlock, gatherSources, GastroUtil.toMap(grownCrop, 1.0));
     }
 
     @ParametersAreNonnullByDefault
-    public CropSeed(SlimefunItemStack item, SlimefunItemStack harvestSource) {
-        this(item, RecipeShapes.singleCenter(harvestSource), harvestSource);
+    public CropSeed(SlimefunItemStack item, Material displayBlock, SlimefunItemStack harvestSource) {
+        this(item, displayBlock, RecipeShapes.singleCenter(harvestSource), harvestSource);
     }
 
     @Override
-    public List<ItemStack> onHarvest(BlockBreakEvent e, ItemStack item) {
-        int sickleTier = 0;
-
-        final SlimefunItem sfItem = SlimefunItem.getByItem(item);
-        if (sfItem != null) {
-            sickleTier = switch (sfItem.getId()) {
-                case "WOODEN_SICKLE" -> 1;
-                case "STEEL_SICKLE" -> 2;
-                case "REINFORCED_SICKLE" -> 3;
-                default -> 0;
-            };
+    public List<ItemStack> getHarvestDrops(BlockState b, ItemStack item, boolean brokenByPlayer) {
+        final List<ItemStack> drops = new ArrayList<>();
+        if (!brokenByPlayer) {
+            drops.add(getItem().clone());
         }
 
-        List<ItemStack> drops = new ArrayList<>();
+        if (!isMature(b)) {
+            return drops;
+        }
+        
+        final int sickleTier = GastroUtil.getSickleTier(item);
+        final int fortuneLevel = item.getEnchantmentLevel(Enchantment.LOOT_BONUS_BLOCKS);
 
-        final int fortuneAmount = item.getEnchantmentLevel(Enchantment.LOOT_BONUS_BLOCKS);
-
-        final ItemStack seed = this.getItem().clone();
-        seed.setAmount(GastroUtil.getFortuneAmount(fortuneAmount, sickleTier));
+        final ItemStack seed = getItem().clone();
+        seed.setAmount(GastroUtil.getFortuneAmount(fortuneLevel, sickleTier));
         drops.add(seed);
 
         for (Map.Entry<ItemStack, Double> grownCropsEntry : getGrownCrops().entrySet()) {
             final ItemStack drop = grownCropsEntry.getKey().clone();
-            drop.setAmount(GastroUtil.getFortuneAmount(fortuneAmount, grownCropsEntry.getValue()));
+            drop.setAmount(GastroUtil.getFortuneAmount(fortuneLevel, grownCropsEntry.getValue()));
             drops.add(drop);
         }
 

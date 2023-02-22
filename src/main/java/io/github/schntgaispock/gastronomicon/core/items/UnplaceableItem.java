@@ -9,10 +9,9 @@ import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
-import io.github.thebusybiscuit.slimefun4.core.attributes.NotPlaceable;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockPlaceHandler;
 
-public class UnplaceableItem extends SlimefunItem implements NotPlaceable {
+public class UnplaceableItem extends SlimefunItem {
 
     public UnplaceableItem(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
@@ -23,6 +22,7 @@ public class UnplaceableItem extends SlimefunItem implements NotPlaceable {
         addItemHandler(new BlockPlaceHandler(false) {
             @Override
             public void onPlayerPlace(@Nonnull BlockPlaceEvent e) {
+                System.out.println("Placed!");
                 e.setCancelled(true);
             }
         });

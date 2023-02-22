@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
-import org.bukkit.block.Block;
+import org.bukkit.block.BlockState;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
 
@@ -23,24 +23,18 @@ public abstract class AbstractSeed extends SlimefunItem {
 
     @Override
     public void preRegister() {
-        addItemHandler((BlockBreakHandler) new BlockBreakHandler(false, false) {
+        addItemHandler((BlockBreakHandler) new BlockBreakHandler(true, false) {
             @Override
             public void onPlayerBreak(BlockBreakEvent e, ItemStack item, List<ItemStack> drops) {
                 drops.clear();
-                // TODO: Check if its fully grown first, probably in the AbstractGastroSeed.onHarvest() method instead
-                drops.addAll(onHarvest(e, item));
+                drops.addAll(getHarvestDrops(e.getBlock().getState(), item, true));
+                // TODO: fix broken fortune drops
             }
         });
     }
 
-    public abstract List<ItemStack> onHarvest(BlockBreakEvent e, ItemStack item);
+    public abstract List<ItemStack> getHarvestDrops(BlockState e, ItemStack item, boolean brokenByPlayer);
 
-    public abstract boolean isMature(Block b);
-
-    // public abstract void tick(Block b);
-
-    // TODO: Pull out sickle checking code
-
-    // TODO: On right click, check for farmland, etc...
+    public abstract boolean isMature(BlockState b);
 
 }

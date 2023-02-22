@@ -24,30 +24,33 @@ public class ToolItemStack extends ThemedItemStack {
     public static ToolItemStack of(Theme theme, String id, Material material, int durability, String name, String... lore) {
         if (id == null || material == null) return null;
 
-        String durabilityLine = ChatColor.translateAlternateColorCodes('&', "&7Durability: " + durability + "/" + durability);
+        String durabilityText = ChatColor.translateAlternateColorCodes('&', "&7Durability: " + durability + "/" + durability);
         ToolItemStack stack;
 
-        int i = 0;
+        int durabilityLine = 1;
         if (lore.length > 0) {
             String[] fLore = new String[lore.length + 3];
             fLore[0] = "";
 
+            int i;
             for (i = 0; i < lore.length; i++) {
                 fLore[i + 1] = theme.getLoreColor() + lore[i];
             }
 
-            fLore[i + 1] = durabilityLine;
+            fLore[i + 1] = "";
+            fLore[i + 2] = durabilityText;
+            durabilityLine = i + 2;
 
             stack = new ToolItemStack(id, material, theme.getColor() + name, fLore);
         } else {
-            stack = new ToolItemStack(id, material, theme.getColor() + name, "", durabilityLine);
+            stack = new ToolItemStack(id, material, theme.getColor() + name, "", durabilityText);
         }
 
         ItemMeta meta = stack.getItemMeta();
         PersistentDataContainer pdc = meta.getPersistentDataContainer();
         pdc.set(GastroKeys.TOOL_DURABILITY, PersistentDataType.INTEGER, durability);
         pdc.set(GastroKeys.TOOL_MAX_DURABILITY, PersistentDataType.INTEGER, durability);
-        pdc.set(GastroKeys.TOOL_DURABILITY_LINE, PersistentDataType.INTEGER, i + 1);
+        pdc.set(GastroKeys.TOOL_DURABILITY_LINE, PersistentDataType.INTEGER, durabilityLine);
 
         return stack;
     }

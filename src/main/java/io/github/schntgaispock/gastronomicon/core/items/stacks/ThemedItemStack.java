@@ -11,7 +11,6 @@ import org.bukkit.inventory.meta.ItemMeta;
 import io.github.schntgaispock.gastronomicon.util.GastroTheme.Theme;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 
-@SuppressWarnings("null")
 public class ThemedItemStack extends SlimefunItemStack {
 
     @ParametersAreNonnullByDefault

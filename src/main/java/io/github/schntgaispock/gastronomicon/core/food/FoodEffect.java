@@ -25,6 +25,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @AllArgsConstructor
+@SuppressWarnings("deprecation")
 public class FoodEffect {
 
     private static final double PERFECT_MULTIPLIER_HEALTH = 1.25;
@@ -83,8 +84,8 @@ public class FoodEffect {
         final int a = GastroUtil.clampLower(amplifier, 0);
         final int pa = amplifier + PERFECT_BONUS_POTION_LEVEL;
         return new FoodEffect(
-                color + effectType.getName() + " " + GastroUtil.asRomanNumeral(a - 1) + " (" + d + "s)",
-                color + effectType.getName() + " " + GastroUtil.asRomanNumeral(pa - 1) + " (" + pd + "s)",
+                color + effectType.getName() + " " + GastroUtil.asRomanNumeral(a + 1) + " (" + d + "s)",
+                color + effectType.getName() + " " + GastroUtil.asRomanNumeral(pa + 1) + " (" + pd + "s)",
                 (Player player, Boolean isPerfect) -> {
                     player.addPotionEffect(new PotionEffect(effectType, 20 * (isPerfect ? pd : d), (isPerfect ? pa : a),
                             ambience, particles, icon));

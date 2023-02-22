@@ -8,6 +8,7 @@ import io.github.schntgaispock.gastronomicon.core.items.UnplaceableItem;
 import io.github.schntgaispock.gastronomicon.core.items.food.GastroFood;
 import io.github.schntgaispock.gastronomicon.core.items.food.SimpleGastroFood;
 import io.github.schntgaispock.gastronomicon.core.items.seeds.CropSeed;
+import io.github.schntgaispock.gastronomicon.core.items.seeds.DuplicatingSeed;
 import io.github.schntgaispock.gastronomicon.core.items.seeds.FruitingSeed;
 import io.github.schntgaispock.gastronomicon.core.items.seeds.SimpleSeed;
 import io.github.schntgaispock.gastronomicon.core.slimefun.GastroGroups;
@@ -256,21 +257,25 @@ public class GastroItemSetup {
 
         new SimpleSeed(
             GastroStacks.RICE,
+            Material.POTATOES,
             RecipeShapes.singleCenter(Material.GRASS)
         ).register(gn);
 
         new SimpleSeed(
             GastroStacks.QUINOA,
+            Material.WHEAT,
             RecipeShapes.singleCenter(Material.GRASS)
         ).register(gn);
 
         new SimpleSeed(
             GastroStacks.OATS,
+            Material.WHEAT,
             RecipeShapes.singleCenter(Material.GRASS)
         ).register(gn);
 
         new SimpleSeed(
             GastroStacks.SOYBEANS,
+            Material.POTATOES,
             RecipeShapes.singleCenter(Material.GRASS)
         ).register(gn);
 
@@ -283,6 +288,7 @@ public class GastroItemSetup {
 
         new CropSeed(
             GastroStacks.BARLEY_SEEDS,
+            Material.WHEAT,
             GastroStacks.BARLEY
         ).register(gn);
 
@@ -295,6 +301,7 @@ public class GastroItemSetup {
 
         new CropSeed(
             GastroStacks.RYE_SEEDS,
+            Material.WHEAT,
             GastroStacks.RYE
         ).register(gn);
 
@@ -307,6 +314,7 @@ public class GastroItemSetup {
 
         new CropSeed(
             GastroStacks.SORGHUM_SEEDS,
+            Material.WHEAT,
             GastroStacks.SORGHUM
         ).register(gn);
 
@@ -319,6 +327,7 @@ public class GastroItemSetup {
 
         new CropSeed(
             GastroStacks.TURNIP_SEEDS,
+            Material.BEETROOTS,
             GastroStacks.TURNIP
         ).register(gn);
 
@@ -331,14 +340,13 @@ public class GastroItemSetup {
 
         new FruitingSeed(
             GastroStacks.SQUASH_SEEDS,
+            Material.MELON_STEM,
             GastroStacks.SQUASH,
             "GN_SQUASH"
         ).register(gn);
 
-        new UnplaceableItem(
-            GastroGroups.RAW_INGREDIENTS,
+        new DuplicatingSeed(
             GastroStacks.CELERY,
-            GastroRecipeType.BREAK,
             RecipeShapes.singleCenter(Material.GRASS)
         ).register(gn);
 
@@ -370,10 +378,8 @@ public class GastroItemSetup {
             RecipeShapes.singleCenter(Material.GRASS)
         ).register(gn);
 
-        new UnplaceableItem(
-            GastroGroups.RAW_INGREDIENTS,
+        new DuplicatingSeed(
             GastroStacks.LEMONGRASS,
-            GastroRecipeType.BREAK,
             RecipeShapes.singleCenter(Material.GRASS)
         ).register(gn);
 
@@ -548,40 +554,34 @@ public class GastroItemSetup {
             GastroGroups.RAW_INGREDIENTS,
             GastroStacks.COOKED_CHEVON,
             GastroRecipeType.MULTI_STOVE,
-            RecipeShapes.singleCenter(Material.GOAT_SPAWN_EGG),
+            RecipeShapes.singleCenter(GastroStacks.RAW_CHEVON),
             GastroStacks.GUIDE_NO_TOOLS_REQUIRED
         ).register(gn);
 
         new UnplaceableItem(
             GastroGroups.RAW_INGREDIENTS,
-            GastroStacks.RAW_CHEVON,
+            GastroStacks.FROG_LEG,
             RecipeType.MOB_DROP,
             RecipeShapes.singleCenter(Material.FROG_SPAWN_EGG)
         ).register(gn);
 
         new UnplaceableItem(
             GastroGroups.RAW_INGREDIENTS,
-            GastroStacks.RAW_CHEVON,
+            GastroStacks.GIANT_SPIDER_LEG,
             RecipeType.MOB_DROP,
-            RecipeShapes.singleCenter(Material.GOAT_SPAWN_EGG)
+            RecipeShapes.singleCenter(Material.SPIDER_SPAWN_EGG)
         ).register(gn);
 
         // ---- Food ----
 
         // -- Ingredients --
 
-        new UnplaceableItem(
+        new SimpleGastroFood(
             GastroGroups.FOOD,
             GastroStacks.COOKED_RICE,
             GastroRecipeType.MULTI_STOVE,
-            RecipeShapes.singleCenter(GastroStacks.RICE)
-        ).register(gn);
-
-        new UnplaceableItem(
-            GastroGroups.FOOD,
-            GastroStacks.COOKED_RICE,
-            GastroRecipeType.MULTI_STOVE,
-            RecipeShapes.singleCenter(GastroStacks.RICE)
+            RecipeShapes.singleCenter(GastroStacks.RICE),
+            GastroStacks.GUIDE_NO_TOOLS_REQUIRED
         ).register(gn);
 
         // -- Cuisine --

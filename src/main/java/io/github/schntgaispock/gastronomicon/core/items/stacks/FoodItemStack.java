@@ -14,7 +14,6 @@ import io.github.thebusybiscuit.slimefun4.utils.ChatUtils;
 import io.github.thebusybiscuit.slimefun4.utils.LoreBuilder;
 import lombok.Getter;
 
-@SuppressWarnings("null")
 @Getter
 public class FoodItemStack extends SlimefunItemStack {
 

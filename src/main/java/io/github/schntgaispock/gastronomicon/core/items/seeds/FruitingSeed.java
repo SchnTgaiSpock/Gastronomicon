@@ -1,9 +1,16 @@
 package io.github.schntgaispock.gastronomicon.core.items.seeds;
 
+import java.util.logging.Level;
+
+import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 
+import org.bukkit.Material;
+import org.bukkit.block.BlockState;
 import org.bukkit.inventory.ItemStack;
 
+import io.github.schntgaispock.gastronomicon.Gastronomicon;
+import io.github.schntgaispock.gastronomicon.util.GastroUtil;
 import io.github.schntgaispock.gastronomicon.util.RecipeShapes;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -12,46 +19,42 @@ import lombok.Getter;
 /**
  * A FruitingGastroSeed grows a separate block next to the plant to harvest
  * <br>
- * The only allowed <code>ItemStack</code>s are pumpkin and melon seeds
+ * <br>
+ * The only allowed <code>displayBlock</code>s are pumpkin and melon stems
  */
 public class FruitingSeed extends SimpleSeed {
 
     private final @Getter SlimefunItem fruitingBody;
 
     @ParametersAreNonnullByDefault
-    @SuppressWarnings("null")
-    public FruitingSeed(SlimefunItemStack item, ItemStack[] gatherSources, String fruitingBodyId) {
-        super(item, gatherSources);
+    public FruitingSeed(SlimefunItemStack item, @Nullable Material displayBlock, ItemStack[] gatherSources, String fruitingBodyId) {
+        super(item, displayBlock, gatherSources);
+
+        if (displayBlock == null) {
+            displayBlock = GastroUtil.getPlacedBlock(item.getType());
+        }
+
+        switch (displayBlock) {
+            case PUMPKIN_STEM, MELON_STEM -> {}
+            default -> Gastronomicon.log(Level.WARNING, "Registering a FruitingSeed that isn't a pumpkin or melon seed!");
+        }
 
         this.fruitingBody = SlimefunItem.getById(fruitingBodyId);
     }
 
     @ParametersAreNonnullByDefault
-    public FruitingSeed(SlimefunItemStack item, SlimefunItemStack harvestSource, String fruitingBodyId) {
-        this(item, RecipeShapes.singleCenter(harvestSource), fruitingBodyId);
+    public FruitingSeed(SlimefunItemStack item, @Nullable Material displayBlock, SlimefunItemStack harvestSource, String fruitingBodyId) {
+        this(item, displayBlock, RecipeShapes.singleCenter(harvestSource), fruitingBodyId);
     }
 
-    // @Override
-    // public void tick(Block b) {
-    //     if (!isMature(b)) {
-    //         final Ageable cropMeta = (Ageable) b.getBlockData();
-    //         cropMeta.setAge(cropMeta.getAge() + 1);
-    //         b.setBlockData(cropMeta);
-    //     } else {
-    //         // TODO: make random
-    //         for (Vector d : growthDirections) {
-    //             Location growthLocation = d.add(b.getLocation().toVector()).toLocation(b.getWorld());
-    //             switch (growthLocation.subtract(0, 1, 0).getBlock().getType()) {
-    //                 case DIRT, GRASS_BLOCK, PODZOL, MYCELIUM, COARSE_DIRT, ROOTED_DIRT, MOSS_BLOCK, MUD:
-    //                     growthLocation.getBlock().setType(getFruitingBody().getItem().getType());
-    //                     BlockStorage.addBlockInfo(growthLocation, "id", getFruitingBody().getId());
-    //                     return;
+    @ParametersAreNonnullByDefault
+    public FruitingSeed(SlimefunItemStack item, SlimefunItemStack harvestSource, String fruitingBodyId) {
+        this(item, null, RecipeShapes.singleCenter(harvestSource), fruitingBodyId);
+    }
 
-    //                 default:
-    //                     continue;
-    //             }
-    //         }
-    //     }
-    // }
+    @Override
+    public boolean isMature(BlockState b) {
+        return false;
+    }
 
 }

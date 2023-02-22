@@ -1,65 +1,96 @@
 package io.github.schntgaispock.gastronomicon.core.items.seeds;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 
-import org.bukkit.block.Block;
+import org.bukkit.Material;
+import org.bukkit.block.BlockState;
 import org.bukkit.block.data.Ageable;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
 
 import io.github.schntgaispock.gastronomicon.util.GastroUtil;
-import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
+import io.github.thebusybiscuit.slimefun4.api.events.BlockPlacerPlaceEvent;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
+import io.github.thebusybiscuit.slimefun4.core.handlers.BlockPlaceHandler;
+import lombok.Getter;
 
 /**
  * A SimpleGastroSeed only drops itself when harvested.
  */
 public class SimpleSeed extends AbstractSeed {
 
+    private final @Nonnull @Getter Material displayBlock;
+
+    @ParametersAreNonnullByDefault
+    public SimpleSeed(SlimefunItemStack item, @Nullable Material displayBlock, ItemStack[] gatherSources) {
+        super(item, gatherSources);
+
+        if (displayBlock == null) {
+            displayBlock = GastroUtil.getPlacedBlock(item.getType());
+        }
+
+        this.displayBlock = displayBlock;
+    }
+
     @ParametersAreNonnullByDefault
     public SimpleSeed(SlimefunItemStack item, ItemStack[] gatherSources) {
-        super(item, gatherSources);
+        this(item, null, gatherSources);
+    }
+    
+    @Override
+    public void preRegister() {
+        super.preRegister();
+
+        addItemHandler(new BlockPlaceHandler(true) {
+            @Override
+            public void onBlockPlacerPlace(BlockPlacerPlaceEvent e) {
+                e.getBlock().setType(displayBlock);
+            }
+
+            @Override
+            public void onPlayerPlace(BlockPlaceEvent e) {
+                if (!e.canBuild()) {
+                    e.setCancelled(true);
+                }
+
+                e.getBlock().setType(displayBlock);
+            }
+        });
     }
 
     @Override
-    public List<ItemStack> onHarvest(BlockBreakEvent e, ItemStack item) {
-        if (!isMature(e.getBlock())) {
-            return Arrays.asList(getItem());
+    public List<ItemStack> getHarvestDrops(BlockState b, ItemStack item, boolean brokenByPlayer) {
+        final List<ItemStack> drops = new ArrayList<>();
+        if (!brokenByPlayer) {
+            drops.add(getItem().clone());
         }
 
-        int sickleTier = 0;
-
-        final SlimefunItem sfItem = SlimefunItem.getByItem(item);
-        if (sfItem != null) {
-            sickleTier = switch (sfItem.getId()) {
-                case "WOODEN_SICKLE" -> 1;
-                case "STEEL_SICKLE" -> 2;
-                case "REINFORCED_SICKLE" -> 3;
-                default -> 0;
-            };
+        if (!isMature(b)) {
+            return drops;
         }
 
-        final ItemStack seed = this.getItem().clone();
-        seed.setAmount(GastroUtil.getFortuneAmount(item.getEnchantmentLevel(Enchantment.LOOT_BONUS_BLOCKS), sickleTier));
-        return Arrays.asList(getItem());
+        final int sickleTier = GastroUtil.getSickleTier(item);
+        final int fortuneLevel = item.getEnchantmentLevel(Enchantment.LOOT_BONUS_BLOCKS);
+
+        final ItemStack seed = getItem().clone();
+        seed.setAmount(GastroUtil.getFortuneAmount(fortuneLevel, sickleTier));
+        return Arrays.asList(seed);
     }
 
     @Override
-    public boolean isMature(Block b) {
-        final Ageable cropMeta = (Ageable) b.getBlockData();
-        return cropMeta.getAge() >= cropMeta.getMaximumAge();
+    public boolean isMature(BlockState b) {
+        if (b.getBlockData() instanceof final Ageable cropMeta) {
+            return cropMeta.getAge() >= cropMeta.getMaximumAge();
+        } else {
+            return false;
+        }
     }
 
-    // @Override
-    // public void tick(Block b) {
-    //     if (!isMature(b)) {
-    //         final Ageable cropMeta = (Ageable) b.getBlockData();
-    //         cropMeta.setAge(cropMeta.getAge() + 1);
-    //         b.setBlockData(cropMeta);
-    //     }
-    // }
 }
