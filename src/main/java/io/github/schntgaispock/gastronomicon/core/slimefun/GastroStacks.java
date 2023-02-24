@@ -8,7 +8,7 @@ import org.bukkit.potion.PotionEffectType;
 import io.github.schntgaispock.gastronomicon.core.food.FoodEffect;
 import io.github.schntgaispock.gastronomicon.core.items.stacks.FoodItemStack;
 import io.github.schntgaispock.gastronomicon.core.items.stacks.ThemedItemStack;
-import io.github.schntgaispock.gastronomicon.util.GastroTheme.Theme;
+import io.github.schntgaispock.gastronomicon.core.items.stacks.GastroTheme.Theme;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.utils.LoreBuilder;

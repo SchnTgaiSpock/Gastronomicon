@@ -11,7 +11,7 @@ import org.bukkit.block.BlockState;
 import org.bukkit.inventory.ItemStack;
 
 import io.github.schntgaispock.gastronomicon.Gastronomicon;
-import io.github.schntgaispock.gastronomicon.util.RecipeShapes;
+import io.github.schntgaispock.gastronomicon.util.recipe.RecipeShapes;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 
 /**

@@ -11,7 +11,7 @@ import org.bukkit.inventory.ItemStack;
 import io.github.schntgaispock.gastronomicon.core.food.FoodEffect;
 import io.github.schntgaispock.gastronomicon.core.items.stacks.FoodItemStack;
 import io.github.schntgaispock.gastronomicon.integration.EGIntegration;
-import io.github.schntgaispock.gastronomicon.util.GastroUtil;
+import io.github.schntgaispock.gastronomicon.util.NumberUtil;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.api.events.PlayerRightClickEvent;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
@@ -64,12 +64,12 @@ public class GastroFood extends SimpleGastroFood {
             for (FoodEffect effect : food.getItem().getEffects()) {
                 effect.apply(p, ChatUtils.removeColorCodes(sfItem.getItemName()).toLowerCase().startsWith("perfect"));
             }
-            p.setFoodLevel(GastroUtil.clampUpper(p.getFoodLevel() + food.getItem().getHunger(), 20));
-            p.setSaturation((float) GastroUtil.clampUpper(p.getSaturation() + food.getItem().getSaturation(),
+            p.setFoodLevel(NumberUtil.clampUpper(p.getFoodLevel() + food.getItem().getHunger(), 20));
+            p.setSaturation((float) NumberUtil.clampUpper(p.getSaturation() + food.getItem().getSaturation(),
                     p.getFoodLevel()));
         }
 
-        e.getItem().setAmount(e.getItem().getAmount() - 1);
+        e.getItem().subtract();
     }
 
     public void registerIfEG(@Nonnull SlimefunAddon addon) {

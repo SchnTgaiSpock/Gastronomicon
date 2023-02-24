@@ -7,8 +7,8 @@ import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 import io.github.schntgaispock.gastronomicon.core.food.FoodEffect;
-import io.github.schntgaispock.gastronomicon.util.GastroUtil;
-import io.github.schntgaispock.gastronomicon.util.GastroTheme.Theme;
+import io.github.schntgaispock.gastronomicon.core.items.stacks.GastroTheme.Theme;
+import io.github.schntgaispock.gastronomicon.util.NumberUtil;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.utils.ChatUtils;
 import io.github.thebusybiscuit.slimefun4.utils.LoreBuilder;
@@ -56,7 +56,7 @@ public class FoodItemStack extends SlimefunItemStack {
             fLore.add(Theme.REGULAR_FOOD.getLoreColor() + loreLine);
         }
 
-        return new FoodItemStack(id, texture, Theme.REGULAR_FOOD.getColor() + name, hunger, GastroUtil.roundToPrecision(hunger * saturationRatio, 1), effects, fLore.toArray(String[]::new));
+        return new FoodItemStack(id, texture, Theme.REGULAR_FOOD.getColor() + name, hunger, NumberUtil.roundToPrecision(hunger * saturationRatio, 1), effects, fLore.toArray(String[]::new));
     }
 
     @ParametersAreNonnullByDefault

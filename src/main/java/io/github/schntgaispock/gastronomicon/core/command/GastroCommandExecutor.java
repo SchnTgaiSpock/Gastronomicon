@@ -12,7 +12,7 @@ import org.bukkit.entity.Player;
 import io.github.mooy1.infinitylib.core.AddonConfig;
 import io.github.schntgaispock.gastronomicon.Gastronomicon;
 import io.github.schntgaispock.gastronomicon.core.items.food.GastroFood;
-import io.github.schntgaispock.gastronomicon.util.GastroUtil;
+import io.github.schntgaispock.gastronomicon.util.CollectionUtil;
 
 /**
  * Functionality for the '/gastronomicon' command
@@ -36,7 +36,7 @@ public class GastroCommandExecutor implements CommandExecutor {
                             return true;
 
                         case "profile":
-                            if (!GastroUtil.checkPermission(
+                            if (!Gastronomicon.checkPermission(
                                     player,
                                     "gastronomicon.checkprofile",
                                     "§#4ee530§lGastronomicon&7> &cYou do not have perission to check your profile!"))
@@ -47,7 +47,7 @@ public class GastroCommandExecutor implements CommandExecutor {
                             sendSkills(player, player);
                             return true;
                         case "skills":
-                            if (!GastroUtil.checkPermission(
+                            if (!Gastronomicon.checkPermission(
                                     player,
                                     "gastronomicon.checkprofile",
                                     "§#4ee530§lGastronomicon&7> &cYou do not have perission to check your skills!"))
@@ -56,7 +56,7 @@ public class GastroCommandExecutor implements CommandExecutor {
                             return true;
 
                         case "proficiencies":
-                            if (!GastroUtil.checkPermission(
+                            if (!Gastronomicon.checkPermission(
                                     player,
                                     "gastronomicon.checkprofile",
                                     "§#4ee530§lGastronomicon&7> &cYou do not have perission to check your proficiencies!"))
@@ -71,7 +71,7 @@ public class GastroCommandExecutor implements CommandExecutor {
                 case 2:
                     switch (args[0]) {
                         case "profile":
-                            if (!GastroUtil.checkPermission(
+                            if (!Gastronomicon.checkPermission(
                                     player,
                                     "gastronomicon.checkotherprofile",
                                     "§#4ee530§lGastronomicon&7> &cYou do not have perission to check another player's profile!"))
@@ -89,7 +89,7 @@ public class GastroCommandExecutor implements CommandExecutor {
                             return true;
 
                         case "skills":
-                            if (!GastroUtil.checkPermission(
+                            if (!Gastronomicon.checkPermission(
                                     player,
                                     "gastronomicon.checkotherprofile",
                                     "§#4ee530§lGastronomicon&7> &cYou do not have perission to check another player's skills!"))
@@ -104,7 +104,7 @@ public class GastroCommandExecutor implements CommandExecutor {
                             return true;
 
                         case "proficiencies":
-                            if (!GastroUtil.checkPermission(
+                            if (!Gastronomicon.checkPermission(
                                     player,
                                     "gastronomicon.checkotherprofile",
                                     "§#4ee530§lGastronomicon&7> &cYou do not have perission to check another player's proficiencies!"))
@@ -144,7 +144,7 @@ public class GastroCommandExecutor implements CommandExecutor {
                                 if (toModify == null)
                                     return false;
 
-                                if (!GastroUtil.checkPermission(
+                                if (!Gastronomicon.checkPermission(
                                         player,
                                         "gastronomicon.checkotherprofile",
                                         "§#4ee530§lGastronomicon&7> &cYou do not have perission to modify another player's proficiencies!"))
@@ -173,7 +173,7 @@ public class GastroCommandExecutor implements CommandExecutor {
                                 if (toModify == null)
                                     return false;
 
-                                if (!GastroUtil.checkPermission(
+                                if (!Gastronomicon.checkPermission(
                                         player,
                                         "gastronomicon.checkotherprofile",
                                         "§#4ee530§lGastronomicon&7> &cYou do not have perission to modify another player's skills!"))
@@ -211,7 +211,7 @@ public class GastroCommandExecutor implements CommandExecutor {
     }
 
     private void sendSkills(Player player, Player toCheck) {
-        player.sendMessage(GastroUtil.commaJoin(Gastronomicon.getInstance().getPlayerData()
+        player.sendMessage(CollectionUtil.commaJoin(Gastronomicon.getInstance().getPlayerData()
                 .getList(player.getUniqueId() + ".skill-profile.learned-skills").toArray()));
     }
 

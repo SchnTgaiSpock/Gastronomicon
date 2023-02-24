@@ -10,7 +10,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import io.github.schntgaispock.gastronomicon.core.items.UnplaceableItem;
-import io.github.schntgaispock.gastronomicon.util.GastroUtil;
+import io.github.schntgaispock.gastronomicon.util.StringUtil;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
@@ -31,7 +31,7 @@ public class SimpleGastroFood extends UnplaceableItem implements RecipeDisplayIt
     @Override
     @Nonnull
     public String getRecipeSectionLabel(@Nonnull Player p) {
-        return GastroUtil.formatColors("&7Tools Required:");
+        return StringUtil.formatColors("&7Tools Required:");
     }
 
     @Override

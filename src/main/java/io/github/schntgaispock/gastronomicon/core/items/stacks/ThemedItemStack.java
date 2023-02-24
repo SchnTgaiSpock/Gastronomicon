@@ -8,7 +8,7 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import io.github.schntgaispock.gastronomicon.util.GastroTheme.Theme;
+import io.github.schntgaispock.gastronomicon.core.items.stacks.GastroTheme.Theme;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 
 public class ThemedItemStack extends SlimefunItemStack {

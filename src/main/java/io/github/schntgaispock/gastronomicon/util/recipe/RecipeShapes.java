@@ -1,8 +1,9 @@
-package io.github.schntgaispock.gastronomicon.util;
+package io.github.schntgaispock.gastronomicon.util.recipe;
 
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
+import io.github.schntgaispock.gastronomicon.util.NumberUtil;
 import lombok.experimental.UtilityClass;
 
 @UtilityClass
@@ -55,7 +56,7 @@ public class RecipeShapes {
     }
 
     public static ItemStack[] row(ItemStack item, int rowNumber) {
-        final int rowStart = GastroUtil.clamp(rowNumber, 0, 2)*3;
+        final int rowStart = NumberUtil.clamp(rowNumber, 0, 2)*3;
         final ItemStack[] recipe = new ItemStack[9];
         recipe[rowStart] = recipe[rowStart + 1] = recipe[rowStart + 2] = item;
 
@@ -63,7 +64,7 @@ public class RecipeShapes {
     }
 
     public static ItemStack[] column(ItemStack item, int colNumber) {
-        final int colStart = GastroUtil.clamp(colNumber, 0, 2);
+        final int colStart = NumberUtil.clamp(colNumber, 0, 2);
         final ItemStack[] recipe = new ItemStack[9];
         recipe[colStart] = recipe[colStart + 3] = recipe[colStart + 6] = item;
 

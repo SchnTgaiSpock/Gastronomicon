@@ -4,7 +4,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.function.Function;
 
-import io.github.schntgaispock.gastronomicon.util.GastroUtil;
+import io.github.schntgaispock.gastronomicon.util.NumberUtil;
 
 public class UtilTests {
     public static void main(String[] args) {
@@ -27,7 +27,7 @@ public class UtilTests {
         test1.put(1000, "M");
         test1.put(4000, "4000");
 
-        test(test1, GastroUtil::asRomanNumeral, "#1");
+        test(test1, NumberUtil::asRomanNumeral, "#1");
     }
 
     public static <R, T> void test(Map<R, T> tests, Function<R, T> toTest, String id) {

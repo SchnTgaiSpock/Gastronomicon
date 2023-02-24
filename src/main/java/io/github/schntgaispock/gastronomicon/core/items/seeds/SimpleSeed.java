@@ -15,7 +15,8 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
 
-import io.github.schntgaispock.gastronomicon.util.GastroUtil;
+import io.github.schntgaispock.gastronomicon.util.ItemUtil;
+import io.github.schntgaispock.gastronomicon.util.NumberUtil;
 import io.github.thebusybiscuit.slimefun4.api.events.BlockPlacerPlaceEvent;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockPlaceHandler;
@@ -33,7 +34,7 @@ public class SimpleSeed extends AbstractSeed {
         super(item, gatherSources);
 
         if (displayBlock == null) {
-            displayBlock = GastroUtil.getPlacedBlock(item.getType());
+            displayBlock = ItemUtil.getPlacedBlock(item.getType());
         }
 
         this.displayBlock = displayBlock;
@@ -76,11 +77,11 @@ public class SimpleSeed extends AbstractSeed {
             return drops;
         }
 
-        final int sickleTier = GastroUtil.getSickleTier(item);
+        final int sickleTier = ItemUtil.getSickleTier(item);
         final int fortuneLevel = item.getEnchantmentLevel(Enchantment.LOOT_BONUS_BLOCKS);
 
         final ItemStack seed = getItem().clone();
-        seed.setAmount(GastroUtil.getFortuneAmount(fortuneLevel, sickleTier));
+        seed.setAmount(NumberUtil.getFortuneAmount(fortuneLevel, sickleTier));
         return Arrays.asList(seed);
     }
 

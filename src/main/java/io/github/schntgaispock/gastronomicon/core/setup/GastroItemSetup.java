@@ -14,7 +14,7 @@ import io.github.schntgaispock.gastronomicon.core.items.seeds.SimpleSeed;
 import io.github.schntgaispock.gastronomicon.core.slimefun.GastroGroups;
 import io.github.schntgaispock.gastronomicon.core.slimefun.GastroStacks;
 import io.github.schntgaispock.gastronomicon.core.slimefun.GastroRecipes.GastroRecipeType;
-import io.github.schntgaispock.gastronomicon.util.RecipeShapes;
+import io.github.schntgaispock.gastronomicon.util.recipe.RecipeShapes;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;

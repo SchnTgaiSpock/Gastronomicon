@@ -19,7 +19,7 @@ import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
 
 import io.github.schntgaispock.gastronomicon.Gastronomicon;
-import io.github.schntgaispock.gastronomicon.util.GastroUtil;
+import io.github.schntgaispock.gastronomicon.util.NumberUtil;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -49,10 +49,10 @@ public class FoodEffect {
 
     public static FoodEffect chanceOf(FoodEffect effect, double chance) {
         final double pc = chance * PERFECT_MULTIPLIER_CHANCE;
-        return new FoodEffect(effect.getDescription() + " &f(" + GastroUtil.roundToPercent(chance, 4) + "%)",
-                effect.getPerfectDescription() + " &f(" + GastroUtil.roundToPercent(pc, 4) + "%)",
+        return new FoodEffect(effect.getDescription() + " &f(" + NumberUtil.roundToPercent(chance, 4) + "%)",
+                effect.getPerfectDescription() + " &f(" + NumberUtil.roundToPercent(pc, 4) + "%)",
                 (Player player, Boolean isPerfect) -> {
-                    if (GastroUtil.flip(isPerfect ? pc : chance)) {
+                    if (NumberUtil.flip(isPerfect ? pc : chance)) {
                         effect.apply(player, isPerfect);
                     }
                 });
@@ -67,10 +67,10 @@ public class FoodEffect {
      */
     @ParametersAreNonnullByDefault
     public static FoodEffect heal(int health) {
-        final int h = GastroUtil.clampLower(health, 1);
+        final int h = NumberUtil.clampLower(health, 1);
         final int ph = (int) Math.ceil(h * PERFECT_MULTIPLIER_HEALTH);
         return new FoodEffect("&aHealth +" + h, "&aHealth +" + ph, (Player player, Boolean isPerfect) -> {
-            player.setHealth(GastroUtil.clampUpper(player.getHealth() + (isPerfect ? ph : h),
+            player.setHealth(NumberUtil.clampUpper(player.getHealth() + (isPerfect ? ph : h),
                     player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue()));
         });
     }
@@ -79,13 +79,13 @@ public class FoodEffect {
     private static FoodEffect potionEffect(String color, PotionEffectType effectType, int durationSeconds,
             int amplifier,
             boolean ambience, boolean particles, boolean icon) {
-        final int d = GastroUtil.clampLower(durationSeconds, 1);
+        final int d = NumberUtil.clampLower(durationSeconds, 1);
         final int pd = (int) Math.ceil(d * PERFECT_MULTIPLIER_DURATION);
-        final int a = GastroUtil.clampLower(amplifier, 0);
+        final int a = NumberUtil.clampLower(amplifier, 0);
         final int pa = amplifier + PERFECT_BONUS_POTION_LEVEL;
         return new FoodEffect(
-                color + effectType.getName() + " " + GastroUtil.asRomanNumeral(a + 1) + " (" + d + "s)",
-                color + effectType.getName() + " " + GastroUtil.asRomanNumeral(pa + 1) + " (" + pd + "s)",
+                color + effectType.getName() + " " + NumberUtil.asRomanNumeral(a + 1) + " (" + d + "s)",
+                color + effectType.getName() + " " + NumberUtil.asRomanNumeral(pa + 1) + " (" + pd + "s)",
                 (Player player, Boolean isPerfect) -> {
                     player.addPotionEffect(new PotionEffect(effectType, 20 * (isPerfect ? pd : d), (isPerfect ? pa : a),
                             ambience, particles, icon));
@@ -169,7 +169,7 @@ public class FoodEffect {
 
     @ParametersAreNonnullByDefault
     public static FoodEffect xp(int xp) {
-        final int x = GastroUtil.clampLower(xp, 1);
+        final int x = NumberUtil.clampLower(xp, 1);
         final int px = (int) Math.ceil(x * PERFECT_MULTIPLIER_XP);
         return new FoodEffect("&eXP +" + Math.round(x), "&eXP +" + px, (Player player, Boolean isPerfect) -> {
             player.giveExp(isPerfect ? px : x);
@@ -231,23 +231,23 @@ public class FoodEffect {
     }
 
     public static FoodEffect air(int amount) {
-        final int a = GastroUtil.clampLower(amount, 1);
+        final int a = NumberUtil.clampLower(amount, 1);
         final int pa = (int) Math.ceil(a * PERFECT_MULTIPLIER_AIR);
         return new FoodEffect("&aAir +" + a, "&aAir +" + pa, (Player player, Boolean isPerfect) -> {
-            player.setRemainingAir(GastroUtil.clampUpper(player.getRemainingAir() + (isPerfect ? pa : a), 20));
+            player.setRemainingAir(NumberUtil.clampUpper(player.getRemainingAir() + (isPerfect ? pa : a), 20));
         });
     }
 
     public static FoodEffect warm(int amount) {
-        final int a = GastroUtil.clampLower(amount, 1);
+        final int a = NumberUtil.clampLower(amount, 1);
         final int pa = (int) Math.ceil(a * PERFECT_MULTIPLIER_WARM);
         return new FoodEffect("&aWarmth +" + a, "&aWarmth +" + pa, (Player player, Boolean isPerfect) -> {
-            player.setFreezeTicks(GastroUtil.clampLower(player.getFreezeTicks() - (isPerfect ? pa : a), 0));
+            player.setFreezeTicks(NumberUtil.clampLower(player.getFreezeTicks() - (isPerfect ? pa : a), 0));
         });
     }
 
     public static FoodEffect teleport(int radius) {
-        final int r = GastroUtil.clamp(radius, 1, 10);
+        final int r = NumberUtil.clamp(radius, 1, 10);
         final int pr = (int) Math.ceil(r * PERFECT_MULTIPLIER_TELEPORT);
         return new FoodEffect("&7Teleports you " + r + " blocks away", "&7Teleports you " + pr + " blocks away",
                 (Player player, Boolean isPerfect) -> {
@@ -259,9 +259,9 @@ public class FoodEffect {
                     // Performs 10 + radius^3 tries, if it can't find a safe spot to teleport to, it
                     // stops
                     for (int i = 0; i < 10 + Math.pow(r, 3); i++) {
-                        int newX = playerX + GastroUtil.getRandom().nextInt(teleportRadius);
-                        int newY = playerY + GastroUtil.getRandom().nextInt(teleportRadius);
-                        int newZ = playerZ + GastroUtil.getRandom().nextInt(teleportRadius);
+                        int newX = playerX + NumberUtil.getRandom().nextInt(teleportRadius);
+                        int newY = playerY + NumberUtil.getRandom().nextInt(teleportRadius);
+                        int newZ = playerZ + NumberUtil.getRandom().nextInt(teleportRadius);
 
                         if (player.getWorld().getBlockAt(newX, newY - 1, newZ).getType().isSolid() &&
                                 player.getWorld().getBlockAt(newX, newY, newZ).isEmpty() &&

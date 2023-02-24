@@ -8,23 +8,31 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public abstract class GastroRecipeComponent<T> {
+public abstract class RecipeComponent<T> {
     protected final T component;
-    public abstract boolean matches(Object item);
+    public abstract boolean matches(ItemStack item);
     public abstract ItemStack getDisplayItem();
 
-    public static GastroRecipeComponent<Void> EMPTY = new GastroRecipeComponent<Void>(null) {
+    @Override
+    public abstract int hashCode();
+
+    public static final RecipeComponent<Void> EMPTY = new RecipeComponent<Void>(null) {
 
         private final ItemStack displayItem = new ItemStack(Material.AIR);
 
         @Override
-        public boolean matches(Object item) {
+        public boolean matches(ItemStack item) {
             return (item == null) || (item instanceof final ItemStack stack) && (stack.getType() == Material.AIR);
         }
 
         @Override
         public ItemStack getDisplayItem() {
-            return displayItem;
+            return displayItem.clone();
+        }
+
+        @Override
+        public int hashCode() {
+            return displayItem.hashCode();
         }
 
     };

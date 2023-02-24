@@ -10,7 +10,7 @@ website: https://github.com/SchnTgaiSpock/Gastronomicon
 
 version: ${project.version}
 
-api-version: 1.14
+api-version: 1.16
 
 depend:
 - Slimefun
@@ -18,6 +18,8 @@ depend:
 softdepend:
 - SlimeHUD
 - ExoticGarden
+- InfinityExpansion
+- DynaTech # IE and Dyna for automation
 
 commands:
   gastronomicon:

@@ -10,8 +10,8 @@ import org.bukkit.block.BlockState;
 import org.bukkit.inventory.ItemStack;
 
 import io.github.schntgaispock.gastronomicon.Gastronomicon;
-import io.github.schntgaispock.gastronomicon.util.GastroUtil;
-import io.github.schntgaispock.gastronomicon.util.RecipeShapes;
+import io.github.schntgaispock.gastronomicon.util.ItemUtil;
+import io.github.schntgaispock.gastronomicon.util.recipe.RecipeShapes;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import lombok.Getter;
@@ -31,7 +31,7 @@ public class FruitingSeed extends SimpleSeed {
         super(item, displayBlock, gatherSources);
 
         if (displayBlock == null) {
-            displayBlock = GastroUtil.getPlacedBlock(item.getType());
+            displayBlock = ItemUtil.getPlacedBlock(item.getType());
         }
 
         switch (displayBlock) {

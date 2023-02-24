@@ -3,10 +3,12 @@ package io.github.schntgaispock.gastronomicon;
 import java.util.logging.Level;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
+import org.bukkit.entity.Player;
 
 import io.github.mooy1.infinitylib.core.AbstractAddon;
 import io.github.mooy1.infinitylib.core.AddonConfig;
@@ -48,15 +50,14 @@ public class Gastronomicon extends AbstractAddon {
                 log(Level.INFO, "Setting up Gastronomicon for SlimeHUD...");
                 SlimeHUDSetup.setup();
             } catch (NoClassDefFoundError e) {
-                getLogger().warning(
-                        "This server is using an old version of SlimeHUD that is incompatitable with this version of Gastronomicon.");
-                getLogger().warning("Please update SlimeHUD to version 1.2.0 or higher!");
+                log(Level.WARNING, "This server is using an old version of SlimeHUD that is incompatitable with this version of Gastronomicon.");
+                log(Level.WARNING, "Please update SlimeHUD to version 1.2.0 or higher!");
             }
         }
 
         if (!getInstance().getServer().getPluginManager().isPluginEnabled("ExoticGarden")) {
             log(Level.WARNING, "ExoticGarden was not found on this server!");
-            log(Level.INFO, "Recipes that require ExoticGarden items will be hidden.");
+            log(Level.WARNING, "Recipes that require ExoticGarden items will be hidden.");
         }
 
         playerData = new AddonConfig("player.yml");
@@ -74,5 +75,16 @@ public class Gastronomicon extends AbstractAddon {
 
     public static int scheduleSyncDelayedTask(Runnable runnable, long delay) {
         return Bukkit.getScheduler().scheduleSyncDelayedTask(getInstance(), runnable, delay);
+    }
+
+    public static boolean checkPermission(Player player, @Nonnull String permissionNode, @Nullable String message) {
+        if (player.hasPermission(permissionNode)) {
+            return true;
+        }
+    
+        if (message != null)
+            player.sendMessage(message);
+        return false;
+    
     }
 }

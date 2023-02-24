@@ -11,8 +11,10 @@ import org.bukkit.block.BlockState;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 
-import io.github.schntgaispock.gastronomicon.util.GastroUtil;
-import io.github.schntgaispock.gastronomicon.util.RecipeShapes;
+import io.github.schntgaispock.gastronomicon.util.CollectionUtil;
+import io.github.schntgaispock.gastronomicon.util.ItemUtil;
+import io.github.schntgaispock.gastronomicon.util.NumberUtil;
+import io.github.schntgaispock.gastronomicon.util.recipe.RecipeShapes;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import lombok.Getter;
 
@@ -35,7 +37,7 @@ public class CropSeed extends SimpleSeed {
     @ParametersAreNonnullByDefault
     public CropSeed(SlimefunItemStack item, Material displayBlock, ItemStack[] gatherSources,
             ItemStack grownCrop) {
-        this(item, displayBlock, gatherSources, GastroUtil.toMap(grownCrop, 1.0));
+        this(item, displayBlock, gatherSources, CollectionUtil.toMap(grownCrop, 1.0));
     }
 
     @ParametersAreNonnullByDefault
@@ -54,16 +56,16 @@ public class CropSeed extends SimpleSeed {
             return drops;
         }
         
-        final int sickleTier = GastroUtil.getSickleTier(item);
+        final int sickleTier = ItemUtil.getSickleTier(item);
         final int fortuneLevel = item.getEnchantmentLevel(Enchantment.LOOT_BONUS_BLOCKS);
 
         final ItemStack seed = getItem().clone();
-        seed.setAmount(GastroUtil.getFortuneAmount(fortuneLevel, sickleTier));
+        seed.setAmount(NumberUtil.getFortuneAmount(fortuneLevel, sickleTier));
         drops.add(seed);
 
         for (Map.Entry<ItemStack, Double> grownCropsEntry : getGrownCrops().entrySet()) {
             final ItemStack drop = grownCropsEntry.getKey().clone();
-            drop.setAmount(GastroUtil.getFortuneAmount(fortuneLevel, grownCropsEntry.getValue()));
+            drop.setAmount(NumberUtil.getFortuneAmount(fortuneLevel, grownCropsEntry.getValue()));
             drops.add(drop);
         }
 

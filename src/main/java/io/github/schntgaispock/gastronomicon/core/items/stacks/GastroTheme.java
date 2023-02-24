@@ -1,4 +1,4 @@
-package io.github.schntgaispock.gastronomicon.util;
+package io.github.schntgaispock.gastronomicon.core.items.stacks;
 
 
 import lombok.Getter;
