@@ -6,6 +6,8 @@ import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import lombok.Getter;
 
 /**
@@ -34,8 +36,11 @@ public class GroupRecipeComponent extends RecipeComponent<Set<ItemStack>> {
             return false;
         } else {
             for (final ItemStack groupItem : component) {
-                if (item.isSimilar(groupItem))
-                    return true;
+                if (groupItem instanceof final SlimefunItemStack sfStack) {
+                    return SlimefunItem.getById(sfStack.getItemId()).isItem(item);
+                } else {
+                    return item.isSimilar(groupItem);
+                }
             }
         }
 

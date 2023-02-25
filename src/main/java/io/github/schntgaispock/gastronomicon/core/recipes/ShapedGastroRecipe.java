@@ -3,19 +3,31 @@ package io.github.schntgaispock.gastronomicon.core.recipes;
 import java.util.List;
 import java.util.Set;
 
+import javax.annotation.Nullable;
+
 import org.bukkit.inventory.ItemStack;
 
 import io.github.schntgaispock.gastronomicon.core.recipes.components.RecipeComponent;
 import io.github.schntgaispock.gastronomicon.core.recipes.components.RecipeInput;
-import io.github.schntgaispock.gastronomicon.core.slimefun.GastroRecipes.GastroRecipeType;
+import io.github.schntgaispock.gastronomicon.core.slimefun.GastroRecipeType;
 import lombok.Getter;
 
 @Getter
 public class ShapedGastroRecipe extends GastroRecipe {
 
-    public ShapedGastroRecipe(GastroRecipeType recipeType, RecipeComponent<?>[] inputs,
-            RecipeComponent<?> container, ItemStack[] outputs, Set<ItemStack> tools) {
-        super(recipeType, new RecipeInput(RecipeShape.SHAPED, container, inputs), tools, outputs);
+    public ShapedGastroRecipe(GastroRecipeType recipeType, RecipeComponent<?>[] ingredients,
+            RecipeComponent<?> container, Set<ItemStack> tools, ItemStack... outputs) {
+        super(recipeType, new RecipeInput(RecipeShape.SHAPED, container, ingredients), tools, outputs);
+    }
+
+    public ShapedGastroRecipe(GastroRecipeType recipeType, ItemStack[] ingredients,
+            @Nullable ItemStack container, Set<ItemStack> tools, ItemStack... outputs) {
+        super(recipeType, RecipeShape.SHAPED, ingredients, null, tools, outputs);
+    }
+
+    public ShapedGastroRecipe(GastroRecipeType recipeType, ItemStack[] ingredients, Set<ItemStack> tools,
+            ItemStack... outputs) {
+        this(recipeType, ingredients, null, tools, outputs);
     }
 
     @Override

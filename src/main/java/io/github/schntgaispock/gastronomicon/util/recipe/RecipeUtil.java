@@ -3,46 +3,112 @@ package io.github.schntgaispock.gastronomicon.util.recipe;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
-import io.github.schntgaispock.gastronomicon.core.recipes.components.GroupRecipeComponent;
 import io.github.schntgaispock.gastronomicon.core.recipes.components.RecipeComponent;
-import io.github.schntgaispock.gastronomicon.core.recipes.components.SingleRecipeComponent;
+import io.github.schntgaispock.gastronomicon.util.NumberUtil;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import lombok.experimental.UtilityClass;
 
 @UtilityClass
-@SuppressWarnings("deprecation")
 public class RecipeUtil {
+
+    public static ItemStack[] single(ItemStack item) {
+        final ItemStack[] recipe = new ItemStack[9];
+        recipe[0] = item;
+        return recipe;
+    }
+
+    public static ItemStack[] singleCenter(Material item) {
+        final ItemStack[] recipe = new ItemStack[9];
+        recipe[4] = new ItemStack(item);
+        return recipe;
+    }
+
+    public static ItemStack[] singleCenter(ItemStack item) {
+        final ItemStack[] recipe = new ItemStack[9];
+        recipe[4] = item;
+        return recipe;
+    }
+
+    public static ItemStack[] collection(ItemStack... items) {
+        return RecipeUtil.collection(items, 9);
+    }
+
+    private static ItemStack[] collection(ItemStack[] items, int maxLength) {
+        final ItemStack[] recipe = new ItemStack[9];
+
+        int l = Math.min(items.length, maxLength);
+        for (int i = 0; i < l; i++) {
+            recipe[i] = items[i];
+        }
+        return recipe;
+    }
+
+    public static ItemStack[] cyclic(ItemStack outer, ItemStack inner) {
+        return new ItemStack[] { outer, outer, outer, outer, inner, outer, outer, outer, outer };
+    }
+
+    public static ItemStack[] cyclic(ItemStack outer) {
+        return RecipeUtil.cyclic(outer, null);
+    }
+
+    public static ItemStack[] cyclicAlternating(ItemStack corner, ItemStack middle, ItemStack inner) {
+        return new ItemStack[] { corner, middle, corner, middle, inner, middle, corner, middle, corner };
+    }
+
+    public static ItemStack[] cyclicAlternating(ItemStack corner, ItemStack middle) {
+        return RecipeUtil.cyclicAlternating(corner, middle, null);
+    }
+
+    public static ItemStack[] row(ItemStack item, int rowNumber) {
+        final int rowStart = NumberUtil.clamp(rowNumber, 0, 2) * 3;
+        final ItemStack[] recipe = new ItemStack[9];
+        recipe[rowStart] = recipe[rowStart + 1] = recipe[rowStart + 2] = item;
+
+        return recipe;
+    }
+
+    public static ItemStack[] column(ItemStack item, int colNumber) {
+        final int colStart = NumberUtil.clamp(colNumber, 0, 2);
+        final ItemStack[] recipe = new ItemStack[9];
+        recipe[colStart] = recipe[colStart + 3] = recipe[colStart + 6] = item;
+
+        return recipe;
+    }
+
+    public static ItemStack[] diagonal(ItemStack item, int slope) {
+        final ItemStack[] recipe = new ItemStack[9];
+        if (slope == 1)
+            recipe[2] = recipe[4] = recipe[6] = item;
+        else if (slope == -1)
+            recipe[0] = recipe[4] = recipe[8] = item;
+
+        return recipe;
+    }
 
     public static int compareComponents(RecipeComponent<?> component1,
             RecipeComponent<?> component2) {
-        final String compareFrom;
-        if (component1 == null || component1.getDisplayItem().getType() == Material.AIR) {
-            compareFrom = "";
-        } else if (component1 instanceof final SingleRecipeComponent singleC1) {
-            compareFrom = singleC1.getComponent().getItemMeta().getDisplayName();
-        } else if (component1 instanceof final GroupRecipeComponent groupC1) {
-            compareFrom = groupC1.getId().toString();
-        } else {
-            compareFrom = "";
-        }
-
-        final String compareTo;
-        if (component2 == null || component2.getDisplayItem().getType() == Material.AIR) {
-            compareTo = "";
-        } else if (component2 instanceof final SingleRecipeComponent singleC2) {
-            compareTo = singleC2.getComponent().getItemMeta().getDisplayName();
-        } else if (component2 instanceof final GroupRecipeComponent groupC2) {
-            compareTo = groupC2.getId().toString();
-        } else {
-            compareTo = "";
-        }
-
-        return compareFrom.compareTo(compareTo);
+        return Integer.compare(recipeHash(component1.getComponent()), recipeHash(component2.getComponent()));
     }
 
     public static int compareItemStacks(ItemStack item1, ItemStack item2) {
-        if (item1 == null || item2 == null)
-            return -1;
-        return item1.getItemMeta().getDisplayName().compareTo(item2.getItemMeta().getDisplayName());
+        return Integer.compare(recipeHash(item1), recipeHash(item2));
+    }
+
+    public static int recipeHash(Object object) {
+        if (object == null)
+            return 0;
+        if (object instanceof final SlimefunItemStack sfStack)
+            return sfStack.getItemId().hashCode();
+        if (object instanceof final ItemStack stack) {
+            final SlimefunItem sfItem = SlimefunItem.getByItem(stack);
+            if (sfItem != null) {
+                return sfItem.getId().hashCode();
+            }
+            return stack.getType().hashCode();
+        }
+
+        return object.hashCode();
     }
 
 }

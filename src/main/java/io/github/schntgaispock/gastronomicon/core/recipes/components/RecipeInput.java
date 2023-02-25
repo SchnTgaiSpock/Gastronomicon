@@ -11,12 +11,14 @@ import io.github.schntgaispock.gastronomicon.core.recipes.GastroRecipe;
 import io.github.schntgaispock.gastronomicon.util.recipe.RecipeUtil;
 import io.github.schntgaispock.gastronomicon.core.recipes.GastroRecipe.RecipeShape;
 import lombok.Getter;
+import lombok.ToString;
 
 /**
  * Stores information about the input of a {@link GastroRecipe}. Does not
  * include tools.
  */
 @Getter
+@ToString
 public class RecipeInput {
 
     private final RecipeShape shapedness;
@@ -39,18 +41,10 @@ public class RecipeInput {
         this.container = container;
     }
 
-    public RecipeInput(RecipeShape shapedness, RecipeComponent<?>... inputs) {
-        this(shapedness, inputs[inputs.length - 1], inputs);
-    }
-
     public ItemStack[] getDisplayIngredients() {
-        return Arrays.stream(ingredients).map(ingredient -> {
-            if (ingredient == null) {
-                return new ItemStack(Material.AIR);
-            } else {
-                return ingredient.getComponent();
-            }
-        }).toArray(ItemStack[]::new);
+        return Arrays.stream(ingredients)
+                .map(ingredient -> ingredient == null ? new ItemStack(Material.AIR) : ingredient.getComponent())
+                .toArray(ItemStack[]::new);
     }
 
     @Override

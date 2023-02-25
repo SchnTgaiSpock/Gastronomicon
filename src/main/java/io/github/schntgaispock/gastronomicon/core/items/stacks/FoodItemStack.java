@@ -70,7 +70,7 @@ public class FoodItemStack extends SlimefunItemStack {
     }    
 
     @ParametersAreNonnullByDefault
-    public FoodItemStack asPerfect() {
+    public FoodItemStack getPerfect() {
         List<String> fLore = new LinkedList<String>();
 
         fLore.add(LoreBuilder.hunger(hunger));

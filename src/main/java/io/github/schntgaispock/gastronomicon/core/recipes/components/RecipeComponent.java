@@ -5,9 +5,11 @@ import org.bukkit.inventory.ItemStack;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.ToString;
 
 @Getter
 @AllArgsConstructor
+@ToString
 public abstract class RecipeComponent<T> {
     protected final T component;
     public abstract boolean matches(ItemStack item);
@@ -22,7 +24,7 @@ public abstract class RecipeComponent<T> {
 
         @Override
         public boolean matches(ItemStack item) {
-            return (item == null) || (item instanceof final ItemStack stack) && (stack.getType() == Material.AIR);
+            return (item == null) || (item.getType() == Material.AIR);
         }
 
         @Override

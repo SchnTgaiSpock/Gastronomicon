@@ -47,62 +47,85 @@ public class GastroStacks {
     public static final ItemStack GUIDE_RECIPE_BREAK = new CustomItemStack(
         Material.BARREL,
         "&bBreaking Blocks",
-        "This item is obtained by",
-        "breaking the displayed",
-        "blocks."
+        "&7This item is obtained by",
+        "&7breaking the displayed",
+        "&7blocks."
     );
 
     public static final ItemStack GUIDE_RECIPE_HARVEST = new CustomItemStack(
         Material.BARREL,
         "&bHarvesting Crops",
-        "This item is obtained by",
-        "harvesting the displayed",
-        "crops."
+        "&7This item is obtained by",
+        "&7harvesting the displayed",
+        "&7crops."
+    );
+
+    public static final ItemStack GUIDE_RECIPE_KILL = new CustomItemStack(
+        Material.BARREL,
+        "&bKilling Mobs",
+        "&7This item is obtained by",
+        "&7killing the displayed",
+        "&7mobs."
     );
 
     public static final ItemStack GUIDE_RECIPE_CULINARY_WORKBENCH = new CustomItemStack(
         Material.CRAFTING_TABLE,
         "&bCulinary Workbench",
-        "Craft this item as shown in a",
-        "Culinary Workbench with the tool(s)",
-        "listed below."
+        "&7Craft this item as shown in a",
+        "&7Culinary Workbench with the tool(s)",
+        "&7listed below."
     );
 
     public static final ItemStack GUIDE_RECIPE_MULTI_STOVE = new CustomItemStack(
         Material.BLAST_FURNACE,
         "&bMulti-Stove",
-        "Craft this item as shown in a",
-        "Multi-Stove with the tool(s)",
-        "listed below."
+        "&7Craft this item as shown in a",
+        "&7Multi-Stove with the tool(s)",
+        "&7listed below."
     );
 
     public static final ItemStack GUIDE_RECIPE_REFRIDGERATOR = new CustomItemStack(
         Material.IRON_BLOCK,
         "&bRefridgerator",
-        "Craft this item as shown in a",
-        "Refridgerator with the tool(s)",
-        "listed below."
+        "&7Craft this item as shown in a",
+        "&7Refridgerator with the tool(s)",
+        "&7listed below."
     );
 
     public static final ItemStack GUIDE_RECIPE_MILL = new CustomItemStack(
         Material.STONE_BRICK_SLAB,
         "&bMill",
-        "Craft this item as shown in a",
-        "Mill with the tool(s) listed",
-        "below."
+        "&7Craft this item as shown in a",
+        "&7Grain Mill with the tool(s)",
+        "&7listed below."
     );
 
     public static final ItemStack GUIDE_RECIPE_DISTILLERY = new CustomItemStack(
         Material.BARREL,
         "&bDistillery",
-        "Craft this item as shown in a",
-        "Distillery with the tool(s)",
-        "listed below."
+        "&7Craft this item as shown in a",
+        "&7Distillery with the tool(s)",
+        "&7listed below."
     );
 
     public static final ItemStack GUIDE_NO_TOOLS_REQUIRED = new CustomItemStack(
         Material.BARRIER,
         "&cNone"
+    );
+
+    public static final ItemStack GUIDE_KILL_GOAT = new CustomItemStack(
+        Material.GOAT_SPAWN_EGG,
+        "&fGoat"
+    );
+
+    public static final ItemStack GUIDE_KILL_FROG = new CustomItemStack(
+        Material.GOAT_SPAWN_EGG,
+        "&fFrog"
+    );
+
+    public static final ItemStack GUIDE_KILL_SPIDER = new CustomItemStack(
+        Material.GOAT_SPAWN_EGG,
+        "&fSpider"
     );
 
 

@@ -14,7 +14,7 @@ import org.bukkit.inventory.ItemStack;
 import io.github.schntgaispock.gastronomicon.util.CollectionUtil;
 import io.github.schntgaispock.gastronomicon.util.ItemUtil;
 import io.github.schntgaispock.gastronomicon.util.NumberUtil;
-import io.github.schntgaispock.gastronomicon.util.recipe.RecipeShapes;
+import io.github.schntgaispock.gastronomicon.util.recipe.RecipeUtil;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import lombok.Getter;
 
@@ -42,7 +42,7 @@ public class CropSeed extends SimpleSeed {
 
     @ParametersAreNonnullByDefault
     public CropSeed(SlimefunItemStack item, Material displayBlock, SlimefunItemStack harvestSource) {
-        this(item, displayBlock, RecipeShapes.singleCenter(harvestSource), harvestSource);
+        this(item, displayBlock, RecipeUtil.singleCenter(harvestSource), harvestSource);
     }
 
     @Override

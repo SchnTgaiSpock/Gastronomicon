@@ -11,7 +11,7 @@ import org.bukkit.block.BlockState;
 import org.bukkit.inventory.ItemStack;
 
 import io.github.schntgaispock.gastronomicon.Gastronomicon;
-import io.github.schntgaispock.gastronomicon.util.recipe.RecipeShapes;
+import io.github.schntgaispock.gastronomicon.util.recipe.RecipeUtil;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 
 /**
@@ -34,7 +34,7 @@ public class DuplicatingSeed extends AbstractSeed {
 
     @ParametersAreNonnullByDefault
     public DuplicatingSeed(SlimefunItemStack item, SlimefunItemStack harvestSource) {
-        this(item, RecipeShapes.singleCenter(harvestSource));
+        this(item, RecipeUtil.singleCenter(harvestSource));
     }
 
     @Override

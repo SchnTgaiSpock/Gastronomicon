@@ -4,6 +4,8 @@ import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
 import io.github.schntgaispock.gastronomicon.util.ItemUtil;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import lombok.Getter;
 
 /**
@@ -23,7 +25,13 @@ public class SingleRecipeComponent extends RecipeComponent<ItemStack> {
     // SingleRecipeComponents do not have to deal with group components in recipes
     @Override
     public boolean matches(ItemStack item) {
-        return (item == null) ? (component.getType() == Material.AIR) : item.isSimilar(component);
+        if (item == null) {
+            return component.getType() == Material.AIR;
+        } else if (component instanceof final SlimefunItemStack sfStack) {
+            return SlimefunItem.getById(sfStack.getItemId()).isItem(item);
+        } else {
+            return item.isSimilar(component);
+        }
     }
 
     @Override

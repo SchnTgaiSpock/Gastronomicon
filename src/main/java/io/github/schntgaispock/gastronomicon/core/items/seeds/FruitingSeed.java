@@ -11,7 +11,7 @@ import org.bukkit.inventory.ItemStack;
 
 import io.github.schntgaispock.gastronomicon.Gastronomicon;
 import io.github.schntgaispock.gastronomicon.util.ItemUtil;
-import io.github.schntgaispock.gastronomicon.util.recipe.RecipeShapes;
+import io.github.schntgaispock.gastronomicon.util.recipe.RecipeUtil;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import lombok.Getter;
@@ -44,12 +44,12 @@ public class FruitingSeed extends SimpleSeed {
 
     @ParametersAreNonnullByDefault
     public FruitingSeed(SlimefunItemStack item, @Nullable Material displayBlock, SlimefunItemStack harvestSource, String fruitingBodyId) {
-        this(item, displayBlock, RecipeShapes.singleCenter(harvestSource), fruitingBodyId);
+        this(item, displayBlock, RecipeUtil.singleCenter(harvestSource), fruitingBodyId);
     }
 
     @ParametersAreNonnullByDefault
     public FruitingSeed(SlimefunItemStack item, SlimefunItemStack harvestSource, String fruitingBodyId) {
-        this(item, null, RecipeShapes.singleCenter(harvestSource), fruitingBodyId);
+        this(item, null, RecipeUtil.singleCenter(harvestSource), fruitingBodyId);
     }
 
     @Override

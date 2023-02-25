@@ -29,7 +29,7 @@ public class SeedListener implements Listener {
     public void onCropGrow(@Nonnull BlockGrowEvent e) {
         switch (e.getNewState().getType()) {
             case SUGAR_CANE, CACTUS:
-                assignGastroSeed(BlockStorage.checkID(e.getBlock().getRelative(BlockFace.DOWN)),
+                assignGastroSeed(BlockStorage.check(e.getBlock().getRelative(BlockFace.DOWN)),
                         e.getNewState().getLocation());
                 break;
 
@@ -48,7 +48,7 @@ public class SeedListener implements Listener {
                         Directional stemData = (Directional) checking.getBlockData();
 
                         if (stemData.getFacing().getOppositeFace().equals(face)) {
-                            assignGastroSeed(BlockStorage.checkID(checking), e.getNewState().getLocation());
+                            assignGastroSeed(BlockStorage.check(checking), e.getNewState().getLocation());
                             break;
                         }
                     }
@@ -72,16 +72,12 @@ public class SeedListener implements Listener {
         }
     }
 
-    private void assignGastroSeed(String id, @Nonnull Location l) {
-        if (id == null)
-            return;
-
-        final SlimefunItem item = SlimefunItem.getById(id);
+    private void assignGastroSeed(SlimefunItem item, @Nonnull Location l) {
         if (item == null)
             return;
 
         if (item instanceof DuplicatingSeed) {
-            BlockStorage.addBlockInfo(l, "id", id);
+            BlockStorage.addBlockInfo(l, "id", item.getId());
         } else if (item instanceof final FruitingSeed fgs) {
             BlockStorage.addBlockInfo(l, "id", fgs.getFruitingBody().getId());
         }
@@ -98,12 +94,7 @@ public class SeedListener implements Listener {
                 return null;
         }
 
-        final String id = BlockStorage.checkID(cropBlock);
-        if (id == null) {
-            return null;
-        }
-
-        final SlimefunItem item = SlimefunItem.getById(id);
+        final SlimefunItem item = BlockStorage.check(cropBlock);
         if (item == null) {
             return null;
         }

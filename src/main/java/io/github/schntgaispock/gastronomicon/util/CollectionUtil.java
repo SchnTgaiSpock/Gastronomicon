@@ -22,5 +22,15 @@ public class CollectionUtil {
         map.put(key, value);
         return map;
     }
+
+    public static boolean isEmpty(Object[] array) {
+        for (final Object object : array) {
+            if (object != null) {
+                return false;
+            }
+        }
+
+        return true;
+    }
     
 }

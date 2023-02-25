@@ -11,10 +11,12 @@ import io.github.schntgaispock.gastronomicon.core.items.seeds.CropSeed;
 import io.github.schntgaispock.gastronomicon.core.items.seeds.DuplicatingSeed;
 import io.github.schntgaispock.gastronomicon.core.items.seeds.FruitingSeed;
 import io.github.schntgaispock.gastronomicon.core.items.seeds.SimpleSeed;
+import io.github.schntgaispock.gastronomicon.core.items.workstations.CulinaryWorkbench;
+import io.github.schntgaispock.gastronomicon.core.recipes.GastroRecipe.RecipeShape;
 import io.github.schntgaispock.gastronomicon.core.slimefun.GastroGroups;
+import io.github.schntgaispock.gastronomicon.core.slimefun.GastroRecipeType;
 import io.github.schntgaispock.gastronomicon.core.slimefun.GastroStacks;
-import io.github.schntgaispock.gastronomicon.core.slimefun.GastroRecipes.GastroRecipeType;
-import io.github.schntgaispock.gastronomicon.util.recipe.RecipeShapes;
+import io.github.schntgaispock.gastronomicon.util.recipe.RecipeUtil;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
@@ -63,7 +65,7 @@ public class GastroItemSetup {
             GastroGroups.TOOLS,
             GastroStacks.CUTTING_BOARD,
             RecipeType.ENHANCED_CRAFTING_TABLE,
-            RecipeShapes.row(OAK_SLAB, 2)
+            RecipeUtil.row(OAK_SLAB, 2)
         ).register(gn);
         new UnplaceableBlock(
             GastroGroups.TOOLS,
@@ -81,7 +83,7 @@ public class GastroItemSetup {
             GastroGroups.TOOLS,
             GastroStacks.ROLLING_PIN,
             RecipeType.ENHANCED_CRAFTING_TABLE,
-            RecipeShapes.row(STICK, 1)
+            RecipeUtil.row(STICK, 1)
         ).register(gn);
         new UnplaceableBlock(
             GastroGroups.TOOLS,
@@ -131,13 +133,13 @@ public class GastroItemSetup {
             GastroGroups.TOOLS,
             GastroStacks.STEEL_WIRE,
             RecipeType.ENHANCED_CRAFTING_TABLE,
-            RecipeShapes.row(SlimefunItems.STEEL_INGOT, 1)
+            RecipeUtil.row(SlimefunItems.STEEL_INGOT, 1)
         ).register(gn);
         new SlimefunItem(
             GastroGroups.TOOLS,
             GastroStacks.STEEL_SPRING,
             RecipeType.ENHANCED_CRAFTING_TABLE,
-            RecipeShapes.cyclicAlternating(null, GastroStacks.STEEL_WIRE)
+            RecipeUtil.cyclicAlternating(null, GastroStacks.STEEL_WIRE)
         ).register(gn);
         new SlimefunItem(
             GastroGroups.TOOLS,
@@ -159,7 +161,7 @@ public class GastroItemSetup {
             GastroGroups.TOOLS,
             GastroStacks.FISHING_NET,
             RecipeType.ENHANCED_CRAFTING_TABLE,
-            RecipeShapes.cyclicAlternating(STRING, COBWEB, COBWEB)
+            RecipeUtil.cyclicAlternating(STRING, COBWEB, COBWEB)
         ).register(gn);
 
         // -- Other --
@@ -199,7 +201,7 @@ public class GastroItemSetup {
         
         // ---- Basic Machines ----
 
-        new SlimefunItem(
+        new CulinaryWorkbench(
             GastroGroups.MANUAL_WORKSTATIONS,
             GastroStacks.CULINARY_WORKBENCH,
             RecipeType.ENHANCED_CRAFTING_TABLE,
@@ -258,32 +260,32 @@ public class GastroItemSetup {
         new SimpleSeed(
             GastroStacks.RICE,
             Material.POTATOES,
-            RecipeShapes.singleCenter(Material.GRASS)
+            RecipeUtil.singleCenter(Material.GRASS)
         ).register(gn);
 
         new SimpleSeed(
             GastroStacks.QUINOA,
             Material.WHEAT,
-            RecipeShapes.singleCenter(Material.GRASS)
+            RecipeUtil.singleCenter(Material.GRASS)
         ).register(gn);
 
         new SimpleSeed(
             GastroStacks.OATS,
             Material.WHEAT,
-            RecipeShapes.singleCenter(Material.GRASS)
+            RecipeUtil.singleCenter(Material.GRASS)
         ).register(gn);
 
         new SimpleSeed(
             GastroStacks.SOYBEANS,
             Material.POTATOES,
-            RecipeShapes.singleCenter(Material.GRASS)
+            RecipeUtil.singleCenter(Material.GRASS)
         ).register(gn);
 
         new SlimefunItem(
             GastroGroups.RAW_INGREDIENTS,
             GastroStacks.BARLEY,
             GastroRecipeType.HARVEST,
-            RecipeShapes.singleCenter(GastroStacks.BARLEY_SEEDS)
+            RecipeUtil.singleCenter(GastroStacks.BARLEY_SEEDS)
         ).register(gn);
 
         new CropSeed(
@@ -296,7 +298,7 @@ public class GastroItemSetup {
             GastroGroups.RAW_INGREDIENTS,
             GastroStacks.RYE,
             GastroRecipeType.HARVEST,
-            RecipeShapes.singleCenter(GastroStacks.RYE_SEEDS)
+            RecipeUtil.singleCenter(GastroStacks.RYE_SEEDS)
         ).register(gn);
 
         new CropSeed(
@@ -309,7 +311,7 @@ public class GastroItemSetup {
             GastroGroups.RAW_INGREDIENTS,
             GastroStacks.SORGHUM,
             GastroRecipeType.HARVEST,
-            RecipeShapes.singleCenter(GastroStacks.SORGHUM_SEEDS)
+            RecipeUtil.singleCenter(GastroStacks.SORGHUM_SEEDS)
         ).register(gn);
 
         new CropSeed(
@@ -322,7 +324,7 @@ public class GastroItemSetup {
             GastroGroups.RAW_INGREDIENTS,
             GastroStacks.TURNIP,
             GastroRecipeType.HARVEST,
-            RecipeShapes.singleCenter(GastroStacks.TURNIP_SEEDS)
+            RecipeUtil.singleCenter(GastroStacks.TURNIP_SEEDS)
         ).register(gn);
 
         new CropSeed(
@@ -335,7 +337,7 @@ public class GastroItemSetup {
             GastroGroups.RAW_INGREDIENTS,
             GastroStacks.SQUASH,
             GastroRecipeType.HARVEST,
-            RecipeShapes.singleCenter(GastroStacks.SQUASH_SEEDS)
+            RecipeUtil.singleCenter(GastroStacks.SQUASH_SEEDS)
         ).register(gn);
 
         new FruitingSeed(
@@ -347,103 +349,103 @@ public class GastroItemSetup {
 
         new DuplicatingSeed(
             GastroStacks.CELERY,
-            RecipeShapes.singleCenter(Material.GRASS)
+            RecipeUtil.singleCenter(Material.GRASS)
         ).register(gn);
 
         new UnplaceableItem(
             GastroGroups.RAW_INGREDIENTS,
             GastroStacks.BOK_CHOY,
             GastroRecipeType.BREAK,
-            RecipeShapes.singleCenter(Material.GRASS)
+            RecipeUtil.singleCenter(Material.GRASS)
         ).register(gn);
 
         new UnplaceableItem(
             GastroGroups.RAW_INGREDIENTS,
             GastroStacks.SNOW_PEAS,
             GastroRecipeType.BREAK,
-            RecipeShapes.singleCenter(Material.GRASS)
+            RecipeUtil.singleCenter(Material.GRASS)
         ).register(gn);
 
         new UnplaceableItem(
             GastroGroups.RAW_INGREDIENTS,
             GastroStacks.BROCCOLI,
             GastroRecipeType.BREAK,
-            RecipeShapes.singleCenter(Material.GRASS)
+            RecipeUtil.singleCenter(Material.GRASS)
         ).register(gn);
 
         new UnplaceableItem(
             GastroGroups.RAW_INGREDIENTS,
             GastroStacks.WASABI_PLANT,
             GastroRecipeType.BREAK,
-            RecipeShapes.singleCenter(Material.GRASS)
+            RecipeUtil.singleCenter(Material.GRASS)
         ).register(gn);
 
         new DuplicatingSeed(
             GastroStacks.LEMONGRASS,
-            RecipeShapes.singleCenter(Material.GRASS)
+            RecipeUtil.singleCenter(Material.GRASS)
         ).register(gn);
 
         new UnplaceableItem(
             GastroGroups.RAW_INGREDIENTS,
             GastroStacks.CUCUMBER,
             GastroRecipeType.BREAK,
-            RecipeShapes.singleCenter(Material.GRASS)
+            RecipeUtil.singleCenter(Material.GRASS)
         ).register(gn);
 
         new UnplaceableItem(
             GastroGroups.RAW_INGREDIENTS,
             GastroStacks.BASIL,
             GastroRecipeType.BREAK,
-            RecipeShapes.singleCenter(Material.GRASS)
+            RecipeUtil.singleCenter(Material.GRASS)
         ).register(gn);
 
         new UnplaceableItem(
             GastroGroups.RAW_INGREDIENTS,
             GastroStacks.SPINACH,
             GastroRecipeType.BREAK,
-            RecipeShapes.singleCenter(Material.GRASS)
+            RecipeUtil.singleCenter(Material.GRASS)
         ).register(gn);
 
         new UnplaceableItem(
             GastroGroups.RAW_INGREDIENTS,
             GastroStacks.BRUSSLES_SPROUTS,
             GastroRecipeType.BREAK,
-            RecipeShapes.singleCenter(Material.GRASS)
+            RecipeUtil.singleCenter(Material.GRASS)
         ).register(gn);
 
         new UnplaceableItem(
             GastroGroups.RAW_INGREDIENTS,
             GastroStacks.MINT,
             GastroRecipeType.BREAK,
-            RecipeShapes.singleCenter(Material.GRASS)
+            RecipeUtil.singleCenter(Material.GRASS)
         ).register(gn);
 
         new UnplaceableItem(
             GastroGroups.RAW_INGREDIENTS,
             GastroStacks.CHILI_PEPPER,
             GastroRecipeType.BREAK,
-            RecipeShapes.singleCenter(Material.GRASS)
+            RecipeUtil.singleCenter(Material.GRASS)
         ).register(gn);
 
         new UnplaceableItem(
             GastroGroups.RAW_INGREDIENTS,
             GastroStacks.PARSLEY,
             GastroRecipeType.BREAK,
-            RecipeShapes.singleCenter(Material.GRASS)
+            RecipeUtil.singleCenter(Material.GRASS)
         ).register(gn);
 
         new UnplaceableItem(
             GastroGroups.RAW_INGREDIENTS,
             GastroStacks.CASSAVA,
             GastroRecipeType.BREAK,
-            RecipeShapes.singleCenter(Material.GRASS)
+            RecipeUtil.singleCenter(Material.GRASS)
         ).register(gn);
 
         new UnplaceableItem(
             GastroGroups.RAW_INGREDIENTS,
             GastroStacks.LENTILS,
             GastroRecipeType.BREAK,
-            RecipeShapes.singleCenter(Material.GRASS)
+            RecipeUtil.singleCenter(Material.GRASS)
         ).register(gn);
 
         // -- Grown from trees
@@ -452,56 +454,56 @@ public class GastroItemSetup {
             GastroGroups.RAW_INGREDIENTS,
             GastroStacks.LYCHEE,
             GastroRecipeType.BREAK,
-            RecipeShapes.singleCenter(GastroStacks.LYCHEE_SAPLING)
+            RecipeUtil.singleCenter(GastroStacks.LYCHEE_SAPLING)
         ).register(gn);
 
         new UnplaceableItem(
             GastroGroups.RAW_INGREDIENTS,
             GastroStacks.LYCHEE_SAPLING,
             GastroRecipeType.BREAK,
-            RecipeShapes.singleCenter(Material.GRASS)
+            RecipeUtil.singleCenter(Material.GRASS)
         ).register(gn);
 
         new UnplaceableItem(
             GastroGroups.RAW_INGREDIENTS,
             GastroStacks.PERSIMMON,
             GastroRecipeType.BREAK,
-            RecipeShapes.singleCenter(GastroStacks.PERSIMMON_SAPLING)
+            RecipeUtil.singleCenter(GastroStacks.PERSIMMON_SAPLING)
         ).register(gn);
 
         new UnplaceableItem(
             GastroGroups.RAW_INGREDIENTS,
             GastroStacks.PERSIMMON_SAPLING,
             GastroRecipeType.BREAK,
-            RecipeShapes.singleCenter(Material.GRASS)
+            RecipeUtil.singleCenter(Material.GRASS)
         ).register(gn);
 
         new UnplaceableItem(
             GastroGroups.RAW_INGREDIENTS,
             GastroStacks.BANANA,
             GastroRecipeType.BREAK,
-            RecipeShapes.singleCenter(GastroStacks.BANANA_SAPLING)
+            RecipeUtil.singleCenter(GastroStacks.BANANA_SAPLING)
         ).register(gn);
 
         new UnplaceableItem(
             GastroGroups.RAW_INGREDIENTS,
             GastroStacks.BANANA_SAPLING,
             GastroRecipeType.BREAK,
-            RecipeShapes.singleCenter(Material.GRASS)
+            RecipeUtil.singleCenter(Material.GRASS)
         ).register(gn);
 
         new UnplaceableItem(
             GastroGroups.RAW_INGREDIENTS,
             GastroStacks.VANILLA_BEANS,
             GastroRecipeType.BREAK,
-            RecipeShapes.singleCenter(GastroStacks.VANILLA_SAPLING)
+            RecipeUtil.singleCenter(GastroStacks.VANILLA_SAPLING)
         ).register(gn);
 
         new UnplaceableItem(
             GastroGroups.RAW_INGREDIENTS,
             GastroStacks.VANILLA_SAPLING,
             GastroRecipeType.BREAK,
-            RecipeShapes.singleCenter(Material.GRASS)
+            RecipeUtil.singleCenter(Material.GRASS)
         ).register(gn);
 
         // -- Harvested --
@@ -510,35 +512,35 @@ public class GastroItemSetup {
             GastroGroups.RAW_INGREDIENTS,
             GastroStacks.FIDDLEHEADS,
             GastroRecipeType.BREAK,
-            RecipeShapes.singleCenter(Material.FERN)
+            RecipeUtil.singleCenter(Material.FERN)
         ).register(gn);
 
         new UnplaceableItem(
             GastroGroups.RAW_INGREDIENTS,
             GastroStacks.TRUFFLES,
             GastroRecipeType.BREAK,
-            RecipeShapes.singleCenter(Material.DIRT)
+            RecipeUtil.singleCenter(Material.DIRT)
         ).register(gn);
 
         new UnplaceableItem(
             GastroGroups.RAW_INGREDIENTS,
             GastroStacks.ENOKI_MUSHROOMS,
             GastroRecipeType.BREAK,
-            RecipeShapes.singleCenter(Material.DIRT)
+            RecipeUtil.singleCenter(Material.DIRT)
         ).register(gn);
 
         new UnplaceableItem(
             GastroGroups.RAW_INGREDIENTS,
             GastroStacks.KING_OYSTER_MUSHROOM,
             GastroRecipeType.BREAK,
-            RecipeShapes.singleCenter(Material.DIRT)
+            RecipeUtil.singleCenter(Material.DIRT)
         ).register(gn);
 
         new UnplaceableItem(
             GastroGroups.RAW_INGREDIENTS,
             GastroStacks.BUTTON_MUSHROOM,
             GastroRecipeType.BREAK,
-            RecipeShapes.singleCenter(Material.DIRT)
+            RecipeUtil.singleCenter(Material.DIRT)
         ).register(gn);
 
         // -- Mob Drops --
@@ -546,30 +548,30 @@ public class GastroItemSetup {
         new UnplaceableItem(
             GastroGroups.RAW_INGREDIENTS,
             GastroStacks.RAW_CHEVON,
-            RecipeType.MOB_DROP,
-            RecipeShapes.singleCenter(Material.GOAT_SPAWN_EGG)
+            GastroRecipeType.KILL,
+            RecipeUtil.singleCenter(GastroStacks.GUIDE_KILL_GOAT)
         ).register(gn);
 
         new SimpleGastroFood(
             GastroGroups.RAW_INGREDIENTS,
             GastroStacks.COOKED_CHEVON,
             GastroRecipeType.MULTI_STOVE,
-            RecipeShapes.singleCenter(GastroStacks.RAW_CHEVON),
+            RecipeUtil.singleCenter(GastroStacks.RAW_CHEVON),
             GastroStacks.GUIDE_NO_TOOLS_REQUIRED
         ).register(gn);
 
         new UnplaceableItem(
             GastroGroups.RAW_INGREDIENTS,
             GastroStacks.FROG_LEG,
-            RecipeType.MOB_DROP,
-            RecipeShapes.singleCenter(Material.FROG_SPAWN_EGG)
+            GastroRecipeType.KILL,
+            RecipeUtil.singleCenter(GastroStacks.GUIDE_KILL_FROG)
         ).register(gn);
 
         new UnplaceableItem(
             GastroGroups.RAW_INGREDIENTS,
             GastroStacks.GIANT_SPIDER_LEG,
-            RecipeType.MOB_DROP,
-            RecipeShapes.singleCenter(Material.SPIDER_SPAWN_EGG)
+            GastroRecipeType.KILL,
+            RecipeUtil.singleCenter(GastroStacks.GUIDE_KILL_SPIDER)
         ).register(gn);
 
         // ---- Food ----
@@ -580,8 +582,7 @@ public class GastroItemSetup {
             GastroGroups.FOOD,
             GastroStacks.COOKED_RICE,
             GastroRecipeType.MULTI_STOVE,
-            RecipeShapes.singleCenter(GastroStacks.RICE),
-            GastroStacks.GUIDE_NO_TOOLS_REQUIRED
+            RecipeUtil.singleCenter(GastroStacks.RICE)
         ).register(gn);
 
         // -- Cuisine --
@@ -590,8 +591,8 @@ public class GastroItemSetup {
             GastroGroups.FOOD,
             GastroStacks.RICE_BALLS,
             GastroRecipeType.CULINARY_WORKBENCH,
-            RecipeShapes.collection(GastroStacks.RICE, DRIED_KELP),
-            GastroStacks.GUIDE_NO_TOOLS_REQUIRED
+            RecipeShape.SHAPELESS,
+            RecipeUtil.collection(GastroStacks.COOKED_RICE, DRIED_KELP)
         ).register(gn);
     }
 }

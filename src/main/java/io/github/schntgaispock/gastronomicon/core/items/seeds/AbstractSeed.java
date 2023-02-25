@@ -9,7 +9,7 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
 
 import io.github.schntgaispock.gastronomicon.core.slimefun.GastroGroups;
-import io.github.schntgaispock.gastronomicon.core.slimefun.GastroRecipes.GastroRecipeType;
+import io.github.schntgaispock.gastronomicon.core.slimefun.GastroRecipeType;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockBreakHandler;

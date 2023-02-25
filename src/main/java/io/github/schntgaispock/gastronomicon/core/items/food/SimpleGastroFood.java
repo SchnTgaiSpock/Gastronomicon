@@ -1,6 +1,7 @@
 package io.github.schntgaispock.gastronomicon.core.items.food;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.annotation.Nonnull;
@@ -10,6 +11,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import io.github.schntgaispock.gastronomicon.core.items.UnplaceableItem;
+import io.github.schntgaispock.gastronomicon.core.slimefun.GastroStacks;
+import io.github.schntgaispock.gastronomicon.util.CollectionUtil;
 import io.github.schntgaispock.gastronomicon.util.StringUtil;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -38,6 +41,10 @@ public class SimpleGastroFood extends UnplaceableItem implements RecipeDisplayIt
     @Nonnull
     public List<ItemStack> getDisplayRecipes() {
         final List<ItemStack> recipes = new ArrayList<ItemStack>(getTools().length * 2);
+
+        if (CollectionUtil.isEmpty(getTools())) {
+            return Arrays.asList(GastroStacks.GUIDE_NO_TOOLS_REQUIRED);
+        }
         
         for (ItemStack tool : getTools()) {
             recipes.add(tool);

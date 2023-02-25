@@ -1,21 +1,27 @@
 package io.github.schntgaispock.gastronomicon.core.recipes;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
+
+import javax.annotation.Nullable;
 
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
 import io.github.schntgaispock.gastronomicon.core.recipes.components.RecipeComponent;
 import io.github.schntgaispock.gastronomicon.core.recipes.components.RecipeInput;
-import io.github.schntgaispock.gastronomicon.core.slimefun.GastroRecipes.GastroRecipeType;
+import io.github.schntgaispock.gastronomicon.core.recipes.components.SingleRecipeComponent;
+import io.github.schntgaispock.gastronomicon.core.slimefun.GastroRecipeType;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.ToString;
 
 /**
  * Represents a recipe used by any of the Gastronomicon machines
  */
 @Getter
+@ToString
 public abstract class GastroRecipe {
 
     public enum RecipeShape {
@@ -80,6 +86,21 @@ public abstract class GastroRecipe {
         this.inputs = inputs;
         this.tools = tools;
         this.outputs = outputs;
+    }
+
+    public GastroRecipe(GastroRecipeType recipeType, RecipeShape recipeShape, ItemStack[] ingredients,
+            @Nullable ItemStack container, Set<ItemStack> tools, ItemStack... outputs) {
+        this(recipeType,
+                new RecipeInput(recipeShape,
+                        container == null ? RecipeComponent.EMPTY : new SingleRecipeComponent(container),
+                        Arrays.stream(ingredients).map(ingredient -> ingredient == null ? RecipeComponent.EMPTY : new SingleRecipeComponent(ingredient))
+                                .toArray(RecipeComponent[]::new)),
+                tools, outputs);
+    }
+
+    public GastroRecipe(GastroRecipeType recipeType, RecipeShape recipeShape, ItemStack[] ingredients,
+           Set<ItemStack> tools, ItemStack... outputs) {
+        this(recipeType, recipeShape, ingredients, null, tools, outputs);
     }
 
     /**
