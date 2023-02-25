@@ -15,8 +15,8 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
 
-import io.github.schntgaispock.gastronomicon.util.ItemUtil;
 import io.github.schntgaispock.gastronomicon.util.NumberUtil;
+import io.github.schntgaispock.gastronomicon.util.item.ItemUtil;
 import io.github.thebusybiscuit.slimefun4.api.events.BlockPlacerPlaceEvent;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockPlaceHandler;

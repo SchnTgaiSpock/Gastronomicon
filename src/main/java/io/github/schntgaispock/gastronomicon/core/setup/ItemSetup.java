@@ -12,6 +12,7 @@ import io.github.schntgaispock.gastronomicon.core.items.seeds.DuplicatingSeed;
 import io.github.schntgaispock.gastronomicon.core.items.seeds.FruitingSeed;
 import io.github.schntgaispock.gastronomicon.core.items.seeds.SimpleSeed;
 import io.github.schntgaispock.gastronomicon.core.items.workstations.CulinaryWorkbench;
+import io.github.schntgaispock.gastronomicon.core.items.workstations.MultiStove.Temperature;
 import io.github.schntgaispock.gastronomicon.core.recipes.GastroRecipe.RecipeShape;
 import io.github.schntgaispock.gastronomicon.core.slimefun.GastroGroups;
 import io.github.schntgaispock.gastronomicon.core.slimefun.GastroRecipeType;
@@ -24,7 +25,7 @@ import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.Unplaceabl
 import lombok.experimental.UtilityClass;
 
 @UtilityClass
-public class GastroItemSetup {
+public class ItemSetup {
 
     public static void setup() {
 
@@ -552,12 +553,13 @@ public class GastroItemSetup {
             RecipeUtil.singleCenter(GastroStacks.GUIDE_KILL_GOAT)
         ).register(gn);
 
-        new SimpleGastroFood(
+        SimpleGastroFood.stove(
             GastroGroups.RAW_INGREDIENTS,
             GastroStacks.COOKED_CHEVON,
-            GastroRecipeType.MULTI_STOVE,
             RecipeUtil.singleCenter(GastroStacks.RAW_CHEVON),
-            GastroStacks.GUIDE_NO_TOOLS_REQUIRED
+            null,
+            Temperature.MEDIUM,
+            GastroStacks.FRYING_PAN
         ).register(gn);
 
         new UnplaceableItem(
@@ -578,21 +580,23 @@ public class GastroItemSetup {
 
         // -- Ingredients --
 
-        new SimpleGastroFood(
+        SimpleGastroFood.stove(
             GastroGroups.FOOD,
             GastroStacks.COOKED_RICE,
-            GastroRecipeType.MULTI_STOVE,
-            RecipeUtil.singleCenter(GastroStacks.RICE)
+            RecipeUtil.singleCenter(GastroStacks.RICE),
+            null,
+            Temperature.MEDIUM
         ).register(gn);
 
         // -- Cuisine --
 
-        new GastroFood(
+        GastroFood.workbench(
             GastroGroups.FOOD,
             GastroStacks.RICE_BALLS,
-            GastroRecipeType.CULINARY_WORKBENCH,
             RecipeShape.SHAPELESS,
-            RecipeUtil.collection(GastroStacks.COOKED_RICE, DRIED_KELP)
+            RecipeUtil.collection(GastroStacks.COOKED_RICE, DRIED_KELP),
+            null,
+            GastroStacks.STEEL_POT
         ).register(gn);
     }
 }

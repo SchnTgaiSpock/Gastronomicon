@@ -7,6 +7,7 @@ import java.util.function.Function;
 import io.github.schntgaispock.gastronomicon.util.NumberUtil;
 
 public class UtilTests {
+    @SuppressWarnings("null")
     public static void main(String[] args) {
         // TEST #1: GastroUtil.asRomanNumeral()
         final Map<Integer, String> test1 = new LinkedHashMap<>();

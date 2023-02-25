@@ -1,4 +1,7 @@
-package io.github.schntgaispock.gastronomicon.util;
+package io.github.schntgaispock.gastronomicon.util.item;
+
+import javax.annotation.Nonnull;
+import javax.annotation.ParametersAreNonnullByDefault;
 
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -10,7 +13,7 @@ import lombok.experimental.UtilityClass;
 @UtilityClass
 public class ItemUtil {
 
-    public static int hashIgnoreAmount(ItemStack stack) {
+    public static int hashIgnoreAmount(@Nonnull ItemStack stack) {
         int hash = 1;
 
         hash = hash * 31 + stack.getType().hashCode();
@@ -19,13 +22,13 @@ public class ItemUtil {
         return hash;
     }
 
-    public static int getSickleTier(ItemStack item) {
+    public static int getSickleTier(@Nonnull ItemStack item) {
         final SlimefunItem sfItem = SlimefunItem.getByItem(item);
         if (sfItem != null) {
             return switch (sfItem.getId()) {
-                case "WOODEN_SICKLE" -> 1;
-                case "STEEL_SICKLE" -> 2;
-                case "REINFORCED_SICKLE" -> 3;
+                case "GN_WOODEN_SICKLE" -> 1;
+                case "GN_STEEL_SICKLE" -> 2;
+                case "GN_REINFORCED_SICKLE" -> 3;
                 default -> 0;
             };
         } else {
@@ -33,7 +36,8 @@ public class ItemUtil {
         }
     }
 
-    public static Material getPlacedBlock(Material seed) {
+    @Nonnull
+    public static Material getPlacedBlock(@Nonnull Material seed) {
         return switch (seed) {
             case WHEAT_SEEDS -> Material.WHEAT;
             case POTATO -> Material.POTATOES;
@@ -42,10 +46,12 @@ public class ItemUtil {
             case PUMPKIN_SEEDS -> Material.PUMPKIN_STEM;
             case MELON_SEEDS -> Material.MELON_STEM;
             default -> Material.AIR;
+
         };
     }
 
-    public static void returnItems(Player player, ItemStack[] items) {
+    @ParametersAreNonnullByDefault
+    public static void giveItems(Player player, ItemStack[] items) {
         player.getInventory().addItem(items).forEach((__, item) -> {
             player.getWorld().dropItemNaturally(player.getLocation(), item);
         });

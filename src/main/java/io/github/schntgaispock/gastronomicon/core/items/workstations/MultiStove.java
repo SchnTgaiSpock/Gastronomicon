@@ -1,13 +1,23 @@
 package io.github.schntgaispock.gastronomicon.core.items.workstations;
 
+import java.util.List;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
+import io.github.schntgaispock.gastronomicon.core.recipes.GastroRecipe;
+import io.github.schntgaispock.gastronomicon.core.recipes.MultiStoveRecipe;
 import io.github.schntgaispock.gastronomicon.core.slimefun.GastroRecipeType;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
+import io.github.thebusybiscuit.slimefun4.core.attributes.EnergyNetComponent;
+import io.github.thebusybiscuit.slimefun4.core.networks.energy.EnergyNetComponentType;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -16,16 +26,31 @@ import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
 
 @SuppressWarnings("deprecation")
-public class MultiStove extends GastroWorkstation {
+public class MultiStove extends GastroWorkstation implements EnergyNetComponent {
 
     @RequiredArgsConstructor
-    private enum Temperature {
+    public enum Temperature {
         LOW(TEMPERATURE_BUTTON_LOW),
         MEDIUM(TEMPERATURE_BUTTON_MEDIUM),
         HIGH(TEMPERATURE_BUTTON_HIGH);
 
         private final @Getter ItemStack item;
-        // TODO prev and next
+        
+        public @Nullable Temperature next() {
+            if (ordinal() == values().length - 1) {
+                return null;
+            }
+
+            return values()[ordinal() + 1];
+        }
+
+        public @Nullable Temperature prev() {
+            if (ordinal() == 0) {
+                return null;
+            }
+
+            return values()[ordinal() - 1];
+        }
     }
 
     public static final ItemStack TEMPERATURE_BUTTON_LOW = new CustomItemStack(
@@ -69,17 +94,49 @@ public class MultiStove extends GastroWorkstation {
         });
 
         menu.addMenuClickHandler(TEMPERATURE_BUTTON_SLOT, (player, slot, item, action) -> {
+            final Temperature t = Temperature.valueOf(item.getItemMeta().getDisplayName().substring(17));
+            changeTemperature(menu, action.isRightClicked() ? t.prev() : t.next());
             return false;
         });
     }
 
-    public static void changeTemperature(Block b, Temperature t) {
-        BlockStorage.addBlockInfo(b, TEMPERATURE_KEY, t.name());
+    public static void changeTemperature(@Nonnull BlockMenu menu, @Nullable Temperature t) {
+        if (t == null) {
+            return;
+        }
+        menu.replaceExistingItem(TEMPERATURE_BUTTON_SLOT, t.getItem());
+        BlockStorage.addBlockInfo(menu.getLocation(), TEMPERATURE_KEY, t.name());
     }
 
     @Override
     public GastroRecipeType getRecipeType() {
         return GastroRecipeType.MULTI_STOVE;
+    }
+
+    @Override
+    public int getCapacity() {
+        return 800;
+    }
+
+    @Override
+    public EnergyNetComponentType getEnergyComponentType() {
+        return EnergyNetComponentType.CONSUMER;
+    }
+
+    @Override
+    @Nullable
+    protected GastroRecipe findRecipe(ItemStack[] ingredients, List<ItemStack> containers, List<ItemStack> tools,
+            Player player, BlockMenu menu) {
+        final GastroRecipe recipe = super.findRecipe(ingredients, containers, tools, player, menu);
+        if (recipe instanceof final MultiStoveRecipe msRecipe) {
+            if (msRecipe.getTemperature().getItem().isSimilar(menu.getItemInSlot(TEMPERATURE_BUTTON_SLOT))) {
+                return msRecipe;
+            } else {
+                return null;
+            }
+        } else {
+            return recipe;
+        }
     }
 
 }

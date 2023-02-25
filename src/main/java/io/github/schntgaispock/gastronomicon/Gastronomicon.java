@@ -15,7 +15,7 @@ import io.github.mooy1.infinitylib.core.AddonConfig;
 import io.github.schntgaispock.gastronomicon.core.setup.CommandSetup;
 import io.github.schntgaispock.gastronomicon.core.setup.ListenerSetup;
 import io.github.schntgaispock.gastronomicon.core.setup.RecipeSetup;
-import io.github.schntgaispock.gastronomicon.core.setup.GastroItemSetup;
+import io.github.schntgaispock.gastronomicon.core.setup.ItemSetup;
 import io.github.schntgaispock.gastronomicon.integration.SlimeHUDSetup;
 import lombok.Getter;
 
@@ -40,11 +40,11 @@ public class Gastronomicon extends AbstractAddon {
         Metrics metrics = new Metrics(this, 16941);
 
         RecipeSetup.setup();
-        GastroItemSetup.setup();
+        ItemSetup.setup();
         ListenerSetup.setup();
         CommandSetup.setup();
 
-        if (getInstance().getServer().getPluginManager().isPluginEnabled("SlimeHUD")) {
+        if (isPluginEnabled("SlimeHUD")) {
             try {
                 log(Level.INFO, "SlimeHUD was found on this server!");
                 log(Level.INFO, "Setting up Gastronomicon for SlimeHUD...");
@@ -55,7 +55,7 @@ public class Gastronomicon extends AbstractAddon {
             }
         }
 
-        if (!getInstance().getServer().getPluginManager().isPluginEnabled("ExoticGarden")) {
+        if (!isPluginEnabled("ExoticGarden")) {
             log(Level.WARNING, "ExoticGarden was not found on this server!");
             log(Level.WARNING, "Recipes that require ExoticGarden items will be hidden.");
         }
@@ -71,6 +71,10 @@ public class Gastronomicon extends AbstractAddon {
 
     public static NamespacedKey newNamespacedKey(@Nonnull String name) {
         return new NamespacedKey(Gastronomicon.getInstance(), name);
+    }
+
+    public static boolean isPluginEnabled(String name) {
+        return getInstance().getServer().getPluginManager().isPluginEnabled(name);
     }
 
     public static int scheduleSyncDelayedTask(Runnable runnable, long delay) {

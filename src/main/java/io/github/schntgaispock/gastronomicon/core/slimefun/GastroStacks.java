@@ -5,10 +5,11 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffectType;
 
-import io.github.schntgaispock.gastronomicon.core.food.FoodEffect;
+import io.github.schntgaispock.gastronomicon.core.items.food.FoodEffect;
 import io.github.schntgaispock.gastronomicon.core.items.stacks.FoodItemStack;
 import io.github.schntgaispock.gastronomicon.core.items.stacks.ThemedItemStack;
 import io.github.schntgaispock.gastronomicon.core.items.stacks.GastroTheme.Theme;
+import io.github.schntgaispock.gastronomicon.util.item.HeadTextures;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.utils.LoreBuilder;
@@ -776,7 +777,7 @@ public class GastroStacks {
 
     public static final FoodItemStack PBJ_SANDWICH = FoodItemStack.of(
         "GN_PBJ_SANDWICH",
-        "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjljMmRkZjJiZDc0YTQ2NTVlOGYwMTUzYTc0NTNlNjdkYjJhMjFkYmZhYzY3NTY3ODk0ODFhZGJlYzQ4M2EifX19",
+        HeadTextures.NONE,
         "PB&J Sandwich",
         8,
         1d,
@@ -785,7 +786,7 @@ public class GastroStacks {
 
     public static final FoodItemStack MARMALADE_SANDWICH = FoodItemStack.of(
         "GN_MARMALADE_SANDWICH",
-        "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjljMmRkZjJiZDc0YTQ2NTVlOGYwMTUzYTc0NTNlNjdkYjJhMjFkYmZhYzY3NTY3ODk0ODFhZGJlYzQ4M2EifX19",
+        HeadTextures.NONE,
         "Marmalade Sandwich",
         8,
         1d,
@@ -794,7 +795,7 @@ public class GastroStacks {
 
     public static final FoodItemStack BAKED_BEAN_SANDWICH = FoodItemStack.of(
         "GN_BAKED_BEAN_SANDWICH",
-        "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjljMmRkZjJiZDc0YTQ2NTVlOGYwMTUzYTc0NTNlNjdkYjJhMjFkYmZhYzY3NTY3ODk0ODFhZGJlYzQ4M2EifX19",
+        HeadTextures.NONE,
         "Baked Bean Sandwich",
         8,
         1d,
@@ -806,7 +807,7 @@ public class GastroStacks {
 
     public static final FoodItemStack TUNA_SANDWICH = FoodItemStack.of(
         "GN_TUNA_SANDWICH",
-        "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjljMmRkZjJiZDc0YTQ2NTVlOGYwMTUzYTc0NTNlNjdkYjJhMjFkYmZhYzY3NTY3ODk0ODFhZGJlYzQ4M2EifX19",
+        HeadTextures.NONE,
         "Tuna Sandwich",
         8,
         1d,
@@ -815,7 +816,7 @@ public class GastroStacks {
 
     public static final FoodItemStack BREAKFAST_SANDWICH = FoodItemStack.of(
         "GN_BREAKFAST_SANDWICH",
-        "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjljMmRkZjJiZDc0YTQ2NTVlOGYwMTUzYTc0NTNlNjdkYjJhMjFkYmZhYzY3NTY3ODk0ODFhZGJlYzQ4M2EifX19",
+        HeadTextures.NONE,
         "Breakfast Sandwich",
         8,
         1d,
@@ -824,7 +825,7 @@ public class GastroStacks {
 
     public static final FoodItemStack HAM_SANDWICH = FoodItemStack.of(
         "GN_HAM_SANDWICH",
-        "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjljMmRkZjJiZDc0YTQ2NTVlOGYwMTUzYTc0NTNlNjdkYjJhMjFkYmZhYzY3NTY3ODk0ODFhZGJlYzQ4M2EifX19",
+        HeadTextures.NONE,
         "Ham Sandwich",
         8,
         1d,
@@ -833,7 +834,7 @@ public class GastroStacks {
 
     public static final FoodItemStack CHICKEN_SALAD_SANDWICH = FoodItemStack.of(
         "GN_CHICKEN_SALAD_SANDWICH",
-        "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjljMmRkZjJiZDc0YTQ2NTVlOGYwMTUzYTc0NTNlNjdkYjJhMjFkYmZhYzY3NTY3ODk0ODFhZGJlYzQ4M2EifX19",
+        HeadTextures.NONE,
         "Chicken Salad Sandwich",
         8,
         1d,
@@ -842,7 +843,7 @@ public class GastroStacks {
 
     public static final FoodItemStack EGG_SALAD_SANDWICH = FoodItemStack.of(
         "GN_EGG_SALAD_SANDWICH",
-        "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjljMmRkZjJiZDc0YTQ2NTVlOGYwMTUzYTc0NTNlNjdkYjJhMjFkYmZhYzY3NTY3ODk0ODFhZGJlYzQ4M2EifX19",
+        HeadTextures.NONE,
         "Egg Salad Sandwich",
         8,
         1d,
@@ -851,7 +852,7 @@ public class GastroStacks {
 
     public static final FoodItemStack CLUB_SANDWICH = FoodItemStack.of(
         "GN_CLUB_SANDWICH",
-        "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjljMmRkZjJiZDc0YTQ2NTVlOGYwMTUzYTc0NTNlNjdkYjJhMjFkYmZhYzY3NTY3ODk0ODFhZGJlYzQ4M2EifX19",
+        HeadTextures.NONE,
         "Club Sandwich",
         8,
         1d,
@@ -860,7 +861,7 @@ public class GastroStacks {
 
     public static final FoodItemStack ROAST_BEEF_SANDWICH = FoodItemStack.of(
         "GN_ROAST_BEEF_SANDWICH",
-        "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjljMmRkZjJiZDc0YTQ2NTVlOGYwMTUzYTc0NTNlNjdkYjJhMjFkYmZhYzY3NTY3ODk0ODFhZGJlYzQ4M2EifX19",
+        HeadTextures.NONE,
         "Roast Beef Sandwich",
         8,
         1d,
@@ -871,7 +872,7 @@ public class GastroStacks {
 
     public static final FoodItemStack GREEK_SALAD = FoodItemStack.of(
         "GN_GREEK_SALAD",
-        "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjljMmRkZjJiZDc0YTQ2NTVlOGYwMTUzYTc0NTNlNjdkYjJhMjFkYmZhYzY3NTY3ODk0ODFhZGJlYzQ4M2EifX19",
+        HeadTextures.NONE,
         "Greek Salad",
         5,
         1d,
@@ -883,7 +884,7 @@ public class GastroStacks {
 
     public static final FoodItemStack CAESAR_SALAD = FoodItemStack.of(
         "GN_CAESAR_SALAD",
-        "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjljMmRkZjJiZDc0YTQ2NTVlOGYwMTUzYTc0NTNlNjdkYjJhMjFkYmZhYzY3NTY3ODk0ODFhZGJlYzQ4M2EifX19",
+        HeadTextures.NONE,
         "Caesar Salad",
         5,
         1d,
@@ -897,7 +898,7 @@ public class GastroStacks {
 
     public static final FoodItemStack PAN_SEARED_SALMON = FoodItemStack.of(
         "GN_PAN_SEARED_SALMON",
-        "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjljMmRkZjJiZDc0YTQ2NTVlOGYwMTUzYTc0NTNlNjdkYjJhMjFkYmZhYzY3NTY3ODk0ODFhZGJlYzQ4M2EifX19",
+        HeadTextures.NONE,
         "Pan-seared Salmon",
         7,
         1d,
@@ -906,7 +907,7 @@ public class GastroStacks {
 
     public static final FoodItemStack FRIED_SHRIMP = FoodItemStack.of(
         "GN_PAN_SEARED_SALMON",
-        "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjljMmRkZjJiZDc0YTQ2NTVlOGYwMTUzYTc0NTNlNjdkYjJhMjFkYmZhYzY3NTY3ODk0ODFhZGJlYzQ4M2EifX19",
+        HeadTextures.NONE,
         "Fried Shrimp",
         3,
         1d,
@@ -915,7 +916,7 @@ public class GastroStacks {
 
     public static final FoodItemStack TEMPURA_SHRIMP = FoodItemStack.of(
         "GN_PAN_SEARED_SALMON",
-        "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjljMmRkZjJiZDc0YTQ2NTVlOGYwMTUzYTc0NTNlNjdkYjJhMjFkYmZhYzY3NTY3ODk0ODFhZGJlYzQ4M2EifX19",
+        HeadTextures.NONE,
         "Tempura Shrimp",
         4,
         1d,
@@ -924,7 +925,7 @@ public class GastroStacks {
 
     public static final FoodItemStack TEMPURA_BROCCOLI = FoodItemStack.of(
         "GN_PAN_SEARED_SALMON",
-        "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjljMmRkZjJiZDc0YTQ2NTVlOGYwMTUzYTc0NTNlNjdkYjJhMjFkYmZhYzY3NTY3ODk0ODFhZGJlYzQ4M2EifX19",
+        HeadTextures.NONE,
         "Tempura Broccoli",
         3,
         1d,
@@ -935,7 +936,7 @@ public class GastroStacks {
 
     public static final FoodItemStack CHICKEN_PESTO_PASTA = FoodItemStack.of(
         "GN_CHICKEN_PESTO_PASTA",
-        "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjljMmRkZjJiZDc0YTQ2NTVlOGYwMTUzYTc0NTNlNjdkYjJhMjFkYmZhYzY3NTY3ODk0ODFhZGJlYzQ4M2EifX19",
+        HeadTextures.NONE,
         "Chicken Pesto Pasta",
         8,
         1d,
@@ -944,7 +945,7 @@ public class GastroStacks {
 
     public static final FoodItemStack SQUID_INK_PASTA = FoodItemStack.of(
         "GN_SQUID_INK_PASTA",
-        "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjljMmRkZjJiZDc0YTQ2NTVlOGYwMTUzYTc0NTNlNjdkYjJhMjFkYmZhYzY3NTY3ODk0ODFhZGJlYzQ4M2EifX19",
+        HeadTextures.NONE,
         "Squid Ink Pasta",
         6,
         1d
@@ -952,7 +953,7 @@ public class GastroStacks {
 
     public static final FoodItemStack CHICKEN_RAVIOLI = FoodItemStack.of(
         "GN_CHICKEN_RAVIOLI",
-        "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjljMmRkZjJiZDc0YTQ2NTVlOGYwMTUzYTc0NTNlNjdkYjJhMjFkYmZhYzY3NTY3ODk0ODFhZGJlYzQ4M2EifX19",
+        HeadTextures.NONE,
         "Chicken Ravioli",
         10,
         1d,
@@ -961,7 +962,7 @@ public class GastroStacks {
 
     public static final FoodItemStack MUSHROOM_RAVIOLI = FoodItemStack.of(
         "GN_MUSHROOM_RAVIOLI",
-        "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjljMmRkZjJiZDc0YTQ2NTVlOGYwMTUzYTc0NTNlNjdkYjJhMjFkYmZhYzY3NTY3ODk0ODFhZGJlYzQ4M2EifX19",
+        HeadTextures.NONE,
         "Mushroom Ravioli",
         8,
         1d,
@@ -972,7 +973,7 @@ public class GastroStacks {
 
     public static final FoodItemStack PORRIDGE = FoodItemStack.of(
         "GN_PORRIDGE",
-        "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjljMmRkZjJiZDc0YTQ2NTVlOGYwMTUzYTc0NTNlNjdkYjJhMjFkYmZhYzY3NTY3ODk0ODFhZGJlYzQ4M2EifX19",
+        HeadTextures.NONE,
         "Porridge",
         6,
         1.75,
@@ -985,7 +986,7 @@ public class GastroStacks {
 
     public static final FoodItemStack CHICKEN_SOUP = FoodItemStack.of(
         "GN_CHICKEN_SOUP",
-        "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjljMmRkZjJiZDc0YTQ2NTVlOGYwMTUzYTc0NTNlNjdkYjJhMjFkYmZhYzY3NTY3ODk0ODFhZGJlYzQ4M2EifX19",
+        HeadTextures.NONE,
         "Chicken Soup",
         6,
         1.75,
@@ -997,7 +998,7 @@ public class GastroStacks {
 
     public static final FoodItemStack CHICKEN_NOODLE_SOUP = FoodItemStack.of(
         "GN_CHICKEN_NOODLE_SOUP",
-        "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjljMmRkZjJiZDc0YTQ2NTVlOGYwMTUzYTc0NTNlNjdkYjJhMjFkYmZhYzY3NTY3ODk0ODFhZGJlYzQ4M2EifX19",
+        HeadTextures.NONE,
         "Chicken Noodle Soup",
         8,
         1.75,
@@ -1010,7 +1011,7 @@ public class GastroStacks {
 
     public static final FoodItemStack SPLIT_PEA_SOUP = FoodItemStack.of(
         "GN_SPLIT_PEA_SOUP",
-        "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjljMmRkZjJiZDc0YTQ2NTVlOGYwMTUzYTc0NTNlNjdkYjJhMjFkYmZhYzY3NTY3ODk0ODFhZGJlYzQ4M2EifX19",
+        HeadTextures.NONE,
         "Split Pea Soup",
         6,
         1.75,
@@ -1019,7 +1020,7 @@ public class GastroStacks {
 
     public static final FoodItemStack HAM_AND_SPLIT_PEA_SOUP = FoodItemStack.of(
         "GN_HAM_AND_SPLIT_PEA_SOUP",
-        "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjljMmRkZjJiZDc0YTQ2NTVlOGYwMTUzYTc0NTNlNjdkYjJhMjFkYmZhYzY3NTY3ODk0ODFhZGJlYzQ4M2EifX19",
+        HeadTextures.NONE,
         "Ham and Split Pea Soup",
         8,
         1.75,
@@ -1028,7 +1029,7 @@ public class GastroStacks {
 
     public static final FoodItemStack LENTIL_SOUP = FoodItemStack.of(
         "GN_LENTIL_SOUP",
-        "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjljMmRkZjJiZDc0YTQ2NTVlOGYwMTUzYTc0NTNlNjdkYjJhMjFkYmZhYzY3NTY3ODk0ODFhZGJlYzQ4M2EifX19",
+        HeadTextures.NONE,
         "Lentil Soup",
         8,
         1.75,
@@ -1037,7 +1038,7 @@ public class GastroStacks {
 
     public static final FoodItemStack BEEF_AND_LENTIL_SOUP = FoodItemStack.of(
         "GN_BEEF_AND_LENTIL_SOUP",
-        "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjljMmRkZjJiZDc0YTQ2NTVlOGYwMTUzYTc0NTNlNjdkYjJhMjFkYmZhYzY3NTY3ODk0ODFhZGJlYzQ4M2EifX19",
+        HeadTextures.NONE,
         "Beef and Lentil Soup",
         10,
         1.75,
@@ -1046,7 +1047,7 @@ public class GastroStacks {
 
     public static final FoodItemStack CARROT_SOUP = FoodItemStack.of(
         "GN_CARROT_SOUP",
-        "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjljMmRkZjJiZDc0YTQ2NTVlOGYwMTUzYTc0NTNlNjdkYjJhMjFkYmZhYzY3NTY3ODk0ODFhZGJlYzQ4M2EifX19",
+        HeadTextures.NONE,
         "Carrot Soup",
         8,
         1.75,
@@ -1055,7 +1056,7 @@ public class GastroStacks {
 
     public static final FoodItemStack MUSHROOM_BARLEY_SOUP = FoodItemStack.of(
         "GN_MUSHROOM_BARLEY_SOUP",
-        "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjljMmRkZjJiZDc0YTQ2NTVlOGYwMTUzYTc0NTNlNjdkYjJhMjFkYmZhYzY3NTY3ODk0ODFhZGJlYzQ4M2EifX19",
+        HeadTextures.NONE,
         "Mushroom Barley Soup",
         8,
         2d,
@@ -1064,7 +1065,7 @@ public class GastroStacks {
 
     public static final FoodItemStack CHICKEN_BARLEY_SOUP = FoodItemStack.of(
         "GN_CHICKEN_BARLEY_SOUP",
-        "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjljMmRkZjJiZDc0YTQ2NTVlOGYwMTUzYTc0NTNlNjdkYjJhMjFkYmZhYzY3NTY3ODk0ODFhZGJlYzQ4M2EifX19",
+        HeadTextures.NONE,
         "Chicken Barley Soup",
         10,
         2d,
@@ -1073,7 +1074,7 @@ public class GastroStacks {
 
     public static final FoodItemStack BEEF_BARLEY_SOUP = FoodItemStack.of(
         "GN_BEEF_BARLEY_SOUP",
-        "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjljMmRkZjJiZDc0YTQ2NTVlOGYwMTUzYTc0NTNlNjdkYjJhMjFkYmZhYzY3NTY3ODk0ODFhZGJlYzQ4M2EifX19",
+        HeadTextures.NONE,
         "Beef Barley Soup",
         12,
         2d,
@@ -1082,7 +1083,7 @@ public class GastroStacks {
 
     public static final FoodItemStack CREAM_OF_MUSHROOM_SOUP = FoodItemStack.of(
         "GN_CREAM_OF_MUSHROOM_SOUP",
-        "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjljMmRkZjJiZDc0YTQ2NTVlOGYwMTUzYTc0NTNlNjdkYjJhMjFkYmZhYzY3NTY3ODk0ODFhZGJlYzQ4M2EifX19",
+        HeadTextures.NONE,
         "Cream of Mushroom Soup",
         7,
         1.75,
@@ -1091,7 +1092,7 @@ public class GastroStacks {
 
     public static final FoodItemStack CREAM_OF_CELERY_SOUP = FoodItemStack.of(
         "GN_CREAM_OF_CELERY_SOUP",
-        "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjljMmRkZjJiZDc0YTQ2NTVlOGYwMTUzYTc0NTNlNjdkYjJhMjFkYmZhYzY3NTY3ODk0ODFhZGJlYzQ4M2EifX19",
+        HeadTextures.NONE,
         "Cream of Celery Soup",
         8,
         1.75,
@@ -1100,7 +1101,7 @@ public class GastroStacks {
 
     public static final FoodItemStack CREAM_OF_ASPARAGUS_SOUP = FoodItemStack.of(
         "GN_CREAM_OF_ASPARAGUS_SOUP",
-        "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjljMmRkZjJiZDc0YTQ2NTVlOGYwMTUzYTc0NTNlNjdkYjJhMjFkYmZhYzY3NTY3ODk0ODFhZGJlYzQ4M2EifX19",
+        HeadTextures.NONE,
         "Cream of Asparagus Soup",
         8,
         1.75,
@@ -1109,7 +1110,7 @@ public class GastroStacks {
 
     public static final FoodItemStack CREAM_OF_CAULIFLOWER_SOUP = FoodItemStack.of(
         "GN_CREAM_OF_CAULIFLOWER_SOUP",
-        "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjljMmRkZjJiZDc0YTQ2NTVlOGYwMTUzYTc0NTNlNjdkYjJhMjFkYmZhYzY3NTY3ODk0ODFhZGJlYzQ4M2EifX19",
+        HeadTextures.NONE,
         "Cream of Cauliflower Soup",
         8,
         1.75,
@@ -1118,7 +1119,7 @@ public class GastroStacks {
 
     public static final FoodItemStack MISO_SOUP = FoodItemStack.of(
         "GN_MISO_SOUP",
-        "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjljMmRkZjJiZDc0YTQ2NTVlOGYwMTUzYTc0NTNlNjdkYjJhMjFkYmZhYzY3NTY3ODk0ODFhZGJlYzQ4M2EifX19",
+        HeadTextures.NONE,
         "Miso Soup",
         4,
         1.75,
@@ -1127,7 +1128,7 @@ public class GastroStacks {
 
     public static final FoodItemStack BROCCOLI_CHOWDER = FoodItemStack.of(
         "GN_BROCCOLI_CHOWDER",
-        "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjljMmRkZjJiZDc0YTQ2NTVlOGYwMTUzYTc0NTNlNjdkYjJhMjFkYmZhYzY3NTY3ODk0ODFhZGJlYzQ4M2EifX19",
+        HeadTextures.NONE,
         "Broccoli Chowder",
         8,
         1.75
@@ -1135,7 +1136,7 @@ public class GastroStacks {
 
     public static final FoodItemStack SALMON_CHOWDER = FoodItemStack.of(
         "GN_SALMON_CHOWDER",
-        "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjljMmRkZjJiZDc0YTQ2NTVlOGYwMTUzYTc0NTNlNjdkYjJhMjFkYmZhYzY3NTY3ODk0ODFhZGJlYzQ4M2EifX19",
+        HeadTextures.NONE,
         "Salmon Chowder",
         10,
         1.75
@@ -1143,7 +1144,7 @@ public class GastroStacks {
 
     public static final FoodItemStack POTATO_CHOWDER = FoodItemStack.of(
         "GN_POTATO_CHOWDER",
-        "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjljMmRkZjJiZDc0YTQ2NTVlOGYwMTUzYTc0NTNlNjdkYjJhMjFkYmZhYzY3NTY3ODk0ODFhZGJlYzQ4M2EifX19",
+        HeadTextures.NONE,
         "Potato Chowder",
         8,
         1.75
@@ -1151,7 +1152,7 @@ public class GastroStacks {
 
     public static final FoodItemStack CORN_CHOWDER = FoodItemStack.of(
         "GN_CORN_CHOWDER",
-        "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjljMmRkZjJiZDc0YTQ2NTVlOGYwMTUzYTc0NTNlNjdkYjJhMjFkYmZhYzY3NTY3ODk0ODFhZGJlYzQ4M2EifX19",
+        HeadTextures.NONE,
         "Corn Chowder",
         8,
         1.75
@@ -1159,7 +1160,7 @@ public class GastroStacks {
 
     public static final FoodItemStack BEEF_STEW = FoodItemStack.of(
         "GN_BEEF_STEW",
-        "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjljMmRkZjJiZDc0YTQ2NTVlOGYwMTUzYTc0NTNlNjdkYjJhMjFkYmZhYzY3NTY3ODk0ODFhZGJlYzQ4M2EifX19",
+        HeadTextures.NONE,
         "Beef Stew",
         10,
         1.75,
@@ -1168,7 +1169,7 @@ public class GastroStacks {
 
     public static final FoodItemStack CLAM_STEW = FoodItemStack.of(
         "GN_CLAM_STEW",
-        "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjljMmRkZjJiZDc0YTQ2NTVlOGYwMTUzYTc0NTNlNjdkYjJhMjFkYmZhYzY3NTY3ODk0ODFhZGJlYzQ4M2EifX19",
+        HeadTextures.NONE,
         "Clam Stew",
         6,
         1.75,
@@ -1177,7 +1178,7 @@ public class GastroStacks {
 
     public static final FoodItemStack BEET_BORSCHT = FoodItemStack.of(
         "GN_BEET_BORSCHT",
-        "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjljMmRkZjJiZDc0YTQ2NTVlOGYwMTUzYTc0NTNlNjdkYjJhMjFkYmZhYzY3NTY3ODk0ODFhZGJlYzQ4M2EifX19",
+        HeadTextures.NONE,
         "Beet Borscht",
         6,
         1.75
@@ -1185,7 +1186,7 @@ public class GastroStacks {
 
     public static final FoodItemStack CRAB_HOTPOT = FoodItemStack.of(
         "GN_CRAB_HOTPOT",
-        "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjljMmRkZjJiZDc0YTQ2NTVlOGYwMTUzYTc0NTNlNjdkYjJhMjFkYmZhYzY3NTY3ODk0ODFhZGJlYzQ4M2EifX19",
+        HeadTextures.NONE,
         "Crab Hotpot",
         12,
         1.75,
@@ -1194,7 +1195,7 @@ public class GastroStacks {
 
     public static final FoodItemStack BBQ_STEAK = FoodItemStack.of(
         "GN_BBQ_STEAK",
-        "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjljMmRkZjJiZDc0YTQ2NTVlOGYwMTUzYTc0NTNlNjdkYjJhMjFkYmZhYzY3NTY3ODk0ODFhZGJlYzQ4M2EifX19",
+        HeadTextures.NONE,
         "BBQ Steak",
         12,
         1.5
@@ -1202,7 +1203,7 @@ public class GastroStacks {
 
     public static final FoodItemStack BBQ_PORK = FoodItemStack.of(
         "GN_BBQ_PORK",
-        "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjljMmRkZjJiZDc0YTQ2NTVlOGYwMTUzYTc0NTNlNjdkYjJhMjFkYmZhYzY3NTY3ODk0ODFhZGJlYzQ4M2EifX19",
+        HeadTextures.NONE,
         "BBQ Pork",
         12,
         1.5
@@ -1210,7 +1211,7 @@ public class GastroStacks {
 
     public static final FoodItemStack BBQ_CHICKEN = FoodItemStack.of(
         "GN_BBQ_CHICKEN",
-        "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjljMmRkZjJiZDc0YTQ2NTVlOGYwMTUzYTc0NTNlNjdkYjJhMjFkYmZhYzY3NTY3ODk0ODFhZGJlYzQ4M2EifX19",
+        HeadTextures.NONE,
         "BBQ Chicken",
         9,
         1.5
@@ -1218,7 +1219,7 @@ public class GastroStacks {
 
     public static final FoodItemStack BBQ_MUTTON = FoodItemStack.of(
         "GN_BBQ_MUTTON",
-        "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjljMmRkZjJiZDc0YTQ2NTVlOGYwMTUzYTc0NTNlNjdkYjJhMjFkYmZhYzY3NTY3ODk0ODFhZGJlYzQ4M2EifX19",
+        HeadTextures.NONE,
         "BBQ Mutton",
         9,
         1.5
@@ -1226,7 +1227,7 @@ public class GastroStacks {
 
     public static final FoodItemStack BUTTER_CHICKEN = FoodItemStack.of(
         "GN_BUTTER_CHICKEN",
-        "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjljMmRkZjJiZDc0YTQ2NTVlOGYwMTUzYTc0NTNlNjdkYjJhMjFkYmZhYzY3NTY3ODk0ODFhZGJlYzQ4M2EifX19",
+        HeadTextures.NONE,
         "Butter Chicken",
         7,
         1.5,
@@ -1235,7 +1236,7 @@ public class GastroStacks {
 
     public static final FoodItemStack SHRIMP_FRIED_RICE = FoodItemStack.of(
         "GN_SHRIMP_FRIED_RICE",
-        "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjljMmRkZjJiZDc0YTQ2NTVlOGYwMTUzYTc0NTNlNjdkYjJhMjFkYmZhYzY3NTY3ODk0ODFhZGJlYzQ4M2EifX19",
+        HeadTextures.NONE,
         "Shrimp Fried Rice",
         6,
         1d
@@ -1243,7 +1244,7 @@ public class GastroStacks {
 
     public static final FoodItemStack CURRY_RICE = FoodItemStack.of(
         "GN_CURRY_RICE",
-        "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjljMmRkZjJiZDc0YTQ2NTVlOGYwMTUzYTc0NTNlNjdkYjJhMjFkYmZhYzY3NTY3ODk0ODFhZGJlYzQ4M2EifX19",
+        HeadTextures.NONE,
         "Curry Rice",
         4,
         1d,
@@ -1252,7 +1253,7 @@ public class GastroStacks {
 
     public static final FoodItemStack RICE_OMELETTE = FoodItemStack.of(
         "GN_RICE_OMELETTE",
-        "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjljMmRkZjJiZDc0YTQ2NTVlOGYwMTUzYTc0NTNlNjdkYjJhMjFkYmZhYzY3NTY3ODk0ODFhZGJlYzQ4M2EifX19",
+        HeadTextures.NONE,
         "Rice Omelette",
         4,
         1d,
@@ -1261,7 +1262,7 @@ public class GastroStacks {
 
     public static final FoodItemStack RICE_BALLS = FoodItemStack.of(
         "GN_RICE_BALLS",
-        "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjljMmRkZjJiZDc0YTQ2NTVlOGYwMTUzYTc0NTNlNjdkYjJhMjFkYmZhYzY3NTY3ODk0ODFhZGJlYzQ4M2EifX19",
+        HeadTextures.RICE_BALLS,
         "Rice Balls",
         3,
         1d,
@@ -1270,7 +1271,7 @@ public class GastroStacks {
 
     public static final FoodItemStack BEEF_UDON = FoodItemStack.of(
         "GN_BEEF_UDON",
-        "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjljMmRkZjJiZDc0YTQ2NTVlOGYwMTUzYTc0NTNlNjdkYjJhMjFkYmZhYzY3NTY3ODk0ODFhZGJlYzQ4M2EifX19",
+        HeadTextures.NONE,
         "Beef Udon",
         10,
         1d,
@@ -1279,7 +1280,7 @@ public class GastroStacks {
 
     public static final FoodItemStack CHICKEN_UDON = FoodItemStack.of(
         "GN_CHICKEN_UDON",
-        "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjljMmRkZjJiZDc0YTQ2NTVlOGYwMTUzYTc0NTNlNjdkYjJhMjFkYmZhYzY3NTY3ODk0ODFhZGJlYzQ4M2EifX19",
+        HeadTextures.NONE,
         "Chicken Udon",
         10,
         1d,
@@ -1288,7 +1289,7 @@ public class GastroStacks {
 
     public static final FoodItemStack VEGETABLE_UDON = FoodItemStack.of(
         "GN_VEGETABLE_UDON",
-        "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjljMmRkZjJiZDc0YTQ2NTVlOGYwMTUzYTc0NTNlNjdkYjJhMjFkYmZhYzY3NTY3ODk0ODFhZGJlYzQ4M2EifX19",
+        HeadTextures.NONE,
         "Vegetable Udon",
         10,
         1d,
@@ -1297,7 +1298,7 @@ public class GastroStacks {
 
     public static final FoodItemStack STIR_FRY_NOODLES = FoodItemStack.of(
         "GN_STIR_FRY_NOODLES",
-        "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjljMmRkZjJiZDc0YTQ2NTVlOGYwMTUzYTc0NTNlNjdkYjJhMjFkYmZhYzY3NTY3ODk0ODFhZGJlYzQ4M2EifX19",
+        HeadTextures.NONE,
         "Stir-fry Noodles",
         8,
         1d

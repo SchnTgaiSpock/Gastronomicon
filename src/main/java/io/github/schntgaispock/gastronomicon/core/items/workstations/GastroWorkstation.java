@@ -21,8 +21,8 @@ import io.github.schntgaispock.gastronomicon.core.recipes.GastroRecipe;
 import io.github.schntgaispock.gastronomicon.core.recipes.RecipeRegistry;
 import io.github.schntgaispock.gastronomicon.core.slimefun.GastroRecipeType;
 import io.github.schntgaispock.gastronomicon.core.recipes.GastroRecipe.RecipeMatchResult;
-import io.github.schntgaispock.gastronomicon.util.ItemUtil;
 import io.github.schntgaispock.gastronomicon.util.NumberUtil;
+import io.github.schntgaispock.gastronomicon.util.item.ItemUtil;
 import io.github.schntgaispock.gastronomicon.util.recipe.RecipeUtil;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -131,7 +131,7 @@ public abstract class GastroWorkstation extends MenuBlock {
                 return i == null ? null : i.asOne();
             }).toList();
 
-            final GastroRecipe recipe = findRecipe(ingredients, containers, tools);
+            final GastroRecipe recipe = findRecipe(ingredients, containers, tools, player, menu);
             if (recipe == null) {
                 return false;
             }
@@ -140,9 +140,9 @@ public abstract class GastroWorkstation extends MenuBlock {
             // menu
 
             final ItemStack output;
-            if (recipe.getOutputs()[0] instanceof final SlimefunItemStack sfItem) {
+            if (recipe.getOutputs().length > 1 && recipe.getOutputs()[0] instanceof final SlimefunItemStack sfItem) {
                 final double proficiency = Gastronomicon.getInstance().getPlayerData()
-                        .getInt(player.getUniqueId() + ".proficiencies." + sfItem.getItemId());
+                        .getInt(player.getUniqueId() + ".proficiencies." + sfItem.getItemId(), 0);
                 final double perfectProbabilityMultipliers = 1;
                 final double perfectProbability = NumberUtil.clamp(
                         NumberUtil.clamp(0, proficiency / 864, 0.25) * perfectProbabilityMultipliers,
@@ -172,14 +172,17 @@ public abstract class GastroWorkstation extends MenuBlock {
 
             Arrays.stream(getInputSlots()).forEach(s -> {
                 final ItemStack i = menu.getItemInSlot(s);
-                if (i != null) i.subtract();
+                if (i != null)
+                    i.subtract();
             });
-            Arrays.stream(getContainerSlots()).forEach(s -> {
-                final ItemStack i = menu.getItemInSlot(s);
-                if (i != null && recipe.getInputs().getContainer().matches(i)) i.subtract();
-            });
-            ItemUtil.returnItems(player, Arrays.copyOfRange(recipe.getOutputs(), 2, recipe.getOutputs().length));
-
+            for (final int containerSlot : getContainerSlots()) {
+                final ItemStack i = menu.getItemInSlot(containerSlot);
+                if (i != null && recipe.getInputs().getContainer().matches(i)) {
+                    i.subtract();
+                    break;
+                }
+            }
+            ItemUtil.giveItems(player, Arrays.copyOfRange(recipe.getOutputs(), 2, recipe.getOutputs().length));
             return false;
         });
 
@@ -187,7 +190,8 @@ public abstract class GastroWorkstation extends MenuBlock {
 
     @Nullable
     @ParametersAreNonnullByDefault
-    protected GastroRecipe findRecipe(ItemStack[] ingredients, List<ItemStack> containers, List<ItemStack> tools) {
+    protected GastroRecipe findRecipe(ItemStack[] ingredients, List<ItemStack> containers, List<ItemStack> tools,
+            Player player, BlockMenu menu) {
         final Set<GastroRecipe> recipes = RecipeRegistry.getRecipes(getRecipeType());
 
         for (final GastroRecipe recipe : recipes) {
@@ -203,7 +207,5 @@ public abstract class GastroWorkstation extends MenuBlock {
 
         return null;
     }
-
-    protected boolean checkConditions(Player player, BlockMenu menu) { return true; }
 
 }

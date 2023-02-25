@@ -3,7 +3,7 @@ package io.github.schntgaispock.gastronomicon.core.recipes.components;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
-import io.github.schntgaispock.gastronomicon.util.ItemUtil;
+import io.github.schntgaispock.gastronomicon.util.item.ItemUtil;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import lombok.Getter;
@@ -24,6 +24,7 @@ public class SingleRecipeComponent extends RecipeComponent<ItemStack> {
 
     // SingleRecipeComponents do not have to deal with group components in recipes
     @Override
+    @SuppressWarnings("null")
     public boolean matches(ItemStack item) {
         if (item == null) {
             return component.getType() == Material.AIR;

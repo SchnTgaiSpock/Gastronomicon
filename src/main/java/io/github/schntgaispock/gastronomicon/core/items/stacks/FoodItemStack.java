@@ -6,7 +6,7 @@ import java.util.List;
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 
-import io.github.schntgaispock.gastronomicon.core.food.FoodEffect;
+import io.github.schntgaispock.gastronomicon.core.items.food.FoodEffect;
 import io.github.schntgaispock.gastronomicon.core.items.stacks.GastroTheme.Theme;
 import io.github.schntgaispock.gastronomicon.util.NumberUtil;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;

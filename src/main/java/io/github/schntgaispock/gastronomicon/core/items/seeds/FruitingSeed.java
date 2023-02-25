@@ -10,7 +10,7 @@ import org.bukkit.block.BlockState;
 import org.bukkit.inventory.ItemStack;
 
 import io.github.schntgaispock.gastronomicon.Gastronomicon;
-import io.github.schntgaispock.gastronomicon.util.ItemUtil;
+import io.github.schntgaispock.gastronomicon.util.item.ItemUtil;
 import io.github.schntgaispock.gastronomicon.util.recipe.RecipeUtil;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -27,6 +27,7 @@ public class FruitingSeed extends SimpleSeed {
     private final @Getter SlimefunItem fruitingBody;
 
     @ParametersAreNonnullByDefault
+    @SuppressWarnings("null")
     public FruitingSeed(SlimefunItemStack item, @Nullable Material displayBlock, ItemStack[] gatherSources, String fruitingBodyId) {
         super(item, displayBlock, gatherSources);
 

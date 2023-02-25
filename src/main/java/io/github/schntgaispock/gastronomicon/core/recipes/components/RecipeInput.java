@@ -2,8 +2,6 @@ package io.github.schntgaispock.gastronomicon.core.recipes.components;
 
 import java.util.Arrays;
 
-import javax.annotation.Nullable;
-
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
@@ -22,7 +20,7 @@ import lombok.ToString;
 public class RecipeInput {
 
     private final RecipeShape shapedness;
-    private final @Nullable RecipeComponent<?> container;
+    private final RecipeComponent<?> container;
     private final RecipeComponent<?>[] ingredients;
 
     public RecipeInput(RecipeShape shapedness, RecipeComponent<?> container,
@@ -48,11 +46,14 @@ public class RecipeInput {
     }
 
     @Override
+    @SuppressWarnings("null")
     public int hashCode() {
         int hash = 1;
 
         hash = hash * 31 + shapedness.hashCode();
-        hash = hash * 31 + container.hashCode();
+        if (container != null) {
+            hash = hash * 31 + container.hashCode();
+        }
 
         for (RecipeComponent<?> ingredient : ingredients) {
             hash = hash * 31 + ingredient.hashCode();

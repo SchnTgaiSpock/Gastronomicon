@@ -1,4 +1,4 @@
-package io.github.schntgaispock.gastronomicon.core.food;
+package io.github.schntgaispock.gastronomicon.core.items.food;
 
 import java.util.function.BiConsumer;
 import java.util.logging.Level;

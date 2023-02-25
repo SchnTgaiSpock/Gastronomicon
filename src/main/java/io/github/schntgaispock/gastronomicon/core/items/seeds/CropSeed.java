@@ -12,8 +12,8 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 
 import io.github.schntgaispock.gastronomicon.util.CollectionUtil;
-import io.github.schntgaispock.gastronomicon.util.ItemUtil;
 import io.github.schntgaispock.gastronomicon.util.NumberUtil;
+import io.github.schntgaispock.gastronomicon.util.item.ItemUtil;
 import io.github.schntgaispock.gastronomicon.util.recipe.RecipeUtil;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import lombok.Getter;
