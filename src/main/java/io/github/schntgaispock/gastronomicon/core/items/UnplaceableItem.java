@@ -10,6 +10,7 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockPlaceHandler;
+import me.mrCookieSlime.Slimefun.api.BlockStorage;
 
 public class UnplaceableItem extends SlimefunItem {
 
@@ -22,8 +23,8 @@ public class UnplaceableItem extends SlimefunItem {
         addItemHandler(new BlockPlaceHandler(false) {
             @Override
             public void onPlayerPlace(@Nonnull BlockPlaceEvent e) {
-                System.out.println("Placed!");
                 e.setCancelled(true);
+                BlockStorage.clearBlockInfo(e.getBlock(), false);
             }
         });
     }

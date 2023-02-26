@@ -76,6 +76,20 @@ public class SimpleGastroFood extends UnplaceableItem implements RecipeDisplayIt
         return new SimpleGastroFood(itemGroup, item, GastroRecipeType.MULTI_STOVE, ingredients, container, tools);
     }
 
+    @Nonnull
+    @ParametersAreNonnullByDefault
+    public static SimpleGastroFood fridge(ItemGroup itemGroup, SlimefunItemStack item, ItemStack[] ingredients,
+            @Nullable ItemStack container, Temperature temperature, ItemStack... tools) {
+        RecipeRegistry.registerRecipe(new MultiStoveRecipe(ingredients, container, Set.of(tools), temperature, item));
+        return new SimpleGastroFood(itemGroup, item, GastroRecipeType.REFRIDGERATOR, ingredients, container, tools);
+    }
+
+    @Nonnull
+    @ParametersAreNonnullByDefault
+    public static SimpleGastroFood mill(ItemGroup itemGroup, SlimefunItemStack item, ItemStack[] ingredients, ItemStack... tools) {
+        return SimpleGastroFood.of(itemGroup, item, GastroRecipeType.MILL, RecipeShape.SHAPELESS, ingredients, null, tools);
+    }
+
     @Override
     @Nonnull
     public String getRecipeSectionLabel(@Nonnull Player p) {

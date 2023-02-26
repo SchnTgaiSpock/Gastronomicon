@@ -69,7 +69,7 @@ public class MultiStove extends GastroWorkstation implements EnergyNetComponent 
             "&7Temperature: &cHIGH",
             "",
             "&bRight-click &7to decrease");
-    public static final int TEMPERATURE_BUTTON_SLOT = 53;
+    public static final int TEMPERATURE_BUTTON_SLOT = 52;
     public static final String TEMPERATURE_KEY = "gastronomicon:multi_stove/temperature";
 
     public MultiStove(ItemGroup group, SlimefunItemStack item, RecipeType type, ItemStack[] recipe) {

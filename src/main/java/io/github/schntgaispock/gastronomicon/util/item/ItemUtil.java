@@ -36,6 +36,13 @@ public class ItemUtil {
         }
     }
 
+    public static boolean isSeed(@Nonnull Material material) {
+        return switch (material) {
+            case WHEAT_SEEDS, POTATO, CARROT, BEETROOT_SEEDS, PUMPKIN_SEEDS, MELON_SEEDS -> true;
+            default -> false;
+        };
+    }
+
     @Nonnull
     public static Material getPlacedBlock(@Nonnull Material seed) {
         return switch (seed) {
@@ -46,7 +53,6 @@ public class ItemUtil {
             case PUMPKIN_SEEDS -> Material.PUMPKIN_STEM;
             case MELON_SEEDS -> Material.MELON_STEM;
             default -> Material.AIR;
-
         };
     }
 

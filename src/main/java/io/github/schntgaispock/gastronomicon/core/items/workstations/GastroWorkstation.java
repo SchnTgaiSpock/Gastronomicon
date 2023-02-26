@@ -36,27 +36,30 @@ public abstract class GastroWorkstation extends MenuBlock {
 
     public static final ItemStack BACKGROUND_ITEM = new CustomItemStack(Material.GRAY_STAINED_GLASS_PANE, "");
     public static final ItemStack INGREDIENT_BORDER = new CustomItemStack(Material.BLUE_STAINED_GLASS_PANE,
-            "&9Ingredients");
+        "&9Ingredients");
     public static final ItemStack CONTAINER_BORDER = new CustomItemStack(Material.PURPLE_STAINED_GLASS_PANE,
-            "&5Container");
+        "&5Container");
     public static final ItemStack TOOL_BORDER = new CustomItemStack(Material.BLACK_STAINED_GLASS_PANE, "&#999999Tools");
     public static final ItemStack OUTPUT_BORDER = new CustomItemStack(Material.ORANGE_STAINED_GLASS_PANE, "&6Output");
     public static final ItemStack CRAFT_BUTTON = new CustomItemStack(Material.LIME_STAINED_GLASS_PANE,
-            "&aClick to craft");
+        "&aClick to craft");
     public static final ItemStack PROGRESS_BAR = new ItemStack(Material.FLINT_AND_STEEL);
 
     protected static final int[] BACKGROUND_SLOTS = {
-            0, 1, 2, 3, 4, 5, 6, 7, 8,
-            13, 17,
-            22, 23, 24, 25, 26,
-            31, 35,
-            36, 37, 38, 39, 40, 41, 42, 43, 44
+        0, 1, 2, 3, 4, 5, 6, 7, 8,
+        13, 17,
+        22, 23, 24, 25, 26,
+        31, 35,
+        36, 37, 38, 39, 40, 41, 42, 43, 44
     };
     protected static final int[] INGREDIENT_BORDER_SLOTS = { 9, 18, 27 };
     protected static final int[] CONTAINER_BORDER_SLOTS = { 14 };
     protected static final int[] OUTPUT_BORDER_SLOTS = { 32 };
     protected static final int[] TOOL_BORDER_SLOTS = { 45 };
     protected static final int CRAFT_BUTTON_SLOT = 53;
+
+    private final int[] hashedInputs = new int[] { 0, 0, 0 };
+    private GastroRecipe lastCrafted = null;
 
     public GastroWorkstation(ItemGroup group, SlimefunItemStack item, RecipeType type, ItemStack[] recipe) {
         super(group, item, type, recipe);
@@ -131,25 +134,37 @@ public abstract class GastroWorkstation extends MenuBlock {
                 return i == null ? null : i.asOne();
             }).toList();
 
-            final GastroRecipe recipe = findRecipe(ingredients, containers, tools, player, menu);
-            if (recipe == null) {
-                return false;
+            final int ingredientHash = Arrays.hashCode(ingredients);
+            final int containerHash = containers.hashCode();
+            final int toolsHash = tools.hashCode();
+
+            final ItemStack[] recipeOutputs;
+            if (lastCrafted != null && hashedInputs[0] == ingredientHash && hashedInputs[1] == containerHash && hashedInputs[2] == toolsHash) {
+                recipeOutputs = lastCrafted.getOutputs();
+            } else {
+                final GastroRecipe recipe = findRecipe(ingredients, containers, tools, player, menu);
+                if (recipe == null) {
+                    return false;
+                } else {
+                    lastCrafted = recipe;
+                    hashedInputs[0] = ingredientHash;
+                    hashedInputs[1] = containerHash;
+                    hashedInputs[2] = toolsHash;
+                    recipeOutputs = recipe.getOutputs();
+                }
             }
 
-            // TODO: Hash inputs and only check recipe if stuff changed; or click handler on
-            // menu
-
             final ItemStack output;
-            if (recipe.getOutputs().length > 1 && recipe.getOutputs()[0] instanceof final SlimefunItemStack sfItem) {
+            if (recipeOutputs.length > 1 && recipeOutputs[0] instanceof final SlimefunItemStack sfItem) {
                 final double proficiency = Gastronomicon.getInstance().getPlayerData()
-                        .getInt(player.getUniqueId() + ".proficiencies." + sfItem.getItemId(), 0);
+                    .getInt(player.getUniqueId() + ".proficiencies." + sfItem.getItemId(), 0);
                 final double perfectProbabilityMultipliers = 1;
                 final double perfectProbability = NumberUtil.clamp(
-                        NumberUtil.clamp(0, proficiency / 864, 0.25) * perfectProbabilityMultipliers,
-                        0, 1);
-                output = recipe.getOutputs()[NumberUtil.randomRound(perfectProbability)];
+                    NumberUtil.clamp(0, proficiency / 864, 0.25) * perfectProbabilityMultipliers,
+                    0, 1);
+                output = recipeOutputs[NumberUtil.randomRound(perfectProbability)];
             } else {
-                output = recipe.getOutputs()[0];
+                output = recipeOutputs[0];
             }
 
             final Inventory inv = player.getOpenInventory().getTopInventory();
@@ -177,12 +192,12 @@ public abstract class GastroWorkstation extends MenuBlock {
             });
             for (final int containerSlot : getContainerSlots()) {
                 final ItemStack i = menu.getItemInSlot(containerSlot);
-                if (i != null && recipe.getInputs().getContainer().matches(i)) {
+                if (i != null && lastCrafted.getInputs().getContainer().matches(i)) {
                     i.subtract();
                     break;
                 }
             }
-            ItemUtil.giveItems(player, Arrays.copyOfRange(recipe.getOutputs(), 2, recipe.getOutputs().length));
+            ItemUtil.giveItems(player, Arrays.copyOfRange(recipeOutputs, 2, recipeOutputs.length));
             return false;
         });
 
@@ -191,7 +206,7 @@ public abstract class GastroWorkstation extends MenuBlock {
     @Nullable
     @ParametersAreNonnullByDefault
     protected GastroRecipe findRecipe(ItemStack[] ingredients, List<ItemStack> containers, List<ItemStack> tools,
-            Player player, BlockMenu menu) {
+        Player player, BlockMenu menu) {
         final Set<GastroRecipe> recipes = RecipeRegistry.getRecipes(getRecipeType());
 
         for (final GastroRecipe recipe : recipes) {

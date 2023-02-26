@@ -12,6 +12,10 @@ import lombok.experimental.UtilityClass;
 @UtilityClass
 public class RecipeUtil {
 
+    public static ItemStack[] empty() {
+        return new ItemStack[9];
+    }
+
     public static ItemStack[] single(ItemStack item) {
         final ItemStack[] recipe = new ItemStack[9];
         recipe[0] = item;
@@ -86,8 +90,7 @@ public class RecipeUtil {
         return recipe;
     }
 
-    public static int compareComponents(RecipeComponent<?> component1,
-            RecipeComponent<?> component2) {
+    public static int compareComponents(RecipeComponent<?> component1, RecipeComponent<?> component2) {
         return Integer.compare(recipeHash(component1.getComponent()), recipeHash(component2.getComponent()));
     }
 
@@ -97,7 +100,7 @@ public class RecipeUtil {
 
     public static int recipeHash(Object object) {
         if (object == null)
-            return 0;
+            return Integer.MAX_VALUE;
         if (object instanceof final SlimefunItemStack sfStack)
             return sfStack.getItemId().hashCode();
         if (object instanceof final ItemStack stack) {

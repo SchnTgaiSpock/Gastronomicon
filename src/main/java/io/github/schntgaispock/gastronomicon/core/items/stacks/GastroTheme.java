@@ -8,12 +8,11 @@ import net.md_5.bungee.api.ChatColor;
 @UtilityClass
 public final class GastroTheme {
     public static enum Theme {
-        MECHANICAL("#23caef"),
-        WTOOL("#aaaaaa"),
+        WTOOL("#ffffff"),
+        TOOL("#55ffff"),
+        INGREDIENT("#ffff55"),
+        MECHANICAL("#23ef23"),
         TRAP("#efaf23"),
-        TOOL("#cccccc"),
-        RECIPE("#eeeeee"),
-        INGREDIENT("#ffffff"),
         REGULAR_FOOD("#2364ef"),
         PERFECT_FOOD("#af23ef");
 
@@ -26,7 +25,7 @@ public final class GastroTheme {
         }
 
         Theme(String color) {
-            this(color, "#777777");
+            this(color, "#aaaaaa");
         }
     }
 }

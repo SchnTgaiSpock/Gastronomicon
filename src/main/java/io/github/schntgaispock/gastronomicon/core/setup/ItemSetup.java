@@ -10,6 +10,7 @@ import io.github.schntgaispock.gastronomicon.core.items.food.SimpleGastroFood;
 import io.github.schntgaispock.gastronomicon.core.items.seeds.CropSeed;
 import io.github.schntgaispock.gastronomicon.core.items.seeds.DuplicatingSeed;
 import io.github.schntgaispock.gastronomicon.core.items.seeds.FruitingSeed;
+import io.github.schntgaispock.gastronomicon.core.items.seeds.RightClickSeed;
 import io.github.schntgaispock.gastronomicon.core.items.seeds.SimpleSeed;
 import io.github.schntgaispock.gastronomicon.core.items.workstations.CulinaryWorkbench;
 import io.github.schntgaispock.gastronomicon.core.items.workstations.MultiStove.Temperature;
@@ -21,7 +22,6 @@ import io.github.schntgaispock.gastronomicon.util.recipe.RecipeUtil;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
-import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.UnplaceableBlock;
 import lombok.experimental.UtilityClass;
 
 @UtilityClass
@@ -62,62 +62,62 @@ public class ItemSetup {
         // -- Workstation Tools --
 
         // Culinary Workbench
-        new UnplaceableBlock(
+        new UnplaceableItem(
             GastroGroups.TOOLS,
             GastroStacks.CUTTING_BOARD,
             RecipeType.ENHANCED_CRAFTING_TABLE,
             RecipeUtil.row(OAK_SLAB, 2)
         ).register(gn);
-        new UnplaceableBlock(
-            GastroGroups.TOOLS,
-            GastroStacks.MEAT_SCISSORS,
-            RecipeType.ENHANCED_CRAFTING_TABLE,
-            new ItemStack[] {null, SlimefunItems.STEEL_INGOT, null, SlimefunItems.STEEL_INGOT, null, SlimefunItems.STEEL_INGOT, SHEARS, SlimefunItems.STEEL_INGOT, null}
-        ).register(gn);
-        new UnplaceableBlock(
-            GastroGroups.TOOLS,
-            GastroStacks.KITCHEN_KNIFE,
-            RecipeType.ENHANCED_CRAFTING_TABLE,
-            new ItemStack[] {null, null, null, null, SlimefunItems.STEEL_INGOT, null, null, STICK, null}
-        ).register(gn);
-        new UnplaceableBlock(
+        new UnplaceableItem(
             GastroGroups.TOOLS,
             GastroStacks.ROLLING_PIN,
             RecipeType.ENHANCED_CRAFTING_TABLE,
             RecipeUtil.row(STICK, 1)
         ).register(gn);
-        new UnplaceableBlock(
+        new UnplaceableItem(
+            GastroGroups.TOOLS,
+            GastroStacks.MEAT_SCISSORS,
+            RecipeType.ENHANCED_CRAFTING_TABLE,
+            new ItemStack[] {null, SlimefunItems.STEEL_INGOT, null, SlimefunItems.STEEL_INGOT, null, SlimefunItems.STEEL_INGOT, SHEARS, SlimefunItems.STEEL_INGOT, null}
+        ).register(gn);
+        new UnplaceableItem(
+            GastroGroups.TOOLS,
+            GastroStacks.KITCHEN_KNIFE,
+            RecipeType.ENHANCED_CRAFTING_TABLE,
+            new ItemStack[] {null, null, null, null, SlimefunItems.STEEL_INGOT, null, null, STICK, null}
+        ).register(gn);
+        new UnplaceableItem(
             GastroGroups.TOOLS,
             GastroStacks.BLENDER,
             RecipeType.ENHANCED_CRAFTING_TABLE,
             new ItemStack[] {null, SlimefunItems.ELECTRIC_MOTOR, null, null, IRON_BARS, null, null, BUCKET, null}
         ).register(gn);
-        new UnplaceableBlock(
+        new UnplaceableItem(
             GastroGroups.TOOLS,
             GastroStacks.MORTAR_AND_PESTLE,
             RecipeType.ENHANCED_CRAFTING_TABLE,
             new ItemStack[] {null, null, null, null, SlimefunItems.STEEL_INGOT, null, null, BOWL, null}
         ).register(gn);
-        new UnplaceableBlock(
+        new UnplaceableItem(
             GastroGroups.TOOLS,
             GastroStacks.PEELER,
             RecipeType.ENHANCED_CRAFTING_TABLE,
             new ItemStack[] {null, IRON_NUGGET, null, null, IRON_NUGGET, null, null, STICK, null}
         ).register(gn);
         // Enhanced Oven
-        new UnplaceableBlock(
+        new UnplaceableItem(
             GastroGroups.TOOLS,
             GastroStacks.BAKING_TRAY,
             RecipeType.ENHANCED_CRAFTING_TABLE,
             new ItemStack[] {SlimefunItems.STEEL_INGOT, SlimefunItems.STEEL_PLATE, SlimefunItems.STEEL_INGOT, null, null, null, null, null}
         ).register(gn);
-        new UnplaceableBlock(
+        new UnplaceableItem(
             GastroGroups.TOOLS,
             GastroStacks.FRYING_PAN,
             RecipeType.ENHANCED_CRAFTING_TABLE,
             new ItemStack[] {SlimefunItems.STEEL_INGOT, SlimefunItems.STEEL_PLATE, SlimefunItems.STEEL_PLATE, null, null, null, null, null, null}
         ).register(gn);
-        new UnplaceableBlock(
+        new UnplaceableItem(
             GastroGroups.TOOLS,
             GastroStacks.STEEL_POT,
             RecipeType.ENHANCED_CRAFTING_TABLE,
@@ -173,7 +173,7 @@ public class ItemSetup {
             RecipeType.ENHANCED_CRAFTING_TABLE,
             new ItemStack[] {
                 null, OAK_PLANKS, OAK_PLANKS,
-                null, OAK_PLANKS, null,
+                null, STICK, null,
                 STICK, null, null
             }
         ).register(gn);
@@ -183,8 +183,8 @@ public class ItemSetup {
             GastroStacks.STEEL_SICKLE,
             RecipeType.ENHANCED_CRAFTING_TABLE,
             new ItemStack[] {
-                null, SlimefunItems.STEEL_INGOT, SlimefunItems.STEEL_INGOT,
-                null, SlimefunItems.STEEL_INGOT, null,
+                null, SlimefunItems.STEEL_PLATE, SlimefunItems.STEEL_PLATE,
+                null, STICK, null,
                 STICK, null, null
             }
         ).register(gn);
@@ -194,8 +194,8 @@ public class ItemSetup {
             GastroStacks.REINFORCED_SICKLE,
             RecipeType.ENHANCED_CRAFTING_TABLE,
             new ItemStack[] {
-                null, SlimefunItems.REINFORCED_ALLOY_INGOT, SlimefunItems.REINFORCED_ALLOY_INGOT,
-                null, SlimefunItems.REINFORCED_ALLOY_INGOT, null,
+                null, SlimefunItems.REINFORCED_PLATE, SlimefunItems.REINFORCED_PLATE,
+                null, STICK, null,
                 STICK, null, null
             }
         ).register(gn);
@@ -209,7 +209,8 @@ public class ItemSetup {
             new ItemStack[] {
                 POLISHED_GRANITE, POLISHED_GRANITE, POLISHED_GRANITE, 
                 BARREL, CRAFTING_TABLE, BARREL, 
-                IRON_BLOCK, DISPENSER, IRON_BLOCK}
+                IRON_BLOCK, DISPENSER, IRON_BLOCK
+            }
         ).register(gn);
 
         new SlimefunItem(
@@ -353,31 +354,27 @@ public class ItemSetup {
             RecipeUtil.singleCenter(Material.GRASS)
         ).register(gn);
 
-        new UnplaceableItem(
-            GastroGroups.RAW_INGREDIENTS,
+        new RightClickSeed(
             GastroStacks.BOK_CHOY,
-            GastroRecipeType.BREAK,
+            Material.POTATOES,
             RecipeUtil.singleCenter(Material.GRASS)
         ).register(gn);
 
-        new UnplaceableItem(
-            GastroGroups.RAW_INGREDIENTS,
+        new RightClickSeed(
             GastroStacks.SNOW_PEAS,
-            GastroRecipeType.BREAK,
+            Material.POTATOES,
             RecipeUtil.singleCenter(Material.GRASS)
         ).register(gn);
 
-        new UnplaceableItem(
-            GastroGroups.RAW_INGREDIENTS,
+        new RightClickSeed(
             GastroStacks.BROCCOLI,
-            GastroRecipeType.BREAK,
+            Material.CARROTS,
             RecipeUtil.singleCenter(Material.GRASS)
         ).register(gn);
 
-        new UnplaceableItem(
-            GastroGroups.RAW_INGREDIENTS,
+        new RightClickSeed(
             GastroStacks.WASABI_PLANT,
-            GastroRecipeType.BREAK,
+            Material.POTATOES,
             RecipeUtil.singleCenter(Material.GRASS)
         ).register(gn);
 
@@ -386,66 +383,56 @@ public class ItemSetup {
             RecipeUtil.singleCenter(Material.GRASS)
         ).register(gn);
 
-        new UnplaceableItem(
-            GastroGroups.RAW_INGREDIENTS,
+        new RightClickSeed(
             GastroStacks.CUCUMBER,
-            GastroRecipeType.BREAK,
+            Material.POTATOES,
             RecipeUtil.singleCenter(Material.GRASS)
         ).register(gn);
 
-        new UnplaceableItem(
-            GastroGroups.RAW_INGREDIENTS,
+        new RightClickSeed(
             GastroStacks.BASIL,
-            GastroRecipeType.BREAK,
+            Material.POTATOES,
             RecipeUtil.singleCenter(Material.GRASS)
         ).register(gn);
 
-        new UnplaceableItem(
-            GastroGroups.RAW_INGREDIENTS,
+        new RightClickSeed(
             GastroStacks.SPINACH,
-            GastroRecipeType.BREAK,
+            Material.POTATOES,
             RecipeUtil.singleCenter(Material.GRASS)
         ).register(gn);
 
-        new UnplaceableItem(
-            GastroGroups.RAW_INGREDIENTS,
+        new RightClickSeed(
             GastroStacks.BRUSSLES_SPROUTS,
-            GastroRecipeType.BREAK,
+            Material.POTATOES,
             RecipeUtil.singleCenter(Material.GRASS)
         ).register(gn);
 
-        new UnplaceableItem(
-            GastroGroups.RAW_INGREDIENTS,
+        new RightClickSeed(
             GastroStacks.MINT,
-            GastroRecipeType.BREAK,
+            Material.POTATOES,
             RecipeUtil.singleCenter(Material.GRASS)
         ).register(gn);
 
-        new UnplaceableItem(
-            GastroGroups.RAW_INGREDIENTS,
+        new RightClickSeed(
             GastroStacks.CHILI_PEPPER,
-            GastroRecipeType.BREAK,
+            Material.POTATOES,
             RecipeUtil.singleCenter(Material.GRASS)
         ).register(gn);
 
-        new UnplaceableItem(
-            GastroGroups.RAW_INGREDIENTS,
+        new RightClickSeed(
             GastroStacks.PARSLEY,
-            GastroRecipeType.BREAK,
             RecipeUtil.singleCenter(Material.GRASS)
         ).register(gn);
 
-        new UnplaceableItem(
-            GastroGroups.RAW_INGREDIENTS,
+        new SimpleSeed(
             GastroStacks.CASSAVA,
-            GastroRecipeType.BREAK,
+            Material.BEETROOTS,
             RecipeUtil.singleCenter(Material.GRASS)
         ).register(gn);
 
-        new UnplaceableItem(
-            GastroGroups.RAW_INGREDIENTS,
+        new SimpleSeed(
             GastroStacks.LENTILS,
-            GastroRecipeType.BREAK,
+            Material.CARROTS,
             RecipeUtil.singleCenter(Material.GRASS)
         ).register(gn);
 
@@ -576,6 +563,159 @@ public class ItemSetup {
             RecipeUtil.singleCenter(GastroStacks.GUIDE_KILL_SPIDER)
         ).register(gn);
 
+        new UnplaceableItem(
+            GastroGroups.RAW_INGREDIENTS,
+            GastroStacks.SALMON_ROE,
+            GastroRecipeType.KILL,
+            RecipeUtil.singleCenter(GastroStacks.GUIDE_KILL_SALMON)
+        ).register(gn);
+
+        new UnplaceableItem(
+            GastroGroups.RAW_INGREDIENTS,
+            GastroStacks.GUARDIAN_FIN,
+            GastroRecipeType.KILL,
+            RecipeUtil.singleCenter(GastroStacks.GUIDE_KILL_GUARDIAN)
+        ).register(gn);
+
+        new UnplaceableItem(
+            GastroGroups.RAW_INGREDIENTS,
+            GastroStacks.RAW_SQUID,
+            GastroRecipeType.KILL,
+            RecipeUtil.singleCenter(GastroStacks.GUIDE_KILL_SQUID)
+        ).register(gn);
+
+        SimpleGastroFood.stove(
+            GastroGroups.RAW_INGREDIENTS,
+            GastroStacks.COOKED_SQUID,
+            RecipeUtil.singleCenter(GastroStacks.RAW_SQUID),
+            null,
+            Temperature.MEDIUM,
+            GastroStacks.FRYING_PAN
+        ).register(gn);
+
+        // -- From Fishing --
+
+        new UnplaceableItem(
+            GastroGroups.RAW_INGREDIENTS,
+            GastroStacks.RAW_MACKEREL,
+            GastroRecipeType.TRAP,
+            RecipeUtil.singleCenter(GastroStacks.FISHING_NET)
+        ).register(gn);
+
+        SimpleGastroFood.stove(
+            GastroGroups.RAW_INGREDIENTS,
+            GastroStacks.COOKED_MACKEREL,
+            RecipeUtil.singleCenter(GastroStacks.RAW_MACKEREL),
+            null,
+            Temperature.MEDIUM,
+            GastroStacks.FRYING_PAN
+        ).register(gn);
+
+        new UnplaceableItem(
+            GastroGroups.RAW_INGREDIENTS,
+            GastroStacks.RAW_EEL,
+            GastroRecipeType.TRAP,
+            RecipeUtil.singleCenter(GastroStacks.FISHING_NET)
+        ).register(gn);
+
+        SimpleGastroFood.stove(
+            GastroGroups.RAW_INGREDIENTS,
+            GastroStacks.COOKED_EEL,
+            RecipeUtil.singleCenter(GastroStacks.RAW_EEL),
+            null,
+            Temperature.MEDIUM,
+            GastroStacks.FRYING_PAN
+        ).register(gn);
+
+        new UnplaceableItem(
+            GastroGroups.RAW_INGREDIENTS,
+            GastroStacks.RAW_TROUT,
+            GastroRecipeType.TRAP,
+            RecipeUtil.singleCenter(GastroStacks.FISHING_NET)
+        ).register(gn);
+
+        SimpleGastroFood.stove(
+            GastroGroups.RAW_INGREDIENTS,
+            GastroStacks.COOKED_TROUT,
+            RecipeUtil.singleCenter(GastroStacks.RAW_TROUT),
+            null,
+            Temperature.MEDIUM,
+            GastroStacks.FRYING_PAN
+        ).register(gn);
+
+        new UnplaceableItem(
+            GastroGroups.RAW_INGREDIENTS,
+            GastroStacks.RAW_BASS,
+            GastroRecipeType.TRAP,
+            RecipeUtil.singleCenter(GastroStacks.FISHING_NET)
+        ).register(gn);
+
+        SimpleGastroFood.stove(
+            GastroGroups.RAW_INGREDIENTS,
+            GastroStacks.COOKED_BASS,
+            RecipeUtil.singleCenter(GastroStacks.RAW_BASS),
+            null,
+            Temperature.MEDIUM,
+            GastroStacks.FRYING_PAN
+        ).register(gn);
+
+        new UnplaceableItem(
+            GastroGroups.RAW_INGREDIENTS,
+            GastroStacks.RAW_CARP,
+            GastroRecipeType.TRAP,
+            RecipeUtil.singleCenter(GastroStacks.FISHING_NET)
+        ).register(gn);
+
+        SimpleGastroFood.stove(
+            GastroGroups.RAW_INGREDIENTS,
+            GastroStacks.COOKED_CARP,
+            RecipeUtil.singleCenter(GastroStacks.RAW_CARP),
+            null,
+            Temperature.MEDIUM,
+            GastroStacks.FRYING_PAN
+        ).register(gn);
+
+        new UnplaceableItem(
+            GastroGroups.RAW_INGREDIENTS,
+            GastroStacks.RAW_PIKE,
+            GastroRecipeType.TRAP,
+            RecipeUtil.singleCenter(GastroStacks.FISHING_NET)
+        ).register(gn);
+
+        SimpleGastroFood.stove(
+            GastroGroups.RAW_INGREDIENTS,
+            GastroStacks.COOKED_PIKE,
+            RecipeUtil.singleCenter(GastroStacks.RAW_PIKE),
+            null,
+            Temperature.MEDIUM,
+            GastroStacks.FRYING_PAN
+        ).register(gn);
+
+        // -- From traps --
+
+        new UnplaceableItem(
+            GastroGroups.RAW_INGREDIENTS,
+            GastroStacks.CRAB,
+            GastroRecipeType.TRAP,
+            RecipeUtil.singleCenter(GastroStacks.CRAB_TRAP)
+        ).register(gn);
+
+        new UnplaceableItem(
+            GastroGroups.RAW_INGREDIENTS,
+            GastroStacks.RAW_TURKEY,
+            GastroRecipeType.TRAP,
+            RecipeUtil.singleCenter(GastroStacks.HUNTING_TRAP)
+        ).register(gn);
+
+        SimpleGastroFood.stove(
+            GastroGroups.RAW_INGREDIENTS,
+            GastroStacks.COOKED_TURKEY,
+            RecipeUtil.singleCenter(GastroStacks.RAW_TURKEY),
+            null,
+            Temperature.MEDIUM,
+            GastroStacks.FRYING_PAN
+        ).register(gn);
+
         // ---- Food ----
 
         // -- Ingredients --
@@ -588,6 +728,12 @@ public class ItemSetup {
             Temperature.MEDIUM
         ).register(gn);
 
+        SimpleGastroFood.mill(
+            GastroGroups.FOOD,
+            GastroStacks.BARLEY_FLOUR,
+            RecipeUtil.singleCenter(GastroStacks.BARLEY)
+        ).register(gn);
+
         // -- Cuisine --
 
         GastroFood.workbench(
@@ -595,8 +741,7 @@ public class ItemSetup {
             GastroStacks.RICE_BALLS,
             RecipeShape.SHAPELESS,
             RecipeUtil.collection(GastroStacks.COOKED_RICE, DRIED_KELP),
-            null,
-            GastroStacks.STEEL_POT
+            null
         ).register(gn);
     }
 }

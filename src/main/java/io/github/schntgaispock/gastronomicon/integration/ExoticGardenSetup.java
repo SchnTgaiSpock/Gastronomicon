@@ -9,7 +9,7 @@ public class ExoticGardenSetup {
     public static void setup() {
         final boolean available = Gastronomicon.isPluginEnabled("ExoticGarden");
 
-        
+        if (available);
     }
 
 }

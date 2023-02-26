@@ -46,7 +46,6 @@ public class RecipeInput {
     }
 
     @Override
-    @SuppressWarnings("null")
     public int hashCode() {
         int hash = 1;
 

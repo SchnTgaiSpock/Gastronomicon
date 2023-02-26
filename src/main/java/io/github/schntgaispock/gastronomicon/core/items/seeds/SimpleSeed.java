@@ -44,26 +44,28 @@ public class SimpleSeed extends AbstractSeed {
     public SimpleSeed(SlimefunItemStack item, ItemStack[] gatherSources) {
         this(item, null, gatherSources);
     }
-    
+
     @Override
     public void preRegister() {
         super.preRegister();
 
-        addItemHandler(new BlockPlaceHandler(true) {
-            @Override
-            public void onBlockPlacerPlace(BlockPlacerPlaceEvent e) {
-                e.getBlock().setType(displayBlock);
-            }
-
-            @Override
-            public void onPlayerPlace(BlockPlaceEvent e) {
-                if (!e.canBuild()) {
-                    e.setCancelled(true);
+        if (ItemUtil.isSeed(getItem().getType())) {
+            addItemHandler(new BlockPlaceHandler(true) {
+                @Override
+                public void onBlockPlacerPlace(BlockPlacerPlaceEvent e) {
+                    e.getBlock().setType(displayBlock);
                 }
 
-                e.getBlock().setType(displayBlock);
-            }
-        });
+                @Override
+                public void onPlayerPlace(BlockPlaceEvent e) {
+                    if (!e.canBuild()) {
+                        e.setCancelled(true);
+                    }
+
+                    e.getBlock().setType(displayBlock);
+                }
+            });
+        }
     }
 
     @Override

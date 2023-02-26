@@ -14,7 +14,7 @@ import io.github.mooy1.infinitylib.core.AbstractAddon;
 import io.github.mooy1.infinitylib.core.AddonConfig;
 import io.github.schntgaispock.gastronomicon.core.setup.CommandSetup;
 import io.github.schntgaispock.gastronomicon.core.setup.ListenerSetup;
-import io.github.schntgaispock.gastronomicon.core.setup.RecipeSetup;
+import io.github.schntgaispock.gastronomicon.core.setup.ResearchSetup;
 import io.github.schntgaispock.gastronomicon.core.setup.ItemSetup;
 import io.github.schntgaispock.gastronomicon.integration.SlimeHUDSetup;
 import lombok.Getter;
@@ -39,8 +39,8 @@ public class Gastronomicon extends AbstractAddon {
 
         Metrics metrics = new Metrics(this, 16941);
 
-        RecipeSetup.setup();
         ItemSetup.setup();
+        ResearchSetup.setup();
         ListenerSetup.setup();
         CommandSetup.setup();
 

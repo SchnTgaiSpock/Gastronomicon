@@ -69,6 +69,14 @@ public class GastroStacks {
         "&7mobs."
     );
 
+    public static final ItemStack GUIDE_RECIPE_TRAP = new CustomItemStack(
+        Material.BARREL,
+        "&bTrapping",
+        "&7This item is obtained by",
+        "&7catching it in the displayed",
+        "&7trap."
+    );
+
     public static final ItemStack GUIDE_RECIPE_CULINARY_WORKBENCH = new CustomItemStack(
         Material.CRAFTING_TABLE,
         "&bCulinary Workbench",
@@ -127,6 +135,21 @@ public class GastroStacks {
     public static final ItemStack GUIDE_KILL_SPIDER = new CustomItemStack(
         Material.GOAT_SPAWN_EGG,
         "&fSpider"
+    );
+
+    public static final ItemStack GUIDE_KILL_SALMON = new CustomItemStack(
+        Material.SALMON_SPAWN_EGG,
+        "&fSalmon"
+    );
+
+    public static final ItemStack GUIDE_KILL_GUARDIAN = new CustomItemStack(
+        Material.GUARDIAN_SPAWN_EGG,
+        "&fGuardian"
+    );
+
+    public static final ItemStack GUIDE_KILL_SQUID = new CustomItemStack(
+        Material.SQUID_SPAWN_EGG,
+        "&fSquid"
     );
 
 
@@ -597,7 +620,7 @@ public class GastroStacks {
 
     public static final SlimefunItemStack GUARDIAN_FIN = ThemedItemStack.ingredient(
         "GN_GUARDIAN_FIN",
-        Material.PRISMARINE,
+        Material.PRISMARINE_SHARD,
         "Guardian Fin"
     );
 
@@ -628,12 +651,12 @@ public class GastroStacks {
 
     public static final SlimefunItemStack RAW_EEL = ThemedItemStack.ingredient(
         "GN_RAW_EEL",
-        Material.COD,
+        Material.SALMON,
         "Raw Eel"
     );
     public static final SlimefunItemStack COOKED_EEL = ThemedItemStack.ingredient(
         "GN_COOKED_EEL",
-        Material.COOKED_COD,
+        Material.COOKED_SALMON,
         "Cooked Eel"
     );  
 
