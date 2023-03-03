@@ -1,5 +1,8 @@
 package io.github.schntgaispock.gastronomicon.core.setup;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
@@ -13,7 +16,13 @@ import io.github.schntgaispock.gastronomicon.core.items.seeds.FruitingSeed;
 import io.github.schntgaispock.gastronomicon.core.items.seeds.RightClickSeed;
 import io.github.schntgaispock.gastronomicon.core.items.seeds.SimpleSeed;
 import io.github.schntgaispock.gastronomicon.core.items.workstations.CulinaryWorkbench;
+import io.github.schntgaispock.gastronomicon.core.items.workstations.Distillery;
+import io.github.schntgaispock.gastronomicon.core.items.workstations.GrainMill;
+import io.github.schntgaispock.gastronomicon.core.items.workstations.MultiStove;
+import io.github.schntgaispock.gastronomicon.core.items.workstations.Refridgerator;
 import io.github.schntgaispock.gastronomicon.core.items.workstations.MultiStove.Temperature;
+import io.github.schntgaispock.gastronomicon.core.recipes.MultiStoveRecipe;
+import io.github.schntgaispock.gastronomicon.core.recipes.RecipeRegistry;
 import io.github.schntgaispock.gastronomicon.core.recipes.GastroRecipe.RecipeShape;
 import io.github.schntgaispock.gastronomicon.core.slimefun.GastroGroups;
 import io.github.schntgaispock.gastronomicon.core.slimefun.GastroRecipeType;
@@ -27,13 +36,29 @@ import lombok.experimental.UtilityClass;
 @UtilityClass
 public class ItemSetup {
 
+    public static ItemStack getItem(String id) {
+        final SlimefunItem item = SlimefunItem.getById(id);
+        if (item == null) return null;
+        return item.getItem();
+    }
+
     public static void setup() {
 
-        Gastronomicon gn = Gastronomicon.getInstance();
-        if (gn == null) return;
+        final Gastronomicon gn = Gastronomicon.getInstance();
+        final boolean egAvailable = Gastronomicon.isPluginEnabled("ExoticGarden");
 
         GastroGroups.MAIN.register(gn);
 
+        final ItemStack ORANGE = getItem("ORANGE");
+        final ItemStack LETTUCE = getItem("LETTUCE");
+        final ItemStack TOMATO = getItem("TOMATO");
+        final ItemStack ONION = getItem("ONION");
+        final ItemStack BACON = getItem("BACON");
+        final ItemStack MAYO = getItem("MAYO");
+        final ItemStack CORN = getItem("CORN");
+        final ItemStack BBQ_SAUCE = getItem("BBQ_SAUCE");
+        final ItemStack CURRY_LEAF = getItem("CURRY_LEAF");
+        final ItemStack KETCHUP = getItem("KETCHUP");
         final ItemStack OAK_PLANKS = new ItemStack(Material.OAK_PLANKS);
         final ItemStack OAK_SLAB = new ItemStack(Material.OAK_SLAB);
         final ItemStack OAK_FENCE = new ItemStack(Material.OAK_FENCE);
@@ -56,6 +81,25 @@ public class ItemSetup {
         final ItemStack COBWEB = new ItemStack(Material.COBWEB);
         final ItemStack POLISHED_GRANITE = new ItemStack(Material.POLISHED_GRANITE);
         final ItemStack ANDESITE_SLAB = new ItemStack(Material.ANDESITE_SLAB);
+        final ItemStack BREAD = new ItemStack(Material.BREAD);
+        final ItemStack EGG = new ItemStack(Material.EGG);
+        final ItemStack WATER_BUCKET = new ItemStack(Material.WATER_BUCKET);
+        final ItemStack MILK_BUCKET = new ItemStack(Material.WATER_BUCKET);
+        final ItemStack SUGAR = new ItemStack(Material.SUGAR);
+        final ItemStack COOKED_PORKCHOP = new ItemStack(Material.COOKED_PORKCHOP);
+        final ItemStack COOKED_CHICKEN = new ItemStack(Material.COOKED_CHICKEN);
+        final ItemStack COOKED_BEEF = new ItemStack(Material.COOKED_BEEF);
+        final ItemStack PORKCHOP = new ItemStack(Material.PORKCHOP);
+        final ItemStack CHICKEN = new ItemStack(Material.CHICKEN);
+        final ItemStack BEEF = new ItemStack(Material.BEEF);
+        final ItemStack MUTTON = new ItemStack(Material.MUTTON);
+        final ItemStack APPLE = new ItemStack(Material.APPLE);
+        final ItemStack SALMON = new ItemStack(Material.SALMON);
+        final ItemStack INK_SAC = new ItemStack(Material.INK_SAC);
+        final ItemStack GLOW_INK_SAC = new ItemStack(Material.GLOW_INK_SAC);
+        final ItemStack CARROT = new ItemStack(Material.CARROT);
+        final ItemStack POTATO = new ItemStack(Material.POTATO);
+
 
         // ---- Tools ----
 
@@ -213,7 +257,7 @@ public class ItemSetup {
             }
         ).register(gn);
 
-        new SlimefunItem(
+        new MultiStove(
             GastroGroups.MANUAL_WORKSTATIONS,
             GastroStacks.MULTI_STOVE,
             RecipeType.ENHANCED_CRAFTING_TABLE,
@@ -224,7 +268,7 @@ public class ItemSetup {
             }
         ).register(gn);
         
-        new SlimefunItem(
+        new Refridgerator(
             GastroGroups.MANUAL_WORKSTATIONS,
             GastroStacks.REFRIDGERATOR,
             RecipeType.ENHANCED_CRAFTING_TABLE,
@@ -235,7 +279,7 @@ public class ItemSetup {
             }
         ).register(gn);
         
-        new SlimefunItem(
+        new GrainMill(
             GastroGroups.MANUAL_WORKSTATIONS,
             GastroStacks.MILL,
             RecipeType.ENHANCED_CRAFTING_TABLE,
@@ -246,7 +290,7 @@ public class ItemSetup {
             }
         ).register(gn);
         
-        new SlimefunItem(
+        new Distillery(
             GastroGroups.MANUAL_WORKSTATIONS,
             GastroStacks.DISTILLERY,
             RecipeType.ENHANCED_CRAFTING_TABLE,
@@ -436,6 +480,36 @@ public class ItemSetup {
             RecipeUtil.singleCenter(Material.GRASS)
         ).register(gn);
 
+        new SimpleSeed(
+            GastroStacks.PEANUTS,
+            Material.POTATOES,
+            RecipeUtil.singleCenter(Material.GRASS)
+        ).register(gn);
+
+        new SimpleSeed(
+            GastroStacks.BEANS,
+            Material.POTATOES,
+            RecipeUtil.singleCenter(Material.GRASS)
+        ).register(gn);
+
+        new SimpleSeed(
+            GastroStacks.PEAS,
+            Material.BEETROOTS,
+            RecipeUtil.singleCenter(Material.GRASS)
+        ).register(gn);
+
+        new RightClickSeed(
+            GastroStacks.ASPARAGUS,
+            Material.CARROTS,
+            RecipeUtil.singleCenter(Material.GRASS)
+        ).register(gn);
+
+        new RightClickSeed(
+            GastroStacks.CAULIFLOWER,
+            Material.POTATOES,
+            RecipeUtil.singleCenter(Material.GRASS)
+        ).register(gn);
+
         // -- Grown from trees
 
         new UnplaceableItem(
@@ -529,6 +603,13 @@ public class ItemSetup {
             GastroStacks.BUTTON_MUSHROOM,
             GastroRecipeType.BREAK,
             RecipeUtil.singleCenter(Material.DIRT)
+        ).register(gn);
+
+        new UnplaceableItem(
+            GastroGroups.RAW_INGREDIENTS,
+            GastroStacks.CLAM,
+            GastroRecipeType.BREAK,
+            RecipeUtil.singleCenter(Material.SEAGRASS)
         ).register(gn);
 
         // -- Mob Drops --
@@ -691,6 +772,29 @@ public class ItemSetup {
             GastroStacks.FRYING_PAN
         ).register(gn);
 
+        new UnplaceableItem(
+            GastroGroups.RAW_INGREDIENTS,
+            GastroStacks.RAW_TUNA,
+            GastroRecipeType.TRAP,
+            RecipeUtil.singleCenter(GastroStacks.FISHING_NET)
+        ).register(gn);
+
+        SimpleGastroFood.stove(
+            GastroGroups.RAW_INGREDIENTS,
+            GastroStacks.COOKED_TUNA,
+            RecipeUtil.singleCenter(GastroStacks.RAW_PIKE),
+            null,
+            Temperature.MEDIUM,
+            GastroStacks.FRYING_PAN
+        ).register(gn);
+
+        new UnplaceableItem(
+            GastroGroups.RAW_INGREDIENTS,
+            GastroStacks.SHRIMP,
+            GastroRecipeType.TRAP,
+            RecipeUtil.singleCenter(GastroStacks.FISHING_NET)
+        ).register(gn);
+
         // -- From traps --
 
         new UnplaceableItem(
@@ -723,18 +827,672 @@ public class ItemSetup {
         SimpleGastroFood.stove(
             GastroGroups.FOOD,
             GastroStacks.COOKED_RICE,
-            RecipeUtil.singleCenter(GastroStacks.RICE),
+            RecipeUtil.single(GastroStacks.RICE),
             null,
-            Temperature.MEDIUM
+            Temperature.MEDIUM,
+            GastroStacks.STEEL_POT
         ).register(gn);
 
         SimpleGastroFood.mill(
             GastroGroups.FOOD,
             GastroStacks.BARLEY_FLOUR,
-            RecipeUtil.singleCenter(GastroStacks.BARLEY)
+            RecipeUtil.single(GastroStacks.BARLEY)
+        ).register(gn);
+
+        SimpleGastroFood.stove(
+            GastroGroups.FOOD,
+            GastroStacks.TOAST,
+            RecipeUtil.single(BREAD),
+            null,
+            Temperature.LOW
+        ).register(gn);
+
+        SimpleGastroFood.stove(
+            GastroGroups.FOOD,
+            GastroStacks.DOUGH,
+            RecipeUtil.collection(SlimefunItems.WHEAT_FLOUR, GastroStacks.WATER_BOTTLE),
+            null,
+            Temperature.LOW
+        ).register(gn);
+        RecipeRegistry.registerRecipe(new MultiStoveRecipe(
+            RecipeUtil.collection(GastroStacks.BARLEY_FLOUR, GastroStacks.WATER_BOTTLE),
+            new HashSet<>(), // I don't know how to get shapeless recipes to work with groups, so this is the best I can do
+            GastroStacks.DOUGH
+        ));
+
+        GastroFood.stove(
+            GastroGroups.FOOD,
+            GastroStacks.PEANUT_BUTTER,
+            RecipeUtil.single(GastroStacks.PEANUTS),
+            null,
+            Temperature.LOW
+        ).register(gn);
+
+        SimpleGastroFood.stove(
+            GastroGroups.FOOD,
+            GastroStacks.FRIED_EGG,
+            RecipeUtil.single(EGG),
+            null,
+            Temperature.LOW,
+            GastroStacks.FRYING_PAN
+        ).register(gn);
+
+        SimpleGastroFood.stove(
+            GastroGroups.FOOD,
+            GastroStacks.HARD_BOILED_EGG,
+            RecipeUtil.collection(EGG, WATER_BUCKET),
+            null,
+            Temperature.LOW,
+            GastroStacks.STEEL_POT
+        ).register(gn);
+
+        SimpleGastroFood.stove(
+            GastroGroups.FOOD,
+            GastroStacks.SCRAMBLED_EGGS,
+            RecipeUtil.single(EGG),
+            null,
+            Temperature.MEDIUM,
+            GastroStacks.FRYING_PAN
+        ).register(gn);
+
+        SimpleGastroFood.stove(
+            GastroGroups.FOOD,
+            GastroStacks.CUSTARD,
+            RecipeUtil.collection(EGG, MILK_BUCKET, SUGAR),
+            null,
+            Temperature.MEDIUM,
+            GastroStacks.FRYING_PAN
+        ).register(gn);
+
+        if (egAvailable)
+            GastroFood.stove(
+                GastroGroups.FOOD,
+                GastroStacks.MARMALADE,
+                RecipeUtil.collection(ORANGE),
+                GastroStacks.WATER_BOTTLE,
+                Temperature.LOW
+            ).register(gn);
+
+        SimpleGastroFood.workbench(
+            GastroGroups.FOOD,
+            GastroStacks.PULLED_PORK,
+            RecipeShape.SHAPELESS,
+            RecipeUtil.collection(COOKED_PORKCHOP),
+            null
+        ).register(gn);
+
+        SimpleGastroFood.workbench(
+            GastroGroups.FOOD,
+            GastroStacks.GROUND_BEEF,
+            RecipeShape.SHAPELESS,
+            RecipeUtil.collection(COOKED_BEEF),
+            null
+        ).register(gn);
+
+        SimpleGastroFood.stove(
+            GastroGroups.FOOD,
+            GastroStacks.BAKED_BEANS,
+            RecipeUtil.collection(GastroStacks.BEANS),
+            null,
+            Temperature.LOW,
+            GastroStacks.BAKING_TRAY
+        ).register(gn);
+
+        SimpleGastroFood.distillery(
+            GastroGroups.FOOD,
+            GastroStacks.SOY_SAUCE,
+            RecipeUtil.collection(GastroStacks.SOYBEANS)
         ).register(gn);
 
         // -- Cuisine --
+
+        GastroFood.workbench(
+            GastroGroups.FOOD,
+            GastroStacks.PBJ_SANDWICH,
+            RecipeShape.SHAPED,
+            RecipeUtil.collection(
+                null, GastroStacks.TOAST, null,
+                GastroStacks.PEANUT_BUTTER, APPLE, GastroStacks.PEANUT_BUTTER,
+                null, GastroStacks.TOAST, null
+                ),
+            null
+        ).register(gn);
+
+        if (egAvailable)
+            GastroFood.workbench(
+                GastroGroups.FOOD,
+                GastroStacks.MARMALADE_SANDWICH,
+                RecipeShape.SHAPED,
+                RecipeUtil.collection(
+                    null, GastroStacks.TOAST, null,
+                    GastroStacks.MARMALADE, GastroStacks.MARMALADE, GastroStacks.MARMALADE,
+                    null, GastroStacks.TOAST, null
+                    ),
+                null
+            ).register(gn);
+
+        GastroFood.workbench(
+            GastroGroups.FOOD,
+            GastroStacks.BAKED_BEANS_AND_TOAST,
+            RecipeShape.SHAPED,
+            RecipeUtil.collection(
+                null, null, null,
+                GastroStacks.BAKED_BEANS, GastroStacks.BAKED_BEANS, GastroStacks.BAKED_BEANS,
+                null, GastroStacks.TOAST, null
+                ),
+            null
+        ).register(gn);
+
+        if (egAvailable)
+            GastroFood.workbench(
+                GastroGroups.FOOD,
+                GastroStacks.TUNA_SANDWICH,
+                RecipeShape.SHAPED,
+                RecipeUtil.collection(
+                    null, GastroStacks.TOAST, null,
+                    GastroStacks.COOKED_TUNA, LETTUCE, MAYO,
+                    null, GastroStacks.TOAST, null
+                    ),
+                null
+            ).register(gn);
+
+        GastroFood.workbench(
+            GastroGroups.FOOD,
+            GastroStacks.BREAKFAST_SANDWICH,
+            RecipeShape.SHAPED,
+            RecipeUtil.collection(
+                null, GastroStacks.TOAST, null,
+                GastroStacks.FRIED_EGG, COOKED_PORKCHOP, GastroStacks.FRIED_EGG,
+                null, GastroStacks.TOAST, null
+                ),
+            null
+        ).register(gn);
+
+        if (egAvailable)
+            GastroFood.workbench(
+                GastroGroups.FOOD,
+                GastroStacks.HAM_SANDWICH,
+                RecipeShape.SHAPED,
+                RecipeUtil.collection(
+                    null, GastroStacks.TOAST, null,
+                    LETTUCE, COOKED_PORKCHOP, MAYO,
+                    null, GastroStacks.TOAST, null
+                    ),
+                null
+            ).register(gn);
+
+        GastroFood.workbench(
+            GastroGroups.FOOD,
+            GastroStacks.CHICKEN_SANDWICH,
+            RecipeShape.SHAPED,
+            RecipeUtil.collection(
+                null, GastroStacks.TOAST, null,
+                GastroStacks.FRIED_EGG, COOKED_CHICKEN, GastroStacks.FRIED_EGG,
+                null, GastroStacks.TOAST, null
+                ),
+            null
+        ).register(gn);
+
+        if (egAvailable)
+            GastroFood.workbench(
+                GastroGroups.FOOD,
+                GastroStacks.EGG_SALAD_SANDWICH,
+                RecipeShape.SHAPED,
+                RecipeUtil.collection(
+                    null, GastroStacks.TOAST, null,
+                    LETTUCE, GastroStacks.SCRAMBLED_EGGS, MAYO,
+                    null, GastroStacks.TOAST, null
+                    ),
+                null
+            ).register(gn);
+
+        GastroFood.workbench(
+            GastroGroups.FOOD,
+            GastroStacks.ROAST_BEEF_SANDWICH,
+            RecipeShape.SHAPED,
+            RecipeUtil.collection(
+                null, GastroStacks.TOAST, null,
+                GastroStacks.FRIED_EGG, COOKED_BEEF, GastroStacks.FRIED_EGG,
+                null, GastroStacks.TOAST, null
+                ),
+            null
+        ).register(gn);
+
+        if (egAvailable) {
+            GastroFood.workbench(
+                GastroGroups.FOOD,
+                GastroStacks.CLUB_SANDWICH,
+                RecipeShape.SHAPED,
+                RecipeUtil.collection(
+                    null, GastroStacks.TOAST, null,
+                    LETTUCE, COOKED_PORKCHOP, TOMATO,
+                    null, GastroStacks.TOAST, null
+                    ),
+                null
+            ).register(gn);
+            
+            GastroFood.workbench(
+                GastroGroups.FOOD,
+                GastroStacks.GREEK_SALAD,
+                RecipeShape.SHAPELESS,
+                RecipeUtil.collection(TOMATO, GastroStacks.CUCUMBER, ONION, SlimefunItems.CHEESE),
+                BOWL, 
+                GastroStacks.KITCHEN_KNIFE
+            ).register(gn);
+
+            GastroFood.workbench(
+                GastroGroups.FOOD,
+                GastroStacks.CAESAR_SALAD,
+                RecipeShape.SHAPELESS,
+                RecipeUtil.collection(LETTUCE, GastroStacks.TOAST, BACON, SlimefunItems.CHEESE),
+                BOWL,
+                GastroStacks.KITCHEN_KNIFE
+            ).register(gn);
+        }
+
+        GastroFood.stove(
+            GastroGroups.FOOD,
+            GastroStacks.PAN_SEARED_SALMON,
+            RecipeUtil.single(SALMON),
+            null,
+            Temperature.MEDIUM,
+            GastroStacks.FRYING_PAN
+        ).register(gn);
+
+        GastroFood.stove(
+            GastroGroups.FOOD,
+            GastroStacks.FRIED_SHRIMP,
+            RecipeUtil.single(GastroStacks.SHRIMP),
+            null,
+            Temperature.MEDIUM,
+            GastroStacks.FRYING_PAN
+        ).register(gn);
+
+        GastroFood.stove(
+            GastroGroups.FOOD,
+            GastroStacks.TEMPURA_SHRIMP,
+            RecipeUtil.collection(GastroStacks.SHRIMP, BREAD),
+            null,
+            Temperature.MEDIUM,
+            GastroStacks.FRYING_PAN
+        ).register(gn);
+
+        GastroFood.stove(
+            GastroGroups.FOOD,
+            GastroStacks.TEMPURA_BROCCOLI,
+            RecipeUtil.collection(GastroStacks.BROCCOLI, BREAD),
+            null,
+            Temperature.MEDIUM,
+            GastroStacks.FRYING_PAN
+        ).register(gn);
+
+        GastroFood.stove(
+            GastroGroups.FOOD,
+            GastroStacks.CHICKEN_PESTO_PASTA,
+            RecipeUtil.collection(GastroStacks.DOUGH, GastroStacks.BASIL, CHICKEN, SlimefunItems.CHEESE, WATER_BUCKET),
+            BOWL,
+            Temperature.MEDIUM,
+            GastroStacks.STEEL_POT, GastroStacks.ROLLING_PIN, GastroStacks.MORTAR_AND_PESTLE
+        ).register(gn);
+
+        GastroFood.stove(
+            GastroGroups.FOOD,
+            GastroStacks.SQUID_INK_PASTA,
+            RecipeUtil.collection(GastroStacks.DOUGH, GastroStacks.BASIL, INK_SAC, SlimefunItems.CHEESE, WATER_BUCKET),
+            BOWL,
+            Temperature.MEDIUM,
+            GastroStacks.FRYING_PAN, GastroStacks.ROLLING_PIN
+        ).register(gn);
+
+        GastroFood.stove(
+            GastroGroups.FOOD,
+            GastroStacks.GLOWING_SQUID_INK_PASTA,
+            RecipeUtil.collection(GastroStacks.DOUGH, GastroStacks.BASIL, GLOW_INK_SAC, SlimefunItems.CHEESE, WATER_BUCKET),
+            BOWL,
+            Temperature.MEDIUM,
+            GastroStacks.FRYING_PAN, GastroStacks.ROLLING_PIN
+        ).register(gn);
+
+        if (egAvailable) {
+            GastroFood.stove(
+                GastroGroups.FOOD,
+                GastroStacks.CHICKEN_RAVIOLI,
+                RecipeUtil.collection(GastroStacks.DOUGH, GastroStacks.BASIL, CHICKEN, SlimefunItems.CHEESE, TOMATO, WATER_BUCKET),
+                BOWL,
+                Temperature.MEDIUM,
+                GastroStacks.FRYING_PAN, GastroStacks.ROLLING_PIN
+            ).register(gn);
+
+            GastroFood.stove(
+                GastroGroups.FOOD,
+                GastroStacks.MUSHROOM_RAVIOLI,
+                RecipeUtil.collection(GastroStacks.DOUGH, GastroStacks.BASIL, GastroStacks.BUTTON_MUSHROOM, SlimefunItems.CHEESE, TOMATO, WATER_BUCKET),
+                BOWL,
+                Temperature.MEDIUM,
+                GastroStacks.STEEL_POT, GastroStacks.ROLLING_PIN
+            ).register(gn);
+        }
+
+        GastroFood.stove(
+            GastroGroups.FOOD,
+            GastroStacks.OATMEAL,
+            RecipeUtil.collection(WATER_BUCKET, GastroStacks.OATS),
+            BOWL,
+            Temperature.LOW,
+            GastroStacks.STEEL_POT
+        ).register(gn);
+        RecipeRegistry.registerRecipe(new MultiStoveRecipe(
+            RecipeUtil.collection(MILK_BUCKET, GastroStacks.OATS),
+            BOWL,
+            Set.of(GastroStacks.STEEL_POT),
+            Temperature.LOW,
+            GastroStacks.OATMEAL
+        ));
+
+        GastroFood.stove(
+            GastroGroups.FOOD,
+            GastroStacks.BARLEY_PORRIDGE,
+            RecipeUtil.collection(WATER_BUCKET, GastroStacks.BARLEY),
+            BOWL,
+            Temperature.LOW,
+            GastroStacks.STEEL_POT
+        ).register(gn);
+        RecipeRegistry.registerRecipe(new MultiStoveRecipe(
+            RecipeUtil.collection(MILK_BUCKET, GastroStacks.BARLEY),
+            BOWL,
+            Set.of(GastroStacks.STEEL_POT),
+            Temperature.LOW,
+            GastroStacks.BARLEY_PORRIDGE
+        ));
+
+        GastroFood.stove(
+            GastroGroups.FOOD,
+            GastroStacks.CONGEE,
+            RecipeUtil.collection(WATER_BUCKET, GastroStacks.RICE),
+            BOWL,
+            Temperature.LOW,
+            GastroStacks.STEEL_POT
+        ).register(gn);
+        RecipeRegistry.registerRecipe(new MultiStoveRecipe(
+            RecipeUtil.collection(MILK_BUCKET, GastroStacks.RICE),
+            BOWL,
+            Set.of(GastroStacks.STEEL_POT),
+            Temperature.LOW,
+            GastroStacks.CONGEE
+        ));
+
+        GastroFood.stove(
+            GastroGroups.FOOD,
+            GastroStacks.CHICKEN_SOUP,
+            RecipeUtil.collection(WATER_BUCKET, CHICKEN, CARROT, GastroStacks.PEAS),
+            BOWL,
+            Temperature.MEDIUM,
+            GastroStacks.STEEL_POT, GastroStacks.KITCHEN_KNIFE, GastroStacks.PEELER
+        ).register(gn);
+
+        GastroFood.stove(
+            GastroGroups.FOOD,
+            GastroStacks.CHICKEN_NOODLE_SOUP,
+            RecipeUtil.collection(WATER_BUCKET, CHICKEN, CARROT, GastroStacks.PEAS, GastroStacks.DOUGH),
+            BOWL,
+            Temperature.MEDIUM,
+            GastroStacks.STEEL_POT, GastroStacks.KITCHEN_KNIFE, GastroStacks.PEELER
+        ).register(gn);
+
+        if (egAvailable) {
+            GastroFood.stove(
+                GastroGroups.FOOD,
+                GastroStacks.SPLIT_PEA_SOUP,
+                RecipeUtil.collection(WATER_BUCKET, CARROT, GastroStacks.PEAS, ONION),
+                BOWL,
+                Temperature.MEDIUM,
+                GastroStacks.STEEL_POT, GastroStacks.KITCHEN_KNIFE, GastroStacks.PEELER
+            ).register(gn);
+    
+            GastroFood.stove(
+                GastroGroups.FOOD,
+                GastroStacks.HAM_AND_SPLIT_PEA_SOUP,
+                RecipeUtil.collection(WATER_BUCKET, CARROT, GastroStacks.PEAS, ONION, PORKCHOP),
+                BOWL,
+                Temperature.MEDIUM,
+                GastroStacks.STEEL_POT, GastroStacks.KITCHEN_KNIFE, GastroStacks.PEELER
+            ).register(gn);
+        }
+
+        GastroFood.stove(
+            GastroGroups.FOOD,
+            GastroStacks.LENTIL_SOUP,
+            RecipeUtil.collection(WATER_BUCKET, CARROT, GastroStacks.LENTILS, GastroStacks.CELERY, GastroStacks.BASIL),
+            BOWL,
+            Temperature.MEDIUM,
+            GastroStacks.STEEL_POT, GastroStacks.KITCHEN_KNIFE, GastroStacks.PEELER
+        ).register(gn);
+
+        GastroFood.stove(
+            GastroGroups.FOOD,
+            GastroStacks.BEEF_AND_LENTIL_SOUP,
+            RecipeUtil.collection(WATER_BUCKET, CARROT, GastroStacks.LENTILS, GastroStacks.CELERY, GastroStacks.BASIL, BEEF),
+            BOWL,
+            Temperature.MEDIUM,
+            GastroStacks.STEEL_POT, GastroStacks.KITCHEN_KNIFE, GastroStacks.PEELER
+        ).register(gn);
+
+        GastroFood.stove(
+            GastroGroups.FOOD,
+            GastroStacks.CARROT_SOUP,
+            RecipeUtil.collection(WATER_BUCKET, CARROT, POTATO, GastroStacks.PEAS, GastroStacks.CELERY),
+            BOWL,
+            Temperature.MEDIUM,
+            GastroStacks.STEEL_POT, GastroStacks.KITCHEN_KNIFE, GastroStacks.PEELER
+        ).register(gn);
+
+        GastroFood.stove(
+            GastroGroups.FOOD,
+            GastroStacks.MUSHROOM_BARLEY_SOUP,
+            RecipeUtil.collection(WATER_BUCKET, GastroStacks.BARLEY, GastroStacks.BUTTON_MUSHROOM, GastroStacks.PEAS, GastroStacks.CELERY),
+            BOWL,
+            Temperature.MEDIUM,
+            GastroStacks.STEEL_POT, GastroStacks.KITCHEN_KNIFE
+        ).register(gn);
+
+        GastroFood.stove(
+            GastroGroups.FOOD,
+            GastroStacks.CHICKEN_BARLEY_SOUP,
+            RecipeUtil.collection(WATER_BUCKET, GastroStacks.BARLEY, CHICKEN, GastroStacks.PEAS, CARROT),
+            BOWL,
+            Temperature.MEDIUM,
+            GastroStacks.STEEL_POT, GastroStacks.KITCHEN_KNIFE, GastroStacks.PEELER
+        ).register(gn);
+
+        GastroFood.stove(
+            GastroGroups.FOOD,
+            GastroStacks.BEEF_BARLEY_SOUP,
+            RecipeUtil.collection(WATER_BUCKET, GastroStacks.BARLEY, COOKED_BEEF, GastroStacks.BROCCOLI, GastroStacks.CELERY),
+            BOWL,
+            Temperature.MEDIUM,
+            GastroStacks.STEEL_POT, GastroStacks.KITCHEN_KNIFE
+        ).register(gn);
+
+        GastroFood.stove(
+            GastroGroups.FOOD,
+            GastroStacks.CREAM_OF_MUSHROOM_SOUP,
+            RecipeUtil.collection(MILK_BUCKET, SlimefunItems.BUTTER, GastroStacks.BUTTON_MUSHROOM, GastroStacks.CELERY),
+            BOWL,
+            Temperature.MEDIUM,
+            GastroStacks.STEEL_POT, GastroStacks.KITCHEN_KNIFE
+        ).register(gn);
+
+        GastroFood.stove(
+            GastroGroups.FOOD,
+            GastroStacks.CREAM_OF_BROCCOLI_SOUP,
+            RecipeUtil.collection(MILK_BUCKET, SlimefunItems.BUTTER, GastroStacks.BROCCOLI, GastroStacks.CELERY),
+            BOWL,
+            Temperature.MEDIUM,
+            GastroStacks.STEEL_POT, GastroStacks.KITCHEN_KNIFE
+        ).register(gn);
+
+        GastroFood.stove(
+            GastroGroups.FOOD,
+            GastroStacks.CREAM_OF_ASPARAGUS_SOUP,
+            RecipeUtil.collection(MILK_BUCKET, SlimefunItems.BUTTER, GastroStacks.ASPARAGUS, GastroStacks.CELERY),
+            BOWL,
+            Temperature.MEDIUM,
+            GastroStacks.STEEL_POT, GastroStacks.KITCHEN_KNIFE
+        ).register(gn);
+
+        GastroFood.stove(
+            GastroGroups.FOOD,
+            GastroStacks.CREAM_OF_CAULIFLOWER_SOUP,
+            RecipeUtil.collection(MILK_BUCKET, SlimefunItems.BUTTER, GastroStacks.CAULIFLOWER, GastroStacks.CELERY),
+            BOWL,
+            Temperature.MEDIUM,
+            GastroStacks.STEEL_POT, GastroStacks.KITCHEN_KNIFE
+        ).register(gn);
+
+        GastroFood.stove(
+            GastroGroups.FOOD,
+            GastroStacks.MISO_SOUP, // TODO: Miso stuff
+            RecipeUtil.collection(WATER_BUCKET, DRIED_KELP),
+            BOWL,
+            Temperature.MEDIUM,
+            GastroStacks.STEEL_POT, GastroStacks.KITCHEN_KNIFE
+        ).register(gn);
+
+        GastroFood.stove(
+            GastroGroups.FOOD,
+            GastroStacks.BROCCOLI_CHOWDER,
+            RecipeUtil.collection(MILK_BUCKET, SlimefunItems.HEAVY_CREAM, GastroStacks.SHRIMP, GastroStacks.BASIL, GastroStacks.BROCCOLI),
+            BOWL,
+            Temperature.MEDIUM,
+            GastroStacks.STEEL_POT, GastroStacks.KITCHEN_KNIFE
+        ).register(gn);
+
+        GastroFood.stove(
+            GastroGroups.FOOD,
+            GastroStacks.SALMON_CHOWDER,
+            RecipeUtil.collection(MILK_BUCKET, SlimefunItems.HEAVY_CREAM, GastroStacks.SHRIMP, GastroStacks.BASIL, SALMON),
+            BOWL,
+            Temperature.MEDIUM,
+            GastroStacks.STEEL_POT, GastroStacks.KITCHEN_KNIFE
+        ).register(gn);
+
+        GastroFood.stove(
+            GastroGroups.FOOD,
+            GastroStacks.POTATO_CHOWDER,
+            RecipeUtil.collection(MILK_BUCKET, SlimefunItems.HEAVY_CREAM, GastroStacks.SHRIMP, GastroStacks.BASIL, POTATO),
+            BOWL,
+            Temperature.MEDIUM,
+            GastroStacks.STEEL_POT, GastroStacks.KITCHEN_KNIFE, GastroStacks.PEELER
+        ).register(gn);
+
+        if (egAvailable)
+            GastroFood.stove(
+                GastroGroups.FOOD,
+                GastroStacks.CORN_CHOWDER,
+                RecipeUtil.collection(MILK_BUCKET, SlimefunItems.HEAVY_CREAM, GastroStacks.SHRIMP, GastroStacks.BASIL, CORN),
+                BOWL,
+                Temperature.MEDIUM,
+                GastroStacks.STEEL_POT, GastroStacks.KITCHEN_KNIFE
+            ).register(gn);
+
+        GastroFood.stove(
+            GastroGroups.FOOD,
+            GastroStacks.BEEF_STEW,
+            RecipeUtil.collection(WATER_BUCKET, POTATO, CARROT, BEEF, GastroStacks.CELERY),
+            BOWL,
+            Temperature.MEDIUM,
+            GastroStacks.STEEL_POT, GastroStacks.KITCHEN_KNIFE, GastroStacks.PEELER
+        ).register(gn);
+
+        GastroFood.stove(
+            GastroGroups.FOOD,
+            GastroStacks.CLAM_STEW,
+            RecipeUtil.collection(WATER_BUCKET, POTATO, CARROT, GastroStacks.CLAM, GastroStacks.CELERY),
+            BOWL,
+            Temperature.MEDIUM,
+            GastroStacks.STEEL_POT, GastroStacks.KITCHEN_KNIFE, GastroStacks.PEELER
+        ).register(gn);
+
+        GastroFood.stove(
+            GastroGroups.FOOD,
+            GastroStacks.CRAB_HOTPOT,
+            RecipeUtil.collection(WATER_BUCKET, GastroStacks.ENOKI_MUSHROOMS, GastroStacks.KING_OYSTER_MUSHROOM, CARROT, GastroStacks.CRAB, EGG),
+            BOWL,
+            Temperature.MEDIUM,
+            GastroStacks.STEEL_POT, GastroStacks.KITCHEN_KNIFE, GastroStacks.PEELER
+        ).register(gn);
+
+        if (egAvailable) {
+            GastroFood.stove(
+                GastroGroups.FOOD,
+                GastroStacks.BBQ_STEAK,
+                RecipeUtil.collection(BBQ_SAUCE, BEEF),
+                null,
+                Temperature.HIGH
+            ).register(gn);
+
+            GastroFood.stove(
+                GastroGroups.FOOD,
+                GastroStacks.BBQ_PORK,
+                RecipeUtil.collection(BBQ_SAUCE, PORKCHOP),
+                null,
+                Temperature.HIGH
+            ).register(gn);
+
+            GastroFood.stove(
+                GastroGroups.FOOD,
+                GastroStacks.BBQ_CHICKEN,
+                RecipeUtil.collection(BBQ_SAUCE, CHICKEN),
+                null,
+                Temperature.HIGH
+            ).register(gn);
+
+            GastroFood.stove(
+                GastroGroups.FOOD,
+                GastroStacks.BBQ_MUTTON,
+                RecipeUtil.collection(BBQ_SAUCE, MUTTON),
+                null,
+                Temperature.HIGH
+            ).register(gn);
+        }
+
+        GastroFood.stove(
+            GastroGroups.FOOD,
+            GastroStacks.BUTTER_CHICKEN, // TODO: Butter chicken stuff
+            RecipeUtil.collection(CHICKEN, CARROT),
+            BOWL,
+            Temperature.MEDIUM,
+            GastroStacks.STEEL_POT, GastroStacks.KITCHEN_KNIFE, GastroStacks.PEELER
+        ).register(gn);
+
+        if (egAvailable) {
+            GastroFood.stove(
+                GastroGroups.FOOD,
+                GastroStacks.SHRIMP_FRIED_RICE,
+                RecipeUtil.collection(GastroStacks.SHRIMP, GastroStacks.COOKED_RICE, CARROT, GastroStacks.PEAS, CORN),
+                BOWL,
+                Temperature.MEDIUM,
+                GastroStacks.FRYING_PAN, GastroStacks.KITCHEN_KNIFE, GastroStacks.PEELER
+            ).register(gn);
+
+            GastroFood.stove(
+                GastroGroups.FOOD,
+                GastroStacks.CURRY_RICE,
+                RecipeUtil.collection(POTATO, GastroStacks.COOKED_RICE, CARROT, CURRY_LEAF, COOKED_BEEF),
+                BOWL,
+                Temperature.MEDIUM,
+                GastroStacks.FRYING_PAN, GastroStacks.KITCHEN_KNIFE, GastroStacks.PEELER
+            ).register(gn);
+
+            GastroFood.stove(
+                GastroGroups.FOOD,
+                GastroStacks.RICE_OMELETTE,
+                RecipeUtil.collection(GastroStacks.COOKED_RICE, EGG, KETCHUP),
+                BOWL,
+                Temperature.MEDIUM,
+                GastroStacks.FRYING_PAN, GastroStacks.KITCHEN_KNIFE, GastroStacks.PEELER
+            ).register(gn);
+        }
 
         GastroFood.workbench(
             GastroGroups.FOOD,
@@ -742,6 +1500,42 @@ public class ItemSetup {
             RecipeShape.SHAPELESS,
             RecipeUtil.collection(GastroStacks.COOKED_RICE, DRIED_KELP),
             null
+        ).register(gn);
+
+        GastroFood.stove(
+            GastroGroups.FOOD,
+            GastroStacks.BEEF_UDON,
+            RecipeUtil.collection(GastroStacks.DOUGH, BEEF, GastroStacks.SOY_SAUCE),
+            BOWL,
+            Temperature.MEDIUM,
+            GastroStacks.FRYING_PAN
+        ).register(gn);
+
+        GastroFood.stove(
+            GastroGroups.FOOD,
+            GastroStacks.CHICKEN_UDON,
+            RecipeUtil.collection(GastroStacks.DOUGH, CHICKEN, GastroStacks.SOY_SAUCE),
+            BOWL,
+            Temperature.MEDIUM,
+            GastroStacks.FRYING_PAN
+        ).register(gn);
+
+        GastroFood.stove(
+            GastroGroups.FOOD,
+            GastroStacks.VEGETABLE_UDON,
+            RecipeUtil.collection(GastroStacks.DOUGH, GastroStacks.BROCCOLI, CARROT, GastroStacks.SOY_SAUCE),
+            BOWL,
+            Temperature.MEDIUM,
+            GastroStacks.FRYING_PAN, GastroStacks.PEELER
+        ).register(gn);
+
+        GastroFood.stove(
+            GastroGroups.FOOD,
+            GastroStacks.STIR_FRY_NOODLES,
+            RecipeUtil.collection(GastroStacks.DOUGH, CHICKEN, GastroStacks.BROCCOLI, CARROT, GastroStacks.BUTTON_MUSHROOM),
+            BOWL,
+            Temperature.MEDIUM,
+            GastroStacks.FRYING_PAN, GastroStacks.PEELER
         ).register(gn);
     }
 }

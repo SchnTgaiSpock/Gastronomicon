@@ -30,6 +30,7 @@ import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
+import net.md_5.bungee.api.ChatColor;
 
 @SuppressWarnings("deprecation")
 public abstract class GastroWorkstation extends MenuBlock {
@@ -39,7 +40,8 @@ public abstract class GastroWorkstation extends MenuBlock {
         "&9Ingredients");
     public static final ItemStack CONTAINER_BORDER = new CustomItemStack(Material.PURPLE_STAINED_GLASS_PANE,
         "&5Container");
-    public static final ItemStack TOOL_BORDER = new CustomItemStack(Material.BLACK_STAINED_GLASS_PANE, "&#999999Tools");
+    public static final ItemStack TOOL_BORDER = new CustomItemStack(Material.BLACK_STAINED_GLASS_PANE,
+        ChatColor.of("#999999") + "Tools");
     public static final ItemStack OUTPUT_BORDER = new CustomItemStack(Material.ORANGE_STAINED_GLASS_PANE, "&6Output");
     public static final ItemStack CRAFT_BUTTON = new CustomItemStack(Material.LIME_STAINED_GLASS_PANE,
         "&aClick to craft");
@@ -58,7 +60,7 @@ public abstract class GastroWorkstation extends MenuBlock {
     protected static final int[] TOOL_BORDER_SLOTS = { 45 };
     protected static final int CRAFT_BUTTON_SLOT = 53;
 
-    private final int[] hashedInputs = new int[] { 0, 0, 0 };
+    private final int[] hashedInputs = new int[] { 0, 0, 0, 0 };
     private GastroRecipe lastCrafted = null;
 
     public GastroWorkstation(ItemGroup group, SlimefunItemStack item, RecipeType type, ItemStack[] recipe) {
@@ -83,7 +85,7 @@ public abstract class GastroWorkstation extends MenuBlock {
         return new int[] { 15, 16 };
     }
 
-    public abstract GastroRecipeType getRecipeType();
+    public abstract GastroRecipeType getGastroRecipeType();
 
     @Override
     protected void setup(BlockMenuPreset preset) {
@@ -137,9 +139,11 @@ public abstract class GastroWorkstation extends MenuBlock {
             final int ingredientHash = Arrays.hashCode(ingredients);
             final int containerHash = containers.hashCode();
             final int toolsHash = tools.hashCode();
+            final int otherHash = getOtherHash(player, menu);
 
             final ItemStack[] recipeOutputs;
-            if (lastCrafted != null && hashedInputs[0] == ingredientHash && hashedInputs[1] == containerHash && hashedInputs[2] == toolsHash) {
+            if (lastCrafted != null && hashedInputs[0] == ingredientHash && hashedInputs[1] == containerHash
+                && hashedInputs[2] == toolsHash && hashedInputs[3] == otherHash) {
                 recipeOutputs = lastCrafted.getOutputs();
             } else {
                 final GastroRecipe recipe = findRecipe(ingredients, containers, tools, player, menu);
@@ -150,11 +154,13 @@ public abstract class GastroWorkstation extends MenuBlock {
                     hashedInputs[0] = ingredientHash;
                     hashedInputs[1] = containerHash;
                     hashedInputs[2] = toolsHash;
+                    hashedInputs[3] = otherHash;
                     recipeOutputs = recipe.getOutputs();
                 }
             }
 
             final ItemStack output;
+            final ItemStack[] toReturn;
             if (recipeOutputs.length > 1 && recipeOutputs[0] instanceof final SlimefunItemStack sfItem) {
                 final double proficiency = Gastronomicon.getInstance().getPlayerData()
                     .getInt(player.getUniqueId() + ".proficiencies." + sfItem.getItemId(), 0);
@@ -162,14 +168,17 @@ public abstract class GastroWorkstation extends MenuBlock {
                 final double perfectProbability = NumberUtil.clamp(
                     NumberUtil.clamp(0, proficiency / 864, 0.25) * perfectProbabilityMultipliers,
                     0, 1);
+
                 output = recipeOutputs[NumberUtil.randomRound(perfectProbability)];
+                toReturn = Arrays.copyOfRange(recipeOutputs, 2, recipeOutputs.length);
             } else {
                 output = recipeOutputs[0];
+                toReturn = Arrays.copyOfRange(recipeOutputs, 1, recipeOutputs.length);
             }
 
             final Inventory inv = player.getOpenInventory().getTopInventory();
 
-            for (int outputSlot : getOutputSlots()) {
+            for (final int outputSlot : getOutputSlots()) {
                 final ItemStack currentlyInOutput = inv.getItem(outputSlot);
 
                 if (currentlyInOutput == null || currentlyInOutput.getType() == Material.AIR) {
@@ -197,7 +206,7 @@ public abstract class GastroWorkstation extends MenuBlock {
                     break;
                 }
             }
-            ItemUtil.giveItems(player, Arrays.copyOfRange(recipeOutputs, 2, recipeOutputs.length));
+            ItemUtil.giveItems(player, toReturn);
             return false;
         });
 
@@ -207,10 +216,10 @@ public abstract class GastroWorkstation extends MenuBlock {
     @ParametersAreNonnullByDefault
     protected GastroRecipe findRecipe(ItemStack[] ingredients, List<ItemStack> containers, List<ItemStack> tools,
         Player player, BlockMenu menu) {
-        final Set<GastroRecipe> recipes = RecipeRegistry.getRecipes(getRecipeType());
+        final Set<GastroRecipe> recipes = RecipeRegistry.getRecipes(getGastroRecipeType());
 
         for (final GastroRecipe recipe : recipes) {
-            final RecipeMatchResult result = recipe.matches(ingredients, containers, tools);
+            final RecipeMatchResult result = recipe.matches(ingredients.clone(), containers, tools);
             if (!result.isMatch()) {
                 continue;
             } else if (!result.isCraftable()) {
@@ -222,5 +231,7 @@ public abstract class GastroWorkstation extends MenuBlock {
 
         return null;
     }
+
+    protected int getOtherHash(Player player, BlockMenu menu) { return 0; }
 
 }

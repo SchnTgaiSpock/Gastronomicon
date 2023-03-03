@@ -21,7 +21,7 @@ public class GrainMill extends GastroWorkstation {
     }
 
     @Override
-    public GastroRecipeType getRecipeType() {
+    public GastroRecipeType getGastroRecipeType() {
         return GastroRecipeType.MILL;
     }
     

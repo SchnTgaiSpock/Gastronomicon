@@ -114,6 +114,9 @@ public class GastroFood extends SimpleGastroFood {
             p.setFoodLevel(NumberUtil.clampUpper(p.getFoodLevel() + food.getItem().getHunger(), 20));
             p.setSaturation((float) NumberUtil.clampUpper(p.getSaturation() + food.getItem().getSaturation(),
                     p.getFoodLevel()));
+            if (getGastroRecipe().getInputs().getContainer().getComponent() instanceof final ItemStack stack) {
+                p.getInventory().addItem(stack); // It should always be an itemstack anyways
+            }
             p.getWorld().playSound(p.getLocation(), Sound.ENTITY_PLAYER_BURP, SoundCategory.PLAYERS, 1, 1);
         }
 

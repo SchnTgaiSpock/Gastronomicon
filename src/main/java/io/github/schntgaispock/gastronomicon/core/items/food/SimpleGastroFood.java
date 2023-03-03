@@ -90,6 +90,12 @@ public class SimpleGastroFood extends UnplaceableItem implements RecipeDisplayIt
         return SimpleGastroFood.of(itemGroup, item, GastroRecipeType.MILL, RecipeShape.SHAPELESS, ingredients, null, tools);
     }
 
+    @Nonnull
+    @ParametersAreNonnullByDefault
+    public static SimpleGastroFood distillery(ItemGroup itemGroup, SlimefunItemStack item, ItemStack[] ingredients, ItemStack... tools) {
+        return SimpleGastroFood.of(itemGroup, item, GastroRecipeType.DISTILLERY, RecipeShape.SHAPELESS, ingredients, null, tools);
+    }
+
     @Override
     @Nonnull
     public String getRecipeSectionLabel(@Nonnull Player p) {

@@ -20,6 +20,7 @@ import org.bukkit.util.Vector;
 
 import io.github.schntgaispock.gastronomicon.Gastronomicon;
 import io.github.schntgaispock.gastronomicon.util.NumberUtil;
+import io.github.schntgaispock.gastronomicon.util.item.ItemUtil;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -49,8 +50,8 @@ public class FoodEffect {
 
     public static FoodEffect chanceOf(FoodEffect effect, double chance) {
         final double pc = chance * PERFECT_MULTIPLIER_CHANCE;
-        return new FoodEffect(effect.getDescription() + " &f(" + NumberUtil.roundToPercent(chance, 4) + "%)",
-                effect.getPerfectDescription() + " &f(" + NumberUtil.roundToPercent(pc, 4) + "%)",
+        return new FoodEffect(effect.getDescription() + " &8(" + NumberUtil.roundToPercent(chance, 4) + "%)",
+                effect.getPerfectDescription() + " &8(" + NumberUtil.roundToPercent(pc, 4) + "%)",
                 (Player player, Boolean isPerfect) -> {
                     if (NumberUtil.flip(isPerfect ? pc : chance)) {
                         effect.apply(player, isPerfect);
@@ -84,8 +85,8 @@ public class FoodEffect {
         final int a = NumberUtil.clampLower(amplifier, 0);
         final int pa = amplifier + PERFECT_BONUS_POTION_LEVEL;
         return new FoodEffect(
-                color + effectType.getName() + " " + NumberUtil.asRomanNumeral(a + 1) + " (" + d + "s)",
-                color + effectType.getName() + " " + NumberUtil.asRomanNumeral(pa + 1) + " (" + pd + "s)",
+                color + ItemUtil.getPotionName(effectType) + " " + NumberUtil.asRomanNumeral(a + 1) + " (" + d + "s)",
+                color + ItemUtil.getPotionName(effectType) + " " + NumberUtil.asRomanNumeral(pa + 1) + " (" + pd + "s)",
                 (Player player, Boolean isPerfect) -> {
                     player.addPotionEffect(new PotionEffect(effectType, 20 * (isPerfect ? pd : d), (isPerfect ? pa : a),
                             ambience, particles, icon));
@@ -95,7 +96,7 @@ public class FoodEffect {
     @ParametersAreNonnullByDefault
     public static FoodEffect positivePotionEffect(PotionEffectType effectType, int durationSeconds, int amplifier,
             boolean ambience, boolean particles, boolean icon) {
-        return potionEffect("&3", effectType, durationSeconds, amplifier, ambience, particles, icon);
+        return potionEffect("&9", effectType, durationSeconds, amplifier, ambience, particles, icon);
     }
 
     @ParametersAreNonnullByDefault
@@ -161,7 +162,7 @@ public class FoodEffect {
     }
 
     public static FoodEffect removePotionEffect(PotionEffectType type) {
-        final String desc = "&fClears " + type.getName() + " effects";
+        final String desc = "&bClears " + ItemUtil.getPotionName(type) + " effects";
         return new FoodEffect(desc, desc, (Player player, Boolean isPerfect) -> {
             player.removePotionEffect(type);
         });

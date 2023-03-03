@@ -59,13 +59,13 @@ public class MultiStove extends GastroWorkstation implements EnergyNetComponent 
             "",
             "&bLeft-click &7to increase");
     public static final ItemStack TEMPERATURE_BUTTON_MEDIUM = new CustomItemStack(
-            Material.YELLOW_STAINED_GLASS_PANE,
+            Material.ORANGE_STAINED_GLASS_PANE,
             "&7Temperature: &6MEDIUM",
             "",
             "&bLeft-click &7to increase",
             "&bRight-click &7to decrease");
     public static final ItemStack TEMPERATURE_BUTTON_HIGH = new CustomItemStack(
-            Material.YELLOW_STAINED_GLASS_PANE,
+            Material.RED_STAINED_GLASS_PANE,
             "&7Temperature: &cHIGH",
             "",
             "&bRight-click &7to decrease");
@@ -109,7 +109,7 @@ public class MultiStove extends GastroWorkstation implements EnergyNetComponent 
     }
 
     @Override
-    public GastroRecipeType getRecipeType() {
+    public GastroRecipeType getGastroRecipeType() {
         return GastroRecipeType.MULTI_STOVE;
     }
 
@@ -137,6 +137,11 @@ public class MultiStove extends GastroWorkstation implements EnergyNetComponent 
         } else {
             return recipe;
         }
+    }
+
+    @Override
+    protected int getOtherHash(Player player, BlockMenu menu) {
+        return menu.getItemInSlot(TEMPERATURE_BUTTON_SLOT).getType().ordinal(); // Doesn't have to be a hash, just unique
     }
 
 }

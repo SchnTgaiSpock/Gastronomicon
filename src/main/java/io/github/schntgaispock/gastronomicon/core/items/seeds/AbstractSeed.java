@@ -28,7 +28,6 @@ public abstract class AbstractSeed extends SlimefunItem {
             public void onPlayerBreak(BlockBreakEvent e, ItemStack item, List<ItemStack> drops) {
                 drops.clear();
                 drops.addAll(getHarvestDrops(e.getBlock().getState(), item, true));
-                // TODO: fix broken fortune drops
             }
         });
     }

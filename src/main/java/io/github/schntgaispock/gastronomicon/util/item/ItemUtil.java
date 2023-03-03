@@ -6,8 +6,10 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.potion.PotionEffectType;
 
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
+import io.github.thebusybiscuit.slimefun4.libraries.commons.lang.WordUtils;
 import lombok.experimental.UtilityClass;
 
 @UtilityClass
@@ -61,6 +63,21 @@ public class ItemUtil {
         player.getInventory().addItem(items).forEach((__, item) -> {
             player.getWorld().dropItemNaturally(player.getLocation(), item);
         });
+    }
+
+    public static String getPotionName(PotionEffectType type) {
+        return switch (type.getName()) {
+            case "SLOW" -> "Slowness";
+            case "FAST_DIGGING" -> "Haste";
+            case "SLOW_DIGGING" -> "Mining Fatigue";
+            case "INCREASE_DAMAGE" -> "Strength";
+            case "HEAL" -> "Instant Health";
+            case "HARM" -> "Instant Damage";
+            case "CONFUSION" -> "Nausea";
+            case "DAMAGE_RESISTANCE" -> "Resistance";
+            case "UNLUCK" -> "Bad Luck";
+            default -> WordUtils.capitalizeFully(type.getName().replaceAll("_", " "));
+        };
     }
 
 }

@@ -21,7 +21,7 @@ public class CulinaryWorkbench extends GastroWorkstation {
     }
 
     @Override
-    public GastroRecipeType getRecipeType() {
+    public GastroRecipeType getGastroRecipeType() {
         return GastroRecipeType.CULINARY_WORKBENCH;
     }
     

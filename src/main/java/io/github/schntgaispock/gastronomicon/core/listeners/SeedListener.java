@@ -12,7 +12,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockGrowEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.plugin.Plugin;
 
 import com.destroystokyo.paper.event.block.BlockDestroyEvent;
 
@@ -30,7 +29,7 @@ public class SeedListener implements Listener {
         switch (e.getNewState().getType()) {
             case SUGAR_CANE, CACTUS:
                 assignGastroSeed(BlockStorage.check(e.getBlock().getRelative(BlockFace.DOWN)),
-                        e.getNewState().getLocation());
+                    e.getNewState().getLocation());
                 break;
 
             case PUMPKIN, MELON:
@@ -38,10 +37,10 @@ public class SeedListener implements Listener {
                 // grew the plant is before its grown.
                 Bukkit.getScheduler().runTaskLater(Gastronomicon.getInstance(), () -> {
                     for (BlockFace face : new BlockFace[] { BlockFace.NORTH, BlockFace.EAST, BlockFace.SOUTH,
-                            BlockFace.WEST }) {
+                        BlockFace.WEST }) {
                         final Block checking = e.getBlock().getRelative(face);
                         if (checking.getType() != Material.ATTACHED_MELON_STEM
-                                && checking.getType() != Material.ATTACHED_PUMPKIN_STEM) {
+                            && checking.getType() != Material.ATTACHED_PUMPKIN_STEM) {
                             continue;
                         }
 
@@ -67,7 +66,7 @@ public class SeedListener implements Listener {
         if (seed != null) {
             e.setWillDrop(false);
             seed.getHarvestDrops(e.getBlock().getState(), new ItemStack(Material.AIR), false).forEach(
-                    drop -> e.getBlock().getWorld().dropItemNaturally(e.getBlock().getLocation(), drop));
+                drop -> e.getBlock().getWorld().dropItemNaturally(e.getBlock().getLocation(), drop));
             BlockStorage.clearBlockInfo(e.getBlock().getLocation(), false);
         }
     }
@@ -87,9 +86,8 @@ public class SeedListener implements Listener {
         if (cropBlock == null)
             return null;
         switch (cropBlock.getType()) {
-            case WHEAT, POTATOES, CARROTS, BEETROOTS, PUMPKIN_STEM, MELON_STEM, SUGAR_CANE, CACTUS:
+            case WHEAT, POTATOES, CARROTS, BEETROOTS, PUMPKIN_STEM, ATTACHED_PUMPKIN_STEM, MELON_STEM, ATTACHED_MELON_STEM, SUGAR_CANE, CACTUS:
                 break;
-
             default:
                 return null;
         }
@@ -108,7 +106,6 @@ public class SeedListener implements Listener {
     }
 
     public static void setup() {
-        Bukkit.getPluginManager().registerEvents((Listener) new SeedListener(),
-                (Plugin) Gastronomicon.getInstance());
+        Bukkit.getPluginManager().registerEvents((Listener) new SeedListener(), Gastronomicon.getInstance());
     }
 }

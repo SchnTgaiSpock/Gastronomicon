@@ -16,23 +16,23 @@ import lombok.Getter;
 public class ShapedGastroRecipe extends GastroRecipe {
 
     public ShapedGastroRecipe(GastroRecipeType recipeType, RecipeComponent<?>[] ingredients,
-            RecipeComponent<?> container, Set<ItemStack> tools, ItemStack... outputs) {
+        RecipeComponent<?> container, Set<ItemStack> tools, ItemStack... outputs) {
         super(recipeType, new RecipeInput(RecipeShape.SHAPED, container, ingredients), tools, outputs);
     }
 
     public ShapedGastroRecipe(GastroRecipeType recipeType, ItemStack[] ingredients,
-            @Nullable ItemStack container, Set<ItemStack> tools, ItemStack... outputs) {
+        @Nullable ItemStack container, Set<ItemStack> tools, ItemStack... outputs) {
         super(recipeType, RecipeShape.SHAPED, ingredients, null, tools, outputs);
     }
 
     public ShapedGastroRecipe(GastroRecipeType recipeType, ItemStack[] ingredients, Set<ItemStack> tools,
-            ItemStack... outputs) {
+        ItemStack... outputs) {
         this(recipeType, ingredients, null, tools, outputs);
     }
 
     @Override
     public RecipeMatchResult matches(ItemStack[] givenIngredients, List<ItemStack> givenContainers,
-            List<ItemStack> givenTools) {
+        List<ItemStack> givenTools) {
 
         if (!givenContainers.stream().anyMatch(container -> getInputs().getContainer().matches(container))) {
             return RecipeMatchResult.NO_MATCH;
@@ -42,8 +42,9 @@ public class ShapedGastroRecipe extends GastroRecipe {
             return RecipeMatchResult.NO_MATCH;
 
         for (int i = 0; i < givenIngredients.length; i++) {
-            if (!componentMatches(getInputs().getIngredients()[i], givenIngredients[i]))
+            if (!componentMatches(getInputs().getIngredients()[i], givenIngredients[i])) {
                 return RecipeMatchResult.NO_MATCH;
+            }
         }
 
         return RecipeMatchResult.SUCCESS;

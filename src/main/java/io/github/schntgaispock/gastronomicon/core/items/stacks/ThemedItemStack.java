@@ -8,7 +8,6 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import io.github.schntgaispock.gastronomicon.core.items.stacks.GastroTheme.Theme;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 
 public class ThemedItemStack extends SlimefunItemStack {
@@ -30,7 +29,7 @@ public class ThemedItemStack extends SlimefunItemStack {
     }
 
     @ParametersAreNonnullByDefault
-    public static ThemedItemStack of(Theme theme, String id, Material material, String name, String... lore) {
+    public static ThemedItemStack of(GastroTheme theme, String id, Material material, String name, String... lore) {
         if (id == null || material == null) return null;
         if (lore.length > 0) {
             String[] fLore = new String[lore.length + 1];
@@ -48,7 +47,7 @@ public class ThemedItemStack extends SlimefunItemStack {
 
     @ParametersAreNonnullByDefault
     public static ThemedItemStack ingredient(String id, Material material, String name, String... lore) {
-        return of(Theme.INGREDIENT, id, material, name, lore);
+        return of(GastroTheme.INGREDIENT, id, material, name, lore);
     }
 
     public ThemedItemStack enchant(Enchantment... enchantments) {

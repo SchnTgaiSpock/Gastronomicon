@@ -1,14 +1,19 @@
 package io.github.schntgaispock.gastronomicon.core.slimefun;
 
 import org.bukkit.Material;
+import org.bukkit.entity.EntityType;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.PotionMeta;
+import org.bukkit.potion.PotionData;
 import org.bukkit.potion.PotionEffectType;
+import org.bukkit.potion.PotionType;
 
 import io.github.schntgaispock.gastronomicon.core.items.food.FoodEffect;
 import io.github.schntgaispock.gastronomicon.core.items.stacks.FoodItemStack;
+import io.github.schntgaispock.gastronomicon.core.items.stacks.GastroTheme;
 import io.github.schntgaispock.gastronomicon.core.items.stacks.ThemedItemStack;
-import io.github.schntgaispock.gastronomicon.core.items.stacks.GastroTheme.Theme;
+import io.github.schntgaispock.gastronomicon.core.listeners.WildHarvestListener;
 import io.github.schntgaispock.gastronomicon.util.item.HeadTextures;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
@@ -18,31 +23,41 @@ import lombok.experimental.UtilityClass;
 @UtilityClass
 public class GastroStacks {
 
+    // ---- Utility ----
+
+    public static final ItemStack WATER_BOTTLE = new ItemStack(Material.POTION);
+    static {
+        final PotionMeta meta = (PotionMeta) WATER_BOTTLE.getItemMeta();
+        final PotionData data = new PotionData(PotionType.WATER);
+        meta.setBasePotionData(data);
+        WATER_BOTTLE.setItemMeta(meta);
+    }
+
     // ---- Guide Only Items ----
 
     public static final ItemStack GUIDE_ITEM_TOOLS = new CustomItemStack(
         Material.IRON_HOE,
-        Theme.TOOL.getColor() + "Tools"
+        GastroTheme.TOOL.getColor() + "Tools"
     );
 
     public static final ItemStack GUIDE_ITEM_MANUAL_WORKSTATIONS = new CustomItemStack(
         Material.CRAFTING_TABLE,
-        Theme.MECHANICAL.getColor() + "Basic Machines"
+        GastroTheme.MECHANICAL.getColor() + "Basic Machines"
     );
 
     public static final ItemStack GUIDE_ITEM_RAW_INGREDIENTS = new CustomItemStack(
         Material.SUGAR,
-        Theme.INGREDIENT.getColor() + "Raw Ingredients"
+        GastroTheme.INGREDIENT.getColor() + "Raw Ingredients"
     );
 
     public static final ItemStack GUIDE_ITEM_FOOD = new CustomItemStack(
         Material.COOKED_BEEF,
-        Theme.REGULAR_FOOD.getColor() + "Food"
+        GastroTheme.REGULAR_FOOD.getColor() + "Food"
     );
 
     public static final ItemStack GUIDE_ITEM_MAIN = new CustomItemStack(
         Material.COOKED_BEEF,
-        Theme.PERFECT_FOOD.getColor() + "Gastronomicon"
+        GastroTheme.PERFECT_FOOD.getColor() + "Gastronomicon"
     );
 
     public static final ItemStack GUIDE_RECIPE_BREAK = new CustomItemStack(
@@ -102,7 +117,7 @@ public class GastroStacks {
     );
 
     public static final ItemStack GUIDE_RECIPE_MILL = new CustomItemStack(
-        Material.STONE_BRICK_SLAB,
+        Material.CAULDRON,
         "&bMill",
         "&7Craft this item as shown in a",
         "&7Grain Mill with the tool(s)",
@@ -160,49 +175,49 @@ public class GastroStacks {
     // Culinary Workbench
 
     public static final SlimefunItemStack CUTTING_BOARD = ThemedItemStack.of(
-        Theme.WTOOL,
+        GastroTheme.WTOOL,
         "GN_CUTTING_BOARD",
         Material.OAK_PRESSURE_PLATE,
         "Cutting Board"
     );
 
     public static final SlimefunItemStack MEAT_SCISSORS = ThemedItemStack.of(
-        Theme.WTOOL,
+        GastroTheme.WTOOL,
         "GN_MEAT_SCISSORS",
         Material.SHEARS,
         "Meat Scissors"
     );
 
     public static final SlimefunItemStack KITCHEN_KNIFE = ThemedItemStack.of(
-        Theme.WTOOL,
+        GastroTheme.WTOOL,
         "GN_KITCHEN_KNIFE",
         Material.IRON_SWORD,
         "Kitchen Knife"
     ).addFlags(ItemFlag.HIDE_ATTRIBUTES);
 
     public static final SlimefunItemStack ROLLING_PIN = ThemedItemStack.of(
-        Theme.WTOOL,
+        GastroTheme.WTOOL,
         "GN_ROLLING_PIN",
         Material.STICK,
         "Rolling Pin"
     );
 
     public static final SlimefunItemStack BLENDER = ThemedItemStack.of(
-        Theme.WTOOL,
+        GastroTheme.WTOOL,
         "GN_BLENDER",
         Material.BUCKET,
         "Blender"
     );
 
     public static final SlimefunItemStack MORTAR_AND_PESTLE = ThemedItemStack.of(
-        Theme.WTOOL,
+        GastroTheme.WTOOL,
         "GN_MORTAR_AND_PESTLE",
         Material.BOWL,
         "Mortar and Pestle"
     );
 
     public static final SlimefunItemStack PEELER = ThemedItemStack.of(
-        Theme.WTOOL,
+        GastroTheme.WTOOL,
         "GN_PEELER",
         Material.IRON_HOE,
         "Peeler"
@@ -211,21 +226,21 @@ public class GastroStacks {
     // Enhanced Oven
 
     public static final SlimefunItemStack BAKING_TRAY = ThemedItemStack.of(
-        Theme.WTOOL,
+        GastroTheme.WTOOL,
         "GN_BAKING_TRAY",
         Material.LIGHT_GRAY_CARPET,
         "Baking Tray"
     );
 
     public static final SlimefunItemStack FRYING_PAN = ThemedItemStack.of(
-        Theme.WTOOL,
+        GastroTheme.WTOOL,
         "GN_FRYING_PAN",
         Material.GRAY_CARPET,
         "Frying Pan"
     );
 
     public static final SlimefunItemStack STEEL_POT = ThemedItemStack.of(
-        Theme.WTOOL,
+        GastroTheme.WTOOL,
         "GN_STEEL_POT",
         Material.CAULDRON,
         "Steel Pot"
@@ -234,35 +249,35 @@ public class GastroStacks {
     // -- Traps --
 
     public static final SlimefunItemStack STEEL_WIRE = ThemedItemStack.of(
-        Theme.TRAP,
+        GastroTheme.TRAP,
         "GN_STEEL_WIRE",
         Material.STRING,
         "Steel Wire"
     );
 
     public static final SlimefunItemStack STEEL_SPRING = ThemedItemStack.of(
-        Theme.TRAP,
+        GastroTheme.TRAP,
         "GN_STEEL_SPRING",
         Material.STRING,
         "Steel Spring"
     );
 
     public static final SlimefunItemStack CRAB_TRAP = ThemedItemStack.of(
-        Theme.TRAP,
+        GastroTheme.TRAP,
         "GN_CRAB_TRAP",
         Material.OAK_TRAPDOOR,
         "Crab Trap"
     );
 
     public static final SlimefunItemStack HUNTING_TRAP = ThemedItemStack.of(
-        Theme.TRAP,
+        GastroTheme.TRAP,
         "GN_HUNTING_TRAP",
         Material.IRON_TRAPDOOR,
         "Hunting Trap"
     );
 
     public static final SlimefunItemStack FISHING_NET = ThemedItemStack.of(
-        Theme.TRAP,
+        GastroTheme.TRAP,
         "GN_FISHING_NET",
         Material.COBWEB,
         "Fishing Net"
@@ -271,21 +286,21 @@ public class GastroStacks {
     // -- Other --
 
     public static final SlimefunItemStack WOODEN_SICKLE = ThemedItemStack.of(
-        Theme.TOOL,
+        GastroTheme.TOOL,
         "GN_WOODEN_SICKLE",
         Material.WOODEN_HOE,
         "Wooden Sickle"
     );
 
     public static final SlimefunItemStack STEEL_SICKLE = ThemedItemStack.of(
-        Theme.TOOL,
+        GastroTheme.TOOL,
         "GN_STEEL_SICKLE",
         Material.IRON_HOE,
-        "STEEL Sickle"
+        "Steel Sickle"
     );
 
     public static final SlimefunItemStack REINFORCED_SICKLE = ThemedItemStack.of(
-        Theme.TOOL,
+        GastroTheme.TOOL,
         "GN_REINFORCED_SICKLE",
         Material.NETHERITE_HOE,
         "Reinforced Sickle"
@@ -295,15 +310,14 @@ public class GastroStacks {
     // ---- Basic Machines ----
 
     public static final SlimefunItemStack CULINARY_WORKBENCH = ThemedItemStack.of(
-        Theme.MECHANICAL,
+        GastroTheme.MECHANICAL,
         "GN_CULINARY_WORKBENCH",
         Material.CRAFTING_TABLE,
-        "Culinary Workbench",
-        "A clean, culinary-grade crafting table"
+        "Culinary Workbench"
     );
 
     public static final SlimefunItemStack MULTI_STOVE = ThemedItemStack.of(
-        Theme.MECHANICAL,
+        GastroTheme.MECHANICAL,
         "GN_MULTI_STOVE",
         Material.BLAST_FURNACE,
         "Multi-Stove",
@@ -312,7 +326,7 @@ public class GastroStacks {
     );
 
     public static final SlimefunItemStack REFRIDGERATOR = ThemedItemStack.of(
-        Theme.MECHANICAL,
+        GastroTheme.MECHANICAL,
         "GN_REFRIDGERATOR",
         Material.IRON_BLOCK,
         "Refridgerator",
@@ -321,14 +335,14 @@ public class GastroStacks {
     );
 
     public static final SlimefunItemStack MILL = ThemedItemStack.of(
-        Theme.MECHANICAL,
+        GastroTheme.MECHANICAL,
         "GN_MILL",
         Material.CAULDRON,
         "Grain Mill"
     );
 
     public static final SlimefunItemStack DISTILLERY = ThemedItemStack.of(
-        Theme.MECHANICAL,
+        GastroTheme.MECHANICAL,
         "GN_DISTILLERY",
         Material.BARREL,
         "Distillery"
@@ -511,6 +525,36 @@ public class GastroStacks {
         "Lentils"
     );
 
+    public static final SlimefunItemStack PEANUTS = ThemedItemStack.ingredient(
+        "GN_PEANUTS",
+        Material.PUMPKIN_SEEDS,
+        "Peanuts"
+    );
+
+    public static final SlimefunItemStack BEANS = ThemedItemStack.ingredient(
+        "GN_BEANS",
+        Material.BEETROOT_SEEDS,
+        "Beans"
+    );
+
+    public static final SlimefunItemStack PEAS = ThemedItemStack.ingredient(
+        "GN_PEAS",
+        Material.WHEAT_SEEDS,
+        "Peas"
+    );
+
+    public static final SlimefunItemStack ASPARAGUS = ThemedItemStack.ingredient(
+        "GN_ASPARAGUS",
+        Material.BAMBOO,
+        "Asparagus"
+    );
+
+    public static final SlimefunItemStack CAULIFLOWER = ThemedItemStack.ingredient(
+        "GN_CAULIFLOWER",
+        Material.BIRCH_SAPLING,
+        "Cauliflower"
+    );
+
     // -- Grown from trees --
 
     public static final SlimefunItemStack LYCHEE = ThemedItemStack.ingredient(
@@ -584,6 +628,12 @@ public class GastroStacks {
         "GN_BUTTON_MUSHROOM",
         Material.BROWN_MUSHROOM,
         "Button Mushroom"
+    );
+
+    public static final SlimefunItemStack CLAM = ThemedItemStack.ingredient(
+        "GN_CLAM",
+        Material.NAUTILUS_SHELL,
+        "Clam"
     );
 
     // -- Dropped from mobs --
@@ -703,6 +753,64 @@ public class GastroStacks {
         Material.COOKED_COD,
         "Cooked Pike"
     );
+    
+    public static final SlimefunItemStack RAW_TUNA = ThemedItemStack.ingredient(
+        "GN_RAW_TUNA",
+        Material.COD,
+        "Raw Pike"
+    );
+
+    public static final SlimefunItemStack COOKED_TUNA = ThemedItemStack.ingredient(
+        "GN_COOKED_TUNA",
+        Material.COOKED_COD,
+        "Cooked Tuna"
+    );
+    
+    public static final SlimefunItemStack SHRIMP = ThemedItemStack.ingredient(
+        "GN_SHRIMP",
+        Material.COD,
+        "Shrimp"
+    );
+
+    static {
+        WildHarvestListener.registerDrops(
+            Material.GRASS,
+            RICE, QUINOA, OATS, SOYBEANS, BARLEY_SEEDS, RYE_SEEDS, SORGHUM_SEEDS, TURNIP_SEEDS, SQUASH_SEEDS,
+            CELERY, BOK_CHOY, SNOW_PEAS, BROCCOLI, WASABI_PLANT, LEMONGRASS, CUCUMBER, BASIL, SPINACH,
+            BRUSSLES_SPROUTS, MINT, CHILI_PEPPER, PARSLEY, CASSAVA, LENTILS, PEANUTS, BEANS, PEAS, ASPARAGUS,
+            CAULIFLOWER, LYCHEE_SAPLING, PERSIMMON_SAPLING, BANANA_SAPLING, VANILLA_SAPLING
+        );
+
+        WildHarvestListener.registerDrops(
+            Material.FERN,
+            FIDDLEHEADS, CELERY, BOK_CHOY, SNOW_PEAS, BROCCOLI, WASABI_PLANT, LEMONGRASS, CUCUMBER, BASIL, SPINACH,
+            BRUSSLES_SPROUTS, MINT, CHILI_PEPPER, PARSLEY, CASSAVA, LENTILS, PEANUTS, BEANS, PEAS, ASPARAGUS,
+            CAULIFLOWER
+        );
+
+        WildHarvestListener.registerDrops(
+            Material.PODZOL,
+            TRUFFLES, ENOKI_MUSHROOMS, KING_OYSTER_MUSHROOM, BUTTON_MUSHROOM
+        );
+
+        WildHarvestListener.registerDrops(
+            Material.MYCELIUM,
+            TRUFFLES, ENOKI_MUSHROOMS, KING_OYSTER_MUSHROOM, BUTTON_MUSHROOM
+        );
+
+        WildHarvestListener.registerDrops(
+            Material.SEAGRASS, CLAM);
+
+        WildHarvestListener.registerDrops(EntityType.GOAT, RAW_CHEVON);
+        WildHarvestListener.registerDrops(EntityType.FROG, FROG_LEG);
+        WildHarvestListener.registerDrops(EntityType.SPIDER, GIANT_SPIDER_LEG);
+        WildHarvestListener.registerDrops(EntityType.SALMON, SALMON_ROE);
+        WildHarvestListener.registerDrops(EntityType.GUARDIAN, GUARDIAN_FIN);
+        WildHarvestListener.registerDrops(EntityType.SQUID, RAW_SQUID);
+
+        WildHarvestListener.registerFishingDrops(Material.COD, RAW_MACKEREL, RAW_EEL, RAW_TROUT, SHRIMP);
+        WildHarvestListener.registerFishingDrops(Material.SALMON, RAW_BASS, RAW_CARP, RAW_PIKE, RAW_TUNA);
+    }
 
     // -- From traps --
 
@@ -719,10 +827,9 @@ public class GastroStacks {
     );
     public static final SlimefunItemStack COOKED_TURKEY = ThemedItemStack.ingredient(
         "GN_COOKED_TURKEY",
-        Material.CHICKEN,
+        Material.COOKED_CHICKEN,
         "Cooked Turkey"
     );
-
 
     // ---- Food ----
 
@@ -737,7 +844,13 @@ public class GastroStacks {
     public static final SlimefunItemStack BARLEY_FLOUR = ThemedItemStack.ingredient(
         "GN_BARLEY_FLOUR",
         Material.SUGAR,
-        "Cooked Rice"
+        "Barley Flour"
+    );
+
+    public static final SlimefunItemStack DOUGH = ThemedItemStack.ingredient(
+        "GN_DOUGH",
+        Material.POTATO,
+        "Dough"
     );
 
     public static final SlimefunItemStack TOAST = ThemedItemStack.ingredient(
@@ -746,9 +859,9 @@ public class GastroStacks {
         "Toast"
     );
 
-    public static final SlimefunItemStack ENGLISH_MUFFIN = ThemedItemStack.ingredient(
-        "GN_ENGLISH_MUFFIN",
-        Material.BREAD,
+    public static final SlimefunItemStack PEANUT_BUTTER = ThemedItemStack.ingredient(
+        "GN_PEANUT_BUTTER",
+        Material.HONEY_BOTTLE,
         "Toast"
     );
 
@@ -794,6 +907,18 @@ public class GastroStacks {
         "Ground Beef"
     );
 
+    public static final SlimefunItemStack BAKED_BEANS = ThemedItemStack.ingredient(
+        "GN_BAKED_BEANS",
+        Material.BEETROOT_SEEDS,
+        "Baked Beans"
+    );
+
+    public static final SlimefunItemStack SOY_SAUCE = ThemedItemStack.ingredient(
+        "GN_SOY_SAUCE",
+        Material.POTION, // TODO: Color
+        "Soy Sauce"
+    );
+
     // -- Cuisine --
 
     // Sandwiches
@@ -804,7 +929,7 @@ public class GastroStacks {
         "PB&J Sandwich",
         8,
         1d,
-        FoodEffect.chanceOf(FoodEffect.positivePotionEffect(PotionEffectType.INCREASE_DAMAGE, 90), 50)
+        FoodEffect.chanceOf(FoodEffect.positivePotionEffect(PotionEffectType.INCREASE_DAMAGE, 90), 0.5)
     );
 
     public static final FoodItemStack MARMALADE_SANDWICH = FoodItemStack.of(
@@ -816,15 +941,14 @@ public class GastroStacks {
         FoodEffect.positivePotionEffect(PotionEffectType.INCREASE_DAMAGE, 30)
     );
 
-    public static final FoodItemStack BAKED_BEAN_SANDWICH = FoodItemStack.of(
-        "GN_BAKED_BEAN_SANDWICH",
+    public static final FoodItemStack BAKED_BEANS_AND_TOAST = FoodItemStack.of(
+        "GN_BAKED_BEANS_AND_TOAST",
         HeadTextures.NONE,
-        "Baked Bean Sandwich",
+        "Baked Beans and Toast",
         8,
         1d,
         new FoodEffect[] {
-            FoodEffect.chanceOf(FoodEffect.positivePotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 90), 50),
-            FoodEffect.chanceOf(FoodEffect.negativePotionEffect(PotionEffectType.CONFUSION, 5), 5)
+            FoodEffect.chanceOf(FoodEffect.positivePotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 90), 0.5)
         }
     );
 
@@ -843,7 +967,7 @@ public class GastroStacks {
         "Breakfast Sandwich",
         8,
         1d,
-        FoodEffect.chanceOf(FoodEffect.positivePotionEffect(PotionEffectType.REGENERATION, 90), 50)
+        FoodEffect.chanceOf(FoodEffect.positivePotionEffect(PotionEffectType.REGENERATION, 90), 0.5)
     );
 
     public static final FoodItemStack HAM_SANDWICH = FoodItemStack.of(
@@ -855,13 +979,13 @@ public class GastroStacks {
         FoodEffect.positivePotionEffect(PotionEffectType.REGENERATION, 30)
     );
 
-    public static final FoodItemStack CHICKEN_SALAD_SANDWICH = FoodItemStack.of(
-        "GN_CHICKEN_SALAD_SANDWICH",
+    public static final FoodItemStack CHICKEN_SANDWICH = FoodItemStack.of(
+        "GN_CHICKEN_SANDWICH",
         HeadTextures.NONE,
         "Chicken Salad Sandwich",
         8,
         1d,
-        FoodEffect.chanceOf(FoodEffect.positivePotionEffect(PotionEffectType.SPEED, 90), 50)
+        FoodEffect.chanceOf(FoodEffect.positivePotionEffect(PotionEffectType.SPEED, 90), 0.5)
     );
 
     public static final FoodItemStack EGG_SALAD_SANDWICH = FoodItemStack.of(
@@ -873,19 +997,19 @@ public class GastroStacks {
         FoodEffect.positivePotionEffect(PotionEffectType.SPEED, 30)
     );
 
-    public static final FoodItemStack CLUB_SANDWICH = FoodItemStack.of(
-        "GN_CLUB_SANDWICH",
-        HeadTextures.NONE,
-        "Club Sandwich",
-        8,
-        1d,
-        FoodEffect.chanceOf(FoodEffect.positivePotionEffect(PotionEffectType.ABSORPTION, 90), 50)
-    );
-
     public static final FoodItemStack ROAST_BEEF_SANDWICH = FoodItemStack.of(
         "GN_ROAST_BEEF_SANDWICH",
         HeadTextures.NONE,
         "Roast Beef Sandwich",
+        8,
+        1d,
+        FoodEffect.chanceOf(FoodEffect.positivePotionEffect(PotionEffectType.ABSORPTION, 90), 0.5)
+    );
+
+    public static final FoodItemStack CLUB_SANDWICH = FoodItemStack.of(
+        "GN_CLUB_SANDWICH",
+        HeadTextures.NONE,
+        "Club Sandwich",
         8,
         1d,
         FoodEffect.positivePotionEffect(PotionEffectType.ABSORPTION, 30)
@@ -929,7 +1053,7 @@ public class GastroStacks {
     );
 
     public static final FoodItemStack FRIED_SHRIMP = FoodItemStack.of(
-        "GN_PAN_SEARED_SALMON",
+        "GN_FRIED_SHRIMP",
         HeadTextures.NONE,
         "Fried Shrimp",
         3,
@@ -938,7 +1062,7 @@ public class GastroStacks {
     );
 
     public static final FoodItemStack TEMPURA_SHRIMP = FoodItemStack.of(
-        "GN_PAN_SEARED_SALMON",
+        "GN_TEMPURA_SHRIMP",
         HeadTextures.NONE,
         "Tempura Shrimp",
         4,
@@ -947,7 +1071,7 @@ public class GastroStacks {
     );
 
     public static final FoodItemStack TEMPURA_BROCCOLI = FoodItemStack.of(
-        "GN_PAN_SEARED_SALMON",
+        "GN_TEMPURA_BROCCOLI",
         HeadTextures.NONE,
         "Tempura Broccoli",
         3,
@@ -974,9 +1098,18 @@ public class GastroStacks {
         1d
     );
 
+    public static final FoodItemStack GLOWING_SQUID_INK_PASTA = FoodItemStack.of(
+        "GN_GLOWING_SQUID_INK_PASTA",
+        HeadTextures.NONE,
+        "Glowing Squid Ink Pasta",
+        6,
+        1d,
+        FoodEffect.positivePotionEffect(PotionEffectType.GLOWING, 120, 0)
+    );
+
     public static final FoodItemStack CHICKEN_RAVIOLI = FoodItemStack.of(
         "GN_CHICKEN_RAVIOLI",
-        HeadTextures.NONE,
+        HeadTextures.PASTA,
         "Chicken Ravioli",
         10,
         1d,
@@ -985,7 +1118,7 @@ public class GastroStacks {
 
     public static final FoodItemStack MUSHROOM_RAVIOLI = FoodItemStack.of(
         "GN_MUSHROOM_RAVIOLI",
-        HeadTextures.NONE,
+        HeadTextures.PASTA,
         "Mushroom Ravioli",
         8,
         1d,
@@ -994,22 +1127,45 @@ public class GastroStacks {
 
     // Soups and Stews
 
-    public static final FoodItemStack PORRIDGE = FoodItemStack.of(
-        "GN_PORRIDGE",
-        HeadTextures.NONE,
+    public static final FoodItemStack OATMEAL = FoodItemStack.of(
+        "GN_OATMEAL",
+        HeadTextures.PORRIDGE,
         "Porridge",
         6,
         1.75,
         new FoodEffect[] {
             FoodEffect.removePotionEffect(PotionEffectType.POISON),
-            FoodEffect.removePotionEffect(PotionEffectType.WITHER),
+            FoodEffect.removePotionEffect(PotionEffectType.HUNGER)
+        }
+    );
+
+    public static final FoodItemStack BARLEY_PORRIDGE = FoodItemStack.of(
+        "GN_BARLEY_PORRIDGE",
+        HeadTextures.PORRIDGE,
+        "Porridge",
+        6,
+        1.75,
+        new FoodEffect[] {
+            FoodEffect.removePotionEffect(PotionEffectType.POISON),
+            FoodEffect.removePotionEffect(PotionEffectType.HUNGER)
+        }
+    );
+
+    public static final FoodItemStack CONGEE = FoodItemStack.of(
+        "GN_CONGEE",
+        HeadTextures.PORRIDGE,
+        "Porridge",
+        6,
+        1.75,
+        new FoodEffect[] {
+            FoodEffect.removePotionEffect(PotionEffectType.POISON),
             FoodEffect.removePotionEffect(PotionEffectType.HUNGER)
         }
     );
 
     public static final FoodItemStack CHICKEN_SOUP = FoodItemStack.of(
         "GN_CHICKEN_SOUP",
-        HeadTextures.NONE,
+        HeadTextures.SOUP,
         "Chicken Soup",
         6,
         1.75,
@@ -1021,7 +1177,7 @@ public class GastroStacks {
 
     public static final FoodItemStack CHICKEN_NOODLE_SOUP = FoodItemStack.of(
         "GN_CHICKEN_NOODLE_SOUP",
-        HeadTextures.NONE,
+        HeadTextures.SOUP,
         "Chicken Noodle Soup",
         8,
         1.75,
@@ -1034,7 +1190,7 @@ public class GastroStacks {
 
     public static final FoodItemStack SPLIT_PEA_SOUP = FoodItemStack.of(
         "GN_SPLIT_PEA_SOUP",
-        HeadTextures.NONE,
+        HeadTextures.SOUP,
         "Split Pea Soup",
         6,
         1.75,
@@ -1043,7 +1199,7 @@ public class GastroStacks {
 
     public static final FoodItemStack HAM_AND_SPLIT_PEA_SOUP = FoodItemStack.of(
         "GN_HAM_AND_SPLIT_PEA_SOUP",
-        HeadTextures.NONE,
+        HeadTextures.SOUP,
         "Ham and Split Pea Soup",
         8,
         1.75,
@@ -1052,7 +1208,7 @@ public class GastroStacks {
 
     public static final FoodItemStack LENTIL_SOUP = FoodItemStack.of(
         "GN_LENTIL_SOUP",
-        HeadTextures.NONE,
+        HeadTextures.SOUP,
         "Lentil Soup",
         8,
         1.75,
@@ -1061,7 +1217,7 @@ public class GastroStacks {
 
     public static final FoodItemStack BEEF_AND_LENTIL_SOUP = FoodItemStack.of(
         "GN_BEEF_AND_LENTIL_SOUP",
-        HeadTextures.NONE,
+        HeadTextures.SOUP,
         "Beef and Lentil Soup",
         10,
         1.75,
@@ -1070,7 +1226,7 @@ public class GastroStacks {
 
     public static final FoodItemStack CARROT_SOUP = FoodItemStack.of(
         "GN_CARROT_SOUP",
-        HeadTextures.NONE,
+        HeadTextures.SOUP,
         "Carrot Soup",
         8,
         1.75,
@@ -1079,7 +1235,7 @@ public class GastroStacks {
 
     public static final FoodItemStack MUSHROOM_BARLEY_SOUP = FoodItemStack.of(
         "GN_MUSHROOM_BARLEY_SOUP",
-        HeadTextures.NONE,
+        HeadTextures.SOUP,
         "Mushroom Barley Soup",
         8,
         2d,
@@ -1088,7 +1244,7 @@ public class GastroStacks {
 
     public static final FoodItemStack CHICKEN_BARLEY_SOUP = FoodItemStack.of(
         "GN_CHICKEN_BARLEY_SOUP",
-        HeadTextures.NONE,
+        HeadTextures.SOUP,
         "Chicken Barley Soup",
         10,
         2d,
@@ -1097,7 +1253,7 @@ public class GastroStacks {
 
     public static final FoodItemStack BEEF_BARLEY_SOUP = FoodItemStack.of(
         "GN_BEEF_BARLEY_SOUP",
-        HeadTextures.NONE,
+        HeadTextures.SOUP,
         "Beef Barley Soup",
         12,
         2d,
@@ -1106,16 +1262,16 @@ public class GastroStacks {
 
     public static final FoodItemStack CREAM_OF_MUSHROOM_SOUP = FoodItemStack.of(
         "GN_CREAM_OF_MUSHROOM_SOUP",
-        HeadTextures.NONE,
+        HeadTextures.CREAM_SOUP,
         "Cream of Mushroom Soup",
         7,
         1.75,
         FoodEffect.heal(2)
     );
 
-    public static final FoodItemStack CREAM_OF_CELERY_SOUP = FoodItemStack.of(
-        "GN_CREAM_OF_CELERY_SOUP",
-        HeadTextures.NONE,
+    public static final FoodItemStack CREAM_OF_BROCCOLI_SOUP = FoodItemStack.of(
+        "GN_CREAM_OF_BROCCOLI_SOUP",
+        HeadTextures.CREAM_SOUP,
         "Cream of Celery Soup",
         8,
         1.75,
@@ -1124,7 +1280,7 @@ public class GastroStacks {
 
     public static final FoodItemStack CREAM_OF_ASPARAGUS_SOUP = FoodItemStack.of(
         "GN_CREAM_OF_ASPARAGUS_SOUP",
-        HeadTextures.NONE,
+        HeadTextures.CREAM_SOUP,
         "Cream of Asparagus Soup",
         8,
         1.75,
@@ -1133,7 +1289,7 @@ public class GastroStacks {
 
     public static final FoodItemStack CREAM_OF_CAULIFLOWER_SOUP = FoodItemStack.of(
         "GN_CREAM_OF_CAULIFLOWER_SOUP",
-        HeadTextures.NONE,
+        HeadTextures.CREAM_SOUP,
         "Cream of Cauliflower Soup",
         8,
         1.75,
@@ -1142,7 +1298,7 @@ public class GastroStacks {
 
     public static final FoodItemStack MISO_SOUP = FoodItemStack.of(
         "GN_MISO_SOUP",
-        HeadTextures.NONE,
+        HeadTextures.MISO_SOUP,
         "Miso Soup",
         4,
         1.75,
@@ -1151,7 +1307,7 @@ public class GastroStacks {
 
     public static final FoodItemStack BROCCOLI_CHOWDER = FoodItemStack.of(
         "GN_BROCCOLI_CHOWDER",
-        HeadTextures.NONE,
+        HeadTextures.CHOWDER,
         "Broccoli Chowder",
         8,
         1.75
@@ -1159,7 +1315,7 @@ public class GastroStacks {
 
     public static final FoodItemStack SALMON_CHOWDER = FoodItemStack.of(
         "GN_SALMON_CHOWDER",
-        HeadTextures.NONE,
+        HeadTextures.CHOWDER,
         "Salmon Chowder",
         10,
         1.75
@@ -1167,7 +1323,7 @@ public class GastroStacks {
 
     public static final FoodItemStack POTATO_CHOWDER = FoodItemStack.of(
         "GN_POTATO_CHOWDER",
-        HeadTextures.NONE,
+        HeadTextures.CHOWDER,
         "Potato Chowder",
         8,
         1.75
@@ -1175,7 +1331,7 @@ public class GastroStacks {
 
     public static final FoodItemStack CORN_CHOWDER = FoodItemStack.of(
         "GN_CORN_CHOWDER",
-        HeadTextures.NONE,
+        HeadTextures.CHOWDER,
         "Corn Chowder",
         8,
         1.75
@@ -1183,7 +1339,7 @@ public class GastroStacks {
 
     public static final FoodItemStack BEEF_STEW = FoodItemStack.of(
         "GN_BEEF_STEW",
-        HeadTextures.NONE,
+        HeadTextures.STEW,
         "Beef Stew",
         10,
         1.75,
@@ -1192,24 +1348,16 @@ public class GastroStacks {
 
     public static final FoodItemStack CLAM_STEW = FoodItemStack.of(
         "GN_CLAM_STEW",
-        HeadTextures.NONE,
+        HeadTextures.STEW,
         "Clam Stew",
         6,
         1.75,
         FoodEffect.warm(50)
     );
-
-    public static final FoodItemStack BEET_BORSCHT = FoodItemStack.of(
-        "GN_BEET_BORSCHT",
-        HeadTextures.NONE,
-        "Beet Borscht",
-        6,
-        1.75
-    );
-
+    
     public static final FoodItemStack CRAB_HOTPOT = FoodItemStack.of(
         "GN_CRAB_HOTPOT",
-        HeadTextures.NONE,
+        HeadTextures.STEW,
         "Crab Hotpot",
         12,
         1.75,
@@ -1218,7 +1366,7 @@ public class GastroStacks {
 
     public static final FoodItemStack BBQ_STEAK = FoodItemStack.of(
         "GN_BBQ_STEAK",
-        HeadTextures.NONE,
+        Material.COOKED_BEEF,
         "BBQ Steak",
         12,
         1.5
@@ -1226,7 +1374,7 @@ public class GastroStacks {
 
     public static final FoodItemStack BBQ_PORK = FoodItemStack.of(
         "GN_BBQ_PORK",
-        HeadTextures.NONE,
+        Material.COOKED_PORKCHOP,
         "BBQ Pork",
         12,
         1.5
@@ -1234,7 +1382,7 @@ public class GastroStacks {
 
     public static final FoodItemStack BBQ_CHICKEN = FoodItemStack.of(
         "GN_BBQ_CHICKEN",
-        HeadTextures.NONE,
+        Material.COOKED_CHICKEN,
         "BBQ Chicken",
         9,
         1.5
@@ -1242,7 +1390,7 @@ public class GastroStacks {
 
     public static final FoodItemStack BBQ_MUTTON = FoodItemStack.of(
         "GN_BBQ_MUTTON",
-        HeadTextures.NONE,
+        Material.COOKED_MUTTON,
         "BBQ Mutton",
         9,
         1.5
