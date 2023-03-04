@@ -1,5 +1,7 @@
 package io.github.schntgaispock.gastronomicon.core.recipes.components;
 
+import javax.annotation.Nullable;
+
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
@@ -14,6 +16,8 @@ import lombok.Getter;
  * Examples:
  * - The wool in a bed
  * - The stick in a stone sword
+ * 
+ * @author SchnTgaiSpock
  */
 @Getter
 public class SingleRecipeComponent extends RecipeComponent<ItemStack> {
@@ -25,7 +29,7 @@ public class SingleRecipeComponent extends RecipeComponent<ItemStack> {
     // SingleRecipeComponents do not have to deal with group components in recipes
     @Override
     @SuppressWarnings("null")
-    public boolean matches(ItemStack item) {
+    public boolean matches(@Nullable ItemStack item) {
         if (item == null) {
             return component.getType() == Material.AIR;
         } else if (component instanceof final SlimefunItemStack sfStack) {

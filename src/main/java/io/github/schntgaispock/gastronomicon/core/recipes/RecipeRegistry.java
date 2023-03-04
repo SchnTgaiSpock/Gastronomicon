@@ -8,6 +8,7 @@ import java.util.Set;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
 
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
@@ -16,10 +17,16 @@ import io.github.schntgaispock.gastronomicon.core.recipes.components.GroupRecipe
 import io.github.schntgaispock.gastronomicon.core.slimefun.GastroRecipeType;
 import lombok.experimental.UtilityClass;
 
+/**
+ * Stores information about all the recipes in Gastronomicon
+ * 
+ * @author SchnTgaiSpock
+ */
 @UtilityClass
 public class RecipeRegistry {
 
     private static final Map<GastroRecipeType, Set<GastroRecipe>> recipesByType = new HashMap<>();
+    private static final Map<GastroRecipeType, Map<Integer, GastroRecipe>> savedRecipes = new HashMap<>();
     private static final Map<ItemStack, Set<GroupRecipeComponent>> groupsByItemStack = new HashMap<>();
     private static final Map<NamespacedKey, GroupRecipeComponent> groupsById = new HashMap<>();
 
@@ -81,6 +88,22 @@ public class RecipeRegistry {
     @Nonnull
     public static Set<GastroRecipe> getRecipes(@Nonnull GastroRecipeType type) {
         return Collections.unmodifiableSet(recipesByType.getOrDefault(type, new HashSet<>()));
+    }
+
+    @ParametersAreNonnullByDefault
+    public static void saveRecipe(GastroRecipeType type, int hash, GastroRecipe recipe) {
+        if (savedRecipes.containsKey(type)) {
+            savedRecipes.get(type).put(hash, recipe);
+        } else {
+            final Map<Integer, GastroRecipe> saved = new HashMap<>();
+            saved.put(hash, recipe);
+            savedRecipes.put(type, saved);
+        }
+    }
+
+    @Nullable
+    public static GastroRecipe getSavedRecipe(GastroRecipeType type, int hash) {
+        return savedRecipes.containsKey(type) ? savedRecipes.get(type).get(hash) : null;
     }
 
 }

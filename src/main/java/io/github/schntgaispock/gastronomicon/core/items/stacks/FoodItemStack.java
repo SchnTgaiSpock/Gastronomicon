@@ -12,10 +12,18 @@ import io.github.schntgaispock.gastronomicon.core.items.food.FoodEffect;
 import io.github.schntgaispock.gastronomicon.util.NumberUtil;
 import io.github.schntgaispock.gastronomicon.util.item.HeadTextures;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
+import io.github.thebusybiscuit.slimefun4.utils.ChatUtils;
 import io.github.thebusybiscuit.slimefun4.utils.LoreBuilder;
 import lombok.Getter;
+import lombok.ToString;
 
+/**
+ * A FoodItemStack stores the effects of a GastroFood.
+ * 
+ * @author SchnTgaiSpock
+ */
 @Getter
+@ToString(exclude = "perfectLore")
 public class FoodItemStack extends SlimefunItemStack {
 
     private final int hunger;
@@ -87,8 +95,6 @@ public class FoodItemStack extends SlimefunItemStack {
     @ParametersAreNonnullByDefault
     public static FoodItemStack of(String id, Material material, String name, int hunger, double saturationRatio,
         FoodEffect[] effects, String... lore) {
-        if (id == null || material == null)
-            return null;
         return new FoodItemStack(id, material, GastroTheme.REGULAR_FOOD.getColor() + name, hunger,
             NumberUtil.roundToPrecision(hunger * saturationRatio, 1), effects,
             getFormattedLore(false, hunger, effects, lore), getFormattedLore(true, hunger, effects, lore));
@@ -130,7 +136,7 @@ public class FoodItemStack extends SlimefunItemStack {
 
     public FoodItemStack getPerfect() {
         return new FoodItemStack("GN_PERFECT" + getItemId().substring(2), getTexture(),
-            GastroTheme.PERFECT_FOOD.getColor() + getDisplayName(), hunger, saturation, effects,
-            perfectLore, perfectLore);
+            GastroTheme.PERFECT_FOOD.getColor() + ChatUtils.removeColorCodes(getDisplayName()), hunger, saturation,
+            effects, perfectLore, perfectLore);
     }
 }

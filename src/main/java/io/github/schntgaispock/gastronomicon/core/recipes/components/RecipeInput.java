@@ -14,6 +14,8 @@ import lombok.ToString;
 /**
  * Stores information about the input of a {@link GastroRecipe}. Does not
  * include tools.
+ * 
+ * @author SchnTgaiSpock
  */
 @Getter
 @ToString
@@ -39,6 +41,9 @@ public class RecipeInput {
         this.container = container;
     }
 
+    /**
+     * @return The items to display in the Slimefun guide
+     */
     public ItemStack[] getDisplayIngredients() {
         return Arrays.stream(ingredients)
                 .map(ingredient -> ingredient == null ? new ItemStack(Material.AIR) : ingredient.getComponent())

@@ -2,6 +2,8 @@ package io.github.schntgaispock.gastronomicon.core.recipes.components;
 
 import java.util.Set;
 
+import javax.annotation.Nullable;
+
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
@@ -18,6 +20,8 @@ import lombok.Getter;
  * <li>The wood in a bed
  * <li>The cobblestone in a stone sword
  * </ul>
+ * 
+ * @author SchnTgaiSpock
  */
 @Getter
 public class GroupRecipeComponent extends RecipeComponent<Set<ItemStack>> {
@@ -32,7 +36,7 @@ public class GroupRecipeComponent extends RecipeComponent<Set<ItemStack>> {
 
     @Override
     @SuppressWarnings("null")
-    public boolean matches(ItemStack item) {
+    public boolean matches(@Nullable ItemStack item) {
         if (item == null) {
             return false;
         } else {

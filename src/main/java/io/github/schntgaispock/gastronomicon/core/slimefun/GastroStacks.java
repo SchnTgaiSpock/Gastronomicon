@@ -1109,7 +1109,7 @@ public class GastroStacks {
 
     public static final FoodItemStack CHICKEN_RAVIOLI = FoodItemStack.of(
         "GN_CHICKEN_RAVIOLI",
-        HeadTextures.PASTA,
+        HeadTextures.PASTA_RED,
         "Chicken Ravioli",
         10,
         1d,
@@ -1118,7 +1118,7 @@ public class GastroStacks {
 
     public static final FoodItemStack MUSHROOM_RAVIOLI = FoodItemStack.of(
         "GN_MUSHROOM_RAVIOLI",
-        HeadTextures.PASTA,
+        HeadTextures.PASTA_RED,
         "Mushroom Ravioli",
         8,
         1d,
