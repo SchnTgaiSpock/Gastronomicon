@@ -61,9 +61,9 @@ public class GastroFood extends SimpleGastroFood {
         ItemStack[] ingredients, @Nullable ItemStack container, ItemStack topRightDisplayItem, ItemStack[] tools) {
         this(itemGroup, item, topRightDisplayItem, (GastroRecipe) switch (shapedness) {
             case SHAPELESS -> new ShapelessGastroRecipe(recipeType, ingredients, container, Set.of(tools), item,
-                item.getPerfect());
+                item.asPerfect());
             default -> new ShapedGastroRecipe(recipeType, ingredients, container, Set.of(tools), item,
-                item.getPerfect());
+                item.asPerfect());
         });
     }
 
@@ -162,7 +162,7 @@ public class GastroFood extends SimpleGastroFood {
         if (!isPerfect()) {
             new GastroFood(
                 getItemGroup(),
-                getItem().getPerfect(),
+                getItem().asPerfect(),
                 true, topRightDisplayItem,
                 getGastroRecipe()).hide().register(addon);
         } else {

@@ -31,10 +31,11 @@ public class FoodItemStack extends SlimefunItemStack {
     private final String texture;
     private final @Nonnull FoodEffect[] effects;
     private final String[] perfectLore;
+    private final boolean perfect;
 
     @ParametersAreNonnullByDefault
     protected FoodItemStack(String id, String texture, String name, int hunger, double saturation, FoodEffect[] effects,
-        String[] lore, String[] perfectLore) {
+        String[] lore, String[] perfectLore, boolean perfect) {
         super(id, texture, name, lore);
 
         this.hunger = hunger;
@@ -42,12 +43,13 @@ public class FoodItemStack extends SlimefunItemStack {
         this.texture = texture;
         this.effects = effects;
         this.perfectLore = perfectLore;
+        this.perfect = perfect;
 
     }
 
     @ParametersAreNonnullByDefault
     protected FoodItemStack(String id, Material material, String name, int hunger, double saturation,
-        FoodEffect[] effects, String[] lore, String[] perfectLore) {
+        FoodEffect[] effects, String[] lore, String[] perfectLore, boolean perfect) {
         super(id, material, name, lore);
 
         this.hunger = hunger;
@@ -55,18 +57,19 @@ public class FoodItemStack extends SlimefunItemStack {
         this.texture = HeadTextures.NONE;
         this.effects = effects;
         this.perfectLore = perfectLore;
+        this.perfect = perfect;
     }
 
     @ParametersAreNonnullByDefault
     protected FoodItemStack(String id, String texture, String name, int hunger, double saturation, FoodEffect[] effects,
-        String... lore) {
-        this(id, texture, name, hunger, saturation, effects, lore, lore);
+        String[] lore, boolean perfect) {
+        this(id, texture, name, hunger, saturation, effects, lore, lore, perfect);
     }
 
     @ParametersAreNonnullByDefault
     protected FoodItemStack(String id, Material material, String name, int hunger, double saturation,
-        FoodEffect[] effects, String... lore) {
-        this(id, material, name, hunger, saturation, effects, lore, lore);
+        FoodEffect[] effects, String[] lore, boolean perfect) {
+        this(id, material, name, hunger, saturation, effects, lore, lore, perfect);
     }
 
     private static String[] getFormattedLore(boolean isPerfect, int hunger, FoodEffect[] effects, String[] lore) {
@@ -94,49 +97,26 @@ public class FoodItemStack extends SlimefunItemStack {
 
     @ParametersAreNonnullByDefault
     public static FoodItemStack of(String id, Material material, String name, int hunger, double saturationRatio,
-        FoodEffect[] effects, String... lore) {
-        return new FoodItemStack(id, material, GastroTheme.REGULAR_FOOD.getColor() + name, hunger,
+        FoodEffect[] effects, String[] lore, String[] perfectLore) {
+            return new FoodItemStack(id, material, GastroTheme.REGULAR_FOOD.getColor() + name, hunger,
             NumberUtil.roundToPrecision(hunger * saturationRatio, 1), effects,
-            getFormattedLore(false, hunger, effects, lore), getFormattedLore(true, hunger, effects, lore));
-    }
-
-    @ParametersAreNonnullByDefault
-    public static FoodItemStack of(String id, Material material, String name, int hunger, double saturationRatio,
-        FoodEffect effect, String... lore) {
-        return of(id, material, name, hunger, Math.round(hunger * saturationRatio), new FoodEffect[] { effect }, lore);
-    }
-
-    @ParametersAreNonnullByDefault
-    public static FoodItemStack of(String id, Material material, String name, int hunger, double saturationRatio,
-        String... lore) {
-        return of(id, material, name, hunger, Math.round(hunger * saturationRatio), new FoodEffect[] {}, lore);
+            getFormattedLore(false, hunger, effects, lore), getFormattedLore(true, hunger, effects, perfectLore), false);
     }
 
     @ParametersAreNonnullByDefault
     public static FoodItemStack of(String id, String texture, String name, int hunger, double saturationRatio,
-        FoodEffect[] effects, String... lore) {
-        if (id == null || texture == null)
-            return null;
-        return new FoodItemStack(id, texture, GastroTheme.REGULAR_FOOD.getColor() + name, hunger,
+        FoodEffect[] effects, String[] lore, String[] perfectLore) {
+            return new FoodItemStack(id, texture, GastroTheme.REGULAR_FOOD.getColor() + name, hunger,
             NumberUtil.roundToPrecision(hunger * saturationRatio, 1), effects,
-            getFormattedLore(false, hunger, effects, lore), getFormattedLore(true, hunger, effects, lore));
+            getFormattedLore(false, hunger, effects, lore), getFormattedLore(true, hunger, effects, perfectLore), false);
     }
 
-    @ParametersAreNonnullByDefault
-    public static FoodItemStack of(String id, String texture, String name, int hunger, double saturationRatio,
-        FoodEffect effect, String... lore) {
-        return of(id, texture, name, hunger, Math.round(hunger * saturationRatio), new FoodEffect[] { effect }, lore);
-    }
-
-    @ParametersAreNonnullByDefault
-    public static FoodItemStack of(String id, String texture, String name, int hunger, double saturationRatio,
-        String... lore) {
-        return of(id, texture, name, hunger, Math.round(hunger * saturationRatio), new FoodEffect[] {}, lore);
-    }
-
-    public FoodItemStack getPerfect() {
+    public FoodItemStack asPerfect() {
+        if (isPerfect()) {
+            return this;
+        }
         return new FoodItemStack("GN_PERFECT" + getItemId().substring(2), getTexture(),
             GastroTheme.PERFECT_FOOD.getColor() + ChatUtils.removeColorCodes(getDisplayName()), hunger, saturation,
-            effects, perfectLore, perfectLore);
+            effects, perfectLore, perfectLore, true);
     }
 }

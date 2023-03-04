@@ -12,6 +12,7 @@ import org.bukkit.potion.PotionType;
 
 import io.github.schntgaispock.gastronomicon.api.food.FoodEffect;
 import io.github.schntgaispock.gastronomicon.api.items.FoodItemStack;
+import io.github.schntgaispock.gastronomicon.api.items.FoodItemStackBuilder;
 import io.github.schntgaispock.gastronomicon.api.items.GastroTheme;
 import io.github.schntgaispock.gastronomicon.api.items.ThemedItemStack;
 import io.github.schntgaispock.gastronomicon.core.listeners.WildHarvestListener;
@@ -950,555 +951,487 @@ public class GastroStacks {
 
     // Sandwiches
 
-    public static final FoodItemStack PBJ_SANDWICH = FoodItemStack.of(
-        "GN_PBJ_SANDWICH",
-        HeadTextures.SANDWICH_RED_OCHRE,
-        "PB&J Sandwich",
-        8,
-        1d,
-        FoodEffect.chanceOf(FoodEffect.positivePotionEffect(PotionEffectType.INCREASE_DAMAGE, 90), 0.5)
-    );
+    public static final FoodItemStack PBJ_SANDWICH = new FoodItemStackBuilder()
+        .id("GN_PBJ_SANDWICH")
+        .texture(HeadTextures.SANDWICH_RED_OCHRE)
+        .name("PB&J Sandwich")
+        .hunger(8)
+        .effects(FoodEffect.chanceOf(FoodEffect.positivePotionEffect(PotionEffectType.INCREASE_DAMAGE, 90), 0.5))
+        .build();
 
-    public static final FoodItemStack MARMALADE_SANDWICH = FoodItemStack.of(
-        "GN_MARMALADE_SANDWICH",
-        HeadTextures.SANDWICH_ORANGE,
-        "Marmalade Sandwich",
-        8,
-        1d,
-        FoodEffect.positivePotionEffect(PotionEffectType.INCREASE_DAMAGE, 30)
-    );
+    public static final FoodItemStack MARMALADE_SANDWICH = new FoodItemStackBuilder()
+        .id("GN_MARMALADE_SANDWICH")
+        .texture(HeadTextures.SANDWICH_ORANGE)
+        .name("Marmalade Sandwich")
+        .hunger(8)
+        .effects(FoodEffect.positivePotionEffect(PotionEffectType.INCREASE_DAMAGE, 30))
+        .build();
 
-    public static final FoodItemStack BAKED_BEANS_AND_TOAST = FoodItemStack.of(
-        "GN_BAKED_BEANS_AND_TOAST",
-        HeadTextures.TOAST_ORANGE,
-        "Baked Beans and Toast",
-        8,
-        1d,
-        new FoodEffect[] {
-            FoodEffect.chanceOf(FoodEffect.positivePotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 90), 0.5)
-        }
-    );
+    public static final FoodItemStack BAKED_BEANS_AND_TOAST = new FoodItemStackBuilder()
+        .id("GN_BAKED_BEANS_AND_TOAST")
+        .texture(HeadTextures.TOAST_ORANGE)
+        .name("Baked Beans and Toast")
+        .hunger(8)
+        .effects(FoodEffect.chanceOf(FoodEffect.positivePotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 90), 0.5))
+        .build();
 
-    public static final FoodItemStack TUNA_SANDWICH = FoodItemStack.of(
-        "GN_TUNA_SANDWICH",
-        HeadTextures.SANDWICH_RED_GREEN,
-        "Tuna Sandwich",
-        8,
-        1d,
-        FoodEffect.positivePotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 30)
-    );
+    public static final FoodItemStack TUNA_SANDWICH = new FoodItemStackBuilder()
+        .id("GN_TUNA_SANDWICH")
+        .texture(HeadTextures.SANDWICH_RED_GREEN)
+        .name("Tuna Sandwich")
+        .hunger(8)
+        .effects(FoodEffect.positivePotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 30))
+        .build();
 
-    public static final FoodItemStack BREAKFAST_SANDWICH = FoodItemStack.of(
-        "GN_BREAKFAST_SANDWICH",
-        HeadTextures.SANDWICH_ORANGE,
-        "Breakfast Sandwich",
-        8,
-        1d,
-        FoodEffect.chanceOf(FoodEffect.positivePotionEffect(PotionEffectType.REGENERATION, 90), 0.5)
-    );
+    public static final FoodItemStack BREAKFAST_SANDWICH = new FoodItemStackBuilder()
+        .id("GN_BREAKFAST_SANDWICH")
+        .texture(HeadTextures.SANDWICH_ORANGE)
+        .name("Breakfast Sandwich")
+        .hunger(8)
+        .effects(FoodEffect.chanceOf(FoodEffect.positivePotionEffect(PotionEffectType.REGENERATION, 90), 0.5))
+        .build();
 
-    public static final FoodItemStack HAM_SANDWICH = FoodItemStack.of(
-        "GN_HAM_SANDWICH",
-        HeadTextures.SANDWICH_ORANGE,
-        "Ham Sandwich",
-        8,
-        1d,
-        FoodEffect.positivePotionEffect(PotionEffectType.REGENERATION, 30)
-    );
+    public static final FoodItemStack HAM_SANDWICH = new FoodItemStackBuilder()
+        .id("GN_HAM_SANDWICH")
+        .texture(HeadTextures.SANDWICH_ORANGE)
+        .name("Ham Sandwich")
+        .hunger(8)
+        .effects(FoodEffect.positivePotionEffect(PotionEffectType.REGENERATION, 30))
+        .build();
 
-    public static final FoodItemStack CHICKEN_SANDWICH = FoodItemStack.of(
-        "GN_CHICKEN_SANDWICH",
-        HeadTextures.SANDWICH_RED_GREEN,
-        "Chicken Salad Sandwich",
-        8,
-        1d,
-        FoodEffect.chanceOf(FoodEffect.positivePotionEffect(PotionEffectType.SPEED, 90), 0.5)
-    );
+    public static final FoodItemStack CHICKEN_SANDWICH = new FoodItemStackBuilder()
+        .id("GN_CHICKEN_SANDWICH")
+        .texture(HeadTextures.SANDWICH_RED_GREEN)
+        .name("Chicken Salad Sandwich")
+        .hunger(8)
+        .effects(FoodEffect.chanceOf(FoodEffect.positivePotionEffect(PotionEffectType.SPEED, 90), 0.5))
+        .build();
 
-    public static final FoodItemStack EGG_SALAD_SANDWICH = FoodItemStack.of(
-        "GN_EGG_SALAD_SANDWICH",
-        HeadTextures.SANDWICH_WHITE_GREEN,
-        "Egg Salad Sandwich",
-        8,
-        1d,
-        FoodEffect.positivePotionEffect(PotionEffectType.SPEED, 30)
-    );
+    public static final FoodItemStack EGG_SALAD_SANDWICH = new FoodItemStackBuilder()
+        .id("GN_EGG_SALAD_SANDWICH")
+        .texture(HeadTextures.SANDWICH_WHITE_GREEN)
+        .name("Egg Salad Sandwich")
+        .hunger(8)
+        .effects(FoodEffect.positivePotionEffect(PotionEffectType.SPEED, 30))
+        .build();
 
-    public static final FoodItemStack ROAST_BEEF_SANDWICH = FoodItemStack.of(
-        "GN_ROAST_BEEF_SANDWICH",
-        HeadTextures.SANDWICH_RED_GREEN,
-        "Roast Beef Sandwich",
-        8,
-        1d,
-        FoodEffect.chanceOf(FoodEffect.positivePotionEffect(PotionEffectType.ABSORPTION, 90), 0.5)
-    );
+    public static final FoodItemStack ROAST_BEEF_SANDWICH = new FoodItemStackBuilder()
+        .id("GN_ROAST_BEEF_SANDWICH")
+        .texture(HeadTextures.SANDWICH_RED_GREEN)
+        .name("Roast Beef Sandwich")
+        .hunger(8)
+        .effects(FoodEffect.chanceOf(FoodEffect.positivePotionEffect(PotionEffectType.ABSORPTION, 90), 0.5))
+        .build();
 
-    public static final FoodItemStack CLUB_SANDWICH = FoodItemStack.of(
-        "GN_CLUB_SANDWICH",
-        HeadTextures.SANDWICH_RED_GREEN,
-        "Club Sandwich",
-        8,
-        1d,
-        FoodEffect.positivePotionEffect(PotionEffectType.ABSORPTION, 30)
-    );
+    public static final FoodItemStack CLUB_SANDWICH = new FoodItemStackBuilder()
+        .id("GN_CLUB_SANDWICH")
+        .texture(HeadTextures.SANDWICH_RED_GREEN)
+        .name("Club Sandwich")
+        .hunger(8)
+        .effects(FoodEffect.positivePotionEffect(PotionEffectType.ABSORPTION, 30))
+        .build();
 
     // Salads
 
-    public static final FoodItemStack GREEK_SALAD = FoodItemStack.of(
-        "GN_GREEK_SALAD",
-        HeadTextures.SALAD,
-        "Greek Salad",
-        5,
-        1d,
-        new FoodEffect[] {
+    public static final FoodItemStack GREEK_SALAD = new FoodItemStackBuilder()
+        .id("GN_GREEK_SALAD")
+        .texture(HeadTextures.SALAD)
+        .name("Greek Salad")
+        .hunger(5)
+        .effects(
             FoodEffect.heal(2),
             FoodEffect.positivePotionEffect(PotionEffectType.ABSORPTION, 30)
-        }
-    );
+        ).build();
 
-    public static final FoodItemStack CAESAR_SALAD = FoodItemStack.of(
-        "GN_CAESAR_SALAD",
-        HeadTextures.SALAD,
-        "Caesar Salad",
-        5,
-        1d,
-        new FoodEffect[] {
+    public static final FoodItemStack CAESAR_SALAD = new FoodItemStackBuilder()
+        .id("GN_CAESAR_SALAD")
+        .texture(HeadTextures.SALAD)
+        .name("Caesar Salad")
+        .hunger(5)
+        .effects(
             FoodEffect.heal(2),
             FoodEffect.positivePotionEffect(PotionEffectType.ABSORPTION, 30)
-        }
-    );
+        ).build();
 
     // Fried
 
-    public static final FoodItemStack PAN_SEARED_SALMON = FoodItemStack.of(
-        "GN_PAN_SEARED_SALMON",
-        Material.COOKED_SALMON,
-        "Pan-seared Salmon",
-        7,
-        1d,
-        FoodEffect.positivePotionEffect(PotionEffectType.ABSORPTION, 30)
-    );
+    public static final FoodItemStack PAN_SEARED_SALMON = new FoodItemStackBuilder()
+        .id("GN_PAN_SEARED_SALMON")
+        .material(Material.COOKED_SALMON)
+        .name("Pan-seared Salmon")
+        .hunger(7)
+        .effects(FoodEffect.positivePotionEffect(PotionEffectType.ABSORPTION, 30))
+        .build();
 
-    public static final FoodItemStack FRIED_SHRIMP = FoodItemStack.of(
-        "GN_FRIED_SHRIMP",
-        Material.NAUTILUS_SHELL,
-        "Fried Shrimp",
-        3,
-        1d,
-        FoodEffect.positivePotionEffect(PotionEffectType.ABSORPTION, 30)
-    );
+    public static final FoodItemStack FRIED_SHRIMP = new FoodItemStackBuilder()
+        .id("GN_FRIED_SHRIMP")
+        .material(Material.NAUTILUS_SHELL)
+        .name("Fried Shrimp")
+        .hunger(3)
+        .effects(FoodEffect.positivePotionEffect(PotionEffectType.ABSORPTION, 30))
+        .build();
 
-    public static final FoodItemStack TEMPURA_SHRIMP = FoodItemStack.of(
-        "GN_TEMPURA_SHRIMP",
-        Material.NAUTILUS_SHELL,
-        "Tempura Shrimp",
-        4,
-        1d,
-        FoodEffect.positivePotionEffect(PotionEffectType.ABSORPTION, 30)
-    );
+    public static final FoodItemStack TEMPURA_SHRIMP = new FoodItemStackBuilder()
+        .id("GN_TEMPURA_SHRIMP")
+        .material(Material.NAUTILUS_SHELL)
+        .name("Tempura Shrimp")
+        .hunger(4)
+        .effects(FoodEffect.positivePotionEffect(PotionEffectType.ABSORPTION, 30))
+        .build();
 
-    public static final FoodItemStack TEMPURA_BROCCOLI = FoodItemStack.of(
-        "GN_TEMPURA_BROCCOLI",
-        Material.BAKED_POTATO,
-        "Tempura Broccoli",
-        3,
-        1d,
-        FoodEffect.positivePotionEffect(PotionEffectType.ABSORPTION, 30)
-    );
+    public static final FoodItemStack TEMPURA_BROCCOLI = new FoodItemStackBuilder()
+        .id("GN_TEMPURA_BROCCOLI")
+        .material(Material.BAKED_POTATO)
+        .name("Tempura Broccoli")
+        .hunger(3)
+        .effects(FoodEffect.positivePotionEffect(PotionEffectType.ABSORPTION, 30))
+        .build();
 
     // Pastas
 
-    public static final FoodItemStack CHICKEN_PESTO_PASTA = FoodItemStack.of(
-        "GN_CHICKEN_PESTO_PASTA",
-        HeadTextures.PASTA_GREEN,
-        "Chicken Pesto Pasta",
-        8,
-        1d,
-        FoodEffect.removePotionEffect(PotionEffectType.WEAKNESS)
-    );
+    public static final FoodItemStack CHICKEN_PESTO_PASTA = new FoodItemStackBuilder()
+        .id("GN_CHICKEN_PESTO_PASTA")
+        .texture(HeadTextures.PASTA_GREEN)
+        .name("Chicken Pesto Pasta")
+        .hunger(8)
+        .effects(FoodEffect.removePotionEffect(PotionEffectType.WEAKNESS))
+        .build();
 
-    public static final FoodItemStack SQUID_INK_PASTA = FoodItemStack.of(
-        "GN_SQUID_INK_PASTA",
-        HeadTextures.PASTA_BLACK,
-        "Squid Ink Pasta",
-        6,
-        1d
-    );
+    public static final FoodItemStack SQUID_INK_PASTA = new FoodItemStackBuilder()
+        .id("GN_SQUID_INK_PASTA")
+        .texture(HeadTextures.PASTA_BLACK)
+        .name("Squid Ink Pasta")
+        .hunger(6)
+        .build();
 
-    public static final FoodItemStack GLOWING_SQUID_INK_PASTA = FoodItemStack.of(
-        "GN_GLOWING_SQUID_INK_PASTA",
-        HeadTextures.PASTA_BLACK,
-        "Glowing Squid Ink Pasta",
-        6,
-        1d,
-        FoodEffect.positivePotionEffect(PotionEffectType.GLOWING, 120, 0)
-    );
+    public static final FoodItemStack GLOWING_SQUID_INK_PASTA = new FoodItemStackBuilder()
+        .id("GN_GLOWING_SQUID_INK_PASTA")
+        .texture(HeadTextures.PASTA_BLACK)
+        .name("Glowing Squid Ink Pasta")
+        .hunger(6)
+        .effects(FoodEffect.positivePotionEffect(PotionEffectType.GLOWING, 120, 0))
+        .build();
 
-    public static final FoodItemStack CHICKEN_RAVIOLI = FoodItemStack.of(
-        "GN_CHICKEN_RAVIOLI",
-        HeadTextures.PASTA_RED,
-        "Chicken Ravioli",
-        10,
-        1d,
-        FoodEffect.removePotionEffect(PotionEffectType.WEAKNESS)
-    );
+    public static final FoodItemStack CHICKEN_RAVIOLI = new FoodItemStackBuilder()
+        .id("GN_CHICKEN_RAVIOLI")
+        .texture(HeadTextures.PASTA_RED)
+        .name("Chicken Ravioli")
+        .hunger(10)
+        .effects(FoodEffect.removePotionEffect(PotionEffectType.WEAKNESS))
+        .build();
 
-    public static final FoodItemStack MUSHROOM_RAVIOLI = FoodItemStack.of(
-        "GN_MUSHROOM_RAVIOLI",
-        HeadTextures.PASTA_RED,
-        "Mushroom Ravioli",
-        8,
-        1d,
-        FoodEffect.removePotionEffect(PotionEffectType.WEAKNESS)
-    );
+    public static final FoodItemStack MUSHROOM_RAVIOLI = new FoodItemStackBuilder()
+        .id("GN_MUSHROOM_RAVIOLI")
+        .texture(HeadTextures.PASTA_RED)
+        .name("Mushroom Ravioli")
+        .hunger(8)
+        .effects(FoodEffect.removePotionEffect(PotionEffectType.WEAKNESS))
+        .build();
 
     // Soups and Stews
 
-    public static final FoodItemStack OATMEAL = FoodItemStack.of(
-        "GN_OATMEAL",
-        HeadTextures.PORRIDGE,
-        "Porridge",
-        6,
-        1.75,
-        new FoodEffect[] {
+    public static final FoodItemStack OATMEAL = new FoodItemStackBuilder()
+        .id("GN_OATMEAL")
+        .texture(HeadTextures.PORRIDGE)
+        .name("Porridge")
+        .hunger(6, 1.25)
+        .effects(
             FoodEffect.removePotionEffect(PotionEffectType.POISON),
             FoodEffect.removePotionEffect(PotionEffectType.HUNGER)
-        }
-    );
+        ).build();
 
-    public static final FoodItemStack BARLEY_PORRIDGE = FoodItemStack.of(
-        "GN_BARLEY_PORRIDGE",
-        HeadTextures.PORRIDGE,
-        "Porridge",
-        6,
-        1.75,
-        new FoodEffect[] {
+    public static final FoodItemStack BARLEY_PORRIDGE = new FoodItemStackBuilder()
+        .id("GN_BARLEY_PORRIDGE")
+        .texture(HeadTextures.PORRIDGE)
+        .name("Porridge")
+        .hunger(6, 1.25)
+        .effects(
             FoodEffect.removePotionEffect(PotionEffectType.POISON),
             FoodEffect.removePotionEffect(PotionEffectType.HUNGER)
-        }
-    );
+        ).build();
 
-    public static final FoodItemStack CONGEE = FoodItemStack.of(
-        "GN_CONGEE",
-        HeadTextures.PORRIDGE,
-        "Porridge",
-        6,
-        1.75,
-        new FoodEffect[] {
+    public static final FoodItemStack CONGEE = new FoodItemStackBuilder()
+        .id("GN_CONGEE")
+        .texture(HeadTextures.PORRIDGE)
+        .name("Porridge")
+        .hunger(6, 1.25)
+        .effects(
             FoodEffect.removePotionEffect(PotionEffectType.POISON),
             FoodEffect.removePotionEffect(PotionEffectType.HUNGER)
-        }
-    );
+        ).build();
 
-    public static final FoodItemStack CHICKEN_SOUP = FoodItemStack.of(
-        "GN_CHICKEN_SOUP",
-        HeadTextures.SOUP,
-        "Chicken Soup",
-        6,
-        1.75,
-        new FoodEffect[] {
+    public static final FoodItemStack CHICKEN_SOUP = new FoodItemStackBuilder()
+        .id("GN_CHICKEN_SOUP")
+        .texture(HeadTextures.SOUP)
+        .name("Chicken Soup")
+        .hunger(6, 1.25)
+        .effects(
             FoodEffect.removePotionEffect(PotionEffectType.POISON),
             FoodEffect.removePotionEffect(PotionEffectType.HUNGER)
-        }
-    );
+        ).build();
 
-    public static final FoodItemStack CHICKEN_NOODLE_SOUP = FoodItemStack.of(
-        "GN_CHICKEN_NOODLE_SOUP",
-        HeadTextures.SOUP,
-        "Chicken Noodle Soup",
-        8,
-        1.75,
-        new FoodEffect[] {
+    public static final FoodItemStack CHICKEN_NOODLE_SOUP = new FoodItemStackBuilder()
+        .id("GN_CHICKEN_NOODLE_SOUP")
+        .texture(HeadTextures.SOUP)
+        .name("Chicken Noodle Soup")
+        .hunger(8, 1.75)
+        .effects(
             FoodEffect.removePotionEffect(PotionEffectType.POISON),
             FoodEffect.removePotionEffect(PotionEffectType.WITHER),
             FoodEffect.removePotionEffect(PotionEffectType.HUNGER)
-        }
-    );
+        ).build();
 
-    public static final FoodItemStack SPLIT_PEA_SOUP = FoodItemStack.of(
-        "GN_SPLIT_PEA_SOUP",
-        HeadTextures.SOUP,
-        "Split Pea Soup",
-        6,
-        1.75,
-        FoodEffect.removePotionEffect(PotionEffectType.CONFUSION)
-    );
+    public static final FoodItemStack SPLIT_PEA_SOUP = new FoodItemStackBuilder()
+        .id("GN_SPLIT_PEA_SOUP")
+        .texture(HeadTextures.SOUP)
+        .name("Split Pea Soup")
+        .hunger(6, 1.75)
+        .effects(FoodEffect.removePotionEffect(PotionEffectType.CONFUSION))
+        .build();
 
-    public static final FoodItemStack HAM_AND_SPLIT_PEA_SOUP = FoodItemStack.of(
-        "GN_HAM_AND_SPLIT_PEA_SOUP",
-        HeadTextures.SOUP,
-        "Ham and Split Pea Soup",
-        8,
-        1.75,
-        FoodEffect.removePotionEffect(PotionEffectType.CONFUSION)
-    );
+    public static final FoodItemStack HAM_AND_SPLIT_PEA_SOUP = new FoodItemStackBuilder()
+        .id("GN_HAM_AND_SPLIT_PEA_SOUP")
+        .texture(HeadTextures.SOUP)
+        .name("Ham and Split Pea Soup")
+        .hunger(8, 1.75)
+        .effects(FoodEffect.removePotionEffect(PotionEffectType.CONFUSION))
+        .build();
 
-    public static final FoodItemStack LENTIL_SOUP = FoodItemStack.of(
-        "GN_LENTIL_SOUP",
-        HeadTextures.SOUP,
-        "Lentil Soup",
-        8,
-        1.75,
-        FoodEffect.positivePotionEffect(PotionEffectType.SATURATION, 5)
-    );
+    public static final FoodItemStack LENTIL_SOUP = new FoodItemStackBuilder()
+        .id("GN_LENTIL_SOUP")
+        .texture(HeadTextures.SOUP)
+        .name("Lentil Soup")
+        .hunger(8, 1.75)
+        .effects(FoodEffect.positivePotionEffect(PotionEffectType.SATURATION, 5))
+        .build();
 
-    public static final FoodItemStack BEEF_AND_LENTIL_SOUP = FoodItemStack.of(
-        "GN_BEEF_AND_LENTIL_SOUP",
-        HeadTextures.SOUP,
-        "Beef and Lentil Soup",
-        10,
-        1.75,
-        FoodEffect.positivePotionEffect(PotionEffectType.SATURATION, 10, 1)
-    );
+    public static final FoodItemStack BEEF_AND_LENTIL_SOUP = new FoodItemStackBuilder()
+        .id("GN_BEEF_AND_LENTIL_SOUP")
+        .texture(HeadTextures.SOUP)
+        .name("Beef and Lentil Soup")
+        .hunger(10, 1.75)
+        .effects(FoodEffect.positivePotionEffect(PotionEffectType.SATURATION, 10, 1))
+        .build();
 
-    public static final FoodItemStack CARROT_SOUP = FoodItemStack.of(
-        "GN_CARROT_SOUP",
-        HeadTextures.SOUP,
-        "Carrot Soup",
-        8,
-        1.75,
-        FoodEffect.removePotionEffect(PotionEffectType.BLINDNESS)
-    );
+    public static final FoodItemStack CARROT_SOUP = new FoodItemStackBuilder()
+        .id("GN_CARROT_SOUP")
+        .texture(HeadTextures.SOUP)
+        .name("Carrot Soup")
+        .hunger(8, 1.75)
+        .effects(FoodEffect.removePotionEffect(PotionEffectType.BLINDNESS))
+        .build();
 
-    public static final FoodItemStack MUSHROOM_BARLEY_SOUP = FoodItemStack.of(
-        "GN_MUSHROOM_BARLEY_SOUP",
-        HeadTextures.SOUP,
-        "Mushroom Barley Soup",
-        8,
-        2d,
-        FoodEffect.warm(70)
-    );
+    public static final FoodItemStack MUSHROOM_BARLEY_SOUP = new FoodItemStackBuilder()
+        .id("GN_MUSHROOM_BARLEY_SOUP")
+        .texture(HeadTextures.SOUP)
+        .name("Mushroom Barley Soup")
+        .hunger(8, 2)
+        .effects(FoodEffect.warm(70))
+        .build();
 
-    public static final FoodItemStack CHICKEN_BARLEY_SOUP = FoodItemStack.of(
-        "GN_CHICKEN_BARLEY_SOUP",
-        HeadTextures.SOUP,
-        "Chicken Barley Soup",
-        10,
-        2d,
-        FoodEffect.warm(70)
-    );
+    public static final FoodItemStack CHICKEN_BARLEY_SOUP = new FoodItemStackBuilder()
+        .id("GN_CHICKEN_BARLEY_SOUP")
+        .texture(HeadTextures.SOUP)
+        .name("Chicken Barley Soup")
+        .hunger(10, 2)
+        .effects(FoodEffect.warm(70))
+        .build();
 
-    public static final FoodItemStack BEEF_BARLEY_SOUP = FoodItemStack.of(
-        "GN_BEEF_BARLEY_SOUP",
-        HeadTextures.SOUP,
-        "Beef Barley Soup",
-        12,
-        2d,
-        FoodEffect.warm(70)
-    );
+    public static final FoodItemStack BEEF_BARLEY_SOUP = new FoodItemStackBuilder()
+        .id("GN_BEEF_BARLEY_SOUP")
+        .texture(HeadTextures.SOUP)
+        .name("Beef Barley Soup")
+        .hunger(12, 2)
+        .effects(FoodEffect.warm(70))
+        .build();
 
-    public static final FoodItemStack CREAM_OF_MUSHROOM_SOUP = FoodItemStack.of(
-        "GN_CREAM_OF_MUSHROOM_SOUP",
-        HeadTextures.CREAM_SOUP,
-        "Cream of Mushroom Soup",
-        7,
-        1.75,
-        FoodEffect.heal(2)
-    );
+    public static final FoodItemStack CREAM_OF_MUSHROOM_SOUP = new FoodItemStackBuilder()
+        .id("GN_CREAM_OF_MUSHROOM_SOUP")
+        .texture(HeadTextures.CREAM_SOUP)
+        .name("Cream of Mushroom Soup")
+        .hunger(7, 1.75)
+        .effects(FoodEffect.heal(2))
+        .build();
 
-    public static final FoodItemStack CREAM_OF_BROCCOLI_SOUP = FoodItemStack.of(
-        "GN_CREAM_OF_BROCCOLI_SOUP",
-        HeadTextures.CREAM_SOUP,
-        "Cream of Celery Soup",
-        8,
-        1.75,
-        FoodEffect.heal(3)
-    );
+    public static final FoodItemStack CREAM_OF_BROCCOLI_SOUP = new FoodItemStackBuilder()
+        .id("GN_CREAM_OF_BROCCOLI_SOUP")
+        .texture(HeadTextures.CREAM_SOUP)
+        .name("Cream of Celery Soup")
+        .hunger(8, 1.75)
+        .effects(FoodEffect.heal(3))
+        .build();
 
-    public static final FoodItemStack CREAM_OF_ASPARAGUS_SOUP = FoodItemStack.of(
-        "GN_CREAM_OF_ASPARAGUS_SOUP",
-        HeadTextures.CREAM_SOUP,
-        "Cream of Asparagus Soup",
-        8,
-        1.75,
-        FoodEffect.heal(3)
-    );
+    public static final FoodItemStack CREAM_OF_ASPARAGUS_SOUP = new FoodItemStackBuilder()
+        .id("GN_CREAM_OF_ASPARAGUS_SOUP")
+        .texture(HeadTextures.CREAM_SOUP)
+        .name("Cream of Asparagus Soup")
+        .hunger(8, 1.75)
+        .effects(FoodEffect.heal(3))
+        .build();
 
-    public static final FoodItemStack CREAM_OF_CAULIFLOWER_SOUP = FoodItemStack.of(
-        "GN_CREAM_OF_CAULIFLOWER_SOUP",
-        HeadTextures.CREAM_SOUP,
-        "Cream of Cauliflower Soup",
-        8,
-        1.75,
-        FoodEffect.heal(3)
-    );
+    public static final FoodItemStack CREAM_OF_CAULIFLOWER_SOUP = new FoodItemStackBuilder()
+        .id("GN_CREAM_OF_CAULIFLOWER_SOUP")
+        .texture(HeadTextures.CREAM_SOUP)
+        .name("Cream of Cauliflower Soup")
+        .hunger(8, 1.75)
+        .effects(FoodEffect.heal(3))
+        .build();
 
-    public static final FoodItemStack MISO_SOUP = FoodItemStack.of(
-        "GN_MISO_SOUP",
-        HeadTextures.MISO_SOUP,
-        "Miso Soup",
-        4,
-        1.75,
-        FoodEffect.warm(50)
-    );
+    public static final FoodItemStack MISO_SOUP = new FoodItemStackBuilder()
+        .id("GN_MISO_SOUP")
+        .texture(HeadTextures.MISO_SOUP)
+        .name("Miso Soup")
+        .hunger(4, 1.75)
+        .effects(FoodEffect.warm(50))
+        .build();
 
-    public static final FoodItemStack BROCCOLI_CHOWDER = FoodItemStack.of(
-        "GN_BROCCOLI_CHOWDER",
-        HeadTextures.CHOWDER,
-        "Broccoli Chowder",
-        8,
-        1.75
-    );
+    public static final FoodItemStack BROCCOLI_CHOWDER = new FoodItemStackBuilder()
+        .id("GN_BROCCOLI_CHOWDER")
+        .texture(HeadTextures.CHOWDER)
+        .name("Broccoli Chowder")
+        .hunger(8, 1.75)
+        .build();
 
-    public static final FoodItemStack SALMON_CHOWDER = FoodItemStack.of(
-        "GN_SALMON_CHOWDER",
-        HeadTextures.CHOWDER,
-        "Salmon Chowder",
-        10,
-        1.75
-    );
+    public static final FoodItemStack SALMON_CHOWDER = new FoodItemStackBuilder()
+        .id("GN_SALMON_CHOWDER")
+        .texture(HeadTextures.CHOWDER)
+        .name("Salmon Chowder")
+        .hunger(10, 1.75)
+        .build();
 
-    public static final FoodItemStack POTATO_CHOWDER = FoodItemStack.of(
-        "GN_POTATO_CHOWDER",
-        HeadTextures.CHOWDER,
-        "Potato Chowder",
-        8,
-        1.75
-    );
+    public static final FoodItemStack POTATO_CHOWDER = new FoodItemStackBuilder()
+        .id("GN_POTATO_CHOWDER")
+        .texture(HeadTextures.CHOWDER)
+        .name("Potato Chowder")
+        .hunger(8, 1.75)
+        .build();
 
-    public static final FoodItemStack CORN_CHOWDER = FoodItemStack.of(
-        "GN_CORN_CHOWDER",
-        HeadTextures.CHOWDER,
-        "Corn Chowder",
-        8,
-        1.75
-    );
+    public static final FoodItemStack CORN_CHOWDER = new FoodItemStackBuilder()
+        .id("GN_CORN_CHOWDER")
+        .texture(HeadTextures.CHOWDER)
+        .name("Corn Chowder")
+        .hunger(8, 1.75)
+        .build();
 
-    public static final FoodItemStack BEEF_STEW = FoodItemStack.of(
-        "GN_BEEF_STEW",
-        HeadTextures.STEW,
-        "Beef Stew",
-        10,
-        1.75,
-        FoodEffect.warm(140)
-    );
+    public static final FoodItemStack BEEF_STEW = new FoodItemStackBuilder()
+        .id("GN_BEEF_STEW")
+        .texture(HeadTextures.STEW)
+        .name("Beef Stew")
+        .hunger(10, 1.75)
+        .effects(FoodEffect.warm(140))
+        .build();
 
-    public static final FoodItemStack CLAM_STEW = FoodItemStack.of(
-        "GN_CLAM_STEW",
-        HeadTextures.STEW,
-        "Clam Stew",
-        6,
-        1.75,
-        FoodEffect.warm(50)
-    );
+    public static final FoodItemStack CLAM_STEW = new FoodItemStackBuilder()
+        .id("GN_CLAM_STEW")
+        .texture(HeadTextures.STEW)
+        .name("Clam Stew")
+        .hunger(6, 1.75)
+        .effects(FoodEffect.warm(50))
+        .build();
     
-    public static final FoodItemStack CRAB_HOTPOT = FoodItemStack.of(
-        "GN_CRAB_HOTPOT",
-        HeadTextures.STEW,
-        "Crab Hotpot",
-        12,
-        1.75,
-        FoodEffect.warm(140)
-    );
+    public static final FoodItemStack CRAB_HOTPOT = new FoodItemStackBuilder()
+        .id("GN_CRAB_HOTPOT")
+        .texture(HeadTextures.STEW)
+        .name("Crab Hotpot")
+        .hunger(12, 1.75)
+        .effects(FoodEffect.warm(140))
+        .build();
 
-    public static final FoodItemStack BBQ_STEAK = FoodItemStack.of(
-        "GN_BBQ_STEAK",
-        Material.COOKED_BEEF,
-        "BBQ Steak",
-        12,
-        1.5
-    );
+    public static final FoodItemStack BBQ_STEAK = new FoodItemStackBuilder()
+        .id("GN_BBQ_STEAK")
+        .material(Material.COOKED_BEEF)
+        .name("BBQ Steak")
+        .hunger(9, 1.5)
+        .build();
 
-    public static final FoodItemStack BBQ_PORK = FoodItemStack.of(
-        "GN_BBQ_PORK",
-        Material.COOKED_PORKCHOP,
-        "BBQ Pork",
-        12,
-        1.5
-    );
+    public static final FoodItemStack BBQ_PORK = new FoodItemStackBuilder()
+        .id("GN_BBQ_PORK")
+        .material(Material.COOKED_PORKCHOP)
+        .name("BBQ Pork")
+        .hunger(9, 1.5)
+        .build();
 
-    public static final FoodItemStack BBQ_CHICKEN = FoodItemStack.of(
-        "GN_BBQ_CHICKEN",
-        Material.COOKED_CHICKEN,
-        "BBQ Chicken",
-        9,
-        1.5
-    );
+    public static final FoodItemStack BBQ_CHICKEN = new FoodItemStackBuilder()
+        .id("GN_BBQ_CHICKEN")
+        .material(Material.COOKED_CHICKEN)
+        .name("BBQ Chicken")
+        .hunger(9, 1.5)
+        .build();
 
-    public static final FoodItemStack BBQ_MUTTON = FoodItemStack.of(
-        "GN_BBQ_MUTTON",
-        Material.COOKED_MUTTON,
-        "BBQ Mutton",
-        9,
-        1.5
-    );
+    public static final FoodItemStack BBQ_MUTTON = new FoodItemStackBuilder()
+        .id("GN_BBQ_MUTTON")
+        .material(Material.COOKED_MUTTON)
+        .name("BBQ Mutton")
+        .hunger(9, 1.5)
+        .build();
 
-    public static final FoodItemStack BUTTER_CHICKEN = FoodItemStack.of(
-        "GN_BUTTER_CHICKEN",
-        HeadTextures.STEW,
-        "Butter Chicken",
-        7,
-        1.5,
-        FoodEffect.positivePotionEffect(PotionEffectType.INCREASE_DAMAGE, 30)
-    );
+    public static final FoodItemStack BUTTER_CHICKEN = new FoodItemStackBuilder()
+        .id("GN_BUTTER_CHICKEN")
+        .texture(HeadTextures.STEW)
+        .name("Butter Chicken")
+        .hunger(7)
+        .effects(FoodEffect.positivePotionEffect(PotionEffectType.INCREASE_DAMAGE, 30))
+        .build();
 
-    public static final FoodItemStack SHRIMP_FRIED_RICE = FoodItemStack.of(
-        "GN_SHRIMP_FRIED_RICE",
-        HeadTextures.RICE_PINK,
-        "Shrimp Fried Rice",
-        6,
-        1d
-    );
+    public static final FoodItemStack SHRIMP_FRIED_RICE = new FoodItemStackBuilder()
+        .id("GN_SHRIMP_FRIED_RICE")
+        .texture(HeadTextures.RICE_PINK)
+        .name("Shrimp Fried Rice")
+        .hunger(6)
+        .build();
 
-    public static final FoodItemStack CURRY_RICE = FoodItemStack.of(
-        "GN_CURRY_RICE",
-        HeadTextures.RICE_BROWN,
-        "Curry Rice",
-        4,
-        1d,
-        FoodEffect.positivePotionEffect(PotionEffectType.INCREASE_DAMAGE, 30)
-    );
+    public static final FoodItemStack CURRY_RICE = new FoodItemStackBuilder()
+        .id("GN_CURRY_RICE")
+        .texture(HeadTextures.RICE_BROWN)
+        .name("Curry Rice")
+        .hunger(4)
+        .effects(FoodEffect.positivePotionEffect(PotionEffectType.INCREASE_DAMAGE, 30))
+        .build();
 
-    public static final FoodItemStack RICE_OMELETTE = FoodItemStack.of(
-        "GN_RICE_OMELETTE",
-        HeadTextures.RICE_YELLOW,
-        "Rice Omelette",
-        4,
-        1d,
-        FoodEffect.heal(2)
-    );
+    public static final FoodItemStack RICE_OMELETTE = new FoodItemStackBuilder()
+        .id("GN_RICE_OMELETTE")
+        .texture(HeadTextures.RICE_YELLOW)
+        .name("Rice Omelette")
+        .hunger(4)
+        .effects(FoodEffect.heal(2))
+        .build();
 
-    public static final FoodItemStack RICE_BALLS = FoodItemStack.of(
-        "GN_RICE_BALLS",
-        HeadTextures.RICE_BALLS,
-        "Rice Balls",
-        3,
-        1d,
-        FoodEffect.heal(2)
-    );
+    public static final FoodItemStack RICE_BALLS = new FoodItemStackBuilder()
+        .id("GN_RICE_BALLS")
+        .texture(HeadTextures.RICE_BALLS)
+        .name("Rice Balls")
+        .hunger(3)
+        .effects(FoodEffect.heal(2))
+        .build();
 
-    public static final FoodItemStack BEEF_UDON = FoodItemStack.of(
-        "GN_BEEF_UDON",
-        HeadTextures.UDON,
-        "Beef Udon",
-        10,
-        1d,
-        FoodEffect.heal(2)
-    );
+    public static final FoodItemStack BEEF_UDON = new FoodItemStackBuilder()
+        .id("GN_BEEF_UDON")
+        .texture(HeadTextures.UDON)
+        .name("Beef Udon")
+        .hunger(10)
+        .effects(FoodEffect.heal(2))
+        .build();
 
-    public static final FoodItemStack CHICKEN_UDON = FoodItemStack.of(
-        "GN_CHICKEN_UDON",
-        HeadTextures.UDON,
-        "Chicken Udon",
-        10,
-        1d,
-        FoodEffect.heal(2)
-    );
+    public static final FoodItemStack CHICKEN_UDON = new FoodItemStackBuilder()
+        .id("GN_CHICKEN_UDON")
+        .texture(HeadTextures.UDON)
+        .name("Chicken Udon")
+        .hunger(10)
+        .effects(FoodEffect.heal(2))
+        .build();
 
-    public static final FoodItemStack VEGETABLE_UDON = FoodItemStack.of(
-        "GN_VEGETABLE_UDON",
-        HeadTextures.UDON,
-        "Vegetable Udon",
-        10,
-        1d,
-        FoodEffect.heal(2)
-    );
+    public static final FoodItemStack VEGETABLE_UDON = new FoodItemStackBuilder()
+        .id("GN_VEGETABLE_UDON")
+        .texture(HeadTextures.UDON)
+        .name("Vegetable Udon")
+        .hunger(10)
+        .effects(FoodEffect.heal(2))
+        .build();
 
-    public static final FoodItemStack STIR_FRY_NOODLES = FoodItemStack.of(
-        "GN_STIR_FRY_NOODLES",
-        HeadTextures.NOODLES,
-        "Stir-fry Noodles",
-        8,
-        1d
-    );
+    public static final FoodItemStack STIR_FRY_NOODLES = new FoodItemStackBuilder()
+        .id("GN_STIR_FRY_NOODLES")
+        .texture(HeadTextures.NOODLES)
+        .name("Stir-fry Noodles")
+        .hunger(8)
+        .build();
 }
