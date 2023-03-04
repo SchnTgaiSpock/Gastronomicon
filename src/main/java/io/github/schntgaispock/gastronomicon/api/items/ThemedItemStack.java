@@ -1,4 +1,4 @@
-package io.github.schntgaispock.gastronomicon.core.items.stacks;
+package io.github.schntgaispock.gastronomicon.api.items;
 
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;

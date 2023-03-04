@@ -1,4 +1,4 @@
-package io.github.schntgaispock.gastronomicon.core.recipes;
+package io.github.schntgaispock.gastronomicon.api.recipes;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -13,7 +13,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 
-import io.github.schntgaispock.gastronomicon.core.recipes.components.GroupRecipeComponent;
+import io.github.schntgaispock.gastronomicon.api.recipes.components.GroupRecipeComponent;
 import io.github.schntgaispock.gastronomicon.core.slimefun.GastroRecipeType;
 import lombok.experimental.UtilityClass;
 

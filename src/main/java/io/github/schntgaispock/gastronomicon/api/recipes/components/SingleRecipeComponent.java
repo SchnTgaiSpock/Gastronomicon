@@ -1,4 +1,4 @@
-package io.github.schntgaispock.gastronomicon.core.recipes.components;
+package io.github.schntgaispock.gastronomicon.api.recipes.components;
 
 import javax.annotation.Nullable;
 

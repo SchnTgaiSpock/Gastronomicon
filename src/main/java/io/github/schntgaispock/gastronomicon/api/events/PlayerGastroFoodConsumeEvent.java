@@ -1,4 +1,4 @@
-package io.github.schntgaispock.gastronomicon.core.events;
+package io.github.schntgaispock.gastronomicon.api.events;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerItemConsumeEvent;

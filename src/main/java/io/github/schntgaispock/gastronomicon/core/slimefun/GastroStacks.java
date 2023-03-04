@@ -10,10 +10,10 @@ import org.bukkit.potion.PotionData;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.potion.PotionType;
 
-import io.github.schntgaispock.gastronomicon.core.items.food.FoodEffect;
-import io.github.schntgaispock.gastronomicon.core.items.stacks.FoodItemStack;
-import io.github.schntgaispock.gastronomicon.core.items.stacks.GastroTheme;
-import io.github.schntgaispock.gastronomicon.core.items.stacks.ThemedItemStack;
+import io.github.schntgaispock.gastronomicon.api.food.FoodEffect;
+import io.github.schntgaispock.gastronomicon.api.items.FoodItemStack;
+import io.github.schntgaispock.gastronomicon.api.items.GastroTheme;
+import io.github.schntgaispock.gastronomicon.api.items.ThemedItemStack;
 import io.github.schntgaispock.gastronomicon.core.listeners.WildHarvestListener;
 import io.github.schntgaispock.gastronomicon.util.item.HeadTextures;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;

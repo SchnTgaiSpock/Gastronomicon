@@ -17,10 +17,10 @@ import org.bukkit.inventory.ItemStack;
 
 import io.github.mooy1.infinitylib.machines.MenuBlock;
 import io.github.schntgaispock.gastronomicon.Gastronomicon;
-import io.github.schntgaispock.gastronomicon.core.recipes.GastroRecipe;
-import io.github.schntgaispock.gastronomicon.core.recipes.RecipeRegistry;
+import io.github.schntgaispock.gastronomicon.api.recipes.GastroRecipe;
+import io.github.schntgaispock.gastronomicon.api.recipes.RecipeRegistry;
+import io.github.schntgaispock.gastronomicon.api.recipes.GastroRecipe.RecipeMatchResult;
 import io.github.schntgaispock.gastronomicon.core.slimefun.GastroRecipeType;
-import io.github.schntgaispock.gastronomicon.core.recipes.GastroRecipe.RecipeMatchResult;
 import io.github.schntgaispock.gastronomicon.util.NumberUtil;
 import io.github.schntgaispock.gastronomicon.util.item.ItemUtil;
 import io.github.schntgaispock.gastronomicon.util.recipe.RecipeUtil;

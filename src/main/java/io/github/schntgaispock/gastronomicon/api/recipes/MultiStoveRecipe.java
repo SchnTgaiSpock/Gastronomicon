@@ -1,4 +1,4 @@
-package io.github.schntgaispock.gastronomicon.core.recipes;
+package io.github.schntgaispock.gastronomicon.api.recipes;
 
 import java.util.Set;
 

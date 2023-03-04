@@ -1,4 +1,4 @@
-package io.github.schntgaispock.gastronomicon.core.items.stacks;
+package io.github.schntgaispock.gastronomicon.api.items;
 
 import lombok.Getter;
 import net.md_5.bungee.api.ChatColor;

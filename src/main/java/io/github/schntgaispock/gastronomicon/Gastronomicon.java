@@ -66,7 +66,7 @@ public class Gastronomicon extends AbstractAddon {
     @Override
     public void disable() {
         instance = null;
-        getConfig().save();
+        getPlayerData().save();
     }
 
     public static NamespacedKey newNamespacedKey(@Nonnull String name) {

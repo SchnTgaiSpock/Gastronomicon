@@ -1,4 +1,4 @@
-package io.github.schntgaispock.gastronomicon.core.recipes;
+package io.github.schntgaispock.gastronomicon.api.recipes;
 
 import java.util.Arrays;
 import java.util.List;
@@ -10,9 +10,9 @@ import javax.annotation.ParametersAreNullableByDefault;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
-import io.github.schntgaispock.gastronomicon.core.recipes.components.RecipeComponent;
-import io.github.schntgaispock.gastronomicon.core.recipes.components.RecipeInput;
-import io.github.schntgaispock.gastronomicon.core.recipes.components.SingleRecipeComponent;
+import io.github.schntgaispock.gastronomicon.api.recipes.components.RecipeComponent;
+import io.github.schntgaispock.gastronomicon.api.recipes.components.RecipeInput;
+import io.github.schntgaispock.gastronomicon.api.recipes.components.SingleRecipeComponent;
 import io.github.schntgaispock.gastronomicon.core.slimefun.GastroRecipeType;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

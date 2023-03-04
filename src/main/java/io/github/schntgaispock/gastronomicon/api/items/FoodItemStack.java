@@ -1,4 +1,4 @@
-package io.github.schntgaispock.gastronomicon.core.items.stacks;
+package io.github.schntgaispock.gastronomicon.api.items;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -8,7 +8,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 import org.bukkit.Material;
 
-import io.github.schntgaispock.gastronomicon.core.items.food.FoodEffect;
+import io.github.schntgaispock.gastronomicon.api.food.FoodEffect;
 import io.github.schntgaispock.gastronomicon.util.NumberUtil;
 import io.github.schntgaispock.gastronomicon.util.item.HeadTextures;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;

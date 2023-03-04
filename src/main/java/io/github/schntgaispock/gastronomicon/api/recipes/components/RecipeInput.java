@@ -1,13 +1,13 @@
-package io.github.schntgaispock.gastronomicon.core.recipes.components;
+package io.github.schntgaispock.gastronomicon.api.recipes.components;
 
 import java.util.Arrays;
 
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
-import io.github.schntgaispock.gastronomicon.core.recipes.GastroRecipe;
+import io.github.schntgaispock.gastronomicon.api.recipes.GastroRecipe;
+import io.github.schntgaispock.gastronomicon.api.recipes.GastroRecipe.RecipeShape;
 import io.github.schntgaispock.gastronomicon.util.recipe.RecipeUtil;
-import io.github.schntgaispock.gastronomicon.core.recipes.GastroRecipe.RecipeShape;
 import lombok.Getter;
 import lombok.ToString;
 
