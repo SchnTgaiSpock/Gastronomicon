@@ -1,5 +1,6 @@
 package io.github.schntgaispock.gastronomicon.core.slimefun;
 
+import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 import org.bukkit.inventory.ItemFlag;
@@ -19,8 +20,10 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.utils.LoreBuilder;
 import lombok.experimental.UtilityClass;
+import net.md_5.bungee.api.ChatColor;
 
 @UtilityClass
+@SuppressWarnings("deprecation")
 public class GastroStacks {
 
     // ---- Utility ----
@@ -132,7 +135,17 @@ public class GastroStacks {
         "&7listed below."
     );
 
-    public static final ItemStack GUIDE_NO_TOOLS_REQUIRED = new CustomItemStack(
+    public static final ItemStack GUIDE_TOOLS_REQUIRED = new CustomItemStack(
+        Material.BLACK_STAINED_GLASS_PANE,
+        ChatColor.of("#999999") + "Tools Required"
+    );
+
+    public static final ItemStack GUIDE_CONTAINER_REQUIRED = new CustomItemStack(
+        Material.PURPLE_STAINED_GLASS_PANE,
+        "&5Container Required"
+    );
+
+    public static final ItemStack GUIDE_NONE = new CustomItemStack(
         Material.BARRIER,
         "&cNone"
     );
@@ -861,12 +874,19 @@ public class GastroStacks {
 
     public static final SlimefunItemStack PEANUT_BUTTER = ThemedItemStack.ingredient(
         "GN_PEANUT_BUTTER",
-        Material.HONEY_BOTTLE,
-        "Toast"
+        Material.POTION,
+        "Peanut Butter"
     );
+    static {
+        final PotionMeta meta = (PotionMeta) PEANUT_BUTTER.getItemMeta();
+        meta.setBasePotionData(new PotionData(PotionType.THICK));
+        meta.setColor(Color.fromRGB(0xbf7715));
+        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS, ItemFlag.HIDE_POTION_EFFECTS);
+        PEANUT_BUTTER.setItemMeta(meta);
+    }
 
     public static final SlimefunItemStack FRIED_EGG = ThemedItemStack.ingredient(
-        "GN_ENGLISH_MUFFIN",
+        "GN_FRIED_EGG",
         Material.EGG,
         "Fried Egg"
     );
@@ -915,9 +935,16 @@ public class GastroStacks {
 
     public static final SlimefunItemStack SOY_SAUCE = ThemedItemStack.ingredient(
         "GN_SOY_SAUCE",
-        Material.POTION, // TODO: Color
+        Material.POTION, 
         "Soy Sauce"
     );
+    static {
+        final PotionMeta meta = (PotionMeta) SOY_SAUCE.getItemMeta();
+        meta.setBasePotionData(new PotionData(PotionType.MUNDANE));
+        meta.setColor(Color.fromRGB(0x1d0a03));
+        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS, ItemFlag.HIDE_POTION_EFFECTS);
+        SOY_SAUCE.setItemMeta(meta);
+    }
 
     // -- Cuisine --
 
@@ -925,7 +952,7 @@ public class GastroStacks {
 
     public static final FoodItemStack PBJ_SANDWICH = FoodItemStack.of(
         "GN_PBJ_SANDWICH",
-        HeadTextures.NONE,
+        HeadTextures.SANDWICH_RED_OCHRE,
         "PB&J Sandwich",
         8,
         1d,
@@ -934,7 +961,7 @@ public class GastroStacks {
 
     public static final FoodItemStack MARMALADE_SANDWICH = FoodItemStack.of(
         "GN_MARMALADE_SANDWICH",
-        HeadTextures.NONE,
+        HeadTextures.SANDWICH_ORANGE,
         "Marmalade Sandwich",
         8,
         1d,
@@ -943,7 +970,7 @@ public class GastroStacks {
 
     public static final FoodItemStack BAKED_BEANS_AND_TOAST = FoodItemStack.of(
         "GN_BAKED_BEANS_AND_TOAST",
-        HeadTextures.NONE,
+        HeadTextures.TOAST_ORANGE,
         "Baked Beans and Toast",
         8,
         1d,
@@ -954,7 +981,7 @@ public class GastroStacks {
 
     public static final FoodItemStack TUNA_SANDWICH = FoodItemStack.of(
         "GN_TUNA_SANDWICH",
-        HeadTextures.NONE,
+        HeadTextures.SANDWICH_RED_GREEN,
         "Tuna Sandwich",
         8,
         1d,
@@ -963,7 +990,7 @@ public class GastroStacks {
 
     public static final FoodItemStack BREAKFAST_SANDWICH = FoodItemStack.of(
         "GN_BREAKFAST_SANDWICH",
-        HeadTextures.NONE,
+        HeadTextures.SANDWICH_ORANGE,
         "Breakfast Sandwich",
         8,
         1d,
@@ -972,7 +999,7 @@ public class GastroStacks {
 
     public static final FoodItemStack HAM_SANDWICH = FoodItemStack.of(
         "GN_HAM_SANDWICH",
-        HeadTextures.NONE,
+        HeadTextures.SANDWICH_ORANGE,
         "Ham Sandwich",
         8,
         1d,
@@ -981,7 +1008,7 @@ public class GastroStacks {
 
     public static final FoodItemStack CHICKEN_SANDWICH = FoodItemStack.of(
         "GN_CHICKEN_SANDWICH",
-        HeadTextures.NONE,
+        HeadTextures.SANDWICH_RED_GREEN,
         "Chicken Salad Sandwich",
         8,
         1d,
@@ -990,7 +1017,7 @@ public class GastroStacks {
 
     public static final FoodItemStack EGG_SALAD_SANDWICH = FoodItemStack.of(
         "GN_EGG_SALAD_SANDWICH",
-        HeadTextures.NONE,
+        HeadTextures.SANDWICH_WHITE_GREEN,
         "Egg Salad Sandwich",
         8,
         1d,
@@ -999,7 +1026,7 @@ public class GastroStacks {
 
     public static final FoodItemStack ROAST_BEEF_SANDWICH = FoodItemStack.of(
         "GN_ROAST_BEEF_SANDWICH",
-        HeadTextures.NONE,
+        HeadTextures.SANDWICH_RED_GREEN,
         "Roast Beef Sandwich",
         8,
         1d,
@@ -1008,7 +1035,7 @@ public class GastroStacks {
 
     public static final FoodItemStack CLUB_SANDWICH = FoodItemStack.of(
         "GN_CLUB_SANDWICH",
-        HeadTextures.NONE,
+        HeadTextures.SANDWICH_RED_GREEN,
         "Club Sandwich",
         8,
         1d,
@@ -1019,7 +1046,7 @@ public class GastroStacks {
 
     public static final FoodItemStack GREEK_SALAD = FoodItemStack.of(
         "GN_GREEK_SALAD",
-        HeadTextures.NONE,
+        HeadTextures.SALAD,
         "Greek Salad",
         5,
         1d,
@@ -1031,7 +1058,7 @@ public class GastroStacks {
 
     public static final FoodItemStack CAESAR_SALAD = FoodItemStack.of(
         "GN_CAESAR_SALAD",
-        HeadTextures.NONE,
+        HeadTextures.SALAD,
         "Caesar Salad",
         5,
         1d,
@@ -1045,7 +1072,7 @@ public class GastroStacks {
 
     public static final FoodItemStack PAN_SEARED_SALMON = FoodItemStack.of(
         "GN_PAN_SEARED_SALMON",
-        HeadTextures.NONE,
+        Material.COOKED_SALMON,
         "Pan-seared Salmon",
         7,
         1d,
@@ -1054,7 +1081,7 @@ public class GastroStacks {
 
     public static final FoodItemStack FRIED_SHRIMP = FoodItemStack.of(
         "GN_FRIED_SHRIMP",
-        HeadTextures.NONE,
+        Material.NAUTILUS_SHELL,
         "Fried Shrimp",
         3,
         1d,
@@ -1063,7 +1090,7 @@ public class GastroStacks {
 
     public static final FoodItemStack TEMPURA_SHRIMP = FoodItemStack.of(
         "GN_TEMPURA_SHRIMP",
-        HeadTextures.NONE,
+        Material.NAUTILUS_SHELL,
         "Tempura Shrimp",
         4,
         1d,
@@ -1072,7 +1099,7 @@ public class GastroStacks {
 
     public static final FoodItemStack TEMPURA_BROCCOLI = FoodItemStack.of(
         "GN_TEMPURA_BROCCOLI",
-        HeadTextures.NONE,
+        Material.BAKED_POTATO,
         "Tempura Broccoli",
         3,
         1d,
@@ -1083,7 +1110,7 @@ public class GastroStacks {
 
     public static final FoodItemStack CHICKEN_PESTO_PASTA = FoodItemStack.of(
         "GN_CHICKEN_PESTO_PASTA",
-        HeadTextures.NONE,
+        HeadTextures.PASTA_GREEN,
         "Chicken Pesto Pasta",
         8,
         1d,
@@ -1092,7 +1119,7 @@ public class GastroStacks {
 
     public static final FoodItemStack SQUID_INK_PASTA = FoodItemStack.of(
         "GN_SQUID_INK_PASTA",
-        HeadTextures.NONE,
+        HeadTextures.PASTA_BLACK,
         "Squid Ink Pasta",
         6,
         1d
@@ -1100,7 +1127,7 @@ public class GastroStacks {
 
     public static final FoodItemStack GLOWING_SQUID_INK_PASTA = FoodItemStack.of(
         "GN_GLOWING_SQUID_INK_PASTA",
-        HeadTextures.NONE,
+        HeadTextures.PASTA_BLACK,
         "Glowing Squid Ink Pasta",
         6,
         1d,
@@ -1398,7 +1425,7 @@ public class GastroStacks {
 
     public static final FoodItemStack BUTTER_CHICKEN = FoodItemStack.of(
         "GN_BUTTER_CHICKEN",
-        HeadTextures.NONE,
+        HeadTextures.STEW,
         "Butter Chicken",
         7,
         1.5,
@@ -1407,7 +1434,7 @@ public class GastroStacks {
 
     public static final FoodItemStack SHRIMP_FRIED_RICE = FoodItemStack.of(
         "GN_SHRIMP_FRIED_RICE",
-        HeadTextures.NONE,
+        HeadTextures.RICE_PINK,
         "Shrimp Fried Rice",
         6,
         1d
@@ -1415,7 +1442,7 @@ public class GastroStacks {
 
     public static final FoodItemStack CURRY_RICE = FoodItemStack.of(
         "GN_CURRY_RICE",
-        HeadTextures.NONE,
+        HeadTextures.RICE_BROWN,
         "Curry Rice",
         4,
         1d,
@@ -1424,7 +1451,7 @@ public class GastroStacks {
 
     public static final FoodItemStack RICE_OMELETTE = FoodItemStack.of(
         "GN_RICE_OMELETTE",
-        HeadTextures.NONE,
+        HeadTextures.RICE_YELLOW,
         "Rice Omelette",
         4,
         1d,
@@ -1442,7 +1469,7 @@ public class GastroStacks {
 
     public static final FoodItemStack BEEF_UDON = FoodItemStack.of(
         "GN_BEEF_UDON",
-        HeadTextures.NONE,
+        HeadTextures.UDON,
         "Beef Udon",
         10,
         1d,
@@ -1451,7 +1478,7 @@ public class GastroStacks {
 
     public static final FoodItemStack CHICKEN_UDON = FoodItemStack.of(
         "GN_CHICKEN_UDON",
-        HeadTextures.NONE,
+        HeadTextures.UDON,
         "Chicken Udon",
         10,
         1d,
@@ -1460,7 +1487,7 @@ public class GastroStacks {
 
     public static final FoodItemStack VEGETABLE_UDON = FoodItemStack.of(
         "GN_VEGETABLE_UDON",
-        HeadTextures.NONE,
+        HeadTextures.UDON,
         "Vegetable Udon",
         10,
         1d,
@@ -1469,7 +1496,7 @@ public class GastroStacks {
 
     public static final FoodItemStack STIR_FRY_NOODLES = FoodItemStack.of(
         "GN_STIR_FRY_NOODLES",
-        HeadTextures.NONE,
+        HeadTextures.NOODLES,
         "Stir-fry Noodles",
         8,
         1d

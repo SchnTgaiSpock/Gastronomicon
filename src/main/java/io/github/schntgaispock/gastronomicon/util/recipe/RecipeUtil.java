@@ -1,5 +1,7 @@
 package io.github.schntgaispock.gastronomicon.util.recipe;
 
+import java.util.Arrays;
+
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
@@ -87,6 +89,12 @@ public class RecipeUtil {
         else if (slope == -1)
             recipe[0] = recipe[4] = recipe[8] = item;
 
+        return recipe;
+    }
+
+    public static ItemStack[] block(ItemStack item) {
+        final ItemStack[] recipe = new ItemStack[9];
+        Arrays.fill(recipe, item);
         return recipe;
     }
 

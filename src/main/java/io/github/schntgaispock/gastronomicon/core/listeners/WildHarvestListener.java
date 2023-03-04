@@ -27,7 +27,7 @@ import io.github.schntgaispock.gastronomicon.util.NumberUtil;
 
 public class WildHarvestListener implements Listener {
 
-    // TODO: Fortune
+    // TODO: Fortune, Looting, LoTS
 
     private static final Map<Material, List<ItemStack>> dropsByBlock = new HashMap<>();
     private static final Map<EntityType, List<ItemStack>> dropsByMob = new HashMap<>();

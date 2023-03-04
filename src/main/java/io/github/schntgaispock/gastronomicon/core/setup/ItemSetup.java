@@ -29,6 +29,7 @@ import io.github.schntgaispock.gastronomicon.core.slimefun.GastroRecipeType;
 import io.github.schntgaispock.gastronomicon.core.slimefun.GastroStacks;
 import io.github.schntgaispock.gastronomicon.util.recipe.RecipeUtil;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import lombok.experimental.UtilityClass;
@@ -77,8 +78,6 @@ public class ItemSetup {
         final ItemStack DISPENSER = new ItemStack(Material.DISPENSER);
         final ItemStack BLAST_FURNACE = new ItemStack(Material.BLAST_FURNACE);
         final ItemStack DRIED_KELP = new ItemStack(Material.DRIED_KELP);
-        final ItemStack STRING = new ItemStack(Material.STRING);
-        final ItemStack COBWEB = new ItemStack(Material.COBWEB);
         final ItemStack POLISHED_GRANITE = new ItemStack(Material.POLISHED_GRANITE);
         final ItemStack ANDESITE_SLAB = new ItemStack(Material.ANDESITE_SLAB);
         final ItemStack BREAD = new ItemStack(Material.BREAD);
@@ -178,7 +177,8 @@ public class ItemSetup {
             GastroGroups.TOOLS,
             GastroStacks.STEEL_WIRE,
             RecipeType.ENHANCED_CRAFTING_TABLE,
-            RecipeUtil.row(SlimefunItems.STEEL_INGOT, 1)
+            RecipeUtil.row(SlimefunItems.STEEL_INGOT, 1),
+            new SlimefunItemStack(GastroStacks.STEEL_WIRE, 8)
         ).register(gn);
         new SlimefunItem(
             GastroGroups.TOOLS,
@@ -190,7 +190,7 @@ public class ItemSetup {
             GastroGroups.TOOLS,
             GastroStacks.CRAB_TRAP,
             RecipeType.ENHANCED_CRAFTING_TABLE,
-            new ItemStack[] {STICK, STICK, STICK, STICK, null, STICK, OAK_SLAB, OAK_SLAB, OAK_SLAB}
+            new ItemStack[] {STICK, STICK, STICK, STICK, GastroStacks.STEEL_WIRE, STICK, OAK_SLAB, OAK_SLAB, OAK_SLAB}
         ).register(gn);
         new SlimefunItem(
             GastroGroups.TOOLS,
@@ -206,7 +206,7 @@ public class ItemSetup {
             GastroGroups.TOOLS,
             GastroStacks.FISHING_NET,
             RecipeType.ENHANCED_CRAFTING_TABLE,
-            RecipeUtil.cyclicAlternating(STRING, COBWEB, COBWEB)
+            RecipeUtil.block(GastroStacks.STEEL_WIRE)
         ).register(gn);
 
         // -- Other --
@@ -841,14 +841,6 @@ public class ItemSetup {
 
         SimpleGastroFood.stove(
             GastroGroups.FOOD,
-            GastroStacks.TOAST,
-            RecipeUtil.single(BREAD),
-            null,
-            Temperature.LOW
-        ).register(gn);
-
-        SimpleGastroFood.stove(
-            GastroGroups.FOOD,
             GastroStacks.DOUGH,
             RecipeUtil.collection(SlimefunItems.WHEAT_FLOUR, GastroStacks.WATER_BOTTLE),
             null,
@@ -859,6 +851,14 @@ public class ItemSetup {
             new HashSet<>(), // I don't know how to get shapeless recipes to work with groups, so this is the best I can do
             GastroStacks.DOUGH
         ));
+
+        SimpleGastroFood.stove(
+            GastroGroups.FOOD,
+            GastroStacks.TOAST,
+            RecipeUtil.single(BREAD),
+            null,
+            Temperature.LOW
+        ).register(gn);
 
         GastroFood.stove(
             GastroGroups.FOOD,
