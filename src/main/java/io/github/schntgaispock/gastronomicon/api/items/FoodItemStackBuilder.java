@@ -5,7 +5,7 @@ import org.bukkit.Material;
 import io.github.schntgaispock.gastronomicon.api.food.FoodEffect;
 import io.github.thebusybiscuit.slimefun4.libraries.commons.lang.Validate;
 
-public final class FoodItemStackBuilder {
+public class FoodItemStackBuilder {
 
     private String id;
     private String texture;

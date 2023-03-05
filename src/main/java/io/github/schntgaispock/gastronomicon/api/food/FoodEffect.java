@@ -91,10 +91,10 @@ public class FoodEffect {
     @Nonnull
     @ParametersAreNonnullByDefault
     public static FoodEffect heal(int health) {
-        final int h = NumberUtil.clampLower(health, 1);
+        final int h = Math.max(health, 1);
         final int ph = (int) Math.ceil(h * PERFECT_MULTIPLIER_HEALTH);
         return new FoodEffect("&aHealth +" + h, "&aHealth +" + ph, (Player player, Boolean isPerfect) -> {
-            player.setHealth(NumberUtil.clampUpper(player.getHealth() + (isPerfect ? ph : h),
+            player.setHealth(Math.min(player.getHealth() + (isPerfect ? ph : h),
                 player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue()));
         });
     }
@@ -104,9 +104,9 @@ public class FoodEffect {
     private static FoodEffect potionEffect(String color, PotionEffectType effectType, int durationSeconds,
         int amplifier,
         boolean ambience, boolean particles, boolean icon) {
-        final int d = NumberUtil.clampLower(durationSeconds, 1);
+        final int d = Math.max(durationSeconds, 1);
         final int pd = (int) Math.ceil(d * PERFECT_MULTIPLIER_DURATION);
-        final int a = NumberUtil.clampLower(amplifier, 0);
+        final int a = Math.max(amplifier, 0);
         final int pa = amplifier + PERFECT_BONUS_POTION_LEVEL;
         return new FoodEffect(
             color + ItemUtil.getPotionName(effectType) + " " + NumberUtil.asRomanNumeral(a + 1) + " (" + d + "s)",
@@ -382,7 +382,7 @@ public class FoodEffect {
      */
     @Nonnull
     public static FoodEffect xp(int xp) {
-        final int x = NumberUtil.clampLower(xp, 1);
+        final int x = Math.max(xp, 1);
         final int px = (int) Math.ceil(x * PERFECT_MULTIPLIER_XP);
         return new FoodEffect("&eXP +" + Math.round(x), "&eXP +" + px, (Player player, Boolean isPerfect) -> {
             player.giveExp(isPerfect ? px : x);
@@ -503,10 +503,10 @@ public class FoodEffect {
      * @return A FoodEffect that gives the player air.
      */
     public static FoodEffect air(int amount) {
-        final int a = NumberUtil.clampLower(amount, 1);
+        final int a = Math.max(amount, 1);
         final int pa = (int) Math.ceil(a * PERFECT_MULTIPLIER_AIR);
         return new FoodEffect("&aAir +" + a, "&aAir +" + pa, (Player player, Boolean isPerfect) -> {
-            player.setRemainingAir(NumberUtil.clampUpper(player.getRemainingAir() + (isPerfect ? pa : a), 20));
+            player.setRemainingAir(Math.min(player.getRemainingAir() + (isPerfect ? pa : a), 20));
         });
     }
 
@@ -518,10 +518,10 @@ public class FoodEffect {
      * @return A FoodEffect that warms the player.
      */
     public static FoodEffect warm(int amount) {
-        final int a = NumberUtil.clampLower(amount, 1);
+        final int a = Math.max(amount, 1);
         final int pa = (int) Math.ceil(a * PERFECT_MULTIPLIER_WARM);
         return new FoodEffect("&aWarmth +" + a, "&aWarmth +" + pa, (Player player, Boolean isPerfect) -> {
-            player.setFreezeTicks(NumberUtil.clampLower(player.getFreezeTicks() - (isPerfect ? pa : a), 0));
+            player.setFreezeTicks(Math.max(player.getFreezeTicks() - (isPerfect ? pa : a), 0));
         });
     }
 

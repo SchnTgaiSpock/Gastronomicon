@@ -19,7 +19,7 @@ import lombok.Getter;
 public class ShapelessGastroRecipe extends GastroRecipe {
 
     public ShapelessGastroRecipe(GastroRecipeType recipeType, RecipeComponent<?>[] inputs,
-            RecipeComponent<?> container, ItemStack[] outputs, Set<ItemStack> tools) {
+            RecipeComponent<?> container, Set<ItemStack> tools, ItemStack... outputs) {
         super(recipeType, new RecipeInput(RecipeShape.SHAPELESS, container, inputs), tools, outputs);
 
         for (RecipeComponent<?> component : inputs) {

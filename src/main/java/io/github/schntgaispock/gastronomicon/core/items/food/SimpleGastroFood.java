@@ -1,13 +1,12 @@
 package io.github.schntgaispock.gastronomicon.core.items.food;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import javax.annotation.ParametersAreNonnullByDefault;
 
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -19,6 +18,7 @@ import io.github.schntgaispock.gastronomicon.api.recipes.RecipeRegistry;
 import io.github.schntgaispock.gastronomicon.api.recipes.ShapedGastroRecipe;
 import io.github.schntgaispock.gastronomicon.api.recipes.ShapelessGastroRecipe;
 import io.github.schntgaispock.gastronomicon.api.recipes.GastroRecipe.RecipeShape;
+import io.github.schntgaispock.gastronomicon.api.recipes.components.RecipeComponent;
 import io.github.schntgaispock.gastronomicon.core.items.UnplaceableItem;
 import io.github.schntgaispock.gastronomicon.core.items.workstations.MultiStove.Temperature;
 import io.github.schntgaispock.gastronomicon.core.slimefun.GastroRecipeType;
@@ -27,81 +27,60 @@ import io.github.schntgaispock.gastronomicon.util.CollectionUtil;
 import io.github.schntgaispock.gastronomicon.util.StringUtil;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
-import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.attributes.RecipeDisplayItem;
 import lombok.Getter;
 
 @Getter
 public class SimpleGastroFood extends UnplaceableItem implements RecipeDisplayItem {
 
-    private final @Nullable ItemStack container;
-    private final ItemStack[] tools;
+    private final GastroRecipe gastroRecipe;
     protected final ItemStack topRightDisplayItem;
 
-    protected SimpleGastroFood(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe,
-        @Nullable ItemStack container, ItemStack topRightDisplayItem, ItemStack... tools) {
-        super(itemGroup, item, recipeType, recipe);
+    public SimpleGastroFood(ItemGroup group, SlimefunItemStack item, GastroRecipe recipe, ItemStack topRightDisplayItem,
+        boolean registerRecipe) {
+        super(group, item, recipe.getRecipeType(),
+            Arrays.stream(recipe.getInputs().getIngredients()).map(ingredient -> ingredient.getDisplayItem())
+                .toArray(ItemStack[]::new));
 
-        this.tools = tools;
-        this.container = container;
+        this.gastroRecipe = recipe;
         this.topRightDisplayItem = topRightDisplayItem;
+
+        if (registerRecipe)
+            RecipeRegistry.registerRecipe(recipe);
     }
 
-    @Nonnull
-    @ParametersAreNonnullByDefault
-    private static SimpleGastroFood of(ItemGroup itemGroup, SlimefunItemStack item, GastroRecipeType recipeType,
-        RecipeShape shapedness,
-        ItemStack[] ingredients, @Nullable ItemStack container, ItemStack topRightDisplayItem, ItemStack[] tools) {
-        RecipeRegistry.registerRecipe((GastroRecipe) switch (shapedness) {
-            case SHAPELESS -> new ShapelessGastroRecipe(recipeType, ingredients, container, Set.of(tools), item);
-            default -> new ShapedGastroRecipe(recipeType, ingredients, container, Set.of(tools), item);
-        });
+    protected SimpleGastroFood(ItemGroup group, SlimefunItemStack item, GastroRecipeType type, RecipeShape shape,
+        RecipeComponent<?>[] ingredients, @Nullable RecipeComponent<?> container, Set<ItemStack> tools,
+        ItemStack[] outputs, Temperature temperature,
+        boolean registerRecipe) {
+        super(group, item, type,
+            Arrays.stream(ingredients).map(ingredient -> ingredient.getDisplayItem()).toArray(ItemStack[]::new));
 
-        return new SimpleGastroFood(itemGroup, item, recipeType, ingredients, container, topRightDisplayItem, tools);
+        if (type == GastroRecipeType.MULTI_STOVE) {
+            topRightDisplayItem = Temperature.MEDIUM.getItem();
+            gastroRecipe = new MultiStoveRecipe(ingredients, container, tools, outputs, Temperature.MEDIUM);
+        } else {
+            topRightDisplayItem = new ItemStack(Material.AIR);
+            if (shape == RecipeShape.SHAPED) {
+                gastroRecipe = new ShapedGastroRecipe(type, ingredients, container, tools, outputs);
+            } else {
+                gastroRecipe = new ShapelessGastroRecipe(type, ingredients, container, tools, outputs);
+            }
+        }
+
+        if (registerRecipe)
+            RecipeRegistry.registerRecipe(gastroRecipe);
     }
 
-    @Nonnull
-    @ParametersAreNonnullByDefault
-    public static SimpleGastroFood workbench(ItemGroup itemGroup, SlimefunItemStack item, RecipeShape shapedness,
-        ItemStack[] ingredients, @Nullable ItemStack container, ItemStack... tools) {
-        return SimpleGastroFood.of(itemGroup, item, GastroRecipeType.CULINARY_WORKBENCH, shapedness, ingredients,
-            container, new ItemStack(Material.AIR), tools);
+    public SimpleGastroFood(ItemGroup group, SlimefunItemStack item, RecipeComponent<?>[] ingredients,
+        @Nullable RecipeComponent<?> container, Set<ItemStack> tools, Temperature temperature) {
+        this(group, item, GastroRecipeType.MULTI_STOVE, RecipeShape.SHAPELESS, ingredients, container, tools,
+            new ItemStack[] { item }, temperature, true);
     }
 
-    @Nonnull
-    @ParametersAreNonnullByDefault
-    @SuppressWarnings("deprecation")
-    public static SimpleGastroFood stove(ItemGroup itemGroup, SlimefunItemStack item, ItemStack[] ingredients,
-        @Nullable ItemStack container, Temperature temperature, ItemStack... tools) {
-        RecipeRegistry.registerRecipe(new MultiStoveRecipe(ingredients, container, Set.of(tools), temperature, item));
-        final ItemStack trdi = temperature.getItem();
-        trdi.setLore(Collections.emptyList());
-        return new SimpleGastroFood(itemGroup, item, GastroRecipeType.MULTI_STOVE, ingredients, container,
-            trdi, tools);
-    }
-
-    @Nonnull
-    @ParametersAreNonnullByDefault
-    public static SimpleGastroFood fridge(ItemGroup itemGroup, SlimefunItemStack item, ItemStack[] ingredients,
-        ItemStack... tools) {
-        return SimpleGastroFood.of(itemGroup, item, GastroRecipeType.MILL, RecipeShape.SHAPELESS, ingredients, null,
-            new ItemStack(Material.AIR), tools);
-    }
-
-    @Nonnull
-    @ParametersAreNonnullByDefault
-    public static SimpleGastroFood mill(ItemGroup itemGroup, SlimefunItemStack item, ItemStack[] ingredients,
-        ItemStack... tools) {
-        return SimpleGastroFood.of(itemGroup, item, GastroRecipeType.MILL, RecipeShape.SHAPELESS, ingredients, null,
-            new ItemStack(Material.AIR), tools);
-    }
-
-    @Nonnull
-    @ParametersAreNonnullByDefault
-    public static SimpleGastroFood distillery(ItemGroup itemGroup, SlimefunItemStack item, ItemStack[] ingredients,
-        ItemStack... tools) {
-        return SimpleGastroFood.of(itemGroup, item, GastroRecipeType.DISTILLERY, RecipeShape.SHAPELESS, ingredients,
-            null, new ItemStack(Material.AIR), tools);
+    public SimpleGastroFood(ItemGroup group, SlimefunItemStack item, GastroRecipeType type, RecipeShape shape,
+        RecipeComponent<?>[] ingredients, @Nullable RecipeComponent<?> container, Set<ItemStack> tools) {
+        this(group, item, type, shape, ingredients, container, tools, new ItemStack[] { item }, Temperature.MEDIUM, true);
     }
 
     @Override
@@ -112,14 +91,16 @@ public class SimpleGastroFood extends UnplaceableItem implements RecipeDisplayIt
 
     @Override
     @Nonnull
-    @SuppressWarnings("null")
     public List<ItemStack> getDisplayRecipes() {
         final List<ItemStack> display = new ArrayList<ItemStack>();
         display.add(GastroStacks.GUIDE_TOOLS_REQUIRED);
         display.add(GastroStacks.GUIDE_CONTAINER_REQUIRED);
 
+        final ItemStack[] tools = getGastroRecipe().getTools().toArray(ItemStack[]::new);
+        final ItemStack container = getGastroRecipe().getInputs().getContainer().getDisplayItem();
+
         int toolPos = 0;
-        if (CollectionUtil.isEmpty(getTools())) {
+        if (CollectionUtil.isEmpty(tools)) {
             display.add(GastroStacks.GUIDE_NONE);
         } else {
             display.add(tools[toolPos++]);

@@ -11,37 +11,11 @@ public class NumberUtil {
     private static @Getter ThreadLocalRandom random = ThreadLocalRandom.current();
 
     public static int clamp(int x, int lowerBound, int upperBound) {
-        if (x < lowerBound)
-            return lowerBound;
-        else if (x > upperBound)
-            return upperBound;
-        else
-            return x;
-    }
-
-    public static int clampLower(int x, int lowerBound) {
-        return x < lowerBound ? lowerBound : x;
-    }
-
-    public static int clampUpper(int x, int upperBound) {
-        return x > upperBound ? upperBound : x;
+        return Math.min(Math.max(x, lowerBound), upperBound);
     }
 
     public static double clamp(double x, double lowerBound, double upperBound) {
-        if (x < lowerBound)
-            return lowerBound;
-        else if (x > upperBound)
-            return upperBound;
-        else
-            return x;
-    }
-
-    public static double clampLower(double x, double lowerBound) {
-        return x < lowerBound ? lowerBound : x;
-    }
-
-    public static double clampUpper(double x, double upperBound) {
-        return x > upperBound ? upperBound : x;
+        return Math.min(Math.max(x, lowerBound), upperBound);
     }
 
     public static String asRomanNumeral(int x) {

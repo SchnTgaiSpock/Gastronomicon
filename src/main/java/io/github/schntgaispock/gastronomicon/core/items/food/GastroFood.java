@@ -1,14 +1,11 @@
 package io.github.schntgaispock.gastronomicon.core.items.food;
 
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import javax.annotation.ParametersAreNonnullByDefault;
 
-import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.SoundCategory;
 import org.bukkit.entity.Player;
@@ -18,17 +15,13 @@ import io.github.schntgaispock.gastronomicon.api.events.PlayerGastroFoodConsumeE
 import io.github.schntgaispock.gastronomicon.api.food.FoodEffect;
 import io.github.schntgaispock.gastronomicon.api.items.FoodItemStack;
 import io.github.schntgaispock.gastronomicon.api.recipes.GastroRecipe;
-import io.github.schntgaispock.gastronomicon.api.recipes.MultiStoveRecipe;
-import io.github.schntgaispock.gastronomicon.api.recipes.RecipeRegistry;
-import io.github.schntgaispock.gastronomicon.api.recipes.ShapedGastroRecipe;
-import io.github.schntgaispock.gastronomicon.api.recipes.ShapelessGastroRecipe;
 import io.github.schntgaispock.gastronomicon.api.recipes.GastroRecipe.RecipeShape;
+import io.github.schntgaispock.gastronomicon.api.recipes.components.RecipeComponent;
 import io.github.schntgaispock.gastronomicon.core.items.workstations.MultiStove.Temperature;
+import io.github.schntgaispock.gastronomicon.core.slimefun.GastroGroups;
 import io.github.schntgaispock.gastronomicon.core.slimefun.GastroRecipeType;
-import io.github.schntgaispock.gastronomicon.util.NumberUtil;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.api.events.PlayerRightClickEvent;
-import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.core.handlers.ItemUseHandler;
 import lombok.Getter;
@@ -40,75 +33,33 @@ public class GastroFood extends SimpleGastroFood {
     private static final @Getter Set<String> skills = new HashSet<>();
 
     private final FoodItemStack item;
-    private final GastroRecipe gastroRecipe;
-    private final boolean isPerfect;
+    private final boolean perfect;
 
-    protected GastroFood(ItemGroup itemGroup, FoodItemStack item, boolean isPerfect, ItemStack topRightDisplayItem, GastroRecipe recipe) {
-        super(itemGroup, item, recipe.getRecipeType(), recipe.getInputs().getDisplayIngredients(),
-                recipe.getInputs().getContainer().getDisplayItem(), topRightDisplayItem,
-                recipe.getTools().toArray(ItemStack[]::new));
+    protected GastroFood(FoodItemStack item, GastroRecipe recipe, ItemStack topRightDisplayItem, boolean perfect) {
+        super(GastroGroups.FOOD, item, recipe, topRightDisplayItem, !perfect);
 
         this.item = item;
-        this.gastroRecipe = recipe;
-        this.isPerfect = isPerfect;
+        this.perfect = perfect;
     }
 
-    protected GastroFood(ItemGroup itemGroup, FoodItemStack item, ItemStack topRightDisplayItem, GastroRecipe recipe) {
-        this(itemGroup, item, false, topRightDisplayItem, recipe);
+    protected GastroFood(FoodItemStack item, GastroRecipeType type, RecipeShape shape, RecipeComponent<?>[] ingredients,
+        @Nullable RecipeComponent<?> container, Set<ItemStack> tools, Temperature temperature, boolean perfect) {
+        super(GastroGroups.FOOD, item, type, shape, ingredients, container, tools, new ItemStack[] { item, item.asPerfect() }, temperature,
+            !perfect);
+
+        this.item = item;
+        this.perfect = perfect;
     }
 
-    private GastroFood(ItemGroup itemGroup, FoodItemStack item, GastroRecipeType recipeType, RecipeShape shapedness,
-        ItemStack[] ingredients, @Nullable ItemStack container, ItemStack topRightDisplayItem, ItemStack[] tools) {
-        this(itemGroup, item, topRightDisplayItem, (GastroRecipe) switch (shapedness) {
-            case SHAPELESS -> new ShapelessGastroRecipe(recipeType, ingredients, container, Set.of(tools), item,
-                item.asPerfect());
-            default -> new ShapedGastroRecipe(recipeType, ingredients, container, Set.of(tools), item,
-                item.asPerfect());
-        });
+    public GastroFood(FoodItemStack item, RecipeComponent<?>[] ingredients,
+        @Nullable RecipeComponent<?> container, Set<ItemStack> tools, Temperature temperature) {
+        this(item, GastroRecipeType.MULTI_STOVE, RecipeShape.SHAPELESS, ingredients, container, tools, temperature,
+            false);
     }
 
-    @Nonnull
-    @ParametersAreNonnullByDefault
-    public static GastroFood workbench(ItemGroup itemGroup, FoodItemStack item, RecipeShape shapedness,
-        ItemStack[] ingredients, @Nullable ItemStack container, ItemStack... tools) {
-        return new GastroFood(itemGroup, item, GastroRecipeType.CULINARY_WORKBENCH, shapedness, ingredients, container,
-            new ItemStack(Material.AIR), tools);
-    }
-
-    @Nonnull
-    @ParametersAreNonnullByDefault
-    @SuppressWarnings("deprecation")
-    public static GastroFood stove(ItemGroup itemGroup, FoodItemStack item, ItemStack[] ingredients,
-        @Nullable ItemStack container, Temperature temperature, ItemStack... tools) {
-        final MultiStoveRecipe recipe = new MultiStoveRecipe(ingredients, container, Set.of(tools), temperature, item);
-        RecipeRegistry.registerRecipe(recipe);
-        final ItemStack trdi = temperature.getItem();
-        trdi.setLore(Collections.emptyList());
-        return new GastroFood(itemGroup, item, trdi, recipe);
-    }
-
-    @Nonnull
-    @ParametersAreNonnullByDefault
-    public static GastroFood fridge(ItemGroup itemGroup, FoodItemStack item, RecipeShape shapedness,
-        ItemStack[] ingredients, @Nullable ItemStack container, ItemStack... tools) {
-        return new GastroFood(itemGroup, item, GastroRecipeType.REFRIDGERATOR, shapedness, ingredients, container,
-            new ItemStack(Material.AIR), tools);
-    }
-
-    @Nonnull
-    @ParametersAreNonnullByDefault
-    public static GastroFood mill(ItemGroup itemGroup, FoodItemStack item, RecipeShape shapedness,
-        ItemStack[] ingredients, @Nullable ItemStack container, ItemStack... tools) {
-        return new GastroFood(itemGroup, item, GastroRecipeType.MILL, shapedness, ingredients, container,
-            new ItemStack(Material.AIR), tools);
-    }
-
-    @Nonnull
-    @ParametersAreNonnullByDefault
-    public static GastroFood distillery(ItemGroup itemGroup, FoodItemStack item, RecipeShape shapedness,
-        ItemStack[] ingredients, @Nullable ItemStack container, ItemStack... tools) {
-        return new GastroFood(itemGroup, item, GastroRecipeType.DISTILLERY, shapedness, ingredients, container,
-            new ItemStack(Material.AIR), tools);
+    public GastroFood(FoodItemStack item, GastroRecipeType type, RecipeShape shape, RecipeComponent<?>[] ingredients,
+        @Nullable RecipeComponent<?> container, Set<ItemStack> tools) {
+        this(item, type, shape, ingredients, container, tools, Temperature.MEDIUM, false);
     }
 
     @Override
@@ -141,8 +92,8 @@ public class GastroFood extends SimpleGastroFood {
             for (FoodEffect effect : food.getItem().getEffects()) {
                 effect.apply(p, food.isPerfect());
             }
-            p.setFoodLevel(NumberUtil.clampUpper(p.getFoodLevel() + food.getItem().getHunger(), 20));
-            p.setSaturation((float) NumberUtil.clampUpper(p.getSaturation() + food.getItem().getSaturation(),
+            p.setFoodLevel(Math.min(p.getFoodLevel() + food.getItem().getHunger(), 20));
+            p.setSaturation((float) Math.min(p.getSaturation() + food.getItem().getSaturation(),
                 p.getFoodLevel()));
             if (getGastroRecipe().getInputs().getContainer().getComponent() instanceof final ItemStack stack) {
                 p.getInventory().addItem(stack); // It should always be an itemstack anyways
@@ -160,14 +111,9 @@ public class GastroFood extends SimpleGastroFood {
     public void register(@Nonnull SlimefunAddon addon) {
         super.register(addon);
         if (!isPerfect()) {
-            new GastroFood(
-                getItemGroup(),
-                getItem().asPerfect(),
-                true, topRightDisplayItem,
-                getGastroRecipe()).hide().register(addon);
+            new GastroFood(item, getGastroRecipe(), topRightDisplayItem, true).hide().register(addon);
         } else {
             getGastroFoodIds().add(getId());
-            RecipeRegistry.registerRecipe(getGastroRecipe());
         }
     }
 
