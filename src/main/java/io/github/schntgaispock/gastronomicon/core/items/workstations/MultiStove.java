@@ -28,6 +28,8 @@ import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
 @SuppressWarnings("deprecation")
 public class MultiStove extends GastroWorkstation implements EnergyNetComponent {
 
+    // TODO: Energy Checks
+
     @RequiredArgsConstructor
     public enum Temperature {
         LOW(TEMPERATURE_BUTTON_LOW),

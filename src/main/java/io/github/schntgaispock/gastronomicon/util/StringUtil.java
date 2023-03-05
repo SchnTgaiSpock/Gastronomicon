@@ -14,4 +14,8 @@ public class StringUtil {
         return ChatColor.translateAlternateColorCodes('&', str);
     }
 
+    public static String waterUsed(int mB, String suffix) {
+        return "&8⇨ &9🪣 &7" + mB + " mB" + suffix;
+    }
+
 }

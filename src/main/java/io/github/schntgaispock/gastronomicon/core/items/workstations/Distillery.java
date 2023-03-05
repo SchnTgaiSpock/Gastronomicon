@@ -10,6 +10,8 @@ import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
 
 public class Distillery extends GastroWorkstation {
 
+    // TODO: Water level
+
     public Distillery(ItemGroup group, SlimefunItemStack item, RecipeType type, ItemStack[] recipe) {
         super(group, item, type, recipe);
     }

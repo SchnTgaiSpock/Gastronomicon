@@ -27,9 +27,30 @@ public class HeadTextures {
     public static final String RICE_BALLS = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjljMmRkZjJiZDc0YTQ2NTVlOGYwMTUzYTc0NTNlNjdkYjJhMjFkYmZhYzY3NTY3ODk0ODFhZGJlYzQ4M2EifX19";
     public static final String UDON = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjJlOGMzNjNjOGZlNzU5MzlhMmRmMzY5OWYzZDFkMDg5M2Q3NjAyMWVmMTdiN2VkZTQ4OWY3MzRhYWQyYjczZiJ9fX0=";
     public static final String NOODLES = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvY2UyMzUwYzI2OTc5NzY1Yzk3YmVmZWM5OWEwMTFiYjYwNWZiMTI3OWNmNzU0NTU1OWU5ZjNjZjJjYTZjMmJhNyJ9fX0=";
+    public static final String DUMPLINGS = "";
+    public static final String POTSTICKERS = "";
+    public static final String PIEROGIES = "";
     public static final String SUSHI_ROLL = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMmUxMmYyNjc5NTNlNzZhZTY2YThkZDAyNWEzMjg2YWVjYmM2NGI0YWQ5OGVlYjEwYjNjNjdhNjlhYWUxNSJ9fX0=";
+    public static final String LASAGNA = "";
+    public static final String CASSEROLE = "";
+    public static final String MUFFIN = "";
+    public static final String ICE_CREAM_WHITE = "";
+    public static final String ICE_CREAM_BROWN = "";
+    public static final String ICE_CREAM_GREEN = "";
+    public static final String ICE_CREAM_OCHRE = "";
+    public static final String ICE_CREAM_PINK = "";
+    public static final String ICE_CREAM_PURPLE = "";
+    public static final String ICE_CREAM_BLUE = "";
+    public static final String ICE_CREAM_YELLOW = "";
+    public static final String ICE_CREAM_ORANGE = "";
     public static final String SHAVED_ICE = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZGZkMGRjOTIyNmFiOGIyOWY3NmY3MzViOTRiZDdjNmJhMDEyZTQ0N2EzOGIyMDE1ODVlNzJkYWQ4NTI5OGMxYiJ9fX0=";
     public static final String STRAWBERRY_SHAVED_ICE = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYmQ5ZmYzYjk1ZGEyOWE4MTQxZWUxODFlOWFjMjFiMWYyMTIxYzRjNGU5ZDM3MDQ0YTc3NjZmZGQwYzk2ZCJ9fX0=";
     public static final String LEMON_SHAVED_ICE = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYWJhMjYwYWUzMjIzMzIzMDQ5ODg5ZjEzODlkODQ3NjVlOGU4OGFmYmQ4MzkxYjA5ZjFiZWI1OTMxYzQ0MzM5In19fQ==";
+    public static final String APPLE = "";
+    public static final String DONUT = "";
+    public static final String DONUT_GOLD = "";
+    public static final String DONUT_PINK = "";
+    public static final String CHEESECAKE = "";
+    public static final String CUPCAKE = "";
 
 }

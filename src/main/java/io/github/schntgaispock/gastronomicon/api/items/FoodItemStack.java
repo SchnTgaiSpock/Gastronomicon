@@ -79,7 +79,7 @@ public class FoodItemStack extends SlimefunItemStack {
 
         if (effects != null && effects.length > 0) {
             fLore.add("");
-            fLore.add("&7Effects when consumed:");
+            fLore.add("&7When consumed:");
             for (FoodEffect effect : effects) {
                 fLore.add("&8‑ " + (isPerfect ? effect.getPerfectDescription() : effect.getDescription()));
             }

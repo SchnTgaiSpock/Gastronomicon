@@ -24,6 +24,7 @@ import lombok.ToString;
 @ToString
 public class SimpleGastroFoodBuilder {
 
+    // Defaults
     protected ItemGroup group = GastroGroups.FOOD;
     protected SlimefunItemStack itemStack;
     protected GastroRecipeType recipeType;
