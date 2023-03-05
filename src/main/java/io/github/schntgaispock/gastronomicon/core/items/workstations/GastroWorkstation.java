@@ -17,6 +17,7 @@ import org.bukkit.inventory.ItemStack;
 
 import io.github.mooy1.infinitylib.machines.MenuBlock;
 import io.github.schntgaispock.gastronomicon.Gastronomicon;
+import io.github.schntgaispock.gastronomicon.api.events.PlayerGastroFoodCraftEvent;
 import io.github.schntgaispock.gastronomicon.api.recipes.GastroRecipe;
 import io.github.schntgaispock.gastronomicon.api.recipes.RecipeRegistry;
 import io.github.schntgaispock.gastronomicon.api.recipes.GastroRecipe.RecipeMatchResult;
@@ -30,6 +31,7 @@ import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
+import net.kyori.adventure.text.Component;
 import net.md_5.bungee.api.ChatColor;
 
 @SuppressWarnings("deprecation")
@@ -110,6 +112,7 @@ public abstract class GastroWorkstation extends MenuBlock {
         super.onNewInstance(menu, b);
 
         menu.addMenuClickHandler(CRAFT_BUTTON_SLOT, (player, slot, item, action) -> {
+            // Check if there is a free slot to craft
             Integer freeSlot = null;
             for (int s : getOutputSlots()) {
                 final ItemStack stack = menu.getItemInSlot(s);
@@ -123,6 +126,7 @@ public abstract class GastroWorkstation extends MenuBlock {
                 return false;
             }
 
+            // Get the items in the menu
             final ItemStack[] ingredients = Arrays.stream(getInputSlots()).mapToObj(s -> {
                 final ItemStack i = menu.getItemInSlot(s);
                 return i == null ? null : i.asOne();
@@ -136,17 +140,20 @@ public abstract class GastroWorkstation extends MenuBlock {
                 return i == null ? null : i.asOne();
             }).toList();
 
+            // Get the hashes, and check against last crafted recipe
             final int ingredientHash = Arrays.hashCode(ingredients);
             final int containerHash = containers.hashCode();
             final int toolsHash = tools.hashCode();
             final int otherHash = getOtherHash(player, menu);
 
-            final ItemStack[] recipeOutputs;
+            final GastroRecipe recipe;
             if (lastCrafted != null && hashedInputs[0] == ingredientHash && hashedInputs[1] == containerHash
                 && hashedInputs[2] == toolsHash && hashedInputs[3] == otherHash) {
-                recipeOutputs = lastCrafted.getOutputs();
+                // Can skip searching if hashes are the same
+                recipe = lastCrafted;
             } else {
-                final GastroRecipe recipe = findRecipe(ingredients, containers, tools, player, menu);
+                // Otherwise start search
+                recipe = findRecipe(ingredients, containers, tools, player, menu);
                 if (recipe == null) {
                     return false;
                 } else {
@@ -155,10 +162,19 @@ public abstract class GastroWorkstation extends MenuBlock {
                     hashedInputs[1] = containerHash;
                     hashedInputs[2] = toolsHash;
                     hashedInputs[3] = otherHash;
-                    recipeOutputs = recipe.getOutputs();
+                    // TODO: save hashes in RecipeRegistry
                 }
             }
+            final ItemStack[] recipeOutputs = recipe.getOutputs();
 
+            // Call the event
+            final PlayerGastroFoodCraftEvent craftEvent = new PlayerGastroFoodCraftEvent(player, recipe);
+            if (!craftEvent.callEvent()) {
+                if (craftEvent.getMessage() != null) player.sendMessage(Component.text(craftEvent.getMessage()));
+                return false;
+            }
+
+            // Calculate the crafting result
             final ItemStack output;
             final ItemStack[] toReturn;
             if (recipeOutputs.length > 1 && recipeOutputs[0] instanceof final SlimefunItemStack sfItem) {
@@ -176,6 +192,7 @@ public abstract class GastroWorkstation extends MenuBlock {
                 toReturn = Arrays.copyOfRange(recipeOutputs, 1, recipeOutputs.length);
             }
 
+            // Place the result in the inventory
             final Inventory inv = player.getOpenInventory().getTopInventory();
 
             for (final int outputSlot : getOutputSlots()) {
@@ -194,6 +211,7 @@ public abstract class GastroWorkstation extends MenuBlock {
                 }
             }
 
+            // Subtract inputs
             Arrays.stream(getInputSlots()).forEach(s -> {
                 final ItemStack i = menu.getItemInSlot(s);
                 if (i != null)

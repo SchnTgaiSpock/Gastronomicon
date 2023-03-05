@@ -111,7 +111,7 @@ public class GastroFood extends SimpleGastroFood {
     public void register(@Nonnull SlimefunAddon addon) {
         super.register(addon);
         if (!isPerfect()) {
-            new GastroFood(item, getGastroRecipe(), topRightDisplayItem, true).hide().register(addon);
+            new GastroFood(item.asPerfect(), getGastroRecipe(), topRightDisplayItem, true).hide().register(addon);
         } else {
             getGastroFoodIds().add(getId());
         }

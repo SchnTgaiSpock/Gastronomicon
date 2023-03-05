@@ -513,10 +513,10 @@ public class GastroStacks {
     public static final SlimefunItemStack AVOCADO = ThemedItemStack.ingredient(
         "GN_AVOCADO",
         Material.LIME_DYE,
-        "Cauliflower");
+        "Avocado");
 
     public static final SlimefunItemStack AVOCADO_PIT = ThemedItemStack.ingredient(
-        "GN_CAULIFLOWER",
+        "GN_AVOCADO_PIT",
         Material.DARK_OAK_BUTTON,
         "Avocado Pit");
 
@@ -528,7 +528,7 @@ public class GastroStacks {
     public static final SlimefunItemStack CUMIN_SEEDS = ThemedItemStack.ingredient(
         "GN_CUMIN_SEEDS",
         Material.PUMPKIN_SEEDS,
-        "Avocado Pit");
+        "Cumin Seeds");
 
     // -- Grown from trees --
 
@@ -1319,7 +1319,7 @@ public class GastroStacks {
         .build();
 
     public static final FoodItemStack BUTTER_CHICKEN_WITH_NAAN_BREAD = new FoodItemStackBuilder()
-        .id("GN_BUTTER_CHICKEN")
+        .id("GN_BUTTER_CHICKEN_WITH_NAAN_BREAD")
         .texture(HeadTextures.STEW)
         .name("Butter Chicken With Naan Bread")
         .hunger(10)
@@ -1708,7 +1708,7 @@ public class GastroStacks {
     public static final FoodItemStack CHORUS_PIE = new FoodItemStackBuilder()
         .id("GN_CHORUS_PIE")
         .material(Material.PUMPKIN_PIE)
-        .name("Lemon Tart")
+        .name("Chorus Pie")
         .hunger(8, 0.5)
         .effects(FoodEffect.teleport(5))
         .build();

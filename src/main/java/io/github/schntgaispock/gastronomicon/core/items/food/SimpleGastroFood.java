@@ -2,6 +2,7 @@ package io.github.schntgaispock.gastronomicon.core.items.food;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
@@ -31,6 +32,7 @@ import io.github.thebusybiscuit.slimefun4.core.attributes.RecipeDisplayItem;
 import lombok.Getter;
 
 @Getter
+@SuppressWarnings("deprecation")
 public class SimpleGastroFood extends UnplaceableItem implements RecipeDisplayItem {
 
     private final GastroRecipe gastroRecipe;
@@ -39,7 +41,7 @@ public class SimpleGastroFood extends UnplaceableItem implements RecipeDisplayIt
     public SimpleGastroFood(ItemGroup group, SlimefunItemStack item, GastroRecipe recipe, ItemStack topRightDisplayItem,
         boolean registerRecipe) {
         super(group, item, recipe.getRecipeType(),
-            Arrays.stream(recipe.getInputs().getIngredients()).map(ingredient -> ingredient.getDisplayItem())
+            Arrays.stream(recipe.getInputs().getIngredients()).map(ingredient -> ingredient == null ? null : ingredient.getDisplayItem())
                 .toArray(ItemStack[]::new));
 
         this.gastroRecipe = recipe;
@@ -54,10 +56,11 @@ public class SimpleGastroFood extends UnplaceableItem implements RecipeDisplayIt
         ItemStack[] outputs, Temperature temperature,
         boolean registerRecipe) {
         super(group, item, type,
-            Arrays.stream(ingredients).map(ingredient -> ingredient.getDisplayItem()).toArray(ItemStack[]::new));
+            Arrays.stream(ingredients).map(ingredient -> ingredient == null ? null : ingredient.getDisplayItem()).toArray(ItemStack[]::new));
 
         if (type == GastroRecipeType.MULTI_STOVE) {
             topRightDisplayItem = Temperature.MEDIUM.getItem();
+            topRightDisplayItem.setLore(Collections.emptyList());
             gastroRecipe = new MultiStoveRecipe(ingredients, container, tools, outputs, Temperature.MEDIUM);
         } else {
             topRightDisplayItem = new ItemStack(Material.AIR);
@@ -112,7 +115,7 @@ public class SimpleGastroFood extends UnplaceableItem implements RecipeDisplayIt
             display.add(container);
         }
 
-        for (int i = toolPos; i < 7; i++) {
+        for (int i = toolPos; i < 6; i++) {
             if (i < tools.length) {
                 display.add(tools[i]);
             } else {
@@ -121,11 +124,9 @@ public class SimpleGastroFood extends UnplaceableItem implements RecipeDisplayIt
 
             display.add(new ItemStack(Material.AIR));
 
-            if (i == 6) {
-                display.add(topRightDisplayItem);
-                break;
-            }
         }
+
+        display.add(topRightDisplayItem);
 
         return display;
     }

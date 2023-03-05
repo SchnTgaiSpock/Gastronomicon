@@ -99,11 +99,12 @@ public class RecipeUtil {
     }
 
     public static int compareComponents(RecipeComponent<?> component1, RecipeComponent<?> component2) {
-        return Integer.compare(recipeHash(component1.getComponent()), recipeHash(component2.getComponent()));
+        return Integer.compare(recipeHash(component1 == null ? null : component1.getComponent()),
+            recipeHash(component2 == null ? null : component2.getComponent()));
     }
 
     public static int compareItemStacks(ItemStack item1, ItemStack item2) {
-        return Integer.compare(recipeHash(item1), recipeHash(item2));
+        return Integer.compare(recipeHash(item1 == null ? null : item1), recipeHash(item2 == null ? null : item2));
     }
 
     public static int recipeHash(Object object) {
