@@ -117,11 +117,11 @@ public class GastroStacks {
         "&7Grain Mill with the tool(s)",
         "&7listed below.");
 
-    public static final ItemStack GUIDE_RECIPE_DISTILLERY = new CustomItemStack(
+    public static final ItemStack GUIDE_RECIPE_FERMENTER = new CustomItemStack(
         Material.BARREL,
-        "&bDistillery",
+        "&bFermenter",
         "&7Craft this item as shown in a",
-        "&7Distillery with the tool(s)",
+        "&7Fermenter with the tool(s)",
         "&7listed below.");
 
     public static final ItemStack GUIDE_TOOLS_REQUIRED = new CustomItemStack(
@@ -324,12 +324,20 @@ public class GastroStacks {
         Material.CAULDRON,
         "Grain Mill");
 
-    public static final SlimefunItemStack DISTILLERY = ThemedItemStack.of(
+    public static final SlimefunItemStack FERMENTER = ThemedItemStack.of(
         GastroTheme.MECHANICAL,
         "GN_FERMENTER",
         Material.BARREL,
         "Fermenter",
-        StringUtil.waterUsed(125, " Buffer"),
+        StringUtil.waterUsed(2000, " Buffer"),
+        StringUtil.waterUsed(125, "/Craft"));
+
+    public static final SlimefunItemStack LARGE_FERMENTER = ThemedItemStack.of(
+        GastroTheme.MECHANICAL,
+        "GN_LARGE_FERMENTER",
+        Material.BARREL,
+        "Large Fermenter",
+        StringUtil.waterUsed(16000, " Buffer"),
         StringUtil.waterUsed(125, "/Craft"));
 
     // ---- Raw Ingredients ----
@@ -722,8 +730,7 @@ public class GastroStacks {
         WildHarvestListener.registerDrops(
             Material.FERN,
             FIDDLEHEADS, CELERY, BOK_CHOY, SNOW_PEAS, BROCCOLI, WASABI_PLANT, LEMONGRASS, CUCUMBER, BASIL, SPINACH,
-            BRUSSLES_SPROUTS, MINT, CHILI_PEPPER, PARSLEY, CASSAVA, LENTILS, PEANUTS, BEANS, PEAS, ASPARAGUS,
-            GREEN_ONION, CAULIFLOWER);
+            BRUSSLES_SPROUTS, MINT, PARSLEY, LENTILS, PEAS, ASPARAGUS, GREEN_ONION, CAULIFLOWER);
 
         WildHarvestListener.registerDrops(
             Material.PODZOL,
@@ -1717,7 +1724,7 @@ public class GastroStacks {
         .id("GN_ENCHANTED_GOLDEN_CARROT")
         .material(Material.GOLDEN_CARROT)
         .name("Enchanted Golden Carrot")
-        .hunger(8, 0.5)
+        .hunger(6, 0.5)
         .effects(
             FoodEffect.removePotionEffect(PotionEffectType.DARKNESS),
             FoodEffect.removePotionEffect(PotionEffectType.BLINDNESS),
@@ -1732,7 +1739,7 @@ public class GastroStacks {
         .id("GN_ENCHANTED_GLISTERING_MELON_SLICE")
         .material(Material.GLISTERING_MELON_SLICE)
         .name("Enchanted Glistering Melon Slice")
-        .hunger(8, 0.5)
+        .hunger(2, 0.5)
         .effects(
             FoodEffect.removePotionEffect(PotionEffectType.WITHER),
             FoodEffect.removePotionEffect(PotionEffectType.POISON),

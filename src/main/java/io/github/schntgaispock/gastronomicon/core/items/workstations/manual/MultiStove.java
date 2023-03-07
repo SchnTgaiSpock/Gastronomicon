@@ -1,4 +1,4 @@
-package io.github.schntgaispock.gastronomicon.core.items.workstations;
+package io.github.schntgaispock.gastronomicon.core.items.workstations.manual;
 
 import java.util.List;
 
@@ -25,10 +25,9 @@ import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
 
+@Getter
 @SuppressWarnings("deprecation")
 public class MultiStove extends GastroWorkstation implements EnergyNetComponent {
-
-    // TODO: Energy Checks
 
     @RequiredArgsConstructor
     public enum Temperature {
@@ -74,8 +73,14 @@ public class MultiStove extends GastroWorkstation implements EnergyNetComponent 
     public static final int TEMPERATURE_BUTTON_SLOT = 52;
     public static final String TEMPERATURE_KEY = "gastronomicon:multi_stove/temperature";
 
-    public MultiStove(ItemGroup group, SlimefunItemStack item, RecipeType type, ItemStack[] recipe) {
+    private final int capacity;
+    private final int energyPerUse;
+
+    public MultiStove(ItemGroup group, SlimefunItemStack item, RecipeType type, ItemStack[] recipe, int capacity, int energyPerUse) {
         super(group, item, type, recipe);
+
+        this.capacity = capacity;
+        this.energyPerUse = energyPerUse;
     }
 
     @Override
@@ -113,11 +118,6 @@ public class MultiStove extends GastroWorkstation implements EnergyNetComponent 
     @Override
     public GastroRecipeType getGastroRecipeType() {
         return GastroRecipeType.MULTI_STOVE;
-    }
-
-    @Override
-    public int getCapacity() {
-        return 800;
     }
 
     @Override

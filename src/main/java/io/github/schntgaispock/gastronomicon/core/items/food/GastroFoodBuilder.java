@@ -11,19 +11,38 @@ import io.github.schntgaispock.gastronomicon.api.items.FoodItemStack;
 import io.github.schntgaispock.gastronomicon.api.recipes.GastroRecipe.RecipeShape;
 import io.github.schntgaispock.gastronomicon.api.recipes.components.RecipeComponent;
 import io.github.schntgaispock.gastronomicon.api.recipes.components.SingleRecipeComponent;
-import io.github.schntgaispock.gastronomicon.core.items.workstations.MultiStove.Temperature;
+import io.github.schntgaispock.gastronomicon.core.items.workstations.manual.MultiStove.Temperature;
 import io.github.schntgaispock.gastronomicon.core.slimefun.GastroRecipeType;
+import io.github.schntgaispock.gastronomicon.core.slimefun.GastroResearch;
+import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
+import io.github.thebusybiscuit.slimefun4.api.researches.Research;
 import io.github.thebusybiscuit.slimefun4.libraries.commons.lang.Validate;
 import lombok.ToString;
 
 @ToString
 public class GastroFoodBuilder extends SimpleGastroFoodBuilder {
 
+    protected Research research = GastroResearch.FOOD;
     protected FoodItemStack itemStack;
+
+    public GastroFoodBuilder research(Research reserach) {
+        this.research = reserach;
+        return this;
+    }
+
+    public GastroFoodBuilder group(@Nonnull ItemGroup group) {
+        this.group = group;
+        return this;
+    }
 
     public GastroFoodBuilder item(@Nonnull FoodItemStack itemStack) {
         this.itemStack = itemStack;
+        return this;
+    }
+
+    public GastroFoodBuilder amount(int amount) {
+        this.amount = amount;
         return this;
     }
 
@@ -97,9 +116,9 @@ public class GastroFoodBuilder extends SimpleGastroFoodBuilder {
         Validate.notNull(recipeType, "Must set a recipe type!");
         
         if (recipeType == GastroRecipeType.MULTI_STOVE) {
-            return new GastroFood(itemStack, ingredients, container, tools, temperature);
+            return new GastroFood(research, itemStack, ingredients, container, tools, temperature, amount);
         } else {
-            return new GastroFood(itemStack, recipeType, shape, ingredients, container, tools);
+            return new GastroFood(research, itemStack, recipeType, shape, ingredients, container, tools, amount);
         }
     }
 

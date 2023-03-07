@@ -19,7 +19,7 @@ public class GastroRecipeType extends RecipeType {
     public static final GastroRecipeType MULTI_STOVE = new GastroRecipeType("multi_stove", GastroStacks.GUIDE_RECIPE_MULTI_STOVE);
     public static final GastroRecipeType REFRIDGERATOR = new GastroRecipeType("refridgerator", GastroStacks.GUIDE_RECIPE_REFRIDGERATOR);
     public static final GastroRecipeType MILL = new GastroRecipeType("mill", GastroStacks.GUIDE_RECIPE_MILL);
-    public static final GastroRecipeType DISTILLERY = new GastroRecipeType("distillery", GastroStacks.GUIDE_RECIPE_DISTILLERY);
+    public static final GastroRecipeType FERMENTER = new GastroRecipeType("fermenter", GastroStacks.GUIDE_RECIPE_FERMENTER);
 
     public GastroRecipeType(@Nonnull String key, ItemStack item) {
         super(Gastronomicon.newNamespacedKey(key), item);

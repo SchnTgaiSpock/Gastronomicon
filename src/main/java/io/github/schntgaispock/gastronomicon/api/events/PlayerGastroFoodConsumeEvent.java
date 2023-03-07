@@ -8,10 +8,13 @@ import org.jetbrains.annotations.NotNull;
 
 import io.github.schntgaispock.gastronomicon.core.items.food.GastroFood;
 import lombok.Getter;
+import lombok.Setter;
 
+@Getter
 public class PlayerGastroFoodConsumeEvent extends PlayerItemConsumeEvent {
 
-    private final @Getter GastroFood food;
+    private final GastroFood food;
+    private @Setter String message;
 
     public PlayerGastroFoodConsumeEvent(@NotNull Player player, GastroFood food, @NotNull ItemStack item, @NotNull EquipmentSlot hand) {
         super(player, item, hand);

@@ -9,6 +9,8 @@ import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 import org.bukkit.Material;
+import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.data.Ageable;
 import org.bukkit.enchantments.Enchantment;
@@ -20,7 +22,11 @@ import io.github.schntgaispock.gastronomicon.util.item.ItemUtil;
 import io.github.thebusybiscuit.slimefun4.api.events.BlockPlacerPlaceEvent;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockPlaceHandler;
+import io.github.thebusybiscuit.slimefun4.core.handlers.ItemUseHandler;
+import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
 import lombok.Getter;
+import me.mrCookieSlime.Slimefun.api.BlockStorage;
 
 /**
  * A SimpleGastroSeed only drops itself when harvested.
@@ -64,6 +70,37 @@ public class SimpleSeed extends AbstractSeed {
 
                     e.getBlock().setType(displayBlock);
                 }
+            });
+        } else {
+            addItemHandler(new BlockPlaceHandler(false) {
+                @Override
+                public void onPlayerPlace(@Nonnull BlockPlaceEvent e) {
+                    e.setCancelled(true);
+                    BlockStorage.clearBlockInfo(e.getBlock(), false);
+                }
+            });
+
+            addItemHandler((ItemUseHandler) event -> {
+                if (event.getClickedFace() != BlockFace.UP || !canUse(event.getPlayer(), true)
+                    || event.getClickedBlock().isEmpty()) {
+                    return;
+                }
+
+                final Block b = event.getClickedBlock().get();
+                if (b.getType() != Material.FARMLAND || b.getY() >= b.getWorld().getMaxHeight()) {
+                    return;
+                }
+
+                final Block above = b.getLocation().add(0, 1, 0).getBlock();
+                if (!above.isEmpty() || !Slimefun.getProtectionManager().hasPermission(event.getPlayer(), above,
+                    Interaction.PLACE_BLOCK)) {
+                    return;
+                }
+
+                above.setType(getDisplayBlock());
+                BlockStorage.addBlockInfo(above, "id", getId());
+                event.getItem().subtract();
+
             });
         }
     }

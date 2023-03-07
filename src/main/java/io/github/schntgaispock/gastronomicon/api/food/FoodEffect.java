@@ -535,7 +535,7 @@ public class FoodEffect {
     public static FoodEffect teleport(int radius) {
         final int r = NumberUtil.clamp(radius, 1, 10);
         final int pr = (int) Math.ceil(r * PERFECT_MULTIPLIER_TELEPORT);
-        return new FoodEffect("&7Teleports you " + r + " blocks away", "&7Teleports you " + pr + " blocks away",
+        return new FoodEffect("&7Teleports you within " + r + " blocks away", "&7Teleports you within " + pr + " blocks away",
             (Player player, Boolean isPerfect) -> {
                 Location playerLocation = player.getLocation();
                 int playerX = (int) playerLocation.getX();
@@ -562,40 +562,6 @@ public class FoodEffect {
                     1.0f);
             });
     }
-
-    // public static FoodEffect teleportTo(double dx, double dy, double dz) {
-    // final int r = GastroUtil.clamp(radius, 1, 10);
-    // final int pr = (int) Math.ceil(r * PERFECT_MULTIPLIER_TELEPORT);
-    // return new FoodEffect("&7Teleports you " + r + " blocks away", "&7Teleports
-    // you " + pr + " blocks away",
-    // (Player player, Boolean isPerfect) -> {
-    // Location playerLocation = player.getLocation();
-    // int playerX = (int) playerLocation.getX();
-    // int playerY = (int) playerLocation.getY();
-    // int playerZ = (int) playerLocation.getZ();
-    // int teleportRadius = isPerfect ? pr : r;
-    // // Performs 10 + radius^3 tries, if it can't find a safe spot to teleport to,
-    // it
-    // // stops
-    // for (int i = 0; i < 10 + Math.pow(r, 3); i++) {
-    // int newX = playerX + GastroUtil.getRandom().nextInt(teleportRadius);
-    // int newY = playerY + GastroUtil.getRandom().nextInt(teleportRadius);
-    // int newZ = playerZ + GastroUtil.getRandom().nextInt(teleportRadius);
-
-    // if (player.getWorld().getBlockAt(newX, newY - 1, newZ).getType().isSolid() &&
-    // player.getWorld().getBlockAt(newX, newY, newZ).isEmpty() &&
-    // player.getWorld().getBlockAt(newX, newY + 1, newZ).isEmpty()) {
-    // player.teleport(new Location(player.getWorld(), newX, newY, newZ));
-    // player.playSound(player.getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT,
-    // SoundCategory.PLAYERS, 1.0f, 1.0f);
-    // return;
-    // }
-    // }
-    // player.playSound(player.getLocation(), Sound.ENTITY_ENDERMITE_AMBIENT,
-    // SoundCategory.PLAYERS, 1.0f,
-    // 1.0f);
-    // });
-    // }
 
     /**
      * Returns a FoodEffect that launces the player in a certain direction

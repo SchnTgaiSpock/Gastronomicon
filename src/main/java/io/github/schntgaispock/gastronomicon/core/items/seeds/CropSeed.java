@@ -25,7 +25,6 @@ public class CropSeed extends SimpleSeed {
 
     private final @Getter Map<ItemStack, Double> grownCrops;
 
-
     @ParametersAreNonnullByDefault
     public CropSeed(SlimefunItemStack item, Material displayBlock, ItemStack[] gatherSources,
             Map<ItemStack, Double> grownCrops) {

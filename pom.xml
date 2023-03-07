@@ -100,7 +100,7 @@
         <dependency>
             <groupId>com.github.Slimefun</groupId>
             <artifactId>Slimefun4</artifactId>
-            <version>RC-32</version>
+            <version>RC-33</version>
             <scope>provided</scope>
             <exclusions>
                 <exclusion>
@@ -115,6 +115,12 @@
             <artifactId>SlimeHUD</artifactId>
             <version>1.2.4</version>
             <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.ProfElements</groupId>
+            <artifactId>DynaTech</artifactId>
+            <version>master-b3efc896d7-1</version>
         </dependency>
 
         <dependency>

@@ -7,7 +7,7 @@ import javax.annotation.Nullable;
 import org.bukkit.inventory.ItemStack;
 
 import io.github.schntgaispock.gastronomicon.api.recipes.components.RecipeComponent;
-import io.github.schntgaispock.gastronomicon.core.items.workstations.MultiStove.Temperature;
+import io.github.schntgaispock.gastronomicon.core.items.workstations.manual.MultiStove.Temperature;
 import io.github.schntgaispock.gastronomicon.core.slimefun.GastroRecipeType;
 import lombok.Getter;
 

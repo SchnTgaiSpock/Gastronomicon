@@ -21,13 +21,14 @@ import io.github.schntgaispock.gastronomicon.api.recipes.ShapelessGastroRecipe;
 import io.github.schntgaispock.gastronomicon.api.recipes.GastroRecipe.RecipeShape;
 import io.github.schntgaispock.gastronomicon.api.recipes.components.RecipeComponent;
 import io.github.schntgaispock.gastronomicon.core.items.UnplaceableItem;
-import io.github.schntgaispock.gastronomicon.core.items.workstations.MultiStove.Temperature;
+import io.github.schntgaispock.gastronomicon.core.items.workstations.manual.MultiStove.Temperature;
 import io.github.schntgaispock.gastronomicon.core.slimefun.GastroRecipeType;
 import io.github.schntgaispock.gastronomicon.core.slimefun.GastroStacks;
 import io.github.schntgaispock.gastronomicon.util.CollectionUtil;
 import io.github.schntgaispock.gastronomicon.util.StringUtil;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
+import io.github.thebusybiscuit.slimefun4.api.researches.Research;
 import io.github.thebusybiscuit.slimefun4.core.attributes.RecipeDisplayItem;
 import lombok.Getter;
 
@@ -38,25 +39,30 @@ public class SimpleGastroFood extends UnplaceableItem implements RecipeDisplayIt
     private final GastroRecipe gastroRecipe;
     protected final ItemStack topRightDisplayItem;
 
-    public SimpleGastroFood(ItemGroup group, SlimefunItemStack item, GastroRecipe recipe, ItemStack topRightDisplayItem,
+    public SimpleGastroFood(Research research, ItemGroup group, SlimefunItemStack item, GastroRecipe recipe,
+        ItemStack topRightDisplayItem,
         boolean registerRecipe) {
         super(group, item, recipe.getRecipeType(),
-            Arrays.stream(recipe.getInputs().getIngredients()).map(ingredient -> ingredient == null ? null : ingredient.getDisplayItem())
+            Arrays.stream(recipe.getInputs().getIngredients())
+                .map(ingredient -> ingredient == null ? null : ingredient.getDisplayItem())
                 .toArray(ItemStack[]::new));
 
         this.gastroRecipe = recipe;
         this.topRightDisplayItem = topRightDisplayItem;
+        setResearch(research);
 
         if (registerRecipe)
             RecipeRegistry.registerRecipe(recipe);
     }
 
-    protected SimpleGastroFood(ItemGroup group, SlimefunItemStack item, GastroRecipeType type, RecipeShape shape,
+    protected SimpleGastroFood(Research research, ItemGroup group, SlimefunItemStack item, GastroRecipeType type,
+        RecipeShape shape,
         RecipeComponent<?>[] ingredients, @Nullable RecipeComponent<?> container, Set<ItemStack> tools,
         ItemStack[] outputs, Temperature temperature,
         boolean registerRecipe) {
         super(group, item, type,
-            Arrays.stream(ingredients).map(ingredient -> ingredient == null ? null : ingredient.getDisplayItem()).toArray(ItemStack[]::new));
+            Arrays.stream(ingredients).map(ingredient -> ingredient == null ? null : ingredient.getDisplayItem())
+                .toArray(ItemStack[]::new));
 
         if (type == GastroRecipeType.MULTI_STOVE) {
             topRightDisplayItem = Temperature.MEDIUM.getItem();
@@ -70,20 +76,25 @@ public class SimpleGastroFood extends UnplaceableItem implements RecipeDisplayIt
                 gastroRecipe = new ShapelessGastroRecipe(type, ingredients, container, tools, outputs);
             }
         }
+        setResearch(research);
 
         if (registerRecipe)
             RecipeRegistry.registerRecipe(gastroRecipe);
     }
 
-    public SimpleGastroFood(ItemGroup group, SlimefunItemStack item, RecipeComponent<?>[] ingredients,
-        @Nullable RecipeComponent<?> container, Set<ItemStack> tools, Temperature temperature) {
-        this(group, item, GastroRecipeType.MULTI_STOVE, RecipeShape.SHAPELESS, ingredients, container, tools,
-            new ItemStack[] { item }, temperature, true);
+    public SimpleGastroFood(Research research, ItemGroup group, SlimefunItemStack item,
+        RecipeComponent<?>[] ingredients,
+        @Nullable RecipeComponent<?> container, Set<ItemStack> tools, Temperature temperature, int outputAmount) {
+        this(research, group, item, GastroRecipeType.MULTI_STOVE, RecipeShape.SHAPELESS, ingredients, container, tools,
+            new ItemStack[] { item.asQuantity(outputAmount) }, temperature, true);
     }
 
-    public SimpleGastroFood(ItemGroup group, SlimefunItemStack item, GastroRecipeType type, RecipeShape shape,
-        RecipeComponent<?>[] ingredients, @Nullable RecipeComponent<?> container, Set<ItemStack> tools) {
-        this(group, item, type, shape, ingredients, container, tools, new ItemStack[] { item }, Temperature.MEDIUM, true);
+    public SimpleGastroFood(Research research, ItemGroup group, SlimefunItemStack item, GastroRecipeType type,
+        RecipeShape shape,
+        RecipeComponent<?>[] ingredients, @Nullable RecipeComponent<?> container, Set<ItemStack> tools,
+        int outputAmount) {
+        this(research, group, item, type, shape, ingredients, container, tools,
+            new ItemStack[] { item.asQuantity(outputAmount) }, Temperature.MEDIUM, true);
     }
 
     @Override
@@ -127,6 +138,7 @@ public class SimpleGastroFood extends UnplaceableItem implements RecipeDisplayIt
         }
 
         display.add(topRightDisplayItem);
+        display.add(getGastroRecipe().getInputs().getShapedness().getGuideItem());
 
         return display;
     }

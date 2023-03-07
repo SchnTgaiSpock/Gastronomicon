@@ -17,4 +17,11 @@ public class GastroGroups {
     public static final SubGroup FOOD = new SubGroup("food", GastroStacks.GUIDE_ITEM_FOOD);
     public static final MultiGroup MAIN = new MultiGroup("main", GastroStacks.GUIDE_ITEM_MAIN, TOOLS, MANUAL_WORKSTATIONS, RAW_INGREDIENTS, FOOD);
 
+    static {
+        TOOLS.setCrossAddonItemGroup(true);
+        MANUAL_WORKSTATIONS.setCrossAddonItemGroup(true);
+        RAW_INGREDIENTS.setCrossAddonItemGroup(true);
+        FOOD.setCrossAddonItemGroup(true);
+    }
+
 }

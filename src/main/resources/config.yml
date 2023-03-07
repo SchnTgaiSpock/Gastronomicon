@@ -4,14 +4,19 @@ options:
 # Disable recipes requiring exotic garden items regardless of whether its installed or not
 disable-exotic-garden-recipes: false
 
+# Disable putting Gastronomicon crops into DynaTech growth chambers.
+disable-dynatech-integration: false
+
 # The maximum chance to craft a perfect food [0 ... 1]
 perfect-food-max-chance: 0.25
+
+# The proficiency required to teach a Chef Android and to count towards players' titles
+proficient-level: 256
 
 profile:
   # Titles based on total proficient food
   titles:
-    0: Not-a-chef
-    1: Novice Chef
+    0: Novice Chef
     20: Apprentice Chef
     50: Learned Chef
     100: Experienced Chef

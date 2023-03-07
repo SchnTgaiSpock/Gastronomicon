@@ -14,6 +14,7 @@ import io.github.schntgaispock.gastronomicon.api.recipes.components.RecipeCompon
 import io.github.schntgaispock.gastronomicon.api.recipes.components.RecipeInput;
 import io.github.schntgaispock.gastronomicon.api.recipes.components.SingleRecipeComponent;
 import io.github.schntgaispock.gastronomicon.core.slimefun.GastroRecipeType;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
@@ -30,8 +31,13 @@ public abstract class GastroRecipe {
     /**
      * The shapedness of a {@link GastroRecipe}
      */
+    @Getter
+    @RequiredArgsConstructor
     public enum RecipeShape {
-        SHAPED, SHAPELESS
+        SHAPED(new CustomItemStack(Material.CRAFTING_TABLE, "&7This recipe is &fshaped")),
+        SHAPELESS(new CustomItemStack(Material.BARREL, "&7This recipe is &fshapeless"));
+
+        private final ItemStack guideItem;
     }
 
     /**
@@ -175,7 +181,7 @@ public abstract class GastroRecipe {
      */
     @ParametersAreNullableByDefault
     public static boolean componentMatches(RecipeComponent<?> component, ItemStack item) {
-        return component == null ? item.getType() == Material.AIR : component.matches(item);
+        return component == null ? item == null || item.getType() == Material.AIR : component.matches(item);
     }
 
 }

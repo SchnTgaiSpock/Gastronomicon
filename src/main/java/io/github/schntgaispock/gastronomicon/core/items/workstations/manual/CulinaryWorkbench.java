@@ -1,4 +1,4 @@
-package io.github.schntgaispock.gastronomicon.core.items.workstations;
+package io.github.schntgaispock.gastronomicon.core.items.workstations.manual;
 
 import org.bukkit.inventory.ItemStack;
 
@@ -8,9 +8,9 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
 
-public class Refridgerator extends GastroWorkstation {
+public class CulinaryWorkbench extends GastroWorkstation {
 
-    public Refridgerator(ItemGroup group, SlimefunItemStack item, RecipeType type, ItemStack[] recipe) {
+    public CulinaryWorkbench(ItemGroup group, SlimefunItemStack item, RecipeType type, ItemStack[] recipe) {
         super(group, item, type, recipe);
     }
 
@@ -22,7 +22,7 @@ public class Refridgerator extends GastroWorkstation {
 
     @Override
     public GastroRecipeType getGastroRecipeType() {
-        return GastroRecipeType.REFRIDGERATOR;
+        return GastroRecipeType.CULINARY_WORKBENCH;
     }
     
 }
