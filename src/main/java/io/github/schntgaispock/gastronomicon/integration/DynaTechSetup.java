@@ -5,6 +5,7 @@ import java.util.Arrays;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
+import io.github.schntgaispock.gastronomicon.Gastronomicon;
 import io.github.schntgaispock.gastronomicon.core.slimefun.GastroStacks;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import lombok.Getter;
@@ -32,6 +33,9 @@ public class DynaTechSetup {
         final SlimefunItem _gc2 = SlimefunItem.getById("GROWTH_CHAMBER_MK2");
 
         if (!(_gc instanceof GrowthChamber) || !(_gc2 instanceof GrowthChamberMK2)) {
+            Gastronomicon.warn("Couldn't find DynaTech growth chambers");
+            System.out.println(_gc);
+            System.out.println(_gc2);
             return;
         }
 
@@ -49,10 +53,7 @@ public class DynaTechSetup {
         register(30, GastroStacks.SQUASH_SEEDS.asQuantity(2), GastroStacks.SQUASH.clone());
         register(30, GastroStacks.CELERY.asQuantity(3));
         register(30, GastroStacks.BOK_CHOY.asQuantity(3));
-        register(30, GastroStacks.SNOW_PEAS.asQuantity(3));
         register(30, GastroStacks.BROCCOLI.asQuantity(3));
-        register(30, GastroStacks.WASABI_PLANT.asQuantity(3));
-        register(30, GastroStacks.LEMONGRASS.asQuantity(3));
         register(30, GastroStacks.CUCUMBER.asQuantity(3));
         register(30, GastroStacks.BASIL.asQuantity(3));
         register(30, GastroStacks.SPINACH.asQuantity(3));
@@ -76,11 +77,6 @@ public class DynaTechSetup {
             GastroStacks.LYCHEE.asQuantity(4),
             new ItemStack(Material.OAK_LOG, 4),
             new ItemStack(Material.AZALEA_LEAVES, 6));
-        register(60,
-            GastroStacks.PERSIMMON_SAPLING.asQuantity(4),
-            GastroStacks.PERSIMMON.asQuantity(4),
-            new ItemStack(Material.ACACIA_LOG, 4),
-            new ItemStack(Material.OAK_LEAVES, 6));
         register(60,
             GastroStacks.BANANA_SAPLING.asQuantity(4),
             GastroStacks.BANANA.asQuantity(4),

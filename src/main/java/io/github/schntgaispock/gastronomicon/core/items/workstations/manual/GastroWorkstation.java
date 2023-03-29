@@ -21,7 +21,7 @@ import io.github.schntgaispock.gastronomicon.api.events.PlayerGastroFoodCraftEve
 import io.github.schntgaispock.gastronomicon.api.recipes.GastroRecipe;
 import io.github.schntgaispock.gastronomicon.api.recipes.RecipeRegistry;
 import io.github.schntgaispock.gastronomicon.api.recipes.GastroRecipe.RecipeMatchResult;
-import io.github.schntgaispock.gastronomicon.core.slimefun.GastroRecipeType;
+import io.github.schntgaispock.gastronomicon.core.slimefun.recipes.GastroRecipeType;
 import io.github.schntgaispock.gastronomicon.util.NumberUtil;
 import io.github.schntgaispock.gastronomicon.util.item.ItemUtil;
 import io.github.schntgaispock.gastronomicon.util.recipe.RecipeUtil;

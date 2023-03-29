@@ -22,8 +22,8 @@ import io.github.schntgaispock.gastronomicon.api.recipes.GastroRecipe.RecipeShap
 import io.github.schntgaispock.gastronomicon.api.recipes.components.RecipeComponent;
 import io.github.schntgaispock.gastronomicon.core.items.UnplaceableItem;
 import io.github.schntgaispock.gastronomicon.core.items.workstations.manual.MultiStove.Temperature;
-import io.github.schntgaispock.gastronomicon.core.slimefun.GastroRecipeType;
 import io.github.schntgaispock.gastronomicon.core.slimefun.GastroStacks;
+import io.github.schntgaispock.gastronomicon.core.slimefun.recipes.GastroRecipeType;
 import io.github.schntgaispock.gastronomicon.util.CollectionUtil;
 import io.github.schntgaispock.gastronomicon.util.StringUtil;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;

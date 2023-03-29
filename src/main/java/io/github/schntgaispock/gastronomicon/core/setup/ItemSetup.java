@@ -25,8 +25,8 @@ import io.github.schntgaispock.gastronomicon.core.items.workstations.manual.Mult
 import io.github.schntgaispock.gastronomicon.core.items.workstations.manual.Refridgerator;
 import io.github.schntgaispock.gastronomicon.core.items.workstations.manual.MultiStove.Temperature;
 import io.github.schntgaispock.gastronomicon.core.slimefun.GastroGroups;
-import io.github.schntgaispock.gastronomicon.core.slimefun.GastroRecipeType;
 import io.github.schntgaispock.gastronomicon.core.slimefun.GastroStacks;
+import io.github.schntgaispock.gastronomicon.core.slimefun.recipes.GastroRecipeType;
 import io.github.schntgaispock.gastronomicon.util.recipe.RecipeUtil;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -48,7 +48,8 @@ public class ItemSetup {
     public static void setup() {
 
         final Gastronomicon gn = Gastronomicon.getInstance();
-        final boolean egAvailable = Gastronomicon.isPluginEnabled("ExoticGarden");
+        final boolean egAvailable = Gastronomicon.isPluginEnabled("ExoticGarden")
+            && !Gastronomicon.getInstance().getConfig().getBoolean("disable-exotic-garden-recipes");
 
         GastroGroups.MAIN.register(gn);
 
@@ -95,6 +96,7 @@ public class ItemSetup {
         final ItemStack CRAFTING_TABLE = new ItemStack(Material.CRAFTING_TABLE);
         final ItemStack DISPENSER = new ItemStack(Material.DISPENSER);
         final ItemStack BLAST_FURNACE = new ItemStack(Material.BLAST_FURNACE);
+        final ItemStack KELP = new ItemStack(Material.KELP);
         final ItemStack DRIED_KELP = new ItemStack(Material.DRIED_KELP);
         final ItemStack POLISHED_GRANITE = new ItemStack(Material.POLISHED_GRANITE);
         final ItemStack ANDESITE_SLAB = new ItemStack(Material.ANDESITE_SLAB);
@@ -121,6 +123,7 @@ public class ItemSetup {
         final ItemStack ICE = new ItemStack(Material.ICE);
         final ItemStack HONEY_BOTTLE = new ItemStack(Material.HONEY_BOTTLE);
         final ItemStack MELON_SLICE = new ItemStack(Material.MELON_SLICE);
+        final ItemStack GLASS_BOTTLE = new ItemStack(Material.GLASS_BOTTLE);
 
         // ---- Tools ----
 
@@ -289,7 +292,7 @@ public class ItemSetup {
         // ---- Basic Machines ----
 
         new CulinaryWorkbench(
-            GastroGroups.MANUAL_WORKSTATIONS,
+            GastroGroups.MACHINES,
             GastroStacks.CULINARY_WORKBENCH,
             RecipeType.ENHANCED_CRAFTING_TABLE,
             new ItemStack[] {
@@ -299,29 +302,29 @@ public class ItemSetup {
             }).register(gn);
 
         new MultiStove(
-            GastroGroups.MANUAL_WORKSTATIONS,
+            GastroGroups.MACHINES,
             GastroStacks.MULTI_STOVE,
             RecipeType.ENHANCED_CRAFTING_TABLE,
             new ItemStack[] {
                 IRON_PP, IRON_PP, IRON_PP,
                 SlimefunItems.HEATING_COIL, BLAST_FURNACE, SlimefunItems.HEATING_COIL,
-                SlimefunItems.HEATING_COIL, SlimefunItems.ENERGY_CONNECTOR, SlimefunItems.HEATING_COIL
+                SlimefunItems.HEATING_COIL, SlimefunItems.SMALL_CAPACITOR, SlimefunItems.HEATING_COIL
             },
-            1024, 16).register(gn);
+            256, 16).register(gn);
 
         new Refridgerator(
-            GastroGroups.MANUAL_WORKSTATIONS,
+            GastroGroups.MACHINES,
             GastroStacks.REFRIDGERATOR,
             RecipeType.ENHANCED_CRAFTING_TABLE,
             new ItemStack[] {
-                SlimefunItems.STEEL_INGOT, SlimefunItems.COOLING_UNIT, SlimefunItems.STEEL_INGOT,
-                SlimefunItems.STEEL_INGOT, IRON_TRAPDOOR, SlimefunItems.STEEL_INGOT,
-                SlimefunItems.STEEL_INGOT, SlimefunItems.COOLING_UNIT, SlimefunItems.STEEL_INGOT
+                SlimefunItems.STEEL_INGOT, SlimefunItems.STEEL_INGOT, SlimefunItems.STEEL_INGOT,
+                SlimefunItems.COOLING_UNIT, IRON_TRAPDOOR, SlimefunItems.COOLING_UNIT,
+                SlimefunItems.STEEL_INGOT, SlimefunItems.SMALL_CAPACITOR, SlimefunItems.STEEL_INGOT
             },
-            1024, 16).register(gn);
+            256, 16).register(gn);
 
         new GrainMill(
-            GastroGroups.MANUAL_WORKSTATIONS,
+            GastroGroups.MACHINES,
             GastroStacks.MILL,
             RecipeType.ENHANCED_CRAFTING_TABLE,
             new ItemStack[] {
@@ -331,7 +334,7 @@ public class ItemSetup {
             }).register(gn);
 
         new Fermenter(
-            GastroGroups.MANUAL_WORKSTATIONS,
+            GastroGroups.MACHINES,
             GastroStacks.FERMENTER,
             RecipeType.ENHANCED_CRAFTING_TABLE,
             new ItemStack[] {
@@ -342,7 +345,7 @@ public class ItemSetup {
             2000, 125).register(gn);
 
         new Fermenter(
-            GastroGroups.MANUAL_WORKSTATIONS,
+            GastroGroups.MACHINES,
             GastroStacks.LARGE_FERMENTER,
             RecipeType.ENHANCED_CRAFTING_TABLE,
             new ItemStack[] {
@@ -456,25 +459,8 @@ public class ItemSetup {
                 .register(gn);
 
         new SimpleSeed(
-            GastroStacks.SNOW_PEAS,
-            Material.POTATOES,
-            RecipeUtil.singleCenter(Material.GRASS))
-                .register(gn);
-
-        new SimpleSeed(
             GastroStacks.BROCCOLI,
             Material.CARROTS,
-            RecipeUtil.singleCenter(Material.GRASS))
-                .register(gn);
-
-        new SimpleSeed(
-            GastroStacks.WASABI_PLANT,
-            Material.POTATOES,
-            RecipeUtil.singleCenter(Material.GRASS))
-                .register(gn);
-
-        new DuplicatingSeed(
-            GastroStacks.LEMONGRASS,
             RecipeUtil.singleCenter(Material.GRASS))
                 .register(gn);
 
@@ -592,6 +578,12 @@ public class ItemSetup {
             RecipeUtil.singleCenter(Material.GRASS))
                 .register(gn);
 
+        new SimpleSeed(
+            GastroStacks.RED_BEANS,
+            Material.POTATOES,
+            RecipeUtil.singleCenter(Material.GRASS))
+                .register(gn);
+
         // -- Grown from trees
 
         new UnplaceableItem(
@@ -604,20 +596,6 @@ public class ItemSetup {
         new UnplaceableItem(
             GastroGroups.RAW_INGREDIENTS,
             GastroStacks.LYCHEE_SAPLING,
-            GastroRecipeType.BREAK,
-            RecipeUtil.singleCenter(Material.GRASS))
-                .register(gn);
-
-        new UnplaceableItem(
-            GastroGroups.RAW_INGREDIENTS,
-            GastroStacks.PERSIMMON,
-            GastroRecipeType.BREAK,
-            RecipeUtil.singleCenter(GastroStacks.PERSIMMON_SAPLING))
-                .register(gn);
-
-        new UnplaceableItem(
-            GastroGroups.RAW_INGREDIENTS,
-            GastroStacks.PERSIMMON_SAPLING,
             GastroRecipeType.BREAK,
             RecipeUtil.singleCenter(Material.GRASS))
                 .register(gn);
@@ -710,20 +688,6 @@ public class ItemSetup {
             .ingredients(GastroStacks.RAW_CHEVON)
             .tools(GastroStacks.FRYING_PAN)
             .register(gn);
-
-        new UnplaceableItem(
-            GastroGroups.RAW_INGREDIENTS,
-            GastroStacks.FROG_LEG,
-            GastroRecipeType.KILL,
-            RecipeUtil.singleCenter(GastroStacks.GUIDE_KILL_FROG))
-                .register(gn);
-
-        new UnplaceableItem(
-            GastroGroups.RAW_INGREDIENTS,
-            GastroStacks.GIANT_SPIDER_LEG,
-            GastroRecipeType.KILL,
-            RecipeUtil.singleCenter(GastroStacks.GUIDE_KILL_SPIDER))
-                .register(gn);
 
         new UnplaceableItem(
             GastroGroups.RAW_INGREDIENTS,
@@ -1036,6 +1000,28 @@ public class ItemSetup {
             .tools(GastroStacks.MORTAR_AND_PESTLE)
             .register(gn);
 
+        new SimpleGastroFoodBuilder()
+            .type(GastroRecipeType.CULINARY_WORKBENCH)
+            .item(GastroStacks.RED_BEAN_PASTE)
+            .ingredients(GastroStacks.RED_BEANS)
+            .tools(GastroStacks.MORTAR_AND_PESTLE)
+            .register(gn);
+
+        new SimpleGastroFoodBuilder()
+            .type(GastroRecipeType.CULINARY_WORKBENCH)
+            .item(GastroStacks.TAPIOCA_STARCH)
+            .ingredients(GastroStacks.CASSAVA)
+            .tools(GastroStacks.MORTAR_AND_PESTLE)
+            .register(gn);
+
+        new SimpleGastroFoodBuilder()
+            .type(GastroRecipeType.CULINARY_WORKBENCH)
+            .item(GastroStacks.TAPIOCA_PEARLS)
+            .ingredients(GastroStacks.TAPIOCA_STARCH, WATER_BUCKET)
+            .tools(GastroStacks.MULTI_STOVE)
+            .temperature(Temperature.LOW)
+            .register(gn);
+
         // -- Cuisine --
 
         new GastroFoodBuilder()
@@ -1065,7 +1051,17 @@ public class ItemSetup {
             .shape(RecipeShape.SHAPED)
             .ingredients(
                 null, null, null,
-                GastroStacks.BAKED_BEANS, GastroStacks.BAKED_BEANS, GastroStacks.BAKED_BEANS,
+                null, GastroStacks.BAKED_BEANS, null,
+                null, GastroStacks.TOAST, null)
+            .register(gn);
+
+        new GastroFoodBuilder()
+            .type(GastroRecipeType.CULINARY_WORKBENCH)
+            .item(GastroStacks.AVOCADO_TOAST)
+            .shape(RecipeShape.SHAPED)
+            .ingredients(
+                null, null, null,
+                null, GastroStacks.AVOCADO, null,
                 null, GastroStacks.TOAST, null)
             .register(gn);
 
@@ -1160,6 +1156,15 @@ public class ItemSetup {
                 .container(BOWL)
                 .tools(GastroStacks.KITCHEN_KNIFE)
                 .register(gn);
+
+            // new GastroFoodBuilder()
+            // .type(GastroRecipeType.CULINARY_WORKBENCH)
+            // .item(GastroStacks.GARDEN_SALAD)
+            // .shape(RecipeShape.SHAPELESS)
+            // .ingredients(LETTUCE, CARROT, PEPPER, CARROT)
+            // .container(BOWL)
+            // .tools(GastroStacks.KITCHEN_KNIFE)
+            // .register(gn);
         }
 
         new GastroFoodBuilder()
@@ -1297,8 +1302,24 @@ public class ItemSetup {
 
         new GastroFoodBuilder()
             .type(GastroRecipeType.MULTI_STOVE)
+            .item(GastroStacks.CHICKEN_AND_QUINOA_SOUP)
+            .ingredients(WATER_BUCKET, CHICKEN, CARROT, GastroStacks.PEAS, GastroStacks.QUINOA)
+            .container(BOWL)
+            .tools(GastroStacks.STEEL_POT, GastroStacks.KITCHEN_KNIFE, GastroStacks.PEELER)
+            .register(gn);
+
+        new GastroFoodBuilder()
+            .type(GastroRecipeType.MULTI_STOVE)
             .item(GastroStacks.CHICKEN_NOODLE_SOUP)
             .ingredients(WATER_BUCKET, CHICKEN, CARROT, GastroStacks.PEAS, GastroStacks.DOUGH)
+            .container(BOWL)
+            .tools(GastroStacks.STEEL_POT, GastroStacks.KITCHEN_KNIFE, GastroStacks.PEELER)
+            .register(gn);
+
+        new GastroFoodBuilder()
+            .type(GastroRecipeType.MULTI_STOVE)
+            .item(GastroStacks.CHICKEN_NOODLE_SOUP_WITH_BOK_HOY)
+            .ingredients(WATER_BUCKET, CHICKEN, CARROT, GastroStacks.PEAS, GastroStacks.DOUGH, GastroStacks.BOK_CHOY)
             .container(BOWL)
             .tools(GastroStacks.STEEL_POT, GastroStacks.KITCHEN_KNIFE, GastroStacks.PEELER)
             .register(gn);
@@ -1405,7 +1426,15 @@ public class ItemSetup {
         new GastroFoodBuilder()
             .type(GastroRecipeType.MULTI_STOVE)
             .item(GastroStacks.MISO_SOUP)
-            .ingredients(WATER_BUCKET, DRIED_KELP, GastroStacks.MISO)
+            .ingredients(WATER_BUCKET, KELP, GastroStacks.MISO)
+            .container(BOWL)
+            .tools(GastroStacks.STEEL_POT, GastroStacks.KITCHEN_KNIFE)
+            .register(gn);
+
+        new GastroFoodBuilder()
+            .type(GastroRecipeType.MULTI_STOVE)
+            .item(GastroStacks.GUARDIAN_FIN_SOUP)
+            .ingredients(WATER_BUCKET, CARROT, GastroStacks.PEAS, GastroStacks.GUARDIAN_FIN)
             .container(BOWL)
             .tools(GastroStacks.STEEL_POT, GastroStacks.KITCHEN_KNIFE)
             .register(gn);
@@ -1946,6 +1975,13 @@ public class ItemSetup {
             .register(gn);
 
         new GastroFoodBuilder()
+            .type(GastroRecipeType.MULTI_STOVE)
+            .item(GastroStacks.POPPED_SORGHUM)
+            .ingredients(CHORUS_FRUIT, SUGAR, EGG)
+            .tools(GastroStacks.BAKING_TRAY)
+            .register(gn);
+
+        new GastroFoodBuilder()
             .type(GastroRecipeType.CULINARY_WORKBENCH)
             .item(GastroStacks.ENCHANTED_GOLDEN_CARROT)
             .shape(RecipeShape.SHAPED)
@@ -1958,5 +1994,71 @@ public class ItemSetup {
             .shape(RecipeShape.SHAPED)
             .ingredients(RecipeUtil.cyclic(SlimefunItems.GOLD_24K_BLOCK, MELON_SLICE))
             .register(gn);
+
+        if (egAvailable) {
+            new GastroFoodBuilder()
+                .type(GastroRecipeType.FERMENTER)
+                .item(GastroStacks.BEER)
+                .shape(RecipeShape.SHAPED)
+                .container(GLASS_BOTTLE)
+                .ingredients(GastroStacks.BARLEY, YEAST)
+                .tools(GastroStacks.DISTILLATION_CHAMBER)
+                .register(gn);
+
+            new GastroFoodBuilder()
+                .type(GastroRecipeType.FERMENTER)
+                .item(GastroStacks.RED_WINE)
+                .shape(RecipeShape.SHAPED)
+                .container(GLASS_BOTTLE)
+                .ingredients(GRAPE, YEAST)
+                .tools(GastroStacks.DISTILLATION_CHAMBER)
+                .register(gn);
+
+            new GastroFoodBuilder()
+                .type(GastroRecipeType.FERMENTER)
+                .item(GastroStacks.RICE_WINE)
+                .shape(RecipeShape.SHAPED)
+                .container(GLASS_BOTTLE)
+                .ingredients(GastroStacks.RICE, YEAST)
+                .tools(GastroStacks.DISTILLATION_CHAMBER)
+                .register(gn);
+
+            new GastroFoodBuilder()
+                .type(GastroRecipeType.FERMENTER)
+                .item(GastroStacks.VODKA)
+                .shape(RecipeShape.SHAPED)
+                .container(GLASS_BOTTLE)
+                .ingredients(POTATO, YEAST)
+                .tools(GastroStacks.DISTILLATION_CHAMBER)
+                .register(gn);
+
+            new GastroFoodBuilder()
+                .type(GastroRecipeType.FERMENTER)
+                .item(GastroStacks.VODKA)
+                .shape(RecipeShape.SHAPED)
+                .container(GLASS_BOTTLE)
+                .ingredients(POTATO, YEAST)
+                .tools(GastroStacks.DISTILLATION_CHAMBER)
+                .register(gn);
+
+            new GastroFoodBuilder()
+                .type(GastroRecipeType.FERMENTER)
+                .item(GastroStacks.RUM)
+                .shape(RecipeShape.SHAPED)
+                .container(GLASS_BOTTLE)
+                .ingredients(SUGAR, YEAST)
+                .tools(GastroStacks.DISTILLATION_CHAMBER)
+                .register(gn);
+
+            new GastroFoodBuilder()
+                .type(GastroRecipeType.FERMENTER)
+                .item(GastroStacks.WHISKEY)
+                .shape(RecipeShape.SHAPED)
+                .container(GLASS_BOTTLE)
+                .ingredients(GastroStacks.RYE, YEAST)
+                .tools(GastroStacks.DISTILLATION_CHAMBER)
+                .register(gn);
+        }
+
     }
 }

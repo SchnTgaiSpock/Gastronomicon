@@ -3,15 +3,14 @@ package io.github.schntgaispock.gastronomicon.core.items.workstations.electric;
 import org.bukkit.inventory.ItemStack;
 
 import io.github.mooy1.infinitylib.machines.MenuBlock;
-import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
+import io.github.schntgaispock.gastronomicon.core.slimefun.GastroGroups;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 
-public abstract class ElectricGastroWorkbench extends MenuBlock {
+public abstract class ElectricKitchen extends MenuBlock {
 
-    public ElectricGastroWorkbench(ItemGroup category, SlimefunItemStack item, RecipeType recipeType,
-        ItemStack[] recipe) {
-        super(category, item, recipeType, recipe);
+    public ElectricKitchen(SlimefunItemStack item, ItemStack[] recipe) {
+        super(GastroGroups.MACHINES, item, RecipeType.ENHANCED_CRAFTING_TABLE, recipe);
     }
     
 }

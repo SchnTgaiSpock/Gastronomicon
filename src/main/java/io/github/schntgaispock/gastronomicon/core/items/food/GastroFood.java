@@ -19,7 +19,7 @@ import io.github.schntgaispock.gastronomicon.api.recipes.GastroRecipe.RecipeShap
 import io.github.schntgaispock.gastronomicon.api.recipes.components.RecipeComponent;
 import io.github.schntgaispock.gastronomicon.core.items.workstations.manual.MultiStove.Temperature;
 import io.github.schntgaispock.gastronomicon.core.slimefun.GastroGroups;
-import io.github.schntgaispock.gastronomicon.core.slimefun.GastroRecipeType;
+import io.github.schntgaispock.gastronomicon.core.slimefun.recipes.GastroRecipeType;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.api.events.PlayerRightClickEvent;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
@@ -31,7 +31,6 @@ import net.kyori.adventure.text.Component;
 public class GastroFood extends SimpleGastroFood {
 
     private static final @Getter Set<String> gastroFoodIds = new HashSet<>();
-    private static final @Getter Set<String> skills = new HashSet<>();
 
     private final @Getter FoodItemStack item;
     private final @Getter boolean perfect;

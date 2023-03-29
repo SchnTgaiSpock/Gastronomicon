@@ -18,8 +18,7 @@ depend:
 softdepend:
 - SlimeHUD
 - ExoticGarden
-- InfinityExpansion
-- DynaTech # IE and Dyna for automation
+- DynaTech # For automation
 
 commands:
   gastronomicon:

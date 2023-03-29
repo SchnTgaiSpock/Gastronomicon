@@ -40,7 +40,7 @@ public class GastroTabCompleter implements TabCompleter {
                         return filter(args[1], names);
 
                     case "set", "modify":
-                        return filter(args[1], "proficiency", "skill");
+                        return Arrays.asList("proficiency");
 
                     default:
                         break;
@@ -53,9 +53,6 @@ public class GastroTabCompleter implements TabCompleter {
                             case "proficiency":
                                 return filter(args[2], nums);
 
-                            case "skill":
-                                return filter(args[2], "on", "off");
-                        
                             default:
                                 break;
                         }

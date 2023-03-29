@@ -33,6 +33,9 @@ public class WildHarvestListener implements Listener {
     private static final Map<EntityType, List<ItemStack>> dropsByMob = new HashMap<>();
     private static final Map<Material, List<ItemStack>> dropsByFish = new HashMap<>();
 
+    private static double BLOCK_BREAK_DROP_CHANCE;
+    private static double MOB_KILL_DROP_CHANCE;
+
     @ParametersAreNonnullByDefault
     public static void registerDrops(Material dropFrom, ItemStack... drops) {
         for (ItemStack drop : drops) {
@@ -55,19 +58,6 @@ public class WildHarvestListener implements Listener {
                 final List<ItemStack> newSet = new ArrayList<>();
                 newSet.add(drop);
                 dropsByMob.put(dropFrom, newSet);
-            }
-        }
-    }
-
-    @ParametersAreNonnullByDefault
-    public static void registerFishingDrops(Material dropFrom, ItemStack... drops) {
-        for (ItemStack drop : drops) {
-            if (dropsByFish.containsKey(dropFrom)) {
-                dropsByFish.get(dropFrom).add(drop);
-            } else {
-                final List<ItemStack> newSet = new ArrayList<>();
-                newSet.add(drop);
-                dropsByFish.put(dropFrom, newSet);
             }
         }
     }
@@ -95,7 +85,7 @@ public class WildHarvestListener implements Listener {
         final List<ItemStack> drops = getDrops(b.getType());
         if (drops == null) return;
 
-        if (NumberUtil.flip(0.25)) {
+        if (NumberUtil.flip(BLOCK_BREAK_DROP_CHANCE)) {
             final ItemStack drop = drops.get(NumberUtil.getRandom().nextInt(drops.size()));
             e.getBlock().getWorld().dropItemNaturally(e.getBlock().getLocation(), drop);
         }
@@ -106,7 +96,7 @@ public class WildHarvestListener implements Listener {
         final List<ItemStack> drops = getDrops(e.getEntityType());
         if (drops == null) return;
 
-        if (NumberUtil.flip(0.25)) {
+        if (NumberUtil.flip(MOB_KILL_DROP_CHANCE)) {
             final ItemStack drop = drops.get(NumberUtil.getRandom().nextInt(drops.size()));
             e.getEntity().getWorld().dropItemNaturally(e.getEntity().getLocation(), drop);
         }
@@ -126,7 +116,9 @@ public class WildHarvestListener implements Listener {
     }
 
     public static void setup() {
-        Bukkit.getPluginManager().registerEvents((Listener) new SeedListener(), Gastronomicon.getInstance());
+        Bukkit.getPluginManager().registerEvents((Listener) new WildHarvestListener(), Gastronomicon.getInstance());
+        BLOCK_BREAK_DROP_CHANCE = Gastronomicon.getInstance().getConfig().getDouble("drops.block-break-chance");
+        MOB_KILL_DROP_CHANCE = Gastronomicon.getInstance().getConfig().getDouble("drops.mob-kill-chance");
     }
 
 }

@@ -1,4 +1,4 @@
-package io.github.schntgaispock.gastronomicon.core.slimefun;
+package io.github.schntgaispock.gastronomicon.core.slimefun.recipes;
 
 import javax.annotation.Nonnull;
 
@@ -6,6 +6,7 @@ import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
 import io.github.schntgaispock.gastronomicon.Gastronomicon;
+import io.github.schntgaispock.gastronomicon.core.slimefun.GastroStacks;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 
 public class GastroRecipeType extends RecipeType {

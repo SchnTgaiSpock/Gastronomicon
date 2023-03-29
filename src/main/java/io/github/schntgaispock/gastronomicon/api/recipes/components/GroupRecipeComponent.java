@@ -1,5 +1,6 @@
 package io.github.schntgaispock.gastronomicon.api.recipes.components;
 
+import java.util.Arrays;
 import java.util.Set;
 
 import javax.annotation.Nullable;
@@ -28,10 +29,18 @@ public class GroupRecipeComponent extends RecipeComponent<Set<ItemStack>> {
 
     private final @Getter NamespacedKey id;
 
-    public GroupRecipeComponent(Set<ItemStack> component, NamespacedKey id) {
+    public GroupRecipeComponent(NamespacedKey id, Set<ItemStack> component) {
         super(component);
 
         this.id = id;
+    }
+
+    public GroupRecipeComponent(NamespacedKey id, ItemStack... component) {
+        this(id, Set.of(component));
+    }
+
+    public GroupRecipeComponent(NamespacedKey id, Material... component) {
+        this(id, Set.of(Arrays.stream(component).map(material -> new ItemStack(material)).toArray(ItemStack[]::new)));
     }
 
     @Override

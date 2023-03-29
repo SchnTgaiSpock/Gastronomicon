@@ -6,6 +6,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import org.bstats.bukkit.Metrics;
+import org.bstats.charts.SimplePie;
 import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
@@ -16,6 +17,7 @@ import io.github.schntgaispock.gastronomicon.core.setup.CommandSetup;
 import io.github.schntgaispock.gastronomicon.core.setup.ListenerSetup;
 import io.github.schntgaispock.gastronomicon.core.setup.ResearchSetup;
 import io.github.schntgaispock.gastronomicon.core.setup.ItemSetup;
+import io.github.schntgaispock.gastronomicon.integration.DynaTechSetup;
 import io.github.schntgaispock.gastronomicon.integration.SlimeHUDSetup;
 import lombok.Getter;
 
@@ -29,7 +31,6 @@ public class Gastronomicon extends AbstractAddon {
     }
 
     @Override
-    @SuppressWarnings("unused")
     public void enable() {
         instance = this;
 
@@ -37,7 +38,11 @@ public class Gastronomicon extends AbstractAddon {
         getLogger().info("#    Gastronomicon by SchnTgaiSpock    #");
         getLogger().info("#======================================#");
 
-        Metrics metrics = new Metrics(this, 16941);
+        final Metrics metrics = new Metrics(this, 16941);
+
+        metrics.addCustomChart(
+            new SimplePie("exoticgardenInstalled", () -> Boolean.toString(isPluginEnabled("ExoticGarden")))
+        );
 
         ItemSetup.setup();
         ResearchSetup.setup();
@@ -50,7 +55,7 @@ public class Gastronomicon extends AbstractAddon {
                 log(Level.INFO, "Setting up Gastronomicon for SlimeHUD...");
                 SlimeHUDSetup.setup();
             } catch (NoClassDefFoundError e) {
-                log(Level.WARNING, "This server is using an old version of SlimeHUD that is incompatitable with this version of Gastronomicon.");
+                log(Level.WARNING, "This server is using an incompatitable version of SlimeHUD");
                 log(Level.WARNING, "Please update SlimeHUD to version 1.2.0 or higher!");
             }
         }
@@ -58,6 +63,17 @@ public class Gastronomicon extends AbstractAddon {
         if (!isPluginEnabled("ExoticGarden")) {
             log(Level.WARNING, "ExoticGarden was not found on this server!");
             log(Level.WARNING, "Recipes that require ExoticGarden items will be hidden.");
+        }
+
+        if (isPluginEnabled("DynaTech") && !getConfig().getBoolean("disable-dynatech-integration")) {
+            try {
+                log(Level.INFO, "DynaTech was found on this server!");
+                log(Level.INFO, "Registering Gastronomicon crops with DynaTech...");
+                DynaTechSetup.setup();
+            } catch (NoClassDefFoundError e) {
+                log(Level.WARNING, "This server is using an incompatitable version of DynaTech");
+                log(Level.WARNING, "Please keep Gastronomicon and DynaTech up to date!");
+            }
         }
 
         playerData = new AddonConfig("player.yml");
@@ -90,5 +106,17 @@ public class Gastronomicon extends AbstractAddon {
             player.sendMessage(message);
         return false;
     
+    }
+
+    public static void info(String message) {
+        getInstance().getLogger().info(message);
+    }
+
+    public static void warn(String message) {
+        getInstance().getLogger().warning(message);
+    }
+
+    public static void error(String message) {
+        getInstance().getLogger().severe(message);
     }
 }

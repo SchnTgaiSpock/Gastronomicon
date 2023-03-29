@@ -23,7 +23,8 @@ public class ResearchSetup {
                 GastroStacks.BAKING_TRAY,
                 GastroStacks.FRYING_PAN,
                 GastroStacks.STEEL_POT,
-                GastroStacks.STEEL_BOWL)
+                GastroStacks.STEEL_BOWL,
+                GastroStacks.WHISK)
             .register();
         GastroResearch.CULINARY_WORKBENCH.addItems(GastroStacks.CULINARY_WORKBENCH).register();
         GastroResearch.MULTI_STOVE.addItems(GastroStacks.MULTI_STOVE).register();

@@ -1,5 +1,6 @@
 package io.github.schntgaispock.gastronomicon.core.items.food;
 
+import java.util.Arrays;
 import java.util.Set;
 
 import javax.annotation.Nonnull;
@@ -12,8 +13,8 @@ import io.github.schntgaispock.gastronomicon.api.recipes.GastroRecipe.RecipeShap
 import io.github.schntgaispock.gastronomicon.api.recipes.components.RecipeComponent;
 import io.github.schntgaispock.gastronomicon.api.recipes.components.SingleRecipeComponent;
 import io.github.schntgaispock.gastronomicon.core.items.workstations.manual.MultiStove.Temperature;
-import io.github.schntgaispock.gastronomicon.core.slimefun.GastroRecipeType;
 import io.github.schntgaispock.gastronomicon.core.slimefun.GastroResearch;
+import io.github.schntgaispock.gastronomicon.core.slimefun.recipes.GastroRecipeType;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.researches.Research;
@@ -62,11 +63,14 @@ public class GastroFoodBuilder extends SimpleGastroFoodBuilder {
     }
 
     public GastroFoodBuilder ingredients(@Nonnull Object... ingredients) {
+        this.ingredients = new RecipeComponent<?>[9];
         for (int i = 0; i < Math.min(ingredients.length, 9); i++) {
             if (ingredients[i] instanceof final ItemStack stack) {
                 this.ingredients[i] = new SingleRecipeComponent(stack);
             } else if (ingredients[i] instanceof final RecipeComponent<?> comp) {
                 this.ingredients[i] = comp;
+            } else if (ingredients[i] instanceof final Material mat) {
+                this.ingredients[i] = new SingleRecipeComponent(new ItemStack(mat));
             } else if (ingredients[i] instanceof final String str) {
                 final SlimefunItem item = SlimefunItem.getById(str);
                 this.ingredients[i] = item == null ? RecipeComponent.EMPTY : new SingleRecipeComponent(item.getItem());
@@ -79,8 +83,9 @@ public class GastroFoodBuilder extends SimpleGastroFoodBuilder {
     }
 
     public GastroFoodBuilder ingredients(@Nonnull ItemStack... ingredients) {
+        this.ingredients = new RecipeComponent<?>[9];
         for (int i = 0; i < Math.min(ingredients.length, 9); i++) {
-            this.ingredients[i] = ingredients[i] == null || ingredients[i].getType() == Material.AIR
+            this.ingredients[i] = (ingredients[i] == null || ingredients[i].getType() == Material.AIR)
                 ? RecipeComponent.EMPTY
                 : new SingleRecipeComponent(ingredients[i]);
         }
@@ -89,10 +94,7 @@ public class GastroFoodBuilder extends SimpleGastroFoodBuilder {
     }
 
     public GastroFoodBuilder ingredients(@Nonnull RecipeComponent<?>... ingredients) {
-        for (int i = 0; i < Math.min(ingredients.length, 9); i++) {
-            this.ingredients[i] = ingredients[i];
-        }
-
+        this.ingredients = Arrays.copyOf(ingredients, 9);
         return this;
     }
 

@@ -17,6 +17,11 @@ public class ThemedItemStack extends SlimefunItemStack {
         super(id, material, name, lore);
     }
 
+    @ParametersAreNonnullByDefault
+    protected ThemedItemStack(String id, String texture, String name, String... lore) {
+        super(id, texture, name, lore);
+    }
+
     @Override
     public @Nonnull Material getType() {
         Material type = super.getType();
@@ -42,6 +47,23 @@ public class ThemedItemStack extends SlimefunItemStack {
             return new ThemedItemStack(id, material, theme.getColor() + name, fLore);
         } else {
             return new ThemedItemStack(id, material, theme.getColor() + name);
+        }
+    }
+
+    @ParametersAreNonnullByDefault
+    public static ThemedItemStack of(GastroTheme theme, String id, String texture, String name, String... lore) {
+        if (id == null || texture == null) return null;
+        if (lore.length > 0) {
+            String[] fLore = new String[lore.length + 1];
+            fLore[0] = "";
+
+            for (int i = 0; i < lore.length; i++) {
+                fLore[i + 1] = theme.getLoreColor() + lore[i];
+            }
+
+            return new ThemedItemStack(id, texture, theme.getColor() + name, fLore);
+        } else {
+            return new ThemedItemStack(id, texture, theme.getColor() + name);
         }
     }
 
