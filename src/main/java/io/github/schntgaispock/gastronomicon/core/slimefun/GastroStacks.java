@@ -187,6 +187,12 @@ public class GastroStacks {
         "&3No android detected");
     public static final ItemStack MENU_INCORRECT_RECIPE = new CustomItemStack(Material.RED_STAINED_GLASS_PANE,
         "&3Not enough ingredients");
+    public static final ItemStack MENU_NO_WATER_ABOVE = new CustomItemStack(Material.RED_STAINED_GLASS_PANE,
+        "&3No water above");
+
+    // ---- Dummy ----
+
+    public static final ItemStack DUMMY_FISHING_NET = new CustomItemStack(Material.IRON_BARS, GastroTheme.ELECTRIC.getColor() + "Fishing Net");
 
     // ---- Tools ----
 
@@ -302,12 +308,6 @@ public class GastroStacks {
         Material.IRON_TRAPDOOR,
         "Hunting Trap");
 
-    public static final SlimefunItemStack FISHING_NET = ThemedItemStack.of(
-        GastroTheme.TRAP,
-        "GN_FISHING_NET",
-        Material.COBWEB,
-        "Fishing Net");
-
     // -- Other --
 
     public static final SlimefunItemStack WOODEN_SICKLE = ThemedItemStack.of(
@@ -386,9 +386,30 @@ public class GastroStacks {
         Material.SMITHING_TABLE,
         "Chef Android Trainer");
 
+    public static final SlimefunItemStack FISHING_NET_I = ThemedItemStack.of(
+        GastroTheme.ELECTRIC,
+        "GN_FISHING_NET_I",
+        Material.IRON_BARS,
+        "Fishing Net",
+        LoreBuilder.speed(1));
+
+    public static final SlimefunItemStack FISHING_NET_II = ThemedItemStack.of(
+        GastroTheme.ELECTRIC,
+        "GN_FISHING_NET_II",
+        Material.IRON_BARS,
+        "Fishing Net",
+        LoreBuilder.speed(2));
+
+    public static final SlimefunItemStack FISHING_NET_III = ThemedItemStack.of(
+        GastroTheme.ELECTRIC,
+        "GN_FISHING_NET_III",
+        Material.IRON_BARS,
+        "Fishing Net",
+        LoreBuilder.speed(4));
+
     public static final SlimefunItemStack ELECTRIC_KITCHEN_I = ThemedItemStack.of(
         GastroTheme.MECHANICAL,
-        "GN_ELECTRIC_KITCHEN",
+        "GN_ELECTRIC_KITCHEN_I",
         Material.FURNACE,
         "Electric Kitchen",
         LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE),
@@ -398,7 +419,7 @@ public class GastroStacks {
 
     public static final SlimefunItemStack ELECTRIC_KITCHEN_II = ThemedItemStack.of(
         GastroTheme.MECHANICAL,
-        "GN_ELECTRIC_KITCHEN",
+        "GN_ELECTRIC_KITCHEN_II",
         Material.FURNACE,
         "Electric Kitchen &7- &eII  ",
         LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE),
@@ -408,7 +429,7 @@ public class GastroStacks {
 
     public static final SlimefunItemStack ELECTRIC_KITCHEN_III = ThemedItemStack.of(
         GastroTheme.MECHANICAL,
-        "GN_ELECTRIC_KITCHEN",
+        "GN_ELECTRIC_KITCHEN_III",
         Material.FURNACE,
         "Electric Kitchen &7- &eIII",
         LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE),

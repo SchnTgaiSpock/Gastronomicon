@@ -1,4 +1,4 @@
-package io.github.schntgaispock.gastronomicon.core.items.workstations.electric;
+package io.github.schntgaispock.gastronomicon.core.items.workstations.automatic;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -65,7 +65,7 @@ public class ElectricKitchen extends AContainer {
     private final int[] outputSlots = new int[] { 42, 43 };
 
     public ElectricKitchen(SlimefunItemStack item, int capacity, int energyConsumption, int speed, ItemStack[] recipe) {
-        super(GastroGroups.BASIC_MACHINES, item, RecipeType.ENHANCED_CRAFTING_TABLE, recipe);
+        super(GastroGroups.ELECTRIC_MACHINES, item, RecipeType.ENHANCED_CRAFTING_TABLE, recipe);
 
         setCapacity(capacity);
         setEnergyConsumption(energyConsumption);
@@ -78,6 +78,7 @@ public class ElectricKitchen extends AContainer {
         draw(preset, GastroStacks.MENU_INPUT_BORDER, INPUT_BORDER);
         draw(preset, GastroStacks.MENU_ANDROID_BORDER, ANDROID_BORDER);
         draw(preset, GastroStacks.MENU_OUTPUT_BORDER, OUTPUT_BORDER);
+        draw(preset, GastroStacks.MENU_NO_ANDROID, STATUS_SLOT);
 
         for (int i : getOutputSlots()) { // From AContainer
             preset.addMenuClickHandler(i, new AdvancedMenuClickHandler() {

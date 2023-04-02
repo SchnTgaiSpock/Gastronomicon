@@ -18,6 +18,8 @@ import io.github.schntgaispock.gastronomicon.core.items.seeds.CropSeed;
 import io.github.schntgaispock.gastronomicon.core.items.seeds.DuplicatingSeed;
 import io.github.schntgaispock.gastronomicon.core.items.seeds.FruitingSeed;
 import io.github.schntgaispock.gastronomicon.core.items.seeds.SimpleSeed;
+import io.github.schntgaispock.gastronomicon.core.items.workstations.automatic.ElectricKitchen;
+import io.github.schntgaispock.gastronomicon.core.items.workstations.automatic.FishingNet;
 import io.github.schntgaispock.gastronomicon.core.items.workstations.manual.ChefAndroidTrainer;
 import io.github.schntgaispock.gastronomicon.core.items.workstations.manual.CulinaryWorkbench;
 import io.github.schntgaispock.gastronomicon.core.items.workstations.manual.Fermenter;
@@ -251,12 +253,6 @@ public class ItemSetup {
                 GastroStacks.STEEL_SPRING, GastroStacks.STEEL_SPRING, GastroStacks.STEEL_SPRING
             })
                 .register(gn);
-        new SlimefunItem(
-            GastroGroups.TOOLS,
-            GastroStacks.FISHING_NET,
-            RecipeType.ENHANCED_CRAFTING_TABLE,
-            RecipeUtil.block(GastroStacks.STEEL_WIRE))
-                .register(gn);
 
         // -- Other --
 
@@ -360,14 +356,33 @@ public class ItemSetup {
             16000, 125).register(gn);
 
         new ChefAndroidTrainer(
-            GastroGroups.BASIC_MACHINES, 
-            GastroStacks.CHEF_ANDROID_TRAINER, 
-            RecipeType.ENHANCED_CRAFTING_TABLE, 
+            GastroGroups.BASIC_MACHINES,
+            GastroStacks.CHEF_ANDROID_TRAINER,
+            RecipeType.ENHANCED_CRAFTING_TABLE,
             new ItemStack[] {
-                
+
             }).register(gn);
 
         // ---- Electric Machines ----
+
+        new FishingNet(
+            GastroStacks.FISHING_NET_I, 1, 
+            RecipeUtil.block(GastroStacks.STEEL_WIRE)).register(gn);
+        new FishingNet(
+            GastroStacks.FISHING_NET_II, 2,
+            RecipeUtil.cyclicAlternating(null, SlimefunItems.REINFORCED_ALLOY_INGOT, GastroStacks.FISHING_NET_I)).register(gn);
+        new FishingNet(
+            GastroStacks.FISHING_NET_III, 4,
+            RecipeUtil.cyclic(SlimefunItems.REINFORCED_ALLOY_INGOT, GastroStacks.FISHING_NET_II)).register(gn);
+
+        new ElectricKitchen(
+            GastroStacks.ELECTRIC_KITCHEN_I,
+            256, 64, 1,
+            new ItemStack[] {
+                GastroStacks.CULINARY_WORKBENCH, SlimefunItems.CARBONADO_EDGED_CAPACITOR, GastroStacks.MULTI_STOVE,
+                GastroStacks.REFRIDGERATOR, GastroStacks.MILL, GastroStacks.FERMENTER,
+                SlimefunItems.BLISTERING_INGOT_3, SlimefunItems.CARGO_MOTOR, SlimefunItems.BLISTERING_INGOT_3
+            }).register(gn);
 
         // ---- Raw Ingredients ----
 
@@ -772,7 +787,7 @@ public class ItemSetup {
             GastroGroups.RAW_INGREDIENTS,
             GastroStacks.RAW_MACKEREL,
             GastroRecipeType.TRAP,
-            RecipeUtil.singleCenter(GastroStacks.FISHING_NET))
+            RecipeUtil.singleCenter(GastroStacks.DUMMY_FISHING_NET))
                 .register(gn);
 
         new SimpleGastroFoodBuilder()
@@ -787,7 +802,7 @@ public class ItemSetup {
             GastroGroups.RAW_INGREDIENTS,
             GastroStacks.RAW_EEL,
             GastroRecipeType.TRAP,
-            RecipeUtil.singleCenter(GastroStacks.FISHING_NET))
+            RecipeUtil.singleCenter(GastroStacks.DUMMY_FISHING_NET))
                 .register(gn);
 
         new SimpleGastroFoodBuilder()
@@ -802,7 +817,7 @@ public class ItemSetup {
             GastroGroups.RAW_INGREDIENTS,
             GastroStacks.RAW_TROUT,
             GastroRecipeType.TRAP,
-            RecipeUtil.singleCenter(GastroStacks.FISHING_NET))
+            RecipeUtil.singleCenter(GastroStacks.DUMMY_FISHING_NET))
                 .register(gn);
 
         new SimpleGastroFoodBuilder()
@@ -817,7 +832,7 @@ public class ItemSetup {
             GastroGroups.RAW_INGREDIENTS,
             GastroStacks.RAW_BASS,
             GastroRecipeType.TRAP,
-            RecipeUtil.singleCenter(GastroStacks.FISHING_NET))
+            RecipeUtil.singleCenter(GastroStacks.DUMMY_FISHING_NET))
                 .register(gn);
 
         new SimpleGastroFoodBuilder()
@@ -832,7 +847,7 @@ public class ItemSetup {
             GastroGroups.RAW_INGREDIENTS,
             GastroStacks.RAW_CARP,
             GastroRecipeType.TRAP,
-            RecipeUtil.singleCenter(GastroStacks.FISHING_NET))
+            RecipeUtil.singleCenter(GastroStacks.DUMMY_FISHING_NET))
                 .register(gn);
 
         new SimpleGastroFoodBuilder()
@@ -847,7 +862,7 @@ public class ItemSetup {
             GastroGroups.RAW_INGREDIENTS,
             GastroStacks.RAW_PIKE,
             GastroRecipeType.TRAP,
-            RecipeUtil.singleCenter(GastroStacks.FISHING_NET))
+            RecipeUtil.singleCenter(GastroStacks.DUMMY_FISHING_NET))
                 .register(gn);
 
         new SimpleGastroFoodBuilder()
@@ -862,7 +877,7 @@ public class ItemSetup {
             GastroGroups.RAW_INGREDIENTS,
             GastroStacks.RAW_TUNA,
             GastroRecipeType.TRAP,
-            RecipeUtil.singleCenter(GastroStacks.FISHING_NET))
+            RecipeUtil.singleCenter(GastroStacks.DUMMY_FISHING_NET))
                 .register(gn);
 
         new SimpleGastroFoodBuilder()
@@ -877,7 +892,7 @@ public class ItemSetup {
             GastroGroups.RAW_INGREDIENTS,
             GastroStacks.SHRIMP,
             GastroRecipeType.TRAP,
-            RecipeUtil.singleCenter(GastroStacks.FISHING_NET))
+            RecipeUtil.singleCenter(GastroStacks.DUMMY_FISHING_NET))
                 .register(gn);
 
         // -- From traps --

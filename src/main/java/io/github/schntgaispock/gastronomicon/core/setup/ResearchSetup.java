@@ -36,8 +36,24 @@ public class ResearchSetup {
                 GastroStacks.STEEL_WIRE,
                 GastroStacks.STEEL_SPRING,
                 GastroStacks.CRAB_TRAP,
-                GastroStacks.HUNTING_TRAP,
-                GastroStacks.FISHING_NET)
+                GastroStacks.HUNTING_TRAP)
+            .register();
+        GastroResearch.FISHING_NETS
+            .addItems(
+                GastroStacks.FISHING_NET_I,
+                GastroStacks.FISHING_NET_II,
+                GastroStacks.FISHING_NET_III)
+            .register();
+        GastroResearch.CHEF_ANDROID
+            .addItems(
+                GastroStacks.CHEF_ANDROID,
+                GastroStacks.CHEF_ANDROID_TRAINER)
+            .register();
+        GastroResearch.ELECTRIC_KITCHEN
+            .addItems(
+                GastroStacks.ELECTRIC_KITCHEN_I,
+                GastroStacks.ELECTRIC_KITCHEN_II,
+                GastroStacks.ELECTRIC_KITCHEN_III)
             .register();
         GastroResearch.SICKLES
             .addItems(
