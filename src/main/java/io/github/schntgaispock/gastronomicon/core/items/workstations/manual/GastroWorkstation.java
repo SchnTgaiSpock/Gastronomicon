@@ -1,7 +1,9 @@
 package io.github.schntgaispock.gastronomicon.core.items.workstations.manual;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.annotation.Nullable;
@@ -21,33 +23,21 @@ import io.github.schntgaispock.gastronomicon.api.events.PlayerGastroFoodCraftEve
 import io.github.schntgaispock.gastronomicon.api.recipes.GastroRecipe;
 import io.github.schntgaispock.gastronomicon.api.recipes.RecipeRegistry;
 import io.github.schntgaispock.gastronomicon.api.recipes.GastroRecipe.RecipeMatchResult;
+import io.github.schntgaispock.gastronomicon.core.slimefun.GastroStacks;
 import io.github.schntgaispock.gastronomicon.core.slimefun.recipes.GastroRecipeType;
 import io.github.schntgaispock.gastronomicon.util.NumberUtil;
+import io.github.schntgaispock.gastronomicon.util.RecipeUtil;
+import io.github.schntgaispock.gastronomicon.util.collections.Pair;
 import io.github.schntgaispock.gastronomicon.util.item.ItemUtil;
-import io.github.schntgaispock.gastronomicon.util.recipe.RecipeUtil;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
-import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
 import net.kyori.adventure.text.Component;
-import net.md_5.bungee.api.ChatColor;
 
 @SuppressWarnings("deprecation")
 public abstract class GastroWorkstation extends MenuBlock {
-
-    public static final ItemStack BACKGROUND_ITEM = new CustomItemStack(Material.GRAY_STAINED_GLASS_PANE, "");
-    public static final ItemStack INGREDIENT_BORDER = new CustomItemStack(Material.BLUE_STAINED_GLASS_PANE,
-        "&9Ingredients");
-    public static final ItemStack CONTAINER_BORDER = new CustomItemStack(Material.PURPLE_STAINED_GLASS_PANE,
-        "&5Container");
-    public static final ItemStack TOOL_BORDER = new CustomItemStack(Material.BLACK_STAINED_GLASS_PANE,
-        ChatColor.of("#999999") + "Tools");
-    public static final ItemStack OUTPUT_BORDER = new CustomItemStack(Material.ORANGE_STAINED_GLASS_PANE, "&6Output");
-    public static final ItemStack CRAFT_BUTTON = new CustomItemStack(Material.LIME_STAINED_GLASS_PANE,
-        "&aClick to craft");
-    public static final ItemStack PROGRESS_BAR = new ItemStack(Material.FLINT_AND_STEEL);
 
     protected static final int[] BACKGROUND_SLOTS = {
         0, 1, 2, 3, 4, 5, 6, 7, 8,
@@ -61,9 +51,7 @@ public abstract class GastroWorkstation extends MenuBlock {
     protected static final int[] OUTPUT_BORDER_SLOTS = { 32 };
     protected static final int[] TOOL_BORDER_SLOTS = { 45 };
     protected static final int CRAFT_BUTTON_SLOT = 53;
-
-    private final int[] hashedInputs = new int[] { 0, 0, 0, 0 };
-    private GastroRecipe lastCrafted = null;
+    private static Map<Location, Pair<int[], GastroRecipe>> lastInputHashAndRecipe = new HashMap<>();
 
     public GastroWorkstation(ItemGroup group, SlimefunItemStack item, RecipeType type, ItemStack[] recipe) {
         super(group, item, type, recipe);
@@ -92,11 +80,11 @@ public abstract class GastroWorkstation extends MenuBlock {
     @Override
     protected void setup(BlockMenuPreset preset) {
         preset.drawBackground(BACKGROUND_ITEM, BACKGROUND_SLOTS);
-        preset.drawBackground(INGREDIENT_BORDER, INGREDIENT_BORDER_SLOTS);
-        preset.drawBackground(CONTAINER_BORDER, CONTAINER_BORDER_SLOTS);
+        preset.drawBackground(GastroStacks.MENU_INGREDIENT_BORDER, INGREDIENT_BORDER_SLOTS);
+        preset.drawBackground(GastroStacks.MENU_CONTAINER_BORDER, CONTAINER_BORDER_SLOTS);
         preset.drawBackground(OUTPUT_BORDER, OUTPUT_BORDER_SLOTS);
-        preset.drawBackground(TOOL_BORDER, TOOL_BORDER_SLOTS);
-        preset.drawBackground(CRAFT_BUTTON, new int[] { CRAFT_BUTTON_SLOT });
+        preset.drawBackground(GastroStacks.MENU_TOOL_BORDER, TOOL_BORDER_SLOTS);
+        preset.drawBackground(GastroStacks.MENU_CRAFT_BUTTON, new int[] { CRAFT_BUTTON_SLOT });
     }
 
     @Override
@@ -146,6 +134,9 @@ public abstract class GastroWorkstation extends MenuBlock {
             final int toolsHash = tools.hashCode();
             final int otherHash = getOtherHash(player, menu);
 
+            final int[] hashedInputs = lastInputHashAndRecipe.get(menu.getLocation()).first();
+            final GastroRecipe lastCrafted = lastInputHashAndRecipe.get(menu.getLocation()).second();
+
             final GastroRecipe recipe;
             if (lastCrafted != null && hashedInputs[0] == ingredientHash && hashedInputs[1] == containerHash
                 && hashedInputs[2] == toolsHash && hashedInputs[3] == otherHash) {
@@ -157,7 +148,7 @@ public abstract class GastroWorkstation extends MenuBlock {
                 if (recipe == null) {
                     return false;
                 } else {
-                    lastCrafted = recipe;
+                    lastInputHashAndRecipe.get(menu.getLocation()).second(recipe);
                     hashedInputs[0] = ingredientHash;
                     hashedInputs[1] = containerHash;
                     hashedInputs[2] = toolsHash;
@@ -170,7 +161,7 @@ public abstract class GastroWorkstation extends MenuBlock {
             // Call the event
             final PlayerGastroFoodCraftEvent craftEvent = new PlayerGastroFoodCraftEvent(player, recipe);
             if (!craftEvent.callEvent()) {
-                if (craftEvent.getMessage() != null) player.sendMessage(Component.text(craftEvent.getMessage()));
+                if (craftEvent.getMessage() != null) Gastronomicon.sendMessage(player, Component.text(craftEvent.getMessage()));
                 return false;
             }
 
@@ -219,7 +210,7 @@ public abstract class GastroWorkstation extends MenuBlock {
             });
             for (final int containerSlot : getContainerSlots()) {
                 final ItemStack i = menu.getItemInSlot(containerSlot);
-                if (i != null && lastCrafted.getInputs().getContainer().matches(i)) {
+                if (i != null && lastCrafted != null && lastCrafted.getInputs().getContainer().matches(i)) {
                     i.subtract();
                     break;
                 }

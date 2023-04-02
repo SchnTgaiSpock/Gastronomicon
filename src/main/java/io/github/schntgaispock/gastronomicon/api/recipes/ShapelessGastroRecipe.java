@@ -12,7 +12,7 @@ import io.github.schntgaispock.gastronomicon.api.recipes.components.GroupRecipeC
 import io.github.schntgaispock.gastronomicon.api.recipes.components.RecipeComponent;
 import io.github.schntgaispock.gastronomicon.api.recipes.components.RecipeInput;
 import io.github.schntgaispock.gastronomicon.core.slimefun.recipes.GastroRecipeType;
-import io.github.schntgaispock.gastronomicon.util.recipe.RecipeUtil;
+import io.github.schntgaispock.gastronomicon.util.RecipeUtil;
 import lombok.Getter;
 
 @Getter

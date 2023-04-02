@@ -72,6 +72,7 @@ public class DynaTechSetup {
         register(30, GastroStacks.AVOCADO_PIT.asQuantity(2), GastroStacks.AVOCADO.asQuantity(2));
         register(30, GastroStacks.TURMERIC.asQuantity(3));
         register(30, GastroStacks.CUMIN_SEEDS.asQuantity(3));
+        register(30, GastroStacks.RED_BEANS.asQuantity(3));
         register(60,
             GastroStacks.LYCHEE_SAPLING.asQuantity(4),
             GastroStacks.LYCHEE.asQuantity(4),
@@ -88,7 +89,7 @@ public class DynaTechSetup {
             new ItemStack(Material.SPRUCE_LOG, 4),
             new ItemStack(Material.ACACIA_LEAVES, 6));
         register(45, GastroStacks.FIDDLEHEADS.asQuantity(3));
-        register(45, GastroStacks.TRUFFLES.asQuantity(3));
+        register(45, GastroStacks.TRUFFLE.asQuantity(3));
         register(45, GastroStacks.ENOKI_MUSHROOMS.asQuantity(3));
         register(45, GastroStacks.KING_OYSTER_MUSHROOM.asQuantity(3));
         register(45, GastroStacks.BUTTON_MUSHROOM.asQuantity(3));

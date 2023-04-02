@@ -1,4 +1,4 @@
-package io.github.schntgaispock.gastronomicon.util;
+package io.github.schntgaispock.gastronomicon.util.collections;
 
 import java.util.HashMap;
 import java.util.Map;

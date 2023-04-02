@@ -20,11 +20,14 @@ import io.github.schntgaispock.gastronomicon.core.setup.ItemSetup;
 import io.github.schntgaispock.gastronomicon.integration.DynaTechSetup;
 import io.github.schntgaispock.gastronomicon.integration.SlimeHUDSetup;
 import lombok.Getter;
-
+import net.kyori.adventure.text.Component;
+@Getter
 public class Gastronomicon extends AbstractAddon {
 
     private static @Getter Gastronomicon instance;
-    private @Getter AddonConfig playerData;
+
+    private AddonConfig playerData;
+    private AddonConfig customFood;
 
     public Gastronomicon() {
         super("SchnTgaiSpock", "Gastronomicon", "master", "options.auto-update");
@@ -77,6 +80,7 @@ public class Gastronomicon extends AbstractAddon {
         }
 
         playerData = new AddonConfig("player.yml");
+        customFood = new AddonConfig("custom-food.yml");
     }
 
     @Override
@@ -85,7 +89,7 @@ public class Gastronomicon extends AbstractAddon {
         getPlayerData().save();
     }
 
-    public static NamespacedKey newNamespacedKey(@Nonnull String name) {
+    public static NamespacedKey key(@Nonnull String name) {
         return new NamespacedKey(Gastronomicon.getInstance(), name);
     }
 
@@ -103,7 +107,7 @@ public class Gastronomicon extends AbstractAddon {
         }
     
         if (message != null)
-            player.sendMessage(message);
+            Gastronomicon.sendMessage(player, message);
         return false;
     
     }
@@ -118,5 +122,13 @@ public class Gastronomicon extends AbstractAddon {
 
     public static void error(String message) {
         getInstance().getLogger().severe(message);
+    }
+
+    public static void sendMessage(Player player, String message) {
+        player.sendMessage("§#c91df4§lGastronomicon§7§l> " + message);
+    }
+
+    public static void sendMessage(Player player, Component message) {
+        player.sendMessage(Component.text("§#c91df4§lGastronomicon§7§l> ").append(message));
     }
 }

@@ -1,4 +1,4 @@
-package io.github.schntgaispock.gastronomicon.util.recipe;
+package io.github.schntgaispock.gastronomicon.util;
 
 import java.util.Arrays;
 
@@ -6,7 +6,6 @@ import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
 import io.github.schntgaispock.gastronomicon.api.recipes.components.RecipeComponent;
-import io.github.schntgaispock.gastronomicon.util.NumberUtil;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import lombok.experimental.UtilityClass;

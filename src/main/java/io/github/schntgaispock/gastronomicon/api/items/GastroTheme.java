@@ -8,6 +8,7 @@ public enum GastroTheme {
     TOOL("#55ffff"),
     INGREDIENT("#ffff55"),
     MECHANICAL("#00aaaa"),
+    ELECTRIC("#aaaaff"),
     TRAP("#f4a51d"),
     REGULAR_FOOD("#1d90f4"),
     PERFECT_FOOD("#c91df4");

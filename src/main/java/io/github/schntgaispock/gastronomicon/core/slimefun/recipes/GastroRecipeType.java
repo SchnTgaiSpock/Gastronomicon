@@ -23,7 +23,7 @@ public class GastroRecipeType extends RecipeType {
     public static final GastroRecipeType FERMENTER = new GastroRecipeType("fermenter", GastroStacks.GUIDE_RECIPE_FERMENTER);
 
     public GastroRecipeType(@Nonnull String key, ItemStack item) {
-        super(Gastronomicon.newNamespacedKey(key), item);
+        super(Gastronomicon.key(key), item);
     }
 
 }

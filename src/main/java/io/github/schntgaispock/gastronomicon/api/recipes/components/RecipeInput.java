@@ -7,7 +7,7 @@ import org.bukkit.inventory.ItemStack;
 
 import io.github.schntgaispock.gastronomicon.api.recipes.GastroRecipe;
 import io.github.schntgaispock.gastronomicon.api.recipes.GastroRecipe.RecipeShape;
-import io.github.schntgaispock.gastronomicon.util.recipe.RecipeUtil;
+import io.github.schntgaispock.gastronomicon.util.RecipeUtil;
 import lombok.Getter;
 import lombok.ToString;
 
@@ -48,6 +48,12 @@ public class RecipeInput {
         return Arrays.stream(ingredients)
                 .map(ingredient -> ingredient == null ? new ItemStack(Material.AIR) : ingredient.getComponent())
                 .toArray(ItemStack[]::new);
+    }
+
+    public RecipeComponent<?>[] getAll() {
+        final RecipeComponent<?>[] all = Arrays.copyOf(ingredients, ingredients.length + 1);
+        all[ingredients.length] = container;
+        return all;
     }
 
     @Override

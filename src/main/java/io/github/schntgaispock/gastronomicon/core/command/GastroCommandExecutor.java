@@ -11,7 +11,7 @@ import org.bukkit.entity.Player;
 import io.github.mooy1.infinitylib.core.AddonConfig;
 import io.github.schntgaispock.gastronomicon.Gastronomicon;
 import io.github.schntgaispock.gastronomicon.core.items.food.GastroFood;
-import io.github.schntgaispock.gastronomicon.util.CollectionUtil;
+import io.github.schntgaispock.gastronomicon.util.collections.CollectionUtil;
 
 /**
  * Functionality for the '/gastronomicon' command
@@ -30,7 +30,7 @@ public class GastroCommandExecutor implements CommandExecutor {
                 case 1:
                     switch (args[0]) {
                         case "help":
-                            player.sendMessage("The help section is a WIP! " +
+                            Gastronomicon.sendMessage(player, "The help section is a WIP! " +
                                 "For now, please see https://github.com/SchnTgaiSpock/Gastronomicon");
                             return true;
 
@@ -40,9 +40,9 @@ public class GastroCommandExecutor implements CommandExecutor {
                                 "gastronomicon.checkprofile",
                                 "§#4ee530§lGastronomicon&7> &cYou do not have perission to check your profile!"))
                                 return true;
-                            player.sendMessage("§#4ee530Proficiencies:");
+                            Gastronomicon.sendMessage(player, "§#4ee530Proficiencies:");
                             sendProficiencies(player, player);
-                            player.sendMessage("§#4ee530Skills:");
+                            Gastronomicon.sendMessage(player, "§#4ee530Skills:");
                             sendSkills(player, player);
                             return true;
                     }
@@ -60,9 +60,9 @@ public class GastroCommandExecutor implements CommandExecutor {
                             if (toCheck == null)
                                 return false;
 
-                            player.sendMessage("§#4ee530" + toCheck.getName() + "'s Proficiencies:");
+                            Gastronomicon.sendMessage(player, "§#4ee530" + toCheck.getName() + "'s Proficiencies:");
                             sendProficiencies(player, toCheck);
-                            player.sendMessage("§#4ee530" + toCheck.getName() + "'s Skills:");
+                            Gastronomicon.sendMessage(player, "§#4ee530" + toCheck.getName() + "'s Skills:");
                             sendSkills(player, toCheck);
 
                             return true;
@@ -119,22 +119,22 @@ public class GastroCommandExecutor implements CommandExecutor {
     }
 
     private void sendProficiencies(Player player, Player toCheck) {
-        player.sendMessage(Gastronomicon.getInstance().getPlayerData()
+        Gastronomicon.sendMessage(player, Gastronomicon.getInstance().getPlayerData()
             .getObject(player.getUniqueId() + ".proficiencies", HashMap.class).toString());
     }
 
     private void sendSkills(Player player, Player toCheck) {
-        player.sendMessage(CollectionUtil.commaJoin(Gastronomicon.getInstance().getPlayerData()
+        Gastronomicon.sendMessage(player, CollectionUtil.commaJoin(Gastronomicon.getInstance().getPlayerData()
             .getList(player.getUniqueId() + ".skill-profile.learned-skills").toArray()));
     }
 
     private void sendInfo(Player player) {
         player.sendMessage(
             "",
-            "§#4ee530§lGastronomicon §8- §7Version " + Gastronomicon.getInstance().getPluginVersion(),
+            "§#c91df4§lGastronomicon §8- §7Version " + Gastronomicon.getInstance().getPluginVersion(),
             "§f------",
-            "§#4ee530§lWiki §f- §7https://github.com/SchnTgaiSpock/Gastronomicon/wiki",
-            "§#4ee530§lIssues §f- §7https://github.com/SchnTgaiSpock/Gastronomicon/issues",
+            "§#c91df4§lWiki §f- §7https://github.com/SchnTgaiSpock/Gastronomicon/wiki",
+            "§#c91df4§lIssues §f- §7https://github.com/SchnTgaiSpock/Gastronomicon/issues",
             "");
     }
 

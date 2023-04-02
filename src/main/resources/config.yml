@@ -14,7 +14,7 @@ perfect-food-max-chance: 0.25
 proficiency-threshold: 256
 
 drops:
-  # The for dropping a Gastronomicon seed when an appropriate block is broken [0 ... 1]
+  # The chance for dropping Gastronomicon seeds when an appropriate block is broken [0 ... 1]
   block-break-chance: 0.25
   # The chance for dropping Gastronomicon mob drops when an appropriate mob is killed [0 ... 1]
   mob-kill-chance: 0.25

@@ -10,7 +10,7 @@ import lombok.experimental.UtilityClass;
 public class GastroRecipeGroups {
     
     public static final GroupRecipeComponent FLOUR = new GroupRecipeComponent(
-        Gastronomicon.newNamespacedKey("flour"),
+        Gastronomicon.key("flour"),
         SlimefunItems.WHEAT_FLOUR,
         GastroStacks.BARLEY_FLOUR );
 

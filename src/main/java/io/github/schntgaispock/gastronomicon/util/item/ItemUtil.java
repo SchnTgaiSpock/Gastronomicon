@@ -15,7 +15,9 @@ import lombok.experimental.UtilityClass;
 @UtilityClass
 public class ItemUtil {
 
-    public static int hashIgnoreAmount(@Nonnull ItemStack stack) {
+    public static int hashIgnoreAmount(ItemStack stack) {
+        if (stack == null) return 0;
+        
         int hash = 1;
 
         hash = hash * 31 + stack.getType().hashCode();

@@ -1,0 +1,68 @@
+### Define custom food in this file
+#
+# Format:
+# FOOD_ID
+#   - name: str
+#   - (OPTIONAL) lore: [list: str]
+#   - hunger: int
+#   - saturation-ratio: double (OR) - saturation: int
+#   - material: MATERIAL (OR) - texture: TEXTURE
+#   - effects:
+#     - EFFECT_TYPE: [parameters]
+#   - recipe: {...}
+#
+# Where,
+#   FOOD_ID is any string in SCREAMING_SNAKE_CASE, and must not already be in use.
+#     Gastronomicon will append `GN_` to the beginning when registering the item.
+#   MATERIAL is a valid Material name,
+#   TEXTURE is a valid base64 texture string
+#     (see https://bukkit.org/threads/create-your-own-custom-head-texture.424286/),
+#   and EFFECT_TYPE is one of the ids described below.
+# The recipe format will be specified after.
+#
+# Note that `saturation-ratio` and `saturation` are mutually exclusive and so are
+#   `material` and `texture`.
+#
+# Effect types:
+#   heal [amount: int]: Heal [amount] HP. (amount > 0)
+#   positive-potion-effect [type: POTION_EFFECT_TYPE] [int seconds] [int amplifier]: 
+#     Gives the player the specified effect.
+#   negative-potion-effect [type: POTION_EFFECT_TYPE] [int seconds] [int amplifier]: 
+#     Gives the player the specified effect.
+#   remove-potion-effect [type: POTION_EFFECT_TYPE]: Removes the specified effect
+#   clear-potion-effects: Clear all potion effects
+#   xp [amount: int]: Gives the player [amount] xp
+#   item [material: MATERIAL] [amount: int]: Gives the player the specified item
+#   slimefun-item: [id: str] [amount: int]: Gives the player the specified Slimefun item
+#   air [amount: int]: Refills the player's air by [amount]
+#   warm [amount: int]: Reduces the player's freeze ticks by [amount]
+#   teleport [radius: int]: Teleports the player randomly within [radius] blocks
+#   move [vx: double] [vy: double] [vz: double] [description: str]: Launch the player
+#     in direction of [vx vy vz]^T
+#   extinguish: Extinguishes the player
+# 
+# It is not possible to define custom effects types in this file; in order to
+# create food with custom effects, you must add it in a plugin.
+# See https://github.com/SchnTgaiSpock/Gastronomicon/wiki/CustomFood on how to do so.
+#
+# Recipe format:
+# - shape: SHAPED / SHAPELESS
+# - workbench: CULINARY_WORKBENCH / MULTI_STOVE / REFRIDGERATOR / GRAIN_MILL / FERMENTER
+# - ingredients: [list: MATERIAL / SLIMEFUN_ID]
+# - (OPTIONAL) tools: [list: str]
+# - (OPTIONAL) container: MATERIAL / SLIMEFUN_ID
+# (Workbench-specific parameters:)
+# - temperature: HIGH / MEDIUM / LOW (for Multi-Stove, defaults to MEDIUM)
+#
+# Example:
+# GN_BAKED_BEANS_AND_TOAST:
+#   - name: Baked Beans and Toast
+#   - hunger: 8
+#   - saturation-ratio: 1
+#   - effects:
+#     - positive-potion-effect: [DAMAGE_RESISTANCE, 90, 0]
+#   - recipe:
+#     - shape: SHAPED
+#     - workbench: CULINARY_WORKBENCH
+#     - ingredients: [null, null, null, null, GN_BAKED_BEANS, null, null, GN_TOAST, null]
+#
