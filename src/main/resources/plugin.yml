@@ -20,6 +20,9 @@ softdepend:
 - ExoticGarden
 - DynaTech # For automation
 
+loadbefore:
+- SlimeCustomizer
+
 commands:
   gastronomicon:
     description: /gastronomicon

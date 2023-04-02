@@ -1,9 +1,16 @@
 package io.github.schntgaispock.gastronomicon.core.setup;
 
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
+
+import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.block.Biome;
 import org.bukkit.inventory.ItemStack;
 
 import io.github.schntgaispock.gastronomicon.Gastronomicon;
@@ -20,6 +27,7 @@ import io.github.schntgaispock.gastronomicon.core.items.seeds.FruitingSeed;
 import io.github.schntgaispock.gastronomicon.core.items.seeds.SimpleSeed;
 import io.github.schntgaispock.gastronomicon.core.items.workstations.automatic.ElectricKitchen;
 import io.github.schntgaispock.gastronomicon.core.items.workstations.automatic.FishingNet;
+import io.github.schntgaispock.gastronomicon.core.items.workstations.automatic.HuntingTrap;
 import io.github.schntgaispock.gastronomicon.core.items.workstations.manual.ChefAndroidTrainer;
 import io.github.schntgaispock.gastronomicon.core.items.workstations.manual.CulinaryWorkbench;
 import io.github.schntgaispock.gastronomicon.core.items.workstations.manual.Fermenter;
@@ -31,6 +39,7 @@ import io.github.schntgaispock.gastronomicon.core.slimefun.GastroGroups;
 import io.github.schntgaispock.gastronomicon.core.slimefun.GastroStacks;
 import io.github.schntgaispock.gastronomicon.core.slimefun.recipes.GastroRecipeType;
 import io.github.schntgaispock.gastronomicon.util.RecipeUtil;
+import io.github.schntgaispock.gastronomicon.util.collections.CollectionUtil;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
@@ -236,23 +245,77 @@ public class ItemSetup {
             RecipeType.ENHANCED_CRAFTING_TABLE,
             RecipeUtil.cyclicAlternating(null, GastroStacks.STEEL_WIRE))
                 .register(gn);
-        new SlimefunItem(
-            GastroGroups.TOOLS,
+        new HuntingTrap(
             GastroStacks.CRAB_TRAP,
-            RecipeType.ENHANCED_CRAFTING_TABLE,
-            new ItemStack[] { STICK, STICK, STICK, STICK, GastroStacks.STEEL_WIRE, STICK, OAK_SLAB, OAK_SLAB,
-                OAK_SLAB })
-                    .register(gn);
-        new SlimefunItem(
-            GastroGroups.TOOLS,
+            new ItemStack[] {
+                STICK, STICK, STICK,
+                STICK, GastroStacks.STEEL_WIRE, STICK,
+                OAK_SLAB, OAK_SLAB, OAK_SLAB }) {
+
+            private static final Map<Biome, List<ItemStack>> dropsByBiome = new HashMap<>();
+            static {
+                final List<ItemStack> forestDrops = Arrays.asList(
+                    new ItemStack(Material.MUTTON),
+                    new ItemStack(Material.PORKCHOP),
+                    new ItemStack(Material.CHICKEN),
+                    new ItemStack(Material.BEEF),
+                    new ItemStack(Material.RABBIT),
+                    GastroStacks.RAW_TURKEY
+                );
+
+                final List<ItemStack> plainsDrops = Arrays.asList(
+                    new ItemStack(Material.MUTTON),
+                    new ItemStack(Material.PORKCHOP),
+                    new ItemStack(Material.CHICKEN),
+                    new ItemStack(Material.BEEF)
+                );
+
+                dropsByBiome.put(Biome.FOREST, forestDrops);
+                dropsByBiome.put(Biome.FLOWER_FOREST, forestDrops);
+                dropsByBiome.put(Biome.BIRCH_FOREST, forestDrops);
+                dropsByBiome.put(Biome.OLD_GROWTH_BIRCH_FOREST, forestDrops);
+                dropsByBiome.put(Biome.WINDSWEPT_FOREST, forestDrops);
+
+                dropsByBiome.put(Biome.MEADOW, plainsDrops);
+                dropsByBiome.put(Biome.PLAINS, plainsDrops);
+                dropsByBiome.put(Biome.SUNFLOWER_PLAINS, plainsDrops);
+            }
+
+            @Override
+            protected ItemStack getCatch(Location l) {
+                final List<ItemStack> possibleDrops = dropsByBiome.get(l.getBlock().getBiome());
+                if (possibleDrops == null) return null;
+                return CollectionUtil.choice(possibleDrops);
+            }
+
+            @Override
+            protected boolean canCatch(Location l) {
+                return dropsByBiome.containsKey(l.getBlock().getBiome());
+            }
+        }.register(gn);
+
+        new HuntingTrap(
             GastroStacks.HUNTING_TRAP,
-            RecipeType.ENHANCED_CRAFTING_TABLE,
             new ItemStack[] {
                 null, SlimefunItems.STEEL_INGOT, null,
                 SlimefunItems.STEEL_INGOT, IRON_PP, SlimefunItems.STEEL_INGOT,
                 GastroStacks.STEEL_SPRING, GastroStacks.STEEL_SPRING, GastroStacks.STEEL_SPRING
-            })
-                .register(gn);
+            }) {
+
+                @Override
+                protected ItemStack getCatch(Location l) {
+                    return GastroStacks.CRAB;
+                }
+    
+                @Override
+                protected boolean canCatch(Location l) {
+                    return switch (l.getBlock().getBiome()) {
+                        case RIVER, BEACH, OCEAN, COLD_OCEAN, DEEP_OCEAN, WARM_OCEAN, FROZEN_OCEAN, 
+                            LUKEWARM_OCEAN, DEEP_COLD_OCEAN, DEEP_FROZEN_OCEAN, DEEP_LUKEWARM_OCEAN -> true;
+                        default -> false;
+                    };
+                }
+            }.register(gn);
 
         // -- Other --
 
@@ -366,11 +429,12 @@ public class ItemSetup {
         // ---- Electric Machines ----
 
         new FishingNet(
-            GastroStacks.FISHING_NET_I, 1, 
+            GastroStacks.FISHING_NET_I, 1,
             RecipeUtil.block(GastroStacks.STEEL_WIRE)).register(gn);
         new FishingNet(
             GastroStacks.FISHING_NET_II, 2,
-            RecipeUtil.cyclicAlternating(null, SlimefunItems.REINFORCED_ALLOY_INGOT, GastroStacks.FISHING_NET_I)).register(gn);
+            RecipeUtil.cyclicAlternating(null, SlimefunItems.REINFORCED_ALLOY_INGOT, GastroStacks.FISHING_NET_I))
+                .register(gn);
         new FishingNet(
             GastroStacks.FISHING_NET_III, 4,
             RecipeUtil.cyclic(SlimefunItems.REINFORCED_ALLOY_INGOT, GastroStacks.FISHING_NET_II)).register(gn);

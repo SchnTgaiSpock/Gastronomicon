@@ -1,6 +1,7 @@
 package io.github.schntgaispock.gastronomicon.util.collections;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -34,8 +35,13 @@ public class CollectionUtil {
         return true;
     }
 
-    public static <T> T choice(T[] a) {
+    @SafeVarargs
+    public static <T> T choice(T... a) {
         return a[ThreadLocalRandom.current().nextInt(a.length)];
+    }
+
+    public static <T> T choice(List<T> a) {
+        return a.get(ThreadLocalRandom.current().nextInt(a.size()));
     }
     
 }

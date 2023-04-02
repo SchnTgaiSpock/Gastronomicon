@@ -51,7 +51,7 @@ public abstract class GastroWorkstation extends MenuBlock {
     protected static final int[] OUTPUT_BORDER_SLOTS = { 32 };
     protected static final int[] TOOL_BORDER_SLOTS = { 45 };
     protected static final int CRAFT_BUTTON_SLOT = 53;
-    private static Map<Location, Pair<int[], GastroRecipe>> lastInputHashAndRecipe = new HashMap<>();
+    private static Map<Location, Pair<Integer, GastroRecipe>> lastInputHashAndRecipe = new HashMap<>();
 
     public GastroWorkstation(ItemGroup group, SlimefunItemStack item, RecipeType type, ItemStack[] recipe) {
         super(group, item, type, recipe);
@@ -128,31 +128,33 @@ public abstract class GastroWorkstation extends MenuBlock {
                 return i == null ? null : i.asOne();
             }).toList();
 
-            // Get the hashes, and check against last crafted recipe
-            final int ingredientHash = Arrays.hashCode(ingredients);
-            final int containerHash = containers.hashCode();
-            final int toolsHash = tools.hashCode();
-            final int otherHash = getOtherHash(player, menu);
+            int hash = 1;
 
-            final int[] hashedInputs = lastInputHashAndRecipe.get(menu.getLocation()).first();
-            final GastroRecipe lastCrafted = lastInputHashAndRecipe.get(menu.getLocation()).second();
+            // Get the hashes, and check against last crafted recipe
+            hash = hash * 31 + Arrays.hashCode(ingredients);
+            hash = hash * 31 + containers.hashCode();
+            hash = hash * 31 + tools.hashCode();
+            hash = hash * 31 + getOtherHash(player, menu);
+
+            final Pair<Integer, GastroRecipe> hashRecipePair;
+            if (lastInputHashAndRecipe.containsKey(menu.getLocation())) {
+                hashRecipePair = lastInputHashAndRecipe.get(menu.getLocation());
+            } else {
+                hashRecipePair = new Pair<>(0, null);
+            }
 
             final GastroRecipe recipe;
-            if (lastCrafted != null && hashedInputs[0] == ingredientHash && hashedInputs[1] == containerHash
-                && hashedInputs[2] == toolsHash && hashedInputs[3] == otherHash) {
+            if (hashRecipePair.first() == hash && hashRecipePair.second() != null) {
                 // Can skip searching if hashes are the same
-                recipe = lastCrafted;
+                recipe = hashRecipePair.second();
             } else {
                 // Otherwise start search
                 recipe = findRecipe(ingredients, containers, tools, player, menu);
                 if (recipe == null) {
                     return false;
                 } else {
+                    lastInputHashAndRecipe.get(menu.getLocation()).first(hash);
                     lastInputHashAndRecipe.get(menu.getLocation()).second(recipe);
-                    hashedInputs[0] = ingredientHash;
-                    hashedInputs[1] = containerHash;
-                    hashedInputs[2] = toolsHash;
-                    hashedInputs[3] = otherHash;
                     // TODO: save hashes in RecipeRegistry
                 }
             }
@@ -210,7 +212,7 @@ public abstract class GastroWorkstation extends MenuBlock {
             });
             for (final int containerSlot : getContainerSlots()) {
                 final ItemStack i = menu.getItemInSlot(containerSlot);
-                if (i != null && lastCrafted != null && lastCrafted.getInputs().getContainer().matches(i)) {
+                if (i != null && hashRecipePair.second() != null && hashRecipePair.second().getInputs().getContainer().matches(i)) {
                     i.subtract();
                     break;
                 }

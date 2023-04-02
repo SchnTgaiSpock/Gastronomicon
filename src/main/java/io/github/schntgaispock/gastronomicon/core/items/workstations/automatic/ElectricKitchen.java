@@ -127,10 +127,19 @@ public class ElectricKitchen extends AContainer {
         for (int slot : getInputSlots()) {
             hash = hash * 31 + ItemUtil.hashIgnoreAmount(menu.getItemInSlot(slot));
         }
-        if (lastInputHashAndRecipe.get(menu.getLocation()).first() == hash) {
-            return lastInputHashAndRecipe.get(menu.getLocation()).second();
+
+        final Pair<Integer, MachineRecipe> hashRecipePair;
+        if (lastInputHashAndRecipe.containsKey(menu.getLocation())) {
+            hashRecipePair = lastInputHashAndRecipe.get(menu.getLocation());
+        } else {
+            hashRecipePair = new Pair<Integer, MachineRecipe>(0, new MachineRecipe(0, null, null));
+            lastInputHashAndRecipe.put(menu.getLocation(), hashRecipePair);
         }
-        lastInputHashAndRecipe.get(menu.getLocation()).first(hash);
+
+        if (hashRecipePair.first() == hash) {
+            return hashRecipePair.second();
+        }
+        hashRecipePair.first(hash);
 
         final Counter<Integer> found = new Counter<>();
 
@@ -160,7 +169,7 @@ public class ElectricKitchen extends AContainer {
             input.subtract(pair.second());
             return clone;
         }).toArray(ItemStack[]::new), recipe.getOutputs());
-        lastInputHashAndRecipe.get(menu.getLocation()).second(newRecipe);
+        hashRecipePair.second(newRecipe);
         return newRecipe;
     }
 

@@ -1,14 +1,13 @@
 package io.github.schntgaispock.gastronomicon.util.collections;
 
-import javax.annotation.Nonnull;
 
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
 
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class Pair<T, U> {
     
-    private @Nonnull T first;
-    private @Nonnull U second;
+    private T first;
+    private U second;
 
     public T first() { return first; }
     public void first(T first) { this.first = first; }

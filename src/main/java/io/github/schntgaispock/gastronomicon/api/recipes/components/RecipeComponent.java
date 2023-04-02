@@ -5,8 +5,8 @@ import javax.annotation.Nullable;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 
 /**
@@ -15,7 +15,7 @@ import lombok.ToString;
  * @author SchnTgaiSpock
  */
 @Getter
-@AllArgsConstructor
+@RequiredArgsConstructor
 @ToString
 public abstract class RecipeComponent<T> {
 

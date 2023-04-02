@@ -63,8 +63,8 @@ public abstract class GastroRecipe {
     public enum RecipeMatchResult {
         SUCCESS(true, true), NO_RESEARCH(true, false), NO_MATCH(false, false), OTHER(false, false);
 
-        private final @Getter boolean match;
-        private final @Getter boolean craftable;
+        private final boolean match;
+        private final boolean craftable;
     }
 
     private final GastroRecipeType recipeType;
