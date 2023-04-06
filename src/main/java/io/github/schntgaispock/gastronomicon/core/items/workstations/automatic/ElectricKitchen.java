@@ -61,8 +61,6 @@ public class ElectricKitchen extends AContainer {
     private final String machineIdentifier = "GN_ELECTRIC_KITCHEN";
     private final MachineProcessor<CraftingOperation> machineProcessor = new MachineProcessor<>(this);
     private final ItemStack progressBar = new ItemStack(Material.FLINT_AND_STEEL);
-    private final int[] inputSlots = new int[] { 10, 11, 12, 19, 20, 21, 28, 29, 30, 37, 38, 39 };
-    private final int[] outputSlots = new int[] { 42, 43 };
 
     public ElectricKitchen(SlimefunItemStack item, int capacity, int energyConsumption, int speed, ItemStack[] recipe) {
         super(GastroGroups.ELECTRIC_MACHINES, item, RecipeType.ENHANCED_CRAFTING_TABLE, recipe);
@@ -70,6 +68,16 @@ public class ElectricKitchen extends AContainer {
         setCapacity(capacity);
         setEnergyConsumption(energyConsumption);
         setProcessingSpeed(speed);
+    }
+
+    @Override
+    public int[] getInputSlots() {
+        return new int[] { 10, 11, 12, 19, 20, 21, 28, 29, 30, 37, 38, 39 };
+    }
+
+    @Override
+    public int[] getOutputSlots() {
+        return new int[] { 42, 43 };
     }
 
     @Override

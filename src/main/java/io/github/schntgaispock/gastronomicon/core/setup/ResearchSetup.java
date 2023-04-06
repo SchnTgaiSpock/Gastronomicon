@@ -10,13 +10,11 @@ public class ResearchSetup {
     public static void setup() {
         GastroResearch.WOODEN_TOOLS
             .addItems(
-                GastroStacks.CUTTING_BOARD,
                 GastroStacks.ROLLING_PIN,
                 GastroStacks.MORTAR_AND_PESTLE)
             .register();
         GastroResearch.STEEL_TOOLS
             .addItems(
-                GastroStacks.MEAT_SCISSORS,
                 GastroStacks.KITCHEN_KNIFE,
                 GastroStacks.BLENDER,
                 GastroStacks.PEELER,
@@ -31,6 +29,7 @@ public class ResearchSetup {
         GastroResearch.GRAIN_MILL.addItems(GastroStacks.MILL).register();
         GastroResearch.REFRIDGERATOR.addItems(GastroStacks.REFRIDGERATOR).register();
         GastroResearch.FERMENTER.addItems(GastroStacks.FERMENTER, GastroStacks.LARGE_FERMENTER).register();
+        GastroResearch.CHEFS_HAT.addItems(GastroStacks.CHEFS_HAT).register();
         GastroResearch.TRAPS
             .addItems(
                 GastroStacks.STEEL_WIRE,

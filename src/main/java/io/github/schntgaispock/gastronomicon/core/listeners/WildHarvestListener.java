@@ -25,7 +25,7 @@ import io.github.schntgaispock.gastronomicon.util.NumberUtil;
 
 public class WildHarvestListener implements Listener {
 
-    // TODO: Fortune, Looting, LoTS
+    // TODO: Fortune, Looting
 
     private static final Map<Material, List<ItemStack>> dropsByBlock = new HashMap<>();
     private static final Map<EntityType, List<ItemStack>> dropsByMob = new HashMap<>();
@@ -61,12 +61,12 @@ public class WildHarvestListener implements Listener {
 
     @Nullable
     public static List<ItemStack> getDrops(@Nonnull Material dropFrom) {
-        return Collections.unmodifiableList(dropsByBlock.get(dropFrom));
+        return dropsByBlock.containsKey(dropFrom) ? Collections.unmodifiableList(dropsByBlock.get(dropFrom)) : null;
     }
 
     @Nullable
     public static List<ItemStack> getDrops(@Nonnull EntityType dropFrom) {
-        return Collections.unmodifiableList(dropsByMob.get(dropFrom));
+        return dropsByMob.containsKey(dropFrom) ? Collections.unmodifiableList(dropsByMob.get(dropFrom)) : null;
     }
 
     @EventHandler
@@ -95,7 +95,7 @@ public class WildHarvestListener implements Listener {
     }
 
     public static void setup() {
-        Bukkit.getPluginManager().registerEvents((Listener) new WildHarvestListener(), Gastronomicon.getInstance());
+        Bukkit.getPluginManager().registerEvents(new WildHarvestListener(), Gastronomicon.getInstance());
         BLOCK_BREAK_DROP_CHANCE = Gastronomicon.getInstance().getConfig().getDouble("drops.block-break-chance");
         MOB_KILL_DROP_CHANCE = Gastronomicon.getInstance().getConfig().getDouble("drops.mob-kill-chance");
     }

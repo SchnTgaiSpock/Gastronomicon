@@ -19,8 +19,13 @@ import io.github.schntgaispock.gastronomicon.core.setup.ResearchSetup;
 import io.github.schntgaispock.gastronomicon.core.setup.ItemSetup;
 import io.github.schntgaispock.gastronomicon.integration.DynaTechSetup;
 import io.github.schntgaispock.gastronomicon.integration.SlimeHUDSetup;
+import io.github.schntgaispock.gastronomicon.util.StringUtil;
 import lombok.Getter;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.TextColor;
+import net.kyori.adventure.text.format.TextDecoration;
+import net.md_5.bungee.api.ChatColor;
+
 @Getter
 public class Gastronomicon extends AbstractAddon {
 
@@ -44,8 +49,7 @@ public class Gastronomicon extends AbstractAddon {
         final Metrics metrics = new Metrics(this, 16941);
 
         metrics.addCustomChart(
-            new SimplePie("exoticgardenInstalled", () -> Boolean.toString(isPluginEnabled("ExoticGarden")))
-        );
+            new SimplePie("exoticgardenInstalled", () -> Boolean.toString(isPluginEnabled("ExoticGarden"))));
 
         ItemSetup.setup();
         ResearchSetup.setup();
@@ -105,11 +109,11 @@ public class Gastronomicon extends AbstractAddon {
         if (player.hasPermission(permissionNode)) {
             return true;
         }
-    
+
         if (message != null)
             Gastronomicon.sendMessage(player, message);
         return false;
-    
+
     }
 
     public static void info(String message) {
@@ -125,10 +129,21 @@ public class Gastronomicon extends AbstractAddon {
     }
 
     public static void sendMessage(Player player, String message) {
-        player.sendMessage("§#c91df4§lGastronomicon§7§l> " + message);
+        player.sendMessage(ChatColor.of("#c91df4") + "§lGastronomicon§7§l> &7" + StringUtil.formatColors(message));
     }
 
     public static void sendMessage(Player player, Component message) {
-        player.sendMessage(Component.text("§#c91df4§lGastronomicon§7§l> ").append(message));
+        final Component text = Component.text()
+            .content("Gastronomicon")
+            .color(TextColor.color(0xc9, 0x1d, 0xf4))
+            .decorate(TextDecoration.BOLD)
+            .append(Component.text()
+                .content(">")
+                .color(TextColor.color(0xaa, 0xaa, 0xaa))
+                .decorate(TextDecoration.BOLD)
+                .appendSpace()
+                .asComponent())
+            .asComponent();
+        player.sendMessage(text);
     }
 }

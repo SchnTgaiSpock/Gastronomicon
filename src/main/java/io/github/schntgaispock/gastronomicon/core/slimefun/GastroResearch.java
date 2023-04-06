@@ -7,7 +7,7 @@ import lombok.experimental.UtilityClass;
 @UtilityClass
 public class GastroResearch {
 
-    private final int startKey = "Gastronomicon".hashCode();
+    private final int startKey = 645750;
 
     public static final Research WOODEN_TOOLS = new Research(Gastronomicon.key("wooden_tools"), startKey, "Basic Tools", 10);
     public static final Research STEEL_TOOLS = new Research(Gastronomicon.key("steel_tools"), startKey + 1, "Steel Tools", 15);
@@ -24,5 +24,6 @@ public class GastroResearch {
     public static final Research RAW_INGREDIENTS = new Research(Gastronomicon.key("raw_ingredients"), startKey + 12, "Raw Ingredients", 11);
     public static final Research PROCESSED_INGREDIENTS = new Research(Gastronomicon.key("processed_ingredients"), startKey + 13, "Processed Ingredients", 19);
     public static final Research FOOD = new Research(Gastronomicon.key("food"), startKey + 14, "Haute Cuisine", 32);
+    public static final Research CHEFS_HAT = new Research(Gastronomicon.key("chefs_hat"), startKey + 15, "Chef's Hat", 5);
     
 }

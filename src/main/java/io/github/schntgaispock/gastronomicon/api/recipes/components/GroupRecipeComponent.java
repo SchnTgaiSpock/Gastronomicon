@@ -1,6 +1,7 @@
 package io.github.schntgaispock.gastronomicon.api.recipes.components;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Set;
 
 import javax.annotation.Nullable;
@@ -12,6 +13,7 @@ import org.bukkit.inventory.ItemStack;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import lombok.Getter;
+import net.kyori.adventure.text.Component;
 
 /**
  * For recipe slots that have multiple acceptable items.
@@ -63,11 +65,15 @@ public class GroupRecipeComponent extends RecipeComponent<Set<ItemStack>> {
 
     @Override
     public ItemStack getDisplayItem() {
+        final ItemStack displayitem = component.stream().findFirst().get().clone();
+        final List<Component> lore = displayitem.lore();
+        lore.add(Component.text(""));
         for (final ItemStack itemStack : component) {
-            return itemStack.clone();
+            lore.add(Component.text("§8‑ §f").append(itemStack.getItemMeta().displayName()));
         }
+        displayitem.lore(lore);
 
-        return new ItemStack(Material.AIR);
+        return displayitem;
     }
 
     @Override

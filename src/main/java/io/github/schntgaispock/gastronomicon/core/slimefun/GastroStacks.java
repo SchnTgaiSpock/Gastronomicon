@@ -6,6 +6,7 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EntityType;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.potion.PotionData;
 import org.bukkit.potion.PotionEffectType;
@@ -53,8 +54,8 @@ public class GastroStacks {
         GastroTheme.MECHANICAL.getColor() + "Basic Machines");
 
     public static final ItemStack GUIDE_ITEM_ELECTRIC_MACHINES = new CustomItemStack(
-        Material.CRAFTING_TABLE,
-        GastroTheme.MECHANICAL.getColor() + "Electric Machines");
+        Material.FURNACE,
+        GastroTheme.ELECTRIC.getColor() + "Electric Machines");
 
     public static final ItemStack GUIDE_ITEM_RAW_INGREDIENTS = new CustomItemStack(
         Material.SUGAR,
@@ -69,28 +70,28 @@ public class GastroStacks {
         GastroTheme.PERFECT_FOOD.getColor() + "Gastronomicon");
 
     public static final ItemStack GUIDE_RECIPE_BREAK = new CustomItemStack(
-        Material.BARREL,
+        Material.IRON_HOE,
         "&bBreaking Blocks",
         "&7This item is obtained by",
         "&7breaking the displayed",
         "&7blocks.");
 
     public static final ItemStack GUIDE_RECIPE_HARVEST = new CustomItemStack(
-        Material.BARREL,
+        Material.GRASS,
         "&bHarvesting Crops",
         "&7This item is obtained by",
         "&7harvesting the displayed",
         "&7crops.");
 
     public static final ItemStack GUIDE_RECIPE_KILL = new CustomItemStack(
-        Material.BARREL,
+        Material.IRON_SWORD,
         "&bKilling Mobs",
         "&7This item is obtained by",
         "&7killing the displayed",
         "&7mobs.");
 
     public static final ItemStack GUIDE_RECIPE_TRAP = new CustomItemStack(
-        Material.BARREL,
+        Material.COBWEB,
         "&bTrapping",
         "&7This item is obtained by",
         "&7catching it in the displayed",
@@ -192,7 +193,8 @@ public class GastroStacks {
 
     // ---- Dummy ----
 
-    public static final ItemStack DUMMY_FISHING_NET = new CustomItemStack(Material.IRON_BARS, GastroTheme.ELECTRIC.getColor() + "Fishing Net");
+    public static final ItemStack DUMMY_FISHING_NET = new CustomItemStack(Material.IRON_BARS,
+        GastroTheme.ELECTRIC.getColor() + "Fishing Net");
 
     // ---- Tools ----
 
@@ -200,56 +202,44 @@ public class GastroStacks {
 
     // Culinary Workbench
 
-    public static final SlimefunItemStack CUTTING_BOARD = ThemedItemStack.of(
-        GastroTheme.WTOOL,
-        "GN_CUTTING_BOARD",
-        Material.OAK_PRESSURE_PLATE,
-        "Cutting Board");
-
-    public static final SlimefunItemStack MEAT_SCISSORS = ThemedItemStack.of(
-        GastroTheme.WTOOL,
-        "GN_MEAT_SCISSORS",
-        Material.SHEARS,
-        "Meat Scissors");
-
     public static final SlimefunItemStack KITCHEN_KNIFE = ThemedItemStack.of(
-        GastroTheme.WTOOL,
+        GastroTheme.WORKSTATION_TOOL,
         "GN_KITCHEN_KNIFE",
         Material.IRON_SWORD,
         "Kitchen Knife").addFlags(ItemFlag.HIDE_ATTRIBUTES);
 
     public static final SlimefunItemStack ROLLING_PIN = ThemedItemStack.of(
-        GastroTheme.WTOOL,
+        GastroTheme.WORKSTATION_TOOL,
         "GN_ROLLING_PIN",
         Material.STICK,
         "Rolling Pin");
 
     public static final SlimefunItemStack BLENDER = ThemedItemStack.of(
-        GastroTheme.WTOOL,
+        GastroTheme.WORKSTATION_TOOL,
         "GN_BLENDER",
         Material.BUCKET,
         "Blender");
 
     public static final SlimefunItemStack MORTAR_AND_PESTLE = ThemedItemStack.of(
-        GastroTheme.WTOOL,
+        GastroTheme.WORKSTATION_TOOL,
         "GN_MORTAR_AND_PESTLE",
         Material.BOWL,
         "Mortar and Pestle");
 
     public static final SlimefunItemStack PEELER = ThemedItemStack.of(
-        GastroTheme.WTOOL,
+        GastroTheme.WORKSTATION_TOOL,
         "GN_PEELER",
         Material.IRON_HOE,
         "Peeler").addFlags(ItemFlag.HIDE_ATTRIBUTES);
 
     public static final SlimefunItemStack WHISK = ThemedItemStack.of(
-        GastroTheme.WTOOL,
+        GastroTheme.WORKSTATION_TOOL,
         "GN_WHISK",
         Material.IRON_SHOVEL,
         "Whisk").addFlags(ItemFlag.HIDE_ATTRIBUTES);
 
     public static final SlimefunItemStack DISTILLATION_CHAMBER = ThemedItemStack.of(
-        GastroTheme.WTOOL,
+        GastroTheme.WORKSTATION_TOOL,
         "GN_DISTILLATION_CHAMBER",
         Material.CAULDRON,
         "Distillation Chamber");
@@ -257,19 +247,19 @@ public class GastroStacks {
     // Enhanced Oven
 
     public static final SlimefunItemStack BAKING_TRAY = ThemedItemStack.of(
-        GastroTheme.WTOOL,
+        GastroTheme.WORKSTATION_TOOL,
         "GN_BAKING_TRAY",
         Material.LIGHT_GRAY_CARPET,
         "Baking Tray");
 
     public static final SlimefunItemStack FRYING_PAN = ThemedItemStack.of(
-        GastroTheme.WTOOL,
+        GastroTheme.WORKSTATION_TOOL,
         "GN_FRYING_PAN",
         Material.GRAY_CARPET,
         "Frying Pan");
 
     public static final SlimefunItemStack STEEL_POT = ThemedItemStack.of(
-        GastroTheme.WTOOL,
+        GastroTheme.WORKSTATION_TOOL,
         "GN_STEEL_POT",
         Material.CAULDRON,
         "Steel Pot");
@@ -277,7 +267,7 @@ public class GastroStacks {
     // -- Containers --
 
     public static final SlimefunItemStack STEEL_BOWL = ThemedItemStack.of(
-        GastroTheme.WTOOL,
+        GastroTheme.WORKSTATION_TOOL,
         "GN_STEEL_BOWL",
         Material.BUCKET,
         "Steel Bowl");
@@ -309,6 +299,17 @@ public class GastroStacks {
         "Hunting Trap");
 
     // -- Other --
+
+    public static final SlimefunItemStack CHEFS_HAT = ThemedItemStack.of(
+        GastroTheme.TOOL,
+        "GN_CHEFS_HAT",
+        Material.LEATHER_HELMET,
+        "Chef's Hat");
+    static {
+        final LeatherArmorMeta meta = (LeatherArmorMeta) CHEFS_HAT.getItemMeta();
+        meta.setColor(Color.WHITE);
+        CHEFS_HAT.setItemMeta(meta);
+    }
 
     public static final SlimefunItemStack WOODEN_SICKLE = ThemedItemStack.of(
         GastroTheme.TOOL,
@@ -881,12 +882,12 @@ public class GastroStacks {
         "Barley Flour");
 
     public static final SlimefunItemStack SORGHUM_FLOUR = ThemedItemStack.ingredient(
-        "GN_BARLEY_FLOUR",
+        "GN_SORGHUM_FLOUR",
         Material.SUGAR,
         "Barley Flour");
 
     public static final SlimefunItemStack RYE_FLOUR = ThemedItemStack.ingredient(
-        "GN_BARLEY_FLOUR",
+        "GN_RYE_FLOUR",
         Material.SUGAR,
         "Barley Flour");
 
@@ -2034,7 +2035,7 @@ public class GastroStacks {
 
     public static final FoodItemStack V7 = new FoodItemStackBuilder()
         .id("GN_V7")
-        .texture(HeadTexture.TIN_CAN.toString())
+        .texture(HeadTexture.FILLED_CAN.getTexture())
         .name("V7")
         .hunger(6, 0.75)
         .effects(
@@ -2063,6 +2064,7 @@ public class GastroStacks {
     static {
         final PotionMeta meta = (PotionMeta) RED_WINE.getItemMeta();
         meta.setBasePotionData(new PotionData(PotionType.WATER));
+        meta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
         meta.setColor(Color.MAROON);
         RED_WINE.setItemMeta(meta);
     }
@@ -2080,6 +2082,7 @@ public class GastroStacks {
     static {
         final PotionMeta meta = (PotionMeta) BEER.getItemMeta();
         meta.setBasePotionData(new PotionData(PotionType.WATER));
+        meta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
         meta.setColor(Color.ORANGE);
         BEER.setItemMeta(meta);
     }
@@ -2097,6 +2100,7 @@ public class GastroStacks {
     static {
         final PotionMeta meta = (PotionMeta) RICE_WINE.getItemMeta();
         meta.setBasePotionData(new PotionData(PotionType.WATER));
+        meta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
         meta.setColor(Color.WHITE);
         RICE_WINE.setItemMeta(meta);
     }
@@ -2114,6 +2118,7 @@ public class GastroStacks {
     static {
         final PotionMeta meta = (PotionMeta) VODKA.getItemMeta();
         meta.setBasePotionData(new PotionData(PotionType.WATER));
+        meta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
         meta.setColor(Color.WHITE);
         VODKA.setItemMeta(meta);
     }
@@ -2129,8 +2134,9 @@ public class GastroStacks {
             FoodEffect.positivePotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 45))
         .build();
     static {
-        final PotionMeta meta = (PotionMeta) VODKA.getItemMeta();
+        final PotionMeta meta = (PotionMeta) RUM.getItemMeta();
         meta.setBasePotionData(new PotionData(PotionType.WATER));
+        meta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
         meta.setColor(Color.RED);
         RUM.setItemMeta(meta);
     }
@@ -2146,8 +2152,9 @@ public class GastroStacks {
             FoodEffect.positivePotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 45))
         .build();
     static {
-        final PotionMeta meta = (PotionMeta) VODKA.getItemMeta();
+        final PotionMeta meta = (PotionMeta) WHISKEY.getItemMeta();
         meta.setBasePotionData(new PotionData(PotionType.WATER));
+        meta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
         meta.setColor(Color.ORANGE);
         WHISKEY.setItemMeta(meta);
     }

@@ -125,7 +125,7 @@ public abstract class GastroRecipe {
                 container == null ? RecipeComponent.EMPTY : new SingleRecipeComponent(container),
                 Arrays.stream(ingredients).map(
                     ingredient -> ingredient == null ? RecipeComponent.EMPTY : new SingleRecipeComponent(ingredient))
-                    .toArray(RecipeComponent[]::new)),
+                    .toArray(RecipeComponent<?>[]::new)),
             tools, outputs);
     }
 

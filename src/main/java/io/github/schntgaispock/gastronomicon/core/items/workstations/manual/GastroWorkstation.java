@@ -152,10 +152,12 @@ public abstract class GastroWorkstation extends MenuBlock {
                 recipe = findRecipe(ingredients, containers, tools, player, menu);
                 if (recipe == null) {
                     return false;
-                } else {
+                } else if (lastInputHashAndRecipe.containsKey(menu.getLocation())) {
                     lastInputHashAndRecipe.get(menu.getLocation()).first(hash);
                     lastInputHashAndRecipe.get(menu.getLocation()).second(recipe);
                     // TODO: save hashes in RecipeRegistry
+                } else {
+                    lastInputHashAndRecipe.put(menu.getLocation(), new Pair<>(hash, recipe));
                 }
             }
             final ItemStack[] recipeOutputs = recipe.getOutputs();

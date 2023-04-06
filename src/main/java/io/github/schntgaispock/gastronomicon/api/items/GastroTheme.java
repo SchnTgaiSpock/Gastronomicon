@@ -4,7 +4,7 @@ import lombok.Getter;
 import net.md_5.bungee.api.ChatColor;
 
 public enum GastroTheme {
-    WTOOL("#ffffff"),
+    WORKSTATION_TOOL("#ffffff"),
     TOOL("#55ffff"),
     INGREDIENT("#ffff55"),
     MECHANICAL("#00aaaa"),

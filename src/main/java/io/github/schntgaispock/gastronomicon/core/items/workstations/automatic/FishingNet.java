@@ -2,28 +2,29 @@ package io.github.schntgaispock.gastronomicon.core.items.workstations.automatic;
 
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.block.data.Waterlogged;
 import org.bukkit.inventory.ItemStack;
 
 import io.github.schntgaispock.gastronomicon.core.slimefun.GastroGroups;
 import io.github.schntgaispock.gastronomicon.core.slimefun.GastroStacks;
 import io.github.schntgaispock.gastronomicon.util.collections.CollectionUtil;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
+import io.github.thebusybiscuit.slimefun4.core.attributes.MachineProcessHolder;
 import io.github.thebusybiscuit.slimefun4.core.machines.MachineProcessor;
 import io.github.thebusybiscuit.slimefun4.core.networks.energy.EnergyNetComponentType;
 import io.github.thebusybiscuit.slimefun4.implementation.operations.CraftingOperation;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
-import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
 import lombok.Getter;
-import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AContainer;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.MachineRecipe;
+import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.interfaces.InventoryBlock;
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
-import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
 
 @Getter
 @SuppressWarnings("deprecation")
-public class FishingNet extends AContainer {
+public class FishingNet extends SlimefunItem implements InventoryBlock, MachineProcessHolder<CraftingOperation> {
 
     public static final int[] BACKGROUND_SLOTS = new int[] {
         0, 1, 2, 3, 4, 5, 6, 7, 8,
@@ -55,40 +56,38 @@ public class FishingNet extends AContainer {
     private final ItemStack progressBar = new ItemStack(Material.FISHING_ROD);
     private final int[] inputSlots = new int[0];
     private final int[] outputSlots = new int[] { 13, 14, 15, 16, 22, 23, 24, 25, 31, 32, 33, 34 };
+    private final int speed;
 
     public FishingNet(SlimefunItemStack item, int speed, ItemStack[] recipe) {
         super(GastroGroups.ELECTRIC_MACHINES, item, RecipeType.ENHANCED_CRAFTING_TABLE, recipe);
 
-        setCapacity(0);
-        setEnergyConsumption(0);
-        setProcessingSpeed(speed);
+        this.speed = speed;
     }
 
-    @Override
-    protected void constructMenu(BlockMenuPreset menu) {
-        draw(menu, GastroStacks.MENU_BACKGROUND_ITEM, BACKGROUND_SLOTS);
-        draw(menu, GastroStacks.MENU_OUTPUT_BORDER, OUTPUT_SLOTS);
-        draw(menu, GastroStacks.MENU_NO_WATER_ABOVE, STATUS_SLOT);
-    }
+    // TODO: Fishing fishing net
+    // @Override 
+    // protected void constructMenu(BlockMenuPreset menu) {
+    //     draw(menu, GastroStacks.MENU_BACKGROUND_ITEM, BACKGROUND_SLOTS);
+    //     draw(menu, GastroStacks.MENU_OUTPUT_BORDER, OUTPUT_SLOTS);
+    //     draw(menu, GastroStacks.MENU_NO_WATER_ABOVE, STATUS_SLOT);
+    // }
 
-    private void draw(BlockMenuPreset preset, ItemStack item, int... slots) {
-        for (int slot : slots) {
-            preset.addItem(slot, item, ChestMenuUtils.getEmptyClickHandler());
-        }
-    }
+    // private void draw(BlockMenuPreset preset, ItemStack item, int... slots) {
+    //     for (int slot : slots) {
+    //         preset.addItem(slot, item, ChestMenuUtils.getEmptyClickHandler());
+    //     }
+    // }
     
-    @Override
     protected MachineRecipe findNextRecipe(BlockMenu menu) {
         return new MachineRecipe(40 / getSpeed(), new ItemStack[0], new ItemStack[] { CollectionUtil.choice(FISH) });
     }
 
-    @Override
     protected void tick(Block b) {
         final BlockMenu inv = BlockStorage.getInventory(b);
         CraftingOperation currentOperation = getMachineProcessor().getOperation(b);
 
         if (currentOperation != null) {
-            if (inv.getLocation().add(0, 1, 0).getBlock().getType() != Material.WATER) {
+            if (inv.getBlock().getBlockData() instanceof final Waterlogged waterlogged && waterlogged.isWaterlogged()) {
 
                 if (!currentOperation.isFinished()) {
                     getMachineProcessor().updateProgressBar(inv, STATUS_SLOT, currentOperation);

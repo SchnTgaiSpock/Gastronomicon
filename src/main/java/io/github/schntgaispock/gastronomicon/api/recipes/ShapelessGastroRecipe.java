@@ -18,11 +18,13 @@ import lombok.Getter;
 @Getter
 public class ShapelessGastroRecipe extends GastroRecipe {
 
-    public ShapelessGastroRecipe(GastroRecipeType recipeType, RecipeComponent<?>[] inputs,
+    public ShapelessGastroRecipe(GastroRecipeType recipeType, RecipeComponent<?>[] ingredients,
             RecipeComponent<?> container, Set<ItemStack> tools, ItemStack... outputs) {
-        super(recipeType, new RecipeInput(RecipeShape.SHAPELESS, container, inputs), tools, outputs);
+        super(recipeType, new RecipeInput(RecipeShape.SHAPELESS, container, Arrays.stream(ingredients).map(
+            ingredient -> ingredient == null ? RecipeComponent.EMPTY : ingredient)
+            .toArray(RecipeComponent<?>[]::new)), tools, outputs);
 
-        for (RecipeComponent<?> component : inputs) {
+        for (RecipeComponent<?> component : ingredients) {
             if (component instanceof GroupRecipeComponent) {
                 throw new IllegalArgumentException("Shapeless Recipes do not support group tags in recipes yet!");
             }

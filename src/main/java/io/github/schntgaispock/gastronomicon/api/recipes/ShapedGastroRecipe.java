@@ -1,5 +1,6 @@
 package io.github.schntgaispock.gastronomicon.api.recipes;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
@@ -17,7 +18,9 @@ public class ShapedGastroRecipe extends GastroRecipe {
 
     public ShapedGastroRecipe(GastroRecipeType recipeType, RecipeComponent<?>[] ingredients,
         RecipeComponent<?> container, Set<ItemStack> tools, ItemStack... outputs) {
-        super(recipeType, new RecipeInput(RecipeShape.SHAPED, container, ingredients), tools, outputs);
+        super(recipeType, new RecipeInput(RecipeShape.SHAPED, container, Arrays.stream(ingredients).map(
+            ingredient -> ingredient == null ? RecipeComponent.EMPTY : ingredient)
+            .toArray(RecipeComponent<?>[]::new)), tools, outputs);
     }
 
     public ShapedGastroRecipe(GastroRecipeType recipeType, ItemStack[] ingredients,

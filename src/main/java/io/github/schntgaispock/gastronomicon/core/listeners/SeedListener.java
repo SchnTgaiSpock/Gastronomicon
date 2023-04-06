@@ -106,6 +106,6 @@ public class SeedListener implements Listener {
     }
 
     public static void setup() {
-        Bukkit.getPluginManager().registerEvents((Listener) new SeedListener(), Gastronomicon.getInstance());
+        Bukkit.getPluginManager().registerEvents(new SeedListener(), Gastronomicon.getInstance());
     }
 }

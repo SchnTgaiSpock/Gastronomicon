@@ -85,8 +85,8 @@ public class ChefAndroidTrainer extends MenuBlock {
                 Gastronomicon.sendMessage(player, "&ePlease place a valid food item in the middle slot");
                 return false;
             } else if (sfItem instanceof final SimpleGastroFood food) {
-                input.subtract(1);
                 final ItemStack modified = input.asOne();
+                input.subtract(1);
                 final String name;
                 final String id;
                 if (food instanceof final GastroFood gFood && gFood.isPerfect()) {
@@ -106,7 +106,7 @@ public class ChefAndroidTrainer extends MenuBlock {
                 final PersistentDataContainer pdc = meta.getPersistentDataContainer();
                 pdc.set(GastroKeys.CHEF_ANDROID_FOOD, PersistentDataType.STRING, id);
                 modified.setItemMeta(meta);
-                menu.addItem(getOutputSlots()[0], modified);
+                menu.pushItem(modified, getOutputSlots());
             }
             
             return false;

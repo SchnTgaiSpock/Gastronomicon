@@ -50,12 +50,12 @@ public class NumberUtil {
         return roundToPrecision(x * 100, precision);
     }
 
-    public static int getFortuneAmount(int fortuneLevel, int sickleTier) {
-        return getFortuneAmount(fortuneLevel, (double) sickleTier + 1);
+    public static int getFortuneAmount(int fortuneLevel, int sickleTier, int baseAmount) {
+        return getFortuneAmount(fortuneLevel + sickleTier, baseAmount);
     }
 
-    public static int getFortuneAmount(int fortuneLevel, double multiplier) {
-        return randomRound(multiplier * (Math.sqrt(fortuneLevel + 1) + 1) / 2);
+    public static int getFortuneAmount(int fortuneLevel, int baseAmount) {
+        return baseAmount + ThreadLocalRandom.current().nextInt(fortuneLevel, 1 + (int) Math.ceil(fortuneLevel * 1.5));
     }
 
 }

@@ -120,7 +120,7 @@ public class SimpleSeed extends AbstractSeed {
         final int fortuneLevel = item.getEnchantmentLevel(Enchantment.LOOT_BONUS_BLOCKS);
 
         final ItemStack seed = getItem().clone();
-        seed.setAmount(NumberUtil.getFortuneAmount(fortuneLevel, sickleTier));
+        seed.setAmount(NumberUtil.getFortuneAmount(fortuneLevel, sickleTier, 2));
         return Arrays.asList(seed);
     }
 

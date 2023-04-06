@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Biome;
@@ -27,11 +26,11 @@ import io.github.schntgaispock.gastronomicon.core.items.seeds.FruitingSeed;
 import io.github.schntgaispock.gastronomicon.core.items.seeds.SimpleSeed;
 import io.github.schntgaispock.gastronomicon.core.items.workstations.automatic.ElectricKitchen;
 import io.github.schntgaispock.gastronomicon.core.items.workstations.automatic.FishingNet;
-import io.github.schntgaispock.gastronomicon.core.items.workstations.automatic.HuntingTrap;
 import io.github.schntgaispock.gastronomicon.core.items.workstations.manual.ChefAndroidTrainer;
 import io.github.schntgaispock.gastronomicon.core.items.workstations.manual.CulinaryWorkbench;
 import io.github.schntgaispock.gastronomicon.core.items.workstations.manual.Fermenter;
 import io.github.schntgaispock.gastronomicon.core.items.workstations.manual.GrainMill;
+import io.github.schntgaispock.gastronomicon.core.items.workstations.manual.HuntingTrap;
 import io.github.schntgaispock.gastronomicon.core.items.workstations.manual.MultiStove;
 import io.github.schntgaispock.gastronomicon.core.items.workstations.manual.Refridgerator;
 import io.github.schntgaispock.gastronomicon.core.items.workstations.manual.MultiStove.Temperature;
@@ -41,7 +40,6 @@ import io.github.schntgaispock.gastronomicon.core.slimefun.recipes.GastroRecipeT
 import io.github.schntgaispock.gastronomicon.util.RecipeUtil;
 import io.github.schntgaispock.gastronomicon.util.collections.CollectionUtil;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
-import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.UnplaceableBlock;
@@ -96,7 +94,6 @@ public class ItemSetup {
         final ItemStack OAK_SLAB = new ItemStack(Material.OAK_SLAB);
         final ItemStack OAK_FENCE = new ItemStack(Material.OAK_FENCE);
         final ItemStack STICK = new ItemStack(Material.STICK);
-        final ItemStack SHEARS = new ItemStack(Material.SHEARS);
         final ItemStack IRON_BARS = new ItemStack(Material.IRON_BARS);
         final ItemStack IRON_NUGGET = new ItemStack(Material.IRON_NUGGET);
         final ItemStack IRON_TRAPDOOR = new ItemStack(Material.IRON_TRAPDOOR);
@@ -139,6 +136,7 @@ public class ItemSetup {
         final ItemStack GLASS_BOTTLE = new ItemStack(Material.GLASS_BOTTLE);
         final ItemStack BEETROOT = new ItemStack(Material.BEETROOT);
         final ItemStack COOKED_COD = new ItemStack(Material.COOKED_COD);
+        final ItemStack BRICKS = new ItemStack(Material.BRICKS);
 
         // ---- Tools ----
 
@@ -147,74 +145,89 @@ public class ItemSetup {
         // Culinary Workbench
         new UnplaceableItem(
             GastroGroups.TOOLS,
-            GastroStacks.CUTTING_BOARD,
-            RecipeType.ENHANCED_CRAFTING_TABLE,
-            RecipeUtil.row(OAK_SLAB, 2))
-                .register(gn);
-        new UnplaceableItem(
-            GastroGroups.TOOLS,
             GastroStacks.ROLLING_PIN,
             RecipeType.ENHANCED_CRAFTING_TABLE,
-            RecipeUtil.row(STICK, 1))
+            RecipeUtil.row(STICK, 2))
                 .register(gn);
-        new UnplaceableItem(
-            GastroGroups.TOOLS,
-            GastroStacks.MEAT_SCISSORS,
-            RecipeType.ENHANCED_CRAFTING_TABLE,
-            new ItemStack[] { null, SlimefunItems.STEEL_INGOT, null, SlimefunItems.STEEL_INGOT, null,
-                SlimefunItems.STEEL_INGOT, SHEARS, SlimefunItems.STEEL_INGOT, null })
-                    .register(gn);
         new UnplaceableItem(
             GastroGroups.TOOLS,
             GastroStacks.KITCHEN_KNIFE,
             RecipeType.ENHANCED_CRAFTING_TABLE,
-            new ItemStack[] { null, null, null, null, SlimefunItems.STEEL_INGOT, null, null, STICK, null })
-                .register(gn);
+            new ItemStack[] {
+                null, null, null,
+                null, SlimefunItems.STEEL_INGOT, null,
+                null, STICK, null
+            }).register(gn);
         new UnplaceableItem(
             GastroGroups.TOOLS,
             GastroStacks.BLENDER,
             RecipeType.ENHANCED_CRAFTING_TABLE,
-            new ItemStack[] { null, SlimefunItems.ELECTRIC_MOTOR, null, null, IRON_BARS, null, null, BUCKET, null })
-                .register(gn);
+            new ItemStack[] {
+                null, SlimefunItems.ELECTRIC_MOTOR, null,
+                null, IRON_BARS, null,
+                null, BUCKET, null
+            }).register(gn);
         new UnplaceableItem(
             GastroGroups.TOOLS,
             GastroStacks.MORTAR_AND_PESTLE,
             RecipeType.ENHANCED_CRAFTING_TABLE,
-            new ItemStack[] { null, null, null, null, SlimefunItems.STEEL_INGOT, null, null, BOWL, null })
-                .register(gn);
+            new ItemStack[] {
+                null, null, null,
+                null, SlimefunItems.STEEL_INGOT, null,
+                null, BOWL, null
+            }).register(gn);
         new UnplaceableItem(
             GastroGroups.TOOLS,
             GastroStacks.PEELER,
             RecipeType.ENHANCED_CRAFTING_TABLE,
-            new ItemStack[] { null, IRON_NUGGET, null, null, IRON_NUGGET, null, null, STICK, null })
-                .register(gn);
+            new ItemStack[] {
+                null, IRON_NUGGET, null,
+                null, IRON_NUGGET, null,
+                null, STICK, null
+            }).register(gn);
         new UnplaceableItem(
             GastroGroups.TOOLS,
             GastroStacks.WHISK,
             RecipeType.ENHANCED_CRAFTING_TABLE,
-            new ItemStack[] { null, GastroStacks.STEEL_WIRE, null, null, GastroStacks.STEEL_WIRE, null, null, STICK,
-                null })
-                    .register(gn);
+            new ItemStack[] {
+                null, GastroStacks.STEEL_WIRE, null,
+                null, GastroStacks.STEEL_WIRE, null,
+                null, STICK, null
+            }).register(gn);
         // Enhanced Oven
         new UnplaceableItem(
             GastroGroups.TOOLS,
             GastroStacks.BAKING_TRAY,
             RecipeType.ENHANCED_CRAFTING_TABLE,
-            new ItemStack[] { SlimefunItems.STEEL_INGOT, SlimefunItems.STEEL_PLATE, SlimefunItems.STEEL_INGOT, null,
-                null, null, null, null })
-                    .register(gn);
+            new ItemStack[] {
+                null, null, null,
+                SlimefunItems.STEEL_INGOT, SlimefunItems.STEEL_PLATE, SlimefunItems.STEEL_INGOT,
+                null, null, null
+            }).register(gn);
         new UnplaceableItem(
             GastroGroups.TOOLS,
             GastroStacks.FRYING_PAN,
             RecipeType.ENHANCED_CRAFTING_TABLE,
-            new ItemStack[] { SlimefunItems.STEEL_INGOT, SlimefunItems.STEEL_PLATE, SlimefunItems.STEEL_PLATE, null,
-                null, null, null, null, null }).register(gn);
+            new ItemStack[] {
+                null, null, null,
+                SlimefunItems.STEEL_INGOT, SlimefunItems.STEEL_PLATE, SlimefunItems.STEEL_PLATE,
+                null, null, null
+            }).register(gn);
         new UnplaceableItem(
             GastroGroups.TOOLS,
             GastroStacks.STEEL_POT,
             RecipeType.ENHANCED_CRAFTING_TABLE,
             new ItemStack[] {
                 SlimefunItems.STEEL_INGOT, null, SlimefunItems.STEEL_INGOT,
+                SlimefunItems.STEEL_PLATE, null, SlimefunItems.STEEL_PLATE,
+                SlimefunItems.STEEL_PLATE, SlimefunItems.STEEL_PLATE, SlimefunItems.STEEL_PLATE
+            }).register(gn);
+        new UnplaceableItem(
+            GastroGroups.TOOLS,
+            GastroStacks.DISTILLATION_CHAMBER,
+            RecipeType.ENHANCED_CRAFTING_TABLE,
+            new ItemStack[] {
+                SlimefunItems.STEEL_PLATE, SlimefunItems.STEEL_PLATE, SlimefunItems.STEEL_PLATE,
                 SlimefunItems.STEEL_PLATE, null, SlimefunItems.STEEL_PLATE,
                 SlimefunItems.STEEL_PLATE, SlimefunItems.STEEL_PLATE, SlimefunItems.STEEL_PLATE
             }).register(gn);
@@ -225,10 +238,12 @@ public class ItemSetup {
             GastroGroups.TOOLS,
             GastroStacks.STEEL_BOWL,
             RecipeType.ENHANCED_CRAFTING_TABLE,
-            RecipeUtil.collection(
+            new ItemStack[] {
                 null, null, null,
                 SlimefunItems.STEEL_INGOT, null, SlimefunItems.STEEL_INGOT,
-                null, SlimefunItems.STEEL_INGOT, null)).register(gn);
+                null, SlimefunItems.STEEL_INGOT, null
+            },
+            GastroStacks.STEEL_BOWL.asQuantity(4)).register(gn);
 
         // -- Traps --
 
@@ -236,8 +251,8 @@ public class ItemSetup {
             GastroGroups.TOOLS,
             GastroStacks.STEEL_WIRE,
             RecipeType.ENHANCED_CRAFTING_TABLE,
-            RecipeUtil.row(SlimefunItems.STEEL_INGOT, 1),
-            new SlimefunItemStack(GastroStacks.STEEL_WIRE, 8))
+            RecipeUtil.row(SlimefunItems.STEEL_INGOT, 2),
+            GastroStacks.STEEL_WIRE.asQuantity(8))
                 .register(gn);
         new SlimefunItem(
             GastroGroups.TOOLS,
@@ -260,15 +275,13 @@ public class ItemSetup {
                     new ItemStack(Material.CHICKEN),
                     new ItemStack(Material.BEEF),
                     new ItemStack(Material.RABBIT),
-                    GastroStacks.RAW_TURKEY
-                );
+                    GastroStacks.RAW_TURKEY);
 
                 final List<ItemStack> plainsDrops = Arrays.asList(
                     new ItemStack(Material.MUTTON),
                     new ItemStack(Material.PORKCHOP),
                     new ItemStack(Material.CHICKEN),
-                    new ItemStack(Material.BEEF)
-                );
+                    new ItemStack(Material.BEEF));
 
                 dropsByBiome.put(Biome.FOREST, forestDrops);
                 dropsByBiome.put(Biome.FLOWER_FOREST, forestDrops);
@@ -284,7 +297,8 @@ public class ItemSetup {
             @Override
             protected ItemStack getCatch(Location l) {
                 final List<ItemStack> possibleDrops = dropsByBiome.get(l.getBlock().getBiome());
-                if (possibleDrops == null) return null;
+                if (possibleDrops == null)
+                    return null;
                 return CollectionUtil.choice(possibleDrops);
             }
 
@@ -302,22 +316,31 @@ public class ItemSetup {
                 GastroStacks.STEEL_SPRING, GastroStacks.STEEL_SPRING, GastroStacks.STEEL_SPRING
             }) {
 
-                @Override
-                protected ItemStack getCatch(Location l) {
-                    return GastroStacks.CRAB;
-                }
-    
-                @Override
-                protected boolean canCatch(Location l) {
-                    return switch (l.getBlock().getBiome()) {
-                        case RIVER, BEACH, OCEAN, COLD_OCEAN, DEEP_OCEAN, WARM_OCEAN, FROZEN_OCEAN, 
-                            LUKEWARM_OCEAN, DEEP_COLD_OCEAN, DEEP_FROZEN_OCEAN, DEEP_LUKEWARM_OCEAN -> true;
-                        default -> false;
-                    };
-                }
-            }.register(gn);
+            @Override
+            protected ItemStack getCatch(Location l) {
+                return GastroStacks.CRAB;
+            }
+
+            @Override
+            protected boolean canCatch(Location l) {
+                return switch (l.getBlock().getBiome()) {
+                    case RIVER, BEACH, OCEAN, COLD_OCEAN, DEEP_OCEAN, WARM_OCEAN, FROZEN_OCEAN, LUKEWARM_OCEAN, DEEP_COLD_OCEAN, DEEP_FROZEN_OCEAN, DEEP_LUKEWARM_OCEAN -> true;
+                    default -> false;
+                };
+            }
+        }.register(gn);
 
         // -- Other --
+
+        new SlimefunItem(
+            GastroGroups.TOOLS,
+            GastroStacks.CHEFS_HAT,
+            RecipeType.ARMOR_FORGE,
+            new ItemStack[] {
+                SlimefunItems.CLOTH, SlimefunItems.CLOTH, SlimefunItems.CLOTH,
+                SlimefunItems.CLOTH, SlimefunItems.CLOTH, SlimefunItems.CLOTH,
+                SlimefunItems.CLOTH, null, SlimefunItems.CLOTH
+            }).register(gn);
 
         new SlimefunItem(
             GastroGroups.TOOLS,
@@ -327,8 +350,7 @@ public class ItemSetup {
                 null, OAK_PLANKS, OAK_PLANKS,
                 null, STICK, null,
                 STICK, null, null
-            })
-                .register(gn);
+            }).register(gn);
 
         new SlimefunItem(
             GastroGroups.TOOLS,
@@ -338,8 +360,7 @@ public class ItemSetup {
                 null, SlimefunItems.STEEL_PLATE, SlimefunItems.STEEL_PLATE,
                 null, STICK, null,
                 STICK, null, null
-            })
-                .register(gn);
+            }).register(gn);
 
         new SlimefunItem(
             GastroGroups.TOOLS,
@@ -349,8 +370,7 @@ public class ItemSetup {
                 null, SlimefunItems.REINFORCED_PLATE, SlimefunItems.REINFORCED_PLATE,
                 null, STICK, null,
                 STICK, null, null
-            })
-                .register(gn);
+            }).register(gn);
 
         // ---- Basic Machines ----
 
@@ -420,10 +440,22 @@ public class ItemSetup {
 
         new ChefAndroidTrainer(
             GastroGroups.BASIC_MACHINES,
+            GastroStacks.CHEF_ANDROID,
+            RecipeType.ENHANCED_CRAFTING_TABLE,
+            new ItemStack[] {
+                null, GastroStacks.CHEFS_HAT, null,
+                GastroStacks.KITCHEN_KNIFE, SlimefunItems.PROGRAMMABLE_ANDROID_2, GastroStacks.ROLLING_PIN,
+                null, SlimefunItems.ELECTRIC_MOTOR, null
+            }).register(gn);
+
+        new ChefAndroidTrainer(
+            GastroGroups.BASIC_MACHINES,
             GastroStacks.CHEF_ANDROID_TRAINER,
             RecipeType.ENHANCED_CRAFTING_TABLE,
             new ItemStack[] {
-
+                SlimefunItems.STEEL_PLATE, SlimefunItems.STEEL_PLATE, SlimefunItems.STEEL_PLATE,
+                OAK_PLANKS, SlimefunItems.CARGO_MOTOR, OAK_PLANKS,
+                OAK_PLANKS, SlimefunItems.MEDIUM_CAPACITOR, OAK_PLANKS
             }).register(gn);
 
         // ---- Electric Machines ----
@@ -441,11 +473,29 @@ public class ItemSetup {
 
         new ElectricKitchen(
             GastroStacks.ELECTRIC_KITCHEN_I,
-            256, 64, 1,
+            256, 16, 1,
             new ItemStack[] {
                 GastroStacks.CULINARY_WORKBENCH, SlimefunItems.CARBONADO_EDGED_CAPACITOR, GastroStacks.MULTI_STOVE,
                 GastroStacks.REFRIDGERATOR, GastroStacks.MILL, GastroStacks.FERMENTER,
                 SlimefunItems.BLISTERING_INGOT_3, SlimefunItems.CARGO_MOTOR, SlimefunItems.BLISTERING_INGOT_3
+            }).register(gn);
+
+        new ElectricKitchen(
+            GastroStacks.ELECTRIC_KITCHEN_II,
+            1024, 64, 3,
+            new ItemStack[] {
+                BRICKS, SlimefunItems.POWER_CRYSTAL, BRICKS,
+                SlimefunItems.ELECTRIC_MOTOR, GastroStacks.ELECTRIC_KITCHEN_I, SlimefunItems.ELECTRIC_MOTOR,
+                SlimefunItems.DAMASCUS_STEEL_INGOT, SlimefunItems.HEATING_COIL, SlimefunItems.DAMASCUS_STEEL_INGOT
+            }).register(gn);
+
+        new ElectricKitchen(
+            GastroStacks.ELECTRIC_KITCHEN_III,
+            4096, 256, 10,
+            new ItemStack[] {
+                SlimefunItems.REINFORCED_PLATE, GastroStacks.CHEF_ANDROID, SlimefunItems.REINFORCED_PLATE,
+                SlimefunItems.ELECTRIC_MOTOR, GastroStacks.ELECTRIC_KITCHEN_I, SlimefunItems.ELECTRIC_MOTOR,
+                SlimefunItems.REINFORCED_PLATE, SlimefunItems.REINFORCED_PLATE, SlimefunItems.REINFORCED_PLATE
             }).register(gn);
 
         // ---- Raw Ingredients ----
@@ -2277,15 +2327,6 @@ public class ItemSetup {
                 .shape(RecipeShape.SHAPED)
                 .container(GLASS_BOTTLE)
                 .ingredients(GastroStacks.RICE, YEAST)
-                .tools(GastroStacks.DISTILLATION_CHAMBER)
-                .register(gn);
-
-            new GastroFoodBuilder()
-                .type(GastroRecipeType.FERMENTER)
-                .item(GastroStacks.VODKA)
-                .shape(RecipeShape.SHAPED)
-                .container(GLASS_BOTTLE)
-                .ingredients(POTATO, YEAST)
                 .tools(GastroStacks.DISTILLATION_CHAMBER)
                 .register(gn);
 
