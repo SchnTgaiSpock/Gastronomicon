@@ -12,7 +12,7 @@ import me.mrCookieSlime.Slimefun.api.BlockStorage;
 public class TreeGrowthListener implements Listener {
 
     @EventHandler
-    public void onTreeGrow(StructureGrowEvent e) { // TODO: PaperLib.isChnkLoadad
+    public void onTreeGrow(StructureGrowEvent e) {
         System.out.println("grow");
         final String sapling = BlockStorage.checkID(e.getLocation());
         if (sapling == null) return;

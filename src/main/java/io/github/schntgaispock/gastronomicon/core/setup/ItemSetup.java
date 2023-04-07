@@ -23,6 +23,7 @@ import io.github.schntgaispock.gastronomicon.core.items.food.SimpleGastroFoodBui
 import io.github.schntgaispock.gastronomicon.core.items.seeds.CropSeed;
 import io.github.schntgaispock.gastronomicon.core.items.seeds.DuplicatingSeed;
 import io.github.schntgaispock.gastronomicon.core.items.seeds.FruitingSeed;
+import io.github.schntgaispock.gastronomicon.core.items.seeds.SimpleSapling;
 import io.github.schntgaispock.gastronomicon.core.items.seeds.SimpleSeed;
 import io.github.schntgaispock.gastronomicon.core.items.workstations.automatic.ElectricKitchen;
 import io.github.schntgaispock.gastronomicon.core.items.workstations.automatic.FishingNet;
@@ -756,7 +757,7 @@ public class ItemSetup {
             RecipeUtil.singleCenter(GastroStacks.LYCHEE_SAPLING))
                 .register(gn);
 
-        new SlimefunItem(
+        new SimpleSapling(
             GastroGroups.RAW_INGREDIENTS,
             GastroStacks.LYCHEE_SAPLING,
             GastroRecipeType.BREAK,
@@ -770,7 +771,7 @@ public class ItemSetup {
             RecipeUtil.singleCenter(GastroStacks.BANANA_SAPLING))
                 .register(gn);
 
-        new SlimefunItem(
+        new SimpleSapling(
             GastroGroups.RAW_INGREDIENTS,
             GastroStacks.BANANA_SAPLING,
             GastroRecipeType.BREAK,
@@ -784,7 +785,7 @@ public class ItemSetup {
             RecipeUtil.singleCenter(GastroStacks.VANILLA_SAPLING))
                 .register(gn);
 
-        new SlimefunItem(
+        new SimpleSapling(
             GastroGroups.RAW_INGREDIENTS,
             GastroStacks.VANILLA_SAPLING,
             GastroRecipeType.BREAK,

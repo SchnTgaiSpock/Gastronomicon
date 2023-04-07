@@ -84,10 +84,10 @@ public class Gastronomicon extends AbstractAddon {
             }
         }
 
-        TreeStructure.loadTrees();
-
         playerData = new AddonConfig("player.yml");
         customFood = new AddonConfig("custom-food.yml");
+
+        TreeStructure.loadTrees();
     }
 
     @Override

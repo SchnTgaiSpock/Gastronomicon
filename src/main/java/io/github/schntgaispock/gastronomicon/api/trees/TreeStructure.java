@@ -8,18 +8,18 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
+import io.github.schntgaispock.gastronomicon.Gastronomicon;
 import io.github.schntgaispock.gastronomicon.util.NumberUtil;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
 
 @Getter
 @ToString
-@RequiredArgsConstructor
 public final class TreeStructure {
 
     private static final ObjectMapper JSONObjectMapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
@@ -37,6 +37,8 @@ public final class TreeStructure {
                 e.printStackTrace();
             }
         }
+
+        Gastronomicon.info("Loaded all trees");
     }
 
     private final int[][][] blocks;
@@ -44,6 +46,20 @@ public final class TreeStructure {
     private final String fruit;
     private final String[] palette;
     private final int[] root; // [x, y, z]
+
+    public TreeStructure(
+        @JsonProperty("blocks") int[][][] blocks,
+        @JsonProperty("sapling") String sapling,
+        @JsonProperty("fruit") String fruit,
+        @JsonProperty("palette") String[] palette,
+        @JsonProperty("root") int[] root
+    ) {
+        this.blocks = blocks;
+        this.sapling = sapling;
+        this.fruit = fruit;
+        this.palette = palette;
+        this.root = root;
+    }
 
     public void build(Location l, String sapling) {
         final int[][][] structure = getBlocks();

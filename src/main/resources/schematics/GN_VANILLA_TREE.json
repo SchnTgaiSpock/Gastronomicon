@@ -43,8 +43,8 @@
             [0, 0, 0, 0, 0]
         ]
     ],
-    "sapling": "GN_LYCHEE_SAPLING",
-    "fruit": "GN_LYCHEE",
+    "sapling": "GN_VANILLA_SAPLING",
+    "fruit": "GN_VANILLA",
     "palette": [
         "SPRUCE_LOG",
         "ACACIA_LEAVES"
