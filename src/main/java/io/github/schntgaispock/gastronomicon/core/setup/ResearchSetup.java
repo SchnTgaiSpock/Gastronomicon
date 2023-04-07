@@ -60,7 +60,8 @@ public class ResearchSetup {
                 GastroStacks.STEEL_SICKLE,
                 GastroStacks.REINFORCED_SICKLE)
             .register();
-
+        GastroResearch.RAW_INGREDIENTS.register();
+        GastroResearch.FOOD.register();
     }
 
 }

@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 public class Pair<T, U> {
-    
+
     private T first;
     private U second;
 
@@ -13,5 +13,10 @@ public class Pair<T, U> {
     public void first(T first) { this.first = first; }
     public U second() { return second; }
     public void second(U second) { this.second = second; }
+
+    @Override
+    public String toString() {
+        return "(" + first + ", " + second + ")";
+    }
 
 }

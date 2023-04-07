@@ -505,7 +505,7 @@ public class FoodEffect {
     public static FoodEffect air(int amount) {
         final int a = Math.max(amount, 1);
         final int pa = (int) Math.ceil(a * PERFECT_MULTIPLIER_AIR);
-        return new FoodEffect("&aAir +" + a, "&aAir +" + pa, (Player player, Boolean isPerfect) -> {
+        return new FoodEffect("&fAir +" + a, "&fAir +" + pa, (Player player, Boolean isPerfect) -> {
             player.setRemainingAir(Math.min(player.getRemainingAir() + (isPerfect ? pa : a), 20));
         });
     }
@@ -520,7 +520,7 @@ public class FoodEffect {
     public static FoodEffect warm(int amount) {
         final int a = Math.max(amount, 1);
         final int pa = (int) Math.ceil(a * PERFECT_MULTIPLIER_WARM);
-        return new FoodEffect("&aWarmth +" + a, "&aWarmth +" + pa, (Player player, Boolean isPerfect) -> {
+        return new FoodEffect("&6Warmth +" + a, "&6Warmth +" + pa, (Player player, Boolean isPerfect) -> {
             player.setFreezeTicks(Math.max(player.getFreezeTicks() - (isPerfect ? pa : a), 0));
         });
     }
@@ -535,7 +535,7 @@ public class FoodEffect {
     public static FoodEffect teleport(int radius) {
         final int r = NumberUtil.clamp(radius, 1, 10);
         final int pr = (int) Math.ceil(r * PERFECT_MULTIPLIER_TELEPORT);
-        return new FoodEffect("&7Teleports you within " + r + " blocks away", "&7Teleports you within " + pr + " blocks away",
+        return new FoodEffect("&7Teleports you somewhere within " + r + " blocks away", "&7Teleports you somewhere within " + pr + " blocks away",
             (Player player, Boolean isPerfect) -> {
                 Location playerLocation = player.getLocation();
                 int playerX = (int) playerLocation.getX();

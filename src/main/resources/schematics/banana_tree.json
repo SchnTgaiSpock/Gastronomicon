@@ -57,6 +57,7 @@
             [0, 0, 3, 0, 0]
         ]
     ],
+    "sapling": "GN_BANANA_SAPLING",
     "fruit": "GN_BANANA",
     "palette": [
         "JUNGLE_LOG",

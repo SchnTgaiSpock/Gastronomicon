@@ -113,11 +113,10 @@ public class SimpleGastroFood extends UnplaceableItem implements RecipeDisplayIt
         final ItemStack[] tools = getGastroRecipe().getTools().toArray(ItemStack[]::new);
         final ItemStack container = getGastroRecipe().getInputs().getContainer().getDisplayItem();
 
-        int toolPos = 0;
         if (CollectionUtil.isEmpty(tools)) {
             display.add(GastroStacks.GUIDE_NONE);
         } else {
-            display.add(tools[toolPos++]);
+            display.add(tools[0]);
         }
 
         if (container == null || container.getType() == Material.AIR) {
@@ -126,19 +125,13 @@ public class SimpleGastroFood extends UnplaceableItem implements RecipeDisplayIt
             display.add(container);
         }
 
-        for (int i = toolPos; i < 6; i++) {
-            if (i < tools.length) {
-                display.add(tools[i]);
-            } else {
-                display.add(new ItemStack(Material.AIR));
-            }
-
+        for (int i = 1; i < tools.length; i++) {
+            display.add(tools[i]);
             display.add(new ItemStack(Material.AIR));
-
         }
 
-        display.add(topRightDisplayItem);
-        display.add(getGastroRecipe().getInputs().getShapedness().getGuideItem());
+        display.set(16, topRightDisplayItem);
+        display.set(17, getGastroRecipe().getInputs().getShapedness().getGuideItem());
 
         return display;
     }

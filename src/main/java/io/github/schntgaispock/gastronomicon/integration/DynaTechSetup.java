@@ -29,7 +29,6 @@ public class DynaTechSetup {
                 .toArray(ItemStack[]::new));
             
         } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
-            System.out.println("oof");
             return;
         }
     }

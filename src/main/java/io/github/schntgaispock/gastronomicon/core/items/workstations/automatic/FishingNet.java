@@ -13,7 +13,6 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.attributes.MachineProcessHolder;
 import io.github.thebusybiscuit.slimefun4.core.machines.MachineProcessor;
-import io.github.thebusybiscuit.slimefun4.core.networks.energy.EnergyNetComponentType;
 import io.github.thebusybiscuit.slimefun4.implementation.operations.CraftingOperation;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import lombok.Getter;
@@ -50,7 +49,6 @@ public class FishingNet extends SlimefunItem implements InventoryBlock, MachineP
         new ItemStack(Material.TROPICAL_FISH)
     };
 
-    private final EnergyNetComponentType energyComponentType = EnergyNetComponentType.NONE;
     private final String machineIdentifier = "GN_FISHING_NET";
     private final MachineProcessor<CraftingOperation> machineProcessor = new MachineProcessor<>(this);
     private final ItemStack progressBar = new ItemStack(Material.FISHING_ROD);
@@ -62,6 +60,7 @@ public class FishingNet extends SlimefunItem implements InventoryBlock, MachineP
         super(GastroGroups.ELECTRIC_MACHINES, item, RecipeType.ENHANCED_CRAFTING_TABLE, recipe);
 
         this.speed = speed;
+        machineProcessor.setProgressBar(progressBar);
     }
 
     // TODO: Fishing fishing net
@@ -100,7 +99,7 @@ public class FishingNet extends SlimefunItem implements InventoryBlock, MachineP
                     getMachineProcessor().endOperation(b);
                 }
             }
-        } else {
+        } else if (b.getBlockData() instanceof final Waterlogged bar && bar.isWaterlogged()) {
             final MachineRecipe next = findNextRecipe(inv);
 
             if (next != null) {

@@ -185,11 +185,11 @@ public class GastroStacks {
     public static final ItemStack MENU_NOT_ENOUGH_ENERGY = new CustomItemStack(Material.RED_STAINED_GLASS_PANE,
         "&cNot enough energy");
     public static final ItemStack MENU_NO_ANDROID = new CustomItemStack(Material.RED_STAINED_GLASS_PANE,
-        "&3No android detected");
+        "&cNo android detected");
     public static final ItemStack MENU_INCORRECT_RECIPE = new CustomItemStack(Material.RED_STAINED_GLASS_PANE,
-        "&3Not enough ingredients");
-    public static final ItemStack MENU_NO_WATER_ABOVE = new CustomItemStack(Material.RED_STAINED_GLASS_PANE,
-        "&3No water above");
+        "&cIncorrect recipe");
+    public static final ItemStack MENU_NOT_WATERLOGGED = new CustomItemStack(Material.RED_STAINED_GLASS_PANE,
+        "&cNot in water");
 
     // ---- Dummy ----
 
@@ -376,13 +376,13 @@ public class GastroStacks {
         StringUtil.waterUsed(125, "/Craft"));
 
     public static final SlimefunItemStack CHEF_ANDROID = ThemedItemStack.of(
-        GastroTheme.MECHANICAL,
+        GastroTheme.ELECTRIC,
         "GN_CHEF_ANDROID",
         HeadTexture.PROGRAMMABLE_ANDROID_BUTCHER.getTexture(),
         "Chef Android");
 
     public static final SlimefunItemStack CHEF_ANDROID_TRAINER = ThemedItemStack.of(
-        GastroTheme.MECHANICAL,
+        GastroTheme.ELECTRIC,
         "GN_CHEF_ANDROID_TRAINER",
         Material.SMITHING_TABLE,
         "Chef Android Trainer");
@@ -409,7 +409,7 @@ public class GastroStacks {
         LoreBuilder.speed(4));
 
     public static final SlimefunItemStack ELECTRIC_KITCHEN_I = ThemedItemStack.of(
-        GastroTheme.MECHANICAL,
+        GastroTheme.ELECTRIC,
         "GN_ELECTRIC_KITCHEN_I",
         Material.FURNACE,
         "Electric Kitchen",
@@ -419,7 +419,7 @@ public class GastroStacks {
         LoreBuilder.speed(1));
 
     public static final SlimefunItemStack ELECTRIC_KITCHEN_II = ThemedItemStack.of(
-        GastroTheme.MECHANICAL,
+        GastroTheme.ELECTRIC,
         "GN_ELECTRIC_KITCHEN_II",
         Material.FURNACE,
         "Electric Kitchen &7- &eII  ",
@@ -429,7 +429,7 @@ public class GastroStacks {
         LoreBuilder.speed(3));
 
     public static final SlimefunItemStack ELECTRIC_KITCHEN_III = ThemedItemStack.of(
-        GastroTheme.MECHANICAL,
+        GastroTheme.ELECTRIC,
         "GN_ELECTRIC_KITCHEN_III",
         Material.FURNACE,
         "Electric Kitchen &7- &eIII",
@@ -2039,7 +2039,7 @@ public class GastroStacks {
         .name("V7")
         .hunger(6, 0.75)
         .effects(
-            FoodEffect.negativePotionEffect(PotionEffectType.REGENERATION, 20, 2))
+            FoodEffect.positivePotionEffect(PotionEffectType.REGENERATION, 20, 2))
         .build();
 
     public static final FoodItemStack BOBA_MILK_TEA = new FoodItemStackBuilder()

@@ -1,7 +1,10 @@
 package io.github.schntgaispock.gastronomicon.core.items.workstations.automatic;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.annotation.Nonnull;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -23,8 +26,10 @@ import io.github.schntgaispock.gastronomicon.util.item.ItemUtil;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
+import io.github.thebusybiscuit.slimefun4.core.handlers.BlockBreakHandler;
 import io.github.thebusybiscuit.slimefun4.core.machines.MachineProcessor;
 import io.github.thebusybiscuit.slimefun4.core.networks.energy.EnergyNetComponentType;
+import io.github.thebusybiscuit.slimefun4.implementation.handlers.SimpleBlockBreakHandler;
 import io.github.thebusybiscuit.slimefun4.implementation.operations.CraftingOperation;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
@@ -55,7 +60,7 @@ public class ElectricKitchen extends AContainer {
     protected static final int OUTPUT_BORDER = 41;
     protected static final int ANDROID_SLOT = 15;
     protected static final int STATUS_SLOT = 53;
-    private static Map<Location, Pair<Integer, MachineRecipe>> lastInputHashAndRecipe = new HashMap<>();
+    private static Map<Location, Pair<Integer, Counter<Integer>>> lastInputHashAndRecipe = new HashMap<>();
 
     private final EnergyNetComponentType energyComponentType = EnergyNetComponentType.CONSUMER;
     private final String machineIdentifier = "GN_ELECTRIC_KITCHEN";
@@ -68,6 +73,7 @@ public class ElectricKitchen extends AContainer {
         setCapacity(capacity);
         setEnergyConsumption(energyConsumption);
         setProcessingSpeed(speed);
+        machineProcessor.setProgressBar(progressBar);
     }
 
     @Override
@@ -78,6 +84,27 @@ public class ElectricKitchen extends AContainer {
     @Override
     public int[] getOutputSlots() {
         return new int[] { 42, 43 };
+    }
+
+    @Nonnull
+    protected BlockBreakHandler onBlockBreak() {
+        return new SimpleBlockBreakHandler() {
+
+            @Override
+            public void onBlockBreak(Block b) {
+                BlockMenu inv = BlockStorage.getInventory(b);
+
+                if (inv != null) {
+                    inv.dropItems(b.getLocation(), getInputSlots());
+                    inv.dropItems(b.getLocation(), getOutputSlots());
+                    inv.dropItems(b.getLocation(), ANDROID_SLOT);
+                }
+
+                getMachineProcessor().endOperation(b);
+                lastInputHashAndRecipe.remove(b.getLocation());
+            }
+
+        };
     }
 
     @Override
@@ -118,7 +145,8 @@ public class ElectricKitchen extends AContainer {
             return null;
         }
 
-        final String foodId = android.getItemMeta().getPersistentDataContainer().get(GastroKeys.CHEF_ANDROID_FOOD, PersistentDataType.STRING);
+        final String foodId = android.getItemMeta().getPersistentDataContainer().get(GastroKeys.CHEF_ANDROID_FOOD,
+            PersistentDataType.STRING);
         if (foodId == null) {
             menu.addItem(STATUS_SLOT, GastroStacks.MENU_NO_ANDROID);
             return null;
@@ -136,37 +164,41 @@ public class ElectricKitchen extends AContainer {
             hash = hash * 31 + ItemUtil.hashIgnoreAmount(menu.getItemInSlot(slot));
         }
 
-        final Pair<Integer, MachineRecipe> hashRecipePair;
+        final Pair<Integer, Counter<Integer>> hashRecipePair;
         if (lastInputHashAndRecipe.containsKey(menu.getLocation())) {
             hashRecipePair = lastInputHashAndRecipe.get(menu.getLocation());
         } else {
-            hashRecipePair = new Pair<Integer, MachineRecipe>(0, new MachineRecipe(0, null, null));
+            hashRecipePair = new Pair<Integer, Counter<Integer>>(0, null);
             lastInputHashAndRecipe.put(menu.getLocation(), hashRecipePair);
         }
 
+        final Counter<Integer> found;
         if (hashRecipePair.first() == hash) {
-            return hashRecipePair.second();
-        }
-        hashRecipePair.first(hash);
+            found = hashRecipePair.second();
+        } else {
+            found = new Counter<>();
+            for (RecipeComponent<?> component : recipe.getInputs().getAll()) {
+                System.out.println("yee");
+                if (component == RecipeComponent.EMPTY) continue;
 
-        final Counter<Integer> found = new Counter<>();
-
-        for (RecipeComponent<?> component : recipe.getInputs().getAll()) {
-            if (component == RecipeComponent.EMPTY) continue;
-
-            boolean matched = false;
-            for (int slot : getInputSlots()) {
-                final ItemStack input = menu.getItemInSlot(slot);
-                if (component.matches(input) && input.getAmount() > found.get(slot)) {
-                    matched = true;
-                    found.add(slot);
-                    break;
+                boolean matched = false;
+                for (int slot : getInputSlots()) {
+                    final ItemStack input = menu.getItemInSlot(slot);
+                    if (component.matches(input) && input.getAmount() > found.get(slot)) {
+                        System.out.println("match");
+                        matched = true;
+                        found.add(slot);
+                        break;
+                    }
+                }
+                if (!matched) {
+                    menu.addItem(STATUS_SLOT, GastroStacks.MENU_INCORRECT_RECIPE);
+                    return null;
                 }
             }
-            if (!matched) {
-                menu.addItem(STATUS_SLOT, GastroStacks.MENU_INCORRECT_RECIPE);
-                return null;
-            };
+
+            hashRecipePair.first(hash);
+            hashRecipePair.second(found);
         }
 
         final MachineRecipe newRecipe = new MachineRecipe(60 / getSpeed(), found.entries().stream().filter(pair -> {
@@ -175,9 +207,13 @@ public class ElectricKitchen extends AContainer {
             final ItemStack input = menu.getItemInSlot(pair.first());
             final ItemStack clone = input.asQuantity(pair.second());
             input.subtract(pair.second());
+            System.out.println(clone);
             return clone;
-        }).toArray(ItemStack[]::new), recipe.getOutputs());
-        hashRecipePair.second(newRecipe);
+        }).toArray(ItemStack[]::new), new ItemStack[] { recipe.getOutputs()[0] });
+
+        System.out.println(Arrays.toString(newRecipe.getInput()));
+        System.out.println(Arrays.toString(newRecipe.getOutput()));
+
         return newRecipe;
     }
 
@@ -209,7 +245,7 @@ public class ElectricKitchen extends AContainer {
         } else {
             final MachineRecipe next = findNextRecipe(inv);
 
-            if (next != null) {
+            if (next != null && next.getInput() != null) {
                 currentOperation = new CraftingOperation(next);
                 getMachineProcessor().startOperation(b, currentOperation);
                 getMachineProcessor().updateProgressBar(inv, STATUS_SLOT, currentOperation);

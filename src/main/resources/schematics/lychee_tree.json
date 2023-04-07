@@ -50,6 +50,7 @@
             [0, 0, 0, 0, 0]
         ]
     ],
+    "sapling": "GN_LYCHEE_SAPLING",
     "fruit": "GN_LYCHEE",
     "palette": [
         "OAK_LOG",

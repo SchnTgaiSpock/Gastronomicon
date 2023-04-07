@@ -3,9 +3,7 @@ package io.github.schntgaispock.gastronomicon.core.items.workstations.manual;
 import org.bukkit.inventory.ItemStack;
 
 import io.github.schntgaispock.gastronomicon.core.slimefun.recipes.GastroRecipeType;
-import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
-import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.attributes.EnergyNetComponent;
 import io.github.thebusybiscuit.slimefun4.core.networks.energy.EnergyNetComponentType;
 import lombok.Getter;
@@ -17,8 +15,8 @@ public class Refridgerator extends GastroWorkstation implements EnergyNetCompone
     private final int capacity;
     private final int energyPerUse;
 
-    public Refridgerator(ItemGroup group, SlimefunItemStack item, RecipeType type, ItemStack[] recipe, int capacity, int energyPerUse) {
-        super(group, item, type, recipe);
+    public Refridgerator(SlimefunItemStack item, ItemStack[] recipe, int capacity, int energyPerUse) {
+        super(item, recipe);
 
         this.capacity = capacity;
         this.energyPerUse = energyPerUse;

@@ -5,6 +5,7 @@ import java.util.List;
 import org.bukkit.inventory.ItemStack;
 
 import io.github.schntgaispock.gastronomicon.core.items.workstations.automatic.ElectricKitchen;
+import io.github.schntgaispock.gastronomicon.core.items.workstations.automatic.FishingNet;
 import io.github.schntgaispock.slimehud.SlimeHUD;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import lombok.experimental.UtilityClass;
@@ -16,6 +17,7 @@ public class SlimeHUDSetup {
 
     @SuppressWarnings("deprecation")
     public static void setup() {
+        // Electric Kitchen
         SlimeHUD.getHudController().registerCustomHandler(ElectricKitchen.class, request -> {
             final BlockMenu menu = BlockStorage.getInventory(request.getLocation());
             if (menu == null) return "";
@@ -26,6 +28,11 @@ public class SlimeHUDSetup {
             final List<String> lore = item.getLore();
             if (lore == null || lore.size() < 1) return "";
             return "&7| " + lore.get(0);
+        });
+
+        // Fishing Net
+        SlimeHUD.getHudController().registerCustomHandler(FishingNet.class, request -> {
+            return ((FishingNet) request.getSlimefunItem()).getMachineProcessor().getOperation(request.getLocation()) == null ? "&7| Not in water" : "";
         });
     }
 

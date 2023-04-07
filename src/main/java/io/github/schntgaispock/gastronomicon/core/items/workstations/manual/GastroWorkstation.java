@@ -23,13 +23,13 @@ import io.github.schntgaispock.gastronomicon.api.events.PlayerGastroFoodCraftEve
 import io.github.schntgaispock.gastronomicon.api.recipes.GastroRecipe;
 import io.github.schntgaispock.gastronomicon.api.recipes.RecipeRegistry;
 import io.github.schntgaispock.gastronomicon.api.recipes.GastroRecipe.RecipeMatchResult;
+import io.github.schntgaispock.gastronomicon.core.slimefun.GastroGroups;
 import io.github.schntgaispock.gastronomicon.core.slimefun.GastroStacks;
 import io.github.schntgaispock.gastronomicon.core.slimefun.recipes.GastroRecipeType;
 import io.github.schntgaispock.gastronomicon.util.NumberUtil;
 import io.github.schntgaispock.gastronomicon.util.RecipeUtil;
 import io.github.schntgaispock.gastronomicon.util.collections.Pair;
 import io.github.schntgaispock.gastronomicon.util.item.ItemUtil;
-import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
@@ -53,8 +53,8 @@ public abstract class GastroWorkstation extends MenuBlock {
     protected static final int CRAFT_BUTTON_SLOT = 53;
     private static Map<Location, Pair<Integer, GastroRecipe>> lastInputHashAndRecipe = new HashMap<>();
 
-    public GastroWorkstation(ItemGroup group, SlimefunItemStack item, RecipeType type, ItemStack[] recipe) {
-        super(group, item, type, recipe);
+    public GastroWorkstation(SlimefunItemStack item, ItemStack[] recipe) {
+        super(GastroGroups.BASIC_MACHINES, item, RecipeType.ENHANCED_CRAFTING_TABLE, recipe);
     }
 
     @Override

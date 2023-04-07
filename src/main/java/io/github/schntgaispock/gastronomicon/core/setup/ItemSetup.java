@@ -375,9 +375,7 @@ public class ItemSetup {
         // ---- Basic Machines ----
 
         new CulinaryWorkbench(
-            GastroGroups.BASIC_MACHINES,
             GastroStacks.CULINARY_WORKBENCH,
-            RecipeType.ENHANCED_CRAFTING_TABLE,
             new ItemStack[] {
                 POLISHED_GRANITE, POLISHED_GRANITE, POLISHED_GRANITE,
                 BARREL, CRAFTING_TABLE, BARREL,
@@ -385,9 +383,7 @@ public class ItemSetup {
             }).register(gn);
 
         new MultiStove(
-            GastroGroups.BASIC_MACHINES,
             GastroStacks.MULTI_STOVE,
-            RecipeType.ENHANCED_CRAFTING_TABLE,
             new ItemStack[] {
                 IRON_PP, IRON_PP, IRON_PP,
                 SlimefunItems.HEATING_COIL, BLAST_FURNACE, SlimefunItems.HEATING_COIL,
@@ -396,9 +392,7 @@ public class ItemSetup {
             256, 16).register(gn);
 
         new Refridgerator(
-            GastroGroups.BASIC_MACHINES,
             GastroStacks.REFRIDGERATOR,
-            RecipeType.ENHANCED_CRAFTING_TABLE,
             new ItemStack[] {
                 SlimefunItems.STEEL_INGOT, SlimefunItems.STEEL_INGOT, SlimefunItems.STEEL_INGOT,
                 SlimefunItems.COOLING_UNIT, IRON_TRAPDOOR, SlimefunItems.COOLING_UNIT,
@@ -407,9 +401,7 @@ public class ItemSetup {
             256, 16).register(gn);
 
         new GrainMill(
-            GastroGroups.BASIC_MACHINES,
             GastroStacks.MILL,
-            RecipeType.ENHANCED_CRAFTING_TABLE,
             new ItemStack[] {
                 null, HOPPER, null,
                 IRON_BARS, SlimefunItems.DAMASCUS_STEEL_INGOT, IRON_BARS,
@@ -417,9 +409,7 @@ public class ItemSetup {
             }).register(gn);
 
         new Fermenter(
-            GastroGroups.BASIC_MACHINES,
             GastroStacks.FERMENTER,
-            RecipeType.ENHANCED_CRAFTING_TABLE,
             new ItemStack[] {
                 OAK_FENCE, OAK_SLAB, OAK_FENCE,
                 OAK_FENCE, BARREL, OAK_FENCE,
@@ -428,9 +418,7 @@ public class ItemSetup {
             2000, 125).register(gn);
 
         new Fermenter(
-            GastroGroups.BASIC_MACHINES,
             GastroStacks.LARGE_FERMENTER,
-            RecipeType.ENHANCED_CRAFTING_TABLE,
             new ItemStack[] {
                 SlimefunItems.STEEL_PLATE, OAK_SLAB, SlimefunItems.STEEL_PLATE,
                 SlimefunItems.STEEL_PLATE, GastroStacks.FERMENTER, SlimefunItems.STEEL_PLATE,
@@ -438,7 +426,7 @@ public class ItemSetup {
             },
             16000, 125).register(gn);
 
-        new ChefAndroidTrainer(
+        new UnplaceableItem(
             GastroGroups.BASIC_MACHINES,
             GastroStacks.CHEF_ANDROID,
             RecipeType.ENHANCED_CRAFTING_TABLE,
@@ -449,9 +437,7 @@ public class ItemSetup {
             }).register(gn);
 
         new ChefAndroidTrainer(
-            GastroGroups.BASIC_MACHINES,
             GastroStacks.CHEF_ANDROID_TRAINER,
-            RecipeType.ENHANCED_CRAFTING_TABLE,
             new ItemStack[] {
                 SlimefunItems.STEEL_PLATE, SlimefunItems.STEEL_PLATE, SlimefunItems.STEEL_PLATE,
                 OAK_PLANKS, SlimefunItems.CARGO_MOTOR, OAK_PLANKS,
@@ -770,7 +756,7 @@ public class ItemSetup {
             RecipeUtil.singleCenter(GastroStacks.LYCHEE_SAPLING))
                 .register(gn);
 
-        new UnplaceableItem(
+        new SlimefunItem(
             GastroGroups.RAW_INGREDIENTS,
             GastroStacks.LYCHEE_SAPLING,
             GastroRecipeType.BREAK,
@@ -784,7 +770,7 @@ public class ItemSetup {
             RecipeUtil.singleCenter(GastroStacks.BANANA_SAPLING))
                 .register(gn);
 
-        new UnplaceableItem(
+        new SlimefunItem(
             GastroGroups.RAW_INGREDIENTS,
             GastroStacks.BANANA_SAPLING,
             GastroRecipeType.BREAK,
@@ -798,7 +784,7 @@ public class ItemSetup {
             RecipeUtil.singleCenter(GastroStacks.VANILLA_SAPLING))
                 .register(gn);
 
-        new UnplaceableItem(
+        new SlimefunItem(
             GastroGroups.RAW_INGREDIENTS,
             GastroStacks.VANILLA_SAPLING,
             GastroRecipeType.BREAK,

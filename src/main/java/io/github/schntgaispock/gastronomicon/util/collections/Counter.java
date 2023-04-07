@@ -13,9 +13,9 @@ public class Counter<T> {
 
     private Map<Integer, Pair<T, Integer>> map = new HashMap<>();
     private final @Nullable Function<T, Integer> hashFunction;
-    private int max;
-    private int min;
-    private int total;
+    private Integer max;
+    private Integer min;
+    private int total = 0;
 
     public Counter(Function<T, Integer> hashFunction) {
         this.hashFunction = hashFunction;
@@ -40,10 +40,14 @@ public class Counter<T> {
         if (map.containsKey(hash)) {
             set(hash, get(hash) + amount);
         } else {
-            map.put(hash, new Pair<>(item, 0));
+            map.put(hash, new Pair<>(item, amount));
         }
 
-        if (get(hash) >= get(max)) {
+        if (min == null || min == hash) {
+            Pair<Integer, Integer> maxMin = findMaxMin();
+            max = maxMin.first();
+            min = maxMin.second();
+        } else if (get(hash) >= max().second()) {
             max = hash;
         }
 
@@ -61,15 +65,18 @@ public class Counter<T> {
         }
 
         if (get(hash) <= amount) {
-            total -= get(hash);
-            map.remove(hash);
+            remove(hash);
         } else {
             set(hash, get(hash) - amount);
 
-            if (get(hash) <= get(min)) {
-                max = hash;
-            }
-
+            if (max == hash || max == null) {
+                Pair<Integer, Integer> maxMin = findMaxMin();
+                max = maxMin.first();
+                min = maxMin.second();
+            } else if (get(hash) <= min().second()) {
+                min = hash;
+            } 
+            
             total -= amount;
         }
     }
@@ -82,7 +89,7 @@ public class Counter<T> {
         sub(hash(item), 1);
     }
 
-    private int get(int hash) {
+    private int get(Integer hash) {
         return map.containsKey(hash) ? map.get(hash).second() : 0;
     }
 
@@ -92,21 +99,18 @@ public class Counter<T> {
 
     private void set(int hash, int amount) {
         Validate.isTrue(amount > 0, "amount must be greater than zero");
-        total += amount - get(hash);
         map.get(hash).second(amount);
-    }
-
-    public void set(T item, int amount) {
-        set(hash(item), amount);
     }
 
     private void remove(int hash) {
         total -= get(hash);
         map.remove(hash);
 
-        Pair<Integer, Integer> maxMin = findMaxMin();
-        max = maxMin.first();
-        min = maxMin.second();
+        if (min == hash || max == hash) {
+            Pair<Integer, Integer> maxMin = findMaxMin();
+            max = maxMin.first();
+            min = maxMin.second();
+        }
     }
 
     public void remove(T item) {
@@ -116,6 +120,8 @@ public class Counter<T> {
     public void clear() {
         map.clear();
         total = 0;
+        max = null;
+        min = null;
     }
 
     private Pair<Integer, Integer> findMaxMin() {
@@ -123,27 +129,59 @@ public class Counter<T> {
         int maxAmount = 0;
         int minHash = 0;
         int minAmount = Integer.MAX_VALUE;
+
+        if (map.size() == 0) {
+            return new Pair<Integer, Integer>(null, null);
+        }
+
         for (Map.Entry<Integer, Pair<T, Integer>> entry : map.entrySet()) {
             if (entry.getValue().second() >= maxAmount) {
                 maxHash = entry.getKey();
-            } else if (entry.getValue().second() <= minAmount) {
+                maxAmount = entry.getValue().second();
+            }
+            
+            if (entry.getValue().second() <= minAmount) {
                 minHash = entry.getKey();
+                minAmount = entry.getValue().second();
             }
         }
 
         return new Pair<>(maxHash, minHash);
     }
 
-    public T max() {
-        return map.get(max).first();
+    public Pair<T, Integer> max() {
+        return map.containsKey(max) ? map.get(max) : new Pair<>(null, 0);
     }
 
-    public T min() {
-        return map.get(min).first();
+    public Pair<T, Integer> min() {
+        return map.containsKey(min) ? map.get(min) : new Pair<>(null, Integer.MAX_VALUE);
     }
 
     public Collection<Pair<T, Integer>> entries() {
         return map.values();
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder string = new StringBuilder("{");
+        for (Map.Entry<Integer, Pair<T, Integer>> key : map.entrySet()) {
+            string.append(key.getValue().first() + ": " + key.getValue().second() + ", ");
+        }
+        string.delete(string.length() - 2, string.length()).append("}");
+        return string.toString();
+    }
+
+    public String details() {
+        final StringBuilder string = new StringBuilder(toString());
+        string.deleteCharAt(string.length() - 1)
+            .append(" | max: ")
+            .append(max().toString())
+            .append(", min: ")
+            .append(min().toString())
+            .append(", total: ")
+            .append(total)
+            .append("}");
+        return string.toString();
     }
 
 }

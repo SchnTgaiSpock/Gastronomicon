@@ -13,6 +13,7 @@ import org.bukkit.entity.Player;
 
 import io.github.mooy1.infinitylib.core.AbstractAddon;
 import io.github.mooy1.infinitylib.core.AddonConfig;
+import io.github.schntgaispock.gastronomicon.api.trees.TreeStructure;
 import io.github.schntgaispock.gastronomicon.core.setup.CommandSetup;
 import io.github.schntgaispock.gastronomicon.core.setup.ListenerSetup;
 import io.github.schntgaispock.gastronomicon.core.setup.ResearchSetup;
@@ -83,6 +84,8 @@ public class Gastronomicon extends AbstractAddon {
             }
         }
 
+        TreeStructure.loadTrees();
+
         playerData = new AddonConfig("player.yml");
         customFood = new AddonConfig("custom-food.yml");
     }
@@ -129,7 +132,7 @@ public class Gastronomicon extends AbstractAddon {
     }
 
     public static void sendMessage(Player player, String message) {
-        player.sendMessage(ChatColor.of("#c91df4") + "§lGastronomicon§7§l> &7" + StringUtil.formatColors(message));
+        player.sendMessage(ChatColor.of("#c91df4") + "§lGastronomicon§7§l> §7" + StringUtil.formatColors(message));
     }
 
     public static void sendMessage(Player player, Component message) {

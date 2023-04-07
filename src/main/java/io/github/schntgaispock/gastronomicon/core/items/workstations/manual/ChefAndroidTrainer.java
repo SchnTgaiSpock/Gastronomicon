@@ -2,6 +2,8 @@ package io.github.schntgaispock.gastronomicon.core.items.workstations.manual;
 
 import java.util.Arrays;
 
+import javax.annotation.Nonnull;
+
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.inventory.ItemStack;
@@ -13,16 +15,21 @@ import io.github.mooy1.infinitylib.machines.MenuBlock;
 import io.github.schntgaispock.gastronomicon.Gastronomicon;
 import io.github.schntgaispock.gastronomicon.core.items.food.GastroFood;
 import io.github.schntgaispock.gastronomicon.core.items.food.SimpleGastroFood;
+import io.github.schntgaispock.gastronomicon.core.slimefun.GastroGroups;
 import io.github.schntgaispock.gastronomicon.core.slimefun.GastroStacks;
 import io.github.schntgaispock.gastronomicon.util.item.GastroKeys;
-import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
+import io.github.thebusybiscuit.slimefun4.core.handlers.BlockBreakHandler;
+import io.github.thebusybiscuit.slimefun4.implementation.handlers.SimpleBlockBreakHandler;
 import io.github.thebusybiscuit.slimefun4.utils.ChatUtils;
+import lombok.Getter;
+import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
 
+@Getter
 public class ChefAndroidTrainer extends MenuBlock {
 
     protected static final int[] BACKGROUND_SLOTS = {
@@ -37,18 +44,29 @@ public class ChefAndroidTrainer extends MenuBlock {
     protected static final int FOOD_SLOT = 13;
     protected static final int TRAIN_SLOT = 22;
 
-    public ChefAndroidTrainer(ItemGroup category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
-        super(category, item, recipeType, recipe);
-    }
+    private final int[] inputSlots = new int[] { 11 };
+    private final int[] outputSlots = new int[] { 15 };
 
-    @Override
-    protected int[] getInputSlots() {
-        return new int[] { 11 };
+    public ChefAndroidTrainer(SlimefunItemStack item, ItemStack[] recipe) {
+        super(GastroGroups.BASIC_MACHINES, item, RecipeType.ENHANCED_CRAFTING_TABLE, recipe);
     }
+    
+    @Nonnull
+    protected BlockBreakHandler onBlockBreak() {
+        return new SimpleBlockBreakHandler() {
+            
+            @Override
+            public void onBlockBreak(Block b) {
+                BlockMenu inv = BlockStorage.getInventory(b);
 
-    @Override
-    protected int[] getOutputSlots() {
-        return new int[] { 15 };
+                if (inv != null) {
+                    inv.dropItems(b.getLocation(), getInputSlots());
+                    inv.dropItems(b.getLocation(), getOutputSlots());
+                    inv.dropItems(b.getLocation(), FOOD_SLOT);
+                }
+            }
+
+        };
     }
 
     @Override
@@ -101,7 +119,7 @@ public class ChefAndroidTrainer extends MenuBlock {
                     name = food.getItemName();
                     id = food.getId();
                 }
-                modified.setLore(Arrays.asList("&7" + ChatUtils.removeColorCodes(name)));
+                modified.setLore(Arrays.asList("§7" + ChatUtils.removeColorCodes(name)));
                 final ItemMeta meta = modified.getItemMeta();
                 final PersistentDataContainer pdc = meta.getPersistentDataContainer();
                 pdc.set(GastroKeys.CHEF_ANDROID_FOOD, PersistentDataType.STRING, id);
