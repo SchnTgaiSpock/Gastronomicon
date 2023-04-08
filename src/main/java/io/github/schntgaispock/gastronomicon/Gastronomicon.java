@@ -10,6 +10,7 @@ import org.bstats.charts.SimplePie;
 import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
+import org.bukkit.scheduler.BukkitTask;
 
 import io.github.mooy1.infinitylib.core.AbstractAddon;
 import io.github.mooy1.infinitylib.core.AddonConfig;
@@ -106,6 +107,10 @@ public class Gastronomicon extends AbstractAddon {
 
     public static int scheduleSyncDelayedTask(Runnable runnable, long delay) {
         return Bukkit.getScheduler().scheduleSyncDelayedTask(getInstance(), runnable, delay);
+    }
+
+    public static BukkitTask scheduleSyncRepeatingTask(Runnable runnable, long delay, long interval) {
+        return Bukkit.getScheduler().runTaskTimer(getInstance(), runnable, delay, interval);
     }
 
     public static boolean checkPermission(Player player, @Nonnull String permissionNode, @Nullable String message) {

@@ -6,6 +6,9 @@ import org.bukkit.inventory.ItemStack;
 
 import io.github.schntgaispock.gastronomicon.core.items.workstations.automatic.ElectricKitchen;
 import io.github.schntgaispock.gastronomicon.core.items.workstations.automatic.FishingNet;
+import io.github.schntgaispock.gastronomicon.core.items.workstations.manual.Fermenter;
+import io.github.schntgaispock.gastronomicon.util.ChunkPDC;
+import io.github.schntgaispock.gastronomicon.util.item.GastroKeys;
 import io.github.schntgaispock.slimehud.SlimeHUD;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import lombok.experimental.UtilityClass;
@@ -33,6 +36,11 @@ public class SlimeHUDSetup {
         // Fishing Net
         SlimeHUD.getHudController().registerCustomHandler(FishingNet.class, request -> {
             return ((FishingNet) request.getSlimefunItem()).getMachineProcessor().getOperation(request.getLocation()) == null ? "&7| Not in water" : "";
+        });
+
+        // Fermenter
+        SlimeHUD.getHudController().registerCustomHandler(Fermenter.class, request -> {
+            return "&7| &9🪣 &7" + ChunkPDC.getOrCreateDefault(request.getLocation().getBlock(), GastroKeys.FERMENTER_WATER, 0) + " mB";
         });
     }
 

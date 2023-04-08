@@ -1,6 +1,5 @@
 package io.github.schntgaispock.gastronomicon.core.items.workstations.automatic;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -178,14 +177,12 @@ public class ElectricKitchen extends AContainer {
         } else {
             found = new Counter<>();
             for (RecipeComponent<?> component : recipe.getInputs().getAll()) {
-                System.out.println("yee");
                 if (component == RecipeComponent.EMPTY) continue;
 
                 boolean matched = false;
                 for (int slot : getInputSlots()) {
                     final ItemStack input = menu.getItemInSlot(slot);
                     if (component.matches(input) && input.getAmount() > found.get(slot)) {
-                        System.out.println("match");
                         matched = true;
                         found.add(slot);
                         break;
@@ -207,12 +204,8 @@ public class ElectricKitchen extends AContainer {
             final ItemStack input = menu.getItemInSlot(pair.first());
             final ItemStack clone = input.asQuantity(pair.second());
             input.subtract(pair.second());
-            System.out.println(clone);
             return clone;
         }).toArray(ItemStack[]::new), new ItemStack[] { recipe.getOutputs()[0] });
-
-        System.out.println(Arrays.toString(newRecipe.getInput()));
-        System.out.println(Arrays.toString(newRecipe.getOutput()));
 
         return newRecipe;
     }

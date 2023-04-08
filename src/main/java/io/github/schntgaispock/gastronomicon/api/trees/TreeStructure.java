@@ -14,6 +14,9 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 
 import io.github.schntgaispock.gastronomicon.Gastronomicon;
 import io.github.schntgaispock.gastronomicon.util.NumberUtil;
+import io.github.schntgaispock.gastronomicon.util.item.HeadTextures;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.skins.PlayerHead;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.skins.PlayerSkin;
 import lombok.Getter;
 import lombok.ToString;
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
@@ -45,7 +48,8 @@ public final class TreeStructure {
     private final String sapling;
     private final String fruit;
     private final String[] palette;
-    private final int[] root; // [x, y, z]
+    private final int[] root; // [x, z]
+    private final String fruitTexture;
 
     public TreeStructure(
         @JsonProperty("blocks") int[][][] blocks,
@@ -59,30 +63,41 @@ public final class TreeStructure {
         this.fruit = fruit;
         this.palette = palette;
         this.root = root;
+
+        this.fruitTexture = switch (fruit) { // how tf do you get texture from an item
+            case "GN_BANANA" -> HeadTextures.BANANA;
+            case "GN_LYCHEE" -> HeadTextures.LYCHEE;
+            case "GN_VANILLA_BEANS" -> HeadTextures.VANILLA;
+            default -> null;
+        };
     }
 
     public void build(Location l, String sapling) {
         final int[][][] structure = getBlocks();
-        final int center[] = getRoot();
+        final int root[] = getRoot();
     
         for (int y = 0; y < structure.length; y++) {
             for (int z = 0; z < structure[0].length; z++) {
                 for (int x = 0; x < structure[0][0].length; x++) {
                     int id = structure[y][z][x];
-                    int newX = l.getBlockX() + x - center[0];
-                    int newY = l.getBlockY() + y - center[1];
-                    int newZ = l.getBlockZ() + z - center[2];
+                    int newX = l.getBlockX() + x - root[0];
+                    int newY = l.getBlockY() + y;
+                    int newZ = l.getBlockZ() + z - root[1];
                     switch (id) {
                         case 0:
                             continue;
                         case 1:
-                            BlockStorage.store(l.getWorld().getBlockAt(newX, newY, newZ), getFruit());
+                            Block b = l.getWorld().getBlockAt(newX, newY, newZ);
+                            b.setType(Material.PLAYER_HEAD);
+                            if (fruitTexture != null) PlayerHead.setSkin(b, PlayerSkin.fromBase64(fruitTexture), false);
+                            BlockStorage.store(b, getFruit());
                             break;
                         default:
-                            Block b = l.getWorld().getBlockAt(newX, newY, newZ);
-                            if (NumberUtil.flip(0.1))
-                                BlockStorage.store(b, sapling);
-                            b.setType(Material.valueOf(getPalette()[id - 2]));
+                            final String palette = getPalette()[id - 2];
+                            Block b2 = l.getWorld().getBlockAt(newX, newY, newZ);
+                            if (palette.endsWith("LEAVES") && NumberUtil.flip(0.1))
+                                BlockStorage.store(b2, sapling);
+                            b2.setType(Material.valueOf(palette));
                     }
                 }
             }

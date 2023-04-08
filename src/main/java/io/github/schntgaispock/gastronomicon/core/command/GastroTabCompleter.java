@@ -1,6 +1,7 @@
 package io.github.schntgaispock.gastronomicon.core.command;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 import org.bukkit.Bukkit;
@@ -8,6 +9,8 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
+
+import io.github.schntgaispock.gastronomicon.core.items.food.GastroFood;
 
 /**
  * Tab completion for the '/gastronomicon' command
@@ -19,7 +22,7 @@ public class GastroTabCompleter implements TabCompleter {
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
 
-        if (!(sender instanceof Player player)) {
+        if (!(sender instanceof final Player player)) {
             return null;
         }
 
@@ -28,56 +31,43 @@ public class GastroTabCompleter implements TabCompleter {
                 break;
 
             case 1:
-                return filter(args[0], "help", "proficiencies", "profile", "skills");
+                return filter(args[0], "help", "profile", "proficiency", "credits");
 
             case 2:
                 switch (args[0]) {
-                    case "skills", "profile", "proficiencies":
-                        final List<String> names = Bukkit.getServer().getOnlinePlayers().stream().map((Player p) -> {
+                    case "skills", "profile":
+                        return Bukkit.getServer().getOnlinePlayers().stream().map((Player p) -> {
                             return p.getName();
-                        }).toList();
-                        names.sort((String s1, String s2) -> s1.compareTo(s2));
-                        return filter(args[1], names);
+                        }).sorted((s1, s2) -> s1.compareTo(s2)).toList();
 
-                    case "set", "modify":
-                        return Arrays.asList("proficiency");
+                    case "proficiency":
+                        return filter(args[1], Arrays.asList("get", "set", "add", "remove"));
 
                     default:
                         break;
                 }
 
             case 3:
-                switch (args[2]) {
-                    case "set":
+                switch (args[0]) {
+                    case "proficiency":
                         switch (args[1]) {
-                            case "proficiency":
+                            case "set", "modify", "remove":
                                 return filter(args[2], nums);
+
+                            case "get":
+                                return GastroFood.getGastroFoodIds().stream()
+                                    .filter(id -> !id.startsWith("GN_PERFECT") && id.contains(args[2]))
+                                    .toList();
 
                             default:
                                 break;
                         }
                         break;
 
-                    case "modify":
-                        if (!args[1].equals("proficiency")) break;
-                        
-                        return filter(args[2], nums);
-
                     default:
                         break;
                 }
-
-            // case 4:
-            //     switch (args[1]) {
-            //         case value:
-                        
-            //             break;
                 
-            //         default:
-            //             break;
-            //     }
-            // TODO: finish tab completion
-
             default:
                 break;
         }
@@ -86,18 +76,11 @@ public class GastroTabCompleter implements TabCompleter {
     }
 
     private List<String> filter(String filter, String... strings) {
-        return filter(filter, Arrays.asList(strings));
+        return Arrays.stream(strings).filter(string -> string.startsWith(filter)).toList();
     }
 
-    // private List<String> filter(String filter, Collection<String> strings) {
-    // return filter(filter, Arrays.asList(strings.toArray(String[]::new)));
-    // }
-
-    private List<String> filter(String filter, List<String> strings) {
-        strings.removeIf((String string) -> {
-            return !string.startsWith(filter);
-        });
-        return strings;
+    private List<String> filter(String filter, Collection<String> strings) {
+        return strings.stream().filter(string -> string.startsWith(filter)).toList();
     }
 
 }

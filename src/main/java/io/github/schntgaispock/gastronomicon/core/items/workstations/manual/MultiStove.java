@@ -29,12 +29,10 @@ public class MultiStove extends GastroWorkstation implements EnergyNetComponent 
 
     @RequiredArgsConstructor
     public enum Temperature {
-        LOW(TEMPERATURE_BUTTON_LOW),
-        MEDIUM(TEMPERATURE_BUTTON_MEDIUM),
-        HIGH(TEMPERATURE_BUTTON_HIGH);
+        LOW(TEMPERATURE_BUTTON_LOW), MEDIUM(TEMPERATURE_BUTTON_MEDIUM), HIGH(TEMPERATURE_BUTTON_HIGH);
 
         private final @Getter ItemStack item;
-        
+
         public @Nullable Temperature next() {
             if (ordinal() == values().length - 1) {
                 return null;
@@ -53,21 +51,21 @@ public class MultiStove extends GastroWorkstation implements EnergyNetComponent 
     }
 
     public static final ItemStack TEMPERATURE_BUTTON_LOW = new CustomItemStack(
-            Material.YELLOW_STAINED_GLASS_PANE,
-            "&7Temperature: &eLOW",
-            "",
-            "&bLeft-click &7to increase");
+        Material.YELLOW_STAINED_GLASS_PANE,
+        "&7Temperature: &eLOW",
+        "",
+        "&bLeft-click &7to increase");
     public static final ItemStack TEMPERATURE_BUTTON_MEDIUM = new CustomItemStack(
-            Material.ORANGE_STAINED_GLASS_PANE,
-            "&7Temperature: &6MEDIUM",
-            "",
-            "&bLeft-click &7to increase",
-            "&bRight-click &7to decrease");
+        Material.ORANGE_STAINED_GLASS_PANE,
+        "&7Temperature: &6MEDIUM",
+        "",
+        "&bLeft-click &7to increase",
+        "&bRight-click &7to decrease");
     public static final ItemStack TEMPERATURE_BUTTON_HIGH = new CustomItemStack(
-            Material.RED_STAINED_GLASS_PANE,
-            "&7Temperature: &cHIGH",
-            "",
-            "&bRight-click &7to decrease");
+        Material.RED_STAINED_GLASS_PANE,
+        "&7Temperature: &cHIGH",
+        "",
+        "&bRight-click &7to decrease");
     public static final int TEMPERATURE_BUTTON_SLOT = 52;
     public static final String TEMPERATURE_KEY = "gastronomicon:multi_stove/temperature";
 
@@ -95,7 +93,7 @@ public class MultiStove extends GastroWorkstation implements EnergyNetComponent 
         menu.addMenuOpeningHandler(player -> {
             final String temp = BlockStorage.getLocationInfo(menu.getLocation(), TEMPERATURE_KEY);
             menu.replaceExistingItem(TEMPERATURE_BUTTON_SLOT,
-                    temp == null ? TEMPERATURE_BUTTON_LOW : Temperature.valueOf(temp).getItem(), false);
+                temp == null ? TEMPERATURE_BUTTON_LOW : Temperature.valueOf(temp).getItem(), false);
         });
 
         menu.addMenuClickHandler(TEMPERATURE_BUTTON_SLOT, (player, slot, item, action) -> {
@@ -126,7 +124,7 @@ public class MultiStove extends GastroWorkstation implements EnergyNetComponent 
     @Override
     @Nullable
     protected GastroRecipe findRecipe(ItemStack[] ingredients, List<ItemStack> containers, List<ItemStack> tools,
-            Player player, BlockMenu menu) {
+        Player player, BlockMenu menu) {
         final GastroRecipe recipe = super.findRecipe(ingredients, containers, tools, player, menu);
         if (recipe instanceof final MultiStoveRecipe msRecipe) {
             if (msRecipe.getTemperature().getItem().isSimilar(menu.getItemInSlot(TEMPERATURE_BUTTON_SLOT))) {
@@ -141,7 +139,17 @@ public class MultiStove extends GastroWorkstation implements EnergyNetComponent 
 
     @Override
     protected int getOtherHash(Player player, BlockMenu menu) {
-        return menu.getItemInSlot(TEMPERATURE_BUTTON_SLOT).getType().ordinal(); // Doesn't have to be a hash, just unique
+        return menu.getItemInSlot(TEMPERATURE_BUTTON_SLOT).getType().ordinal(); // Doesn't have to be a hash, just
+                                                                                // unique
+    }
+
+    @Override
+    protected boolean canCraft(BlockMenu menu, Block b, Player p) {
+        final int charge = getCharge(b.getLocation());
+        if (charge < getEnergyPerUse()) return false;
+
+        setCharge(b.getLocation(), charge - getEnergyPerUse());
+        return true;
     }
 
 }

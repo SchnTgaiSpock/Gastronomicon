@@ -15,25 +15,27 @@ import io.github.thebusybiscuit.slimefun4.core.attributes.MachineProcessHolder;
 import io.github.thebusybiscuit.slimefun4.core.machines.MachineProcessor;
 import io.github.thebusybiscuit.slimefun4.implementation.operations.CraftingOperation;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
+import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
 import lombok.Getter;
+import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.MachineRecipe;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.interfaces.InventoryBlock;
+import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
+import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
 
 @Getter
 @SuppressWarnings("deprecation")
 public class FishingNet extends SlimefunItem implements InventoryBlock, MachineProcessHolder<CraftingOperation> {
 
     public static final int[] BACKGROUND_SLOTS = new int[] {
-        0, 1, 2, 3, 4, 5, 6, 7, 8,
-        9, 10, 11, 17,
-        18, 20, 26,
-        27, 28, 29, 35,
-        36, 37, 38, 39, 40, 41, 42, 43, 44
+        0, 1, 2,
+        9, 11,
+        18, 19, 20
     };
-    public static final int[] OUTPUT_SLOTS = new int[] { 12, 21, 30 };
-    public static final int STATUS_SLOT = 25;
+    public static final int[] OUTPUT_BORDER = new int[] { 3, 12, 21 };
+    public static final int STATUS_SLOT = 10;
     public static final ItemStack[] FISH = {
         GastroStacks.RAW_BASS,
         GastroStacks.RAW_CARP,
@@ -43,6 +45,7 @@ public class FishingNet extends SlimefunItem implements InventoryBlock, MachineP
         GastroStacks.RAW_SQUID,
         GastroStacks.RAW_TROUT,
         GastroStacks.RAW_TUNA,
+        GastroStacks.SHRIMP,
         new ItemStack(Material.COD),
         new ItemStack(Material.SALMON),
         new ItemStack(Material.PUFFERFISH),
@@ -53,7 +56,11 @@ public class FishingNet extends SlimefunItem implements InventoryBlock, MachineP
     private final MachineProcessor<CraftingOperation> machineProcessor = new MachineProcessor<>(this);
     private final ItemStack progressBar = new ItemStack(Material.FISHING_ROD);
     private final int[] inputSlots = new int[0];
-    private final int[] outputSlots = new int[] { 13, 14, 15, 16, 22, 23, 24, 25, 31, 32, 33, 34 };
+    private final int[] outputSlots = new int[] {
+        4, 5, 6, 7, 8,
+        13, 14, 15, 16, 17,
+        22, 23, 24, 25, 26
+    };
     private final int speed;
 
     public FishingNet(SlimefunItemStack item, int speed, ItemStack[] recipe) {
@@ -61,24 +68,39 @@ public class FishingNet extends SlimefunItem implements InventoryBlock, MachineP
 
         this.speed = speed;
         machineProcessor.setProgressBar(progressBar);
+        createPreset(this, this::constructMenu);
     }
 
-    // TODO: Fishing fishing net
-    // @Override 
-    // protected void constructMenu(BlockMenuPreset menu) {
-    //     draw(menu, GastroStacks.MENU_BACKGROUND_ITEM, BACKGROUND_SLOTS);
-    //     draw(menu, GastroStacks.MENU_OUTPUT_BORDER, OUTPUT_SLOTS);
-    //     draw(menu, GastroStacks.MENU_NO_WATER_ABOVE, STATUS_SLOT);
-    // }
+    @Override
+    public void preRegister() {
+        addItemHandler(new BlockTicker() {
 
-    // private void draw(BlockMenuPreset preset, ItemStack item, int... slots) {
-    //     for (int slot : slots) {
-    //         preset.addItem(slot, item, ChestMenuUtils.getEmptyClickHandler());
-    //     }
-    // }
+            @Override
+            public void tick(Block b, SlimefunItem sf, Config data) {
+                FishingNet.this.tick(b);
+            }
+
+            @Override
+            public boolean isSynchronized() {
+                return false;
+            }
+        });
+    }
+
+    protected void constructMenu(BlockMenuPreset menu) {
+        draw(menu, GastroStacks.MENU_BACKGROUND_ITEM, BACKGROUND_SLOTS);
+        draw(menu, GastroStacks.MENU_OUTPUT_BORDER, OUTPUT_BORDER);
+        draw(menu, GastroStacks.MENU_NOT_WATERLOGGED, STATUS_SLOT);
+    }
+
+    private void draw(BlockMenuPreset preset, ItemStack item, int... slots) {
+        for (int slot : slots) {
+            preset.addItem(slot, item, ChestMenuUtils.getEmptyClickHandler());
+        }
+    }
     
     protected MachineRecipe findNextRecipe(BlockMenu menu) {
-        return new MachineRecipe(40 / getSpeed(), new ItemStack[0], new ItemStack[] { CollectionUtil.choice(FISH) });
+        return new MachineRecipe(40 / getSpeed(), new ItemStack[] { new ItemStack(Material.AIR) }, new ItemStack[] { CollectionUtil.choice(FISH) });
     }
 
     protected void tick(Block b) {

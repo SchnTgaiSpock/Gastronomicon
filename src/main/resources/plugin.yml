@@ -34,12 +34,13 @@ permissions:
     checkprofile:
       description: Ability to view your Gastronomicon profile
       default: true
+      op: true
     checkotherprofile:
-      description: Ability to see another player's profile
-      default: true
+      description: Ability to view another player's profile
+      default: false
       op: true
     modifyprofile:
-      description: Ability to change a player's Gastronomicon profile (add proficiencies, skills, etc.)
+      description: Ability to change a player's Gastronomicon profile
       default: false
       op: false
     

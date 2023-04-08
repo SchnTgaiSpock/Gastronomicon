@@ -72,6 +72,11 @@ public class ThemedItemStack extends SlimefunItemStack {
         return of(GastroTheme.INGREDIENT, id, material, name, lore);
     }
 
+    @ParametersAreNonnullByDefault
+    public static ThemedItemStack ingredient(String id, String texture, String name, String... lore) {
+        return of(GastroTheme.INGREDIENT, id, texture, name, lore);
+    }
+
     public ThemedItemStack enchant(Enchantment... enchantments) {
         for (Enchantment enchantment : enchantments) {
             enchant(enchantment, 1);

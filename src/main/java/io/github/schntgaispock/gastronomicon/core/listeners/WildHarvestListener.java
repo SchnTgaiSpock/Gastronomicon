@@ -13,7 +13,9 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
@@ -24,8 +26,6 @@ import io.github.schntgaispock.gastronomicon.Gastronomicon;
 import io.github.schntgaispock.gastronomicon.util.NumberUtil;
 
 public class WildHarvestListener implements Listener {
-
-    // TODO: Fortune, Looting
 
     private static final Map<Material, List<ItemStack>> dropsByBlock = new HashMap<>();
     private static final Map<EntityType, List<ItemStack>> dropsByMob = new HashMap<>();
@@ -77,7 +77,9 @@ public class WildHarvestListener implements Listener {
         final List<ItemStack> drops = getDrops(b.getType());
         if (drops == null) return;
 
-        if (NumberUtil.flip(BLOCK_BREAK_DROP_CHANCE)) {
+        final ItemStack weapon = e.getPlayer().getInventory().getItemInMainHand();
+        final int fortune = weapon == null ? 0 : weapon.getEnchantmentLevel(Enchantment.LOOT_BONUS_BLOCKS);
+        if (NumberUtil.flip(BLOCK_BREAK_DROP_CHANCE + fortune)) {
             final ItemStack drop = drops.get(NumberUtil.getRandom().nextInt(drops.size()));
             e.getBlock().getWorld().dropItemNaturally(e.getBlock().getLocation(), drop);
         }
@@ -88,7 +90,15 @@ public class WildHarvestListener implements Listener {
         final List<ItemStack> drops = getDrops(e.getEntityType());
         if (drops == null) return;
 
-        if (NumberUtil.flip(MOB_KILL_DROP_CHANCE)) {
+        final Player killer = e.getEntity().getKiller();
+        final int looting;
+        if (killer == null || killer.getInventory().getItemInMainHand() == null) {
+            looting = 0;
+        }
+        else {
+            looting = killer.getInventory().getItemInMainHand().getEnchantmentLevel(Enchantment.LOOT_BONUS_MOBS);
+        }
+        if (NumberUtil.flip(MOB_KILL_DROP_CHANCE + looting)) {
             final ItemStack drop = drops.get(NumberUtil.getRandom().nextInt(drops.size()));
             e.getEntity().getWorld().dropItemNaturally(e.getEntity().getLocation(), drop);
         }

@@ -44,7 +44,7 @@
         ]
     ],
     "sapling": "GN_VANILLA_SAPLING",
-    "fruit": "GN_VANILLA",
+    "fruit": "GN_VANILLA_BEANS",
     "palette": [
         "SPRUCE_LOG",
         "ACACIA_LEAVES"

@@ -75,7 +75,7 @@ public class FoodItemStack extends SlimefunItemStack {
     private static String[] getFormattedLore(boolean isPerfect, int hunger, FoodEffect[] effects, String[] lore) {
         final List<String> fLore = new LinkedList<String>();
 
-        fLore.add(LoreBuilder.hunger(hunger));
+        fLore.add(LoreBuilder.hunger(hunger / 2.0));
 
         if (effects != null && effects.length > 0) {
             fLore.add("");

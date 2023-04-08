@@ -13,21 +13,15 @@ public class TreeGrowthListener implements Listener {
 
     @EventHandler
     public void onTreeGrow(StructureGrowEvent e) {
-        System.out.println("grow");
         final String sapling = BlockStorage.checkID(e.getLocation());
         if (sapling == null) return;
-        System.out.println("sf");
 
-        System.out.println(sapling);
         final TreeStructure tree = TreeStructure.getLoadedTrees().get(sapling);
         if (tree == null) return;
-        System.out.println("tree");
-        System.out.println(tree);
 
         e.setCancelled(true);
         BlockStorage.clearBlockInfo(e.getLocation(), true);
         try {
-            System.out.println("grow2");
             tree.build(e.getLocation(), sapling);
         } catch (NullPointerException | IllegalArgumentException err) {
             err.printStackTrace();

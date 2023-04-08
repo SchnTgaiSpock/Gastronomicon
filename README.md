@@ -28,4 +28,4 @@ API documentation can be found on the wiki at <https://github.com/SchnTgaiSpock/
 
 ## Credits
 
-Some head textures were taken and/or modified from [headdb.org](https://headdb.org/)
+Some head textures were taken and/or modified from [minecraft-heads.com](https://minecraft-heads.com/) and [headdb.org](https://headdb.org/)

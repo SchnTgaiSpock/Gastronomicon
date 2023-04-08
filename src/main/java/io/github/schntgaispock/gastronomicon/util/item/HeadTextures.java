@@ -2,17 +2,27 @@ package io.github.schntgaispock.gastronomicon.util.item;
 
 import lombok.experimental.UtilityClass;
 
+/**
+ * Some head textures were taken and/or modified from [minecraft-heads.com](https://minecraft-heads.com/) and [headdb.org](https://headdb.org/)
+ * 
+ * Links to the texture have been provided next to the appropriate heads
+ */
 @UtilityClass
 public class HeadTextures {
     
-    public static final String NONE = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzFmNDc3ZWIxYTdiZWVlNjMxYzJjYTY0ZDA2ZjhmNjhmYTkzYTMzODZkMDQ0NTJhYjI3ZjQzYWNkZjFiNjBjYiJ9fX0="; 
+    // Placeholder
+    public static final String NONE = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzFmNDc3ZWIxYTdiZWVlNjMxYzJjYTY0ZDA2ZjhmNjhmYTkzYTMzODZkMDQ0NTJhYjI3ZjQzYWNkZjFiNjBjYiJ9fX0=";
+
+    public static final String BANANA = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMmYwZWE5YWNjOTdjOTg3YWI0NWQxNjZhYTdkZmU0ZGRiMjNhYjY1M2EwNjllYmJjYzQxZjYzY2Y0YTZlZjQ0MSJ9fX0="; // https://minecraft-heads.com/custom-heads/plants/39312-banana-bunch
+    public static final String LYCHEE = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzQ4MGFkY2EzYjlkNTY3ZTI0NWJkOGRjYzY2ODY5ZjhmYTA4Nzk3MjhhOTllNzAxYTIxYTFlMTM5NzI2MDE1ZCJ9fX0="; // https://minecraft-heads.com/custom-heads/plants/52707-red-currant
+    public static final String VANILLA = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDQ4ZmFhMzkwYjFiZjM1NjExZTZiY2EwOGM3NjAwMTdiNDlmOWI0Y2UwMzE2YmNiYmM0MGNiMGZiMGM4NWYwMSJ9fX0==";
     public static final String SANDWICH_RED_OCHRE = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZTEwNWQwYmEyMGM3ZjM4YmE1Njc2NjkwYTE0MTI1YTQxYjBkZTJlYzk4NDg5YzRiMmY3ZTY1NjE0NGI5ZGJmNCJ9fX0=";
     public static final String SANDWICH_RED_GREEN = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTQ5NjU4OWZiNWMxZjY5Mzg3YjdmYjE3ZDkyMzEyMDU4ZmY2ZThlYmViM2ViODllNGY3M2U3ODE5NjExM2IifX19";
     public static final String SANDWICH_ORANGE = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYmFlZTg0ZDE5Yzg1YWZmNzk2Yzg4YWJkYTIxZWM0YzkyYzY1NWUyZDY3YjcyZTVlNzdiNWFhNWU5OWVkIn19fQ==";
     public static final String SANDWICH_WHITE_GREEN = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZWE0OTkxZGQ0MjFhMDlmNjBiMGU4MzhmYmQwM2MwYzFkZDBmZTFiMThiMTQzM2NkOTgwM2QwZDk1MWY4YjI5MCJ9fX0=";
-    public static final String TOAST_ORANGE = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNGJhMjRhMTZhNTZhZGFiODAwYzhhYzE4MmE2MWJmMGQzMjI0MDRjN2M0MjY4YjhlZjljMzlhZTc2MWY5NWE3YiJ9fX0=";
-    public static final String TOAST_GREEN = "";
-    public static final String SALAD = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMWZlOTJlMTFhNjdiNTY5MzU0NDZhMjE0Y2FhMzcyM2QyOWU2ZGI1NmM1NWZhOGQ0MzE3OWE4YTMxNzZjNmMxIn19fQ==";
+    public static final String TOAST_ORANGE = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjg5MjJjODQyM2QyODExODQwZjU2Yjc1YzQ1M2FlM2UyYmIzN2ZhMWQ3ZDIzNDhhNWVmOWI0NDU2YzM1ODIxYyJ9fX0="; // https://minecraft-heads.com/custom-heads/food%20&%20drinks/14864-bread
+    public static final String TOAST_GREEN = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMGU4M2U2NWIyZjc3YjdkZTlmNDNmYjdjNWM3YTY1MzQ2YzhlNTY4NmVmMTUxMGEyMjlkYTdmNjI1Mzc1In19fQ=="; // https://minecraft-heads.com/custom-heads/food%20&%20drinks/14867-bread
+    public static final String SALAD = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMWZlOTJlMTFhNjdiNTY5MzU0NDZhMjE0Y2FhMzcyM2QyOWU2ZGI1NmM1NWZhOGQ0MzE3OWE4YTMxNzZjNmMxIn19fQ=="; // https://headdb.org/details/0656081e-99bd-3524-b6ab-de9799010d96
     public static final String PASTA_RED = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzgyZWM5N2IyYjU0MDRkYTk0YzhkZWNmODUzMGY1NDhlMDI0MDk0YjRkOWUwYjcxOGUxYjZlMzVlNDhkZmY1MyJ9fX0=";
     public static final String PASTA_GREEN = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZGZlZWQyYTRmNTcyZDcxZTkyMDE2NDIwODRiZjIyMzk2ZjM3ZGFmNTE1Zjc4YzM3MTg1ODc4ZjFkNDYyMjNmZCJ9fX0=";
     public static final String PASTA_BLACK = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmMxNGY5YmVjNzc1ZWFiMDk5ODU2ZmRlNjY5ZDBjZWViZWMzMTY4YzkxYjViMmY0OTMyMjA0NWM4MjQyZjI0ZSJ9fX0=";
@@ -25,35 +35,32 @@ public class HeadTextures {
     public static final String RICE_BROWN = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvN2RkYWUzNTg3OWJlYWI3ODdmZGNmNmE0MTU5NmE0NWE2NmY5OTZkNjVjOWQ1MTRjNmE1MGRjYWI4OGE4MjZhMiJ9fX0=";
     public static final String RICE_PINK = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvM2YxNzQ1NThiNmQyZWM4YTY0NGJlMzg4YTQ1MTM3YjNjZjM3MGJjOGRiOTRiYzVmNTliNDFjZWM2MmIxMGVlNyJ9fX0=";
     public static final String RICE_YELLOW = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZGY3MTM1ZTRhMWI5NGZiZjFlYzc3NDhjZjlmZDFhYmE3YmU2NGFhZGUyN2M1NGQ4MjUwYjc3ODlkMjQzYTcwNiJ9fX0=";
-    public static final String RICE_BALLS = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjljMmRkZjJiZDc0YTQ2NTVlOGYwMTUzYTc0NTNlNjdkYjJhMjFkYmZhYzY3NTY3ODk0ODFhZGJlYzQ4M2EifX19";
+    public static final String RICE_BALL = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjljMmRkZjJiZDc0YTQ2NTVlOGYwMTUzYTc0NTNlNjdkYjJhMjFkYmZhYzY3NTY3ODk0ODFhZGJlYzQ4M2EifX19"; // https://minecraft-heads.com/custom-heads/food%20&%20drinks/4203-onigiri-rice-ball
     public static final String UDON = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjJlOGMzNjNjOGZlNzU5MzlhMmRmMzY5OWYzZDFkMDg5M2Q3NjAyMWVmMTdiN2VkZTQ4OWY3MzRhYWQyYjczZiJ9fX0=";
     public static final String NOODLES = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvY2UyMzUwYzI2OTc5NzY1Yzk3YmVmZWM5OWEwMTFiYjYwNWZiMTI3OWNmNzU0NTU1OWU5ZjNjZjJjYTZjMmJhNyJ9fX0=";
-    public static final String DUMPLINGS = "";
-    public static final String POTSTICKERS = "";
-    public static final String PIEROGIES = "";
+    public static final String DUMPLINGS = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMWFmMTVjZTMwODVhZmY3ZmNhYzI2MmM0MjI2MWIzYTU4NDEzZmI4ODFkYWY0ZjUwYTBiMmVhMTVmMGM0YjM2YiJ9fX0="; // https://minecraft-heads.com/custom-heads/food%20&%20drinks/23065-dumpling
     public static final String SUSHI_ROLL = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMmUxMmYyNjc5NTNlNzZhZTY2YThkZDAyNWEzMjg2YWVjYmM2NGI0YWQ5OGVlYjEwYjNjNjdhNjlhYWUxNSJ9fX0=";
-    public static final String IKURA_ROLL = "";
-    public static final String LASAGNA = "";
-    public static final String CASSEROLE = "";
-    public static final String MUFFIN = "";
-    public static final String ICE_CREAM_WHITE = "";
-    public static final String ICE_CREAM_BROWN = "";
-    public static final String ICE_CREAM_GREEN = "";
-    public static final String ICE_CREAM_OCHRE = "";
-    public static final String ICE_CREAM_PINK = "";
-    public static final String ICE_CREAM_PURPLE = "";
-    public static final String ICE_CREAM_BLUE = "";
-    public static final String ICE_CREAM_YELLOW = "";
-    public static final String ICE_CREAM_ORANGE = "";
+    public static final String IKURA_ROLL = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjNjYTNmOTI2ZTdhOWFiOTU1NWZlY2I2OWE4MDI3NDNjMTIyZDllZmM1NjVhMmZlNTU0NTExOGZhOTFkMSJ9fX0="; // https://minecraft-heads.com/custom-heads/food%20&%20drinks/25440-sushi
+    public static final String GLUTINOUS_RICE_BALLS = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTA2ZTZkODNjZjdlZDVjZjdiZjBlMDE4ZWNiNjAzOWIwNDZkOGRjNmRiNTU2OTAxNGZjYWIzN2I2MTdmMTM5OSJ9fX0="; // https://minecraft-heads.com/custom-heads/decoration/34730-balloon-white
+    public static final String CASSEROLE = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTA4NTk2NzUyZGU0MWYyMGY0ZTkxMzFkNTQxZDBjNDA2NGU0MGRkYzIyMWY2YjJhNGNjYmIyOWQ4ZDU1NDgyYyJ9fX0="; // https://minecraft-heads.com/custom-heads/food%20&%20drinks/55275-cheese-puff
+    public static final String MUFFIN = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOWQyYzRhNmRhNjk4OTc3Yjg1OWI2OTc2OWQ2MzQ0ZmRhZDc0YjUyYWI3NzUyZDc1NWU1N2NmOGE4MmViZGYifX19"; // https://minecraft-heads.com/custom-heads/food%20&%20drinks/11476-muffin
+    public static final String ICE_CREAM_WHITE = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNGJkYzU1ZTVkM2M2ZWM1NzhjZDdlMGNkMGUwZWM5ZjM3MDIxYzhiNGI2OTZkZTFkOTVkY2U3YTc2N2RkZmMwYSJ9fX0="; // https://minecraft-heads.com/custom-heads/food%20&%20drinks/59680-sundae-white
+    public static final String ICE_CREAM_BROWN = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjg5NTM3YzIwZmZhNTNjMzg2ZTQwMThkMzU0N2Q5MDUyNzZiOTY1MmRjMTU3NTA3ZWY5NGNjYTk4NjFhZmRmZSJ9fX0="; // https://minecraft-heads.com/custom-heads/food%20&%20drinks/59676-sundae-brown
+    public static final String ICE_CREAM_RED = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYThkYTMxOGVmY2M3NWZlZGEwOTUwMGRmNGZhNjFjYTdjZTAwNjQ2YjcxYmM5NTAwODFhOTU0ZGQ4YzhmMTQ0ZSJ9fX0="; // https://minecraft-heads.com/custom-heads/food%20&%20drinks/59675-sundae-red
+    public static final String ICE_CREAM_GREEN = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZTUzNDhhYjZlZWRjM2M3NmJmNzFkNDM5NWYwNjA3ODI5ODM1YWM4YjRkYzM3YWIzMWQyMjkzMWFkMjU1ZTQ1NCJ9fX0="; // https://minecraft-heads.com/custom-heads/food%20&%20drinks/59672-sundae-lime
+    public static final String ICE_CREAM_PINK = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvM2M2MzAzZDY2ZGNlODJhMTc3YWI4ZmJhNzYyYzY3MDYzNWQyMzlhNDhkN2Q5MWE3MGE1Njc0NjdkNTQzMGIxMiJ9fX0="; // https://minecraft-heads.com/custom-heads/food%20&%20drinks/59665-sundae-pink
+    public static final String ICE_CREAM_PURPLE = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNGZjOGVmOTE1MGI1OGZlODkzMGY1YmUzYzQ4ZTIwOWE5YjViYjI3ZGM5YmZhZmU2NDVkMjRiNDkxYTU4OGU2YSJ9fX0="; // https://minecraft-heads.com/custom-heads/food%20&%20drinks/59667-sundae-purple
+    public static final String ICE_CREAM_BLUE = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMmRkZWFjZjYyMjg4OGI4YTZmMzJkYmEyODM5NjMzODkwYTAwZDc1MjZiZWZjMDU3NzgzMjZmYzFhY2U5Nzg5MyJ9fX0="; // https://minecraft-heads.com/custom-heads/food%20&%20drinks/59668-sundae-blue
+    public static final String ICE_CREAM_YELLOW = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDJjMTJhMmVjODk5MGFhZDg2MTI1MGIxNGMxYjI2ZDc3ZjVkNDhmNDQ1M2QyOTVkNGZjZWZmNzEzYzRjOWY0MiJ9fX0="; // https://minecraft-heads.com/custom-heads/food%20&%20drinks/59673-sundae-yellow
+    public static final String ICE_CREAM_ORANGE = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDA4OWQxN2IwZWE3MTI5MDFlMWVkMzYwZjMxM2E3YmE5ZmMzN2RiNGY1ZGU5ZTI3Y2FjN2Y4MGIxMzgyYzAzYiJ9fX0="; // https://minecraft-heads.com/custom-heads/food%20&%20drinks/59674-sundae-orange
     public static final String SHAVED_ICE = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZGZkMGRjOTIyNmFiOGIyOWY3NmY3MzViOTRiZDdjNmJhMDEyZTQ0N2EzOGIyMDE1ODVlNzJkYWQ4NTI5OGMxYiJ9fX0=";
     public static final String STRAWBERRY_SHAVED_ICE = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYmQ5ZmYzYjk1ZGEyOWE4MTQxZWUxODFlOWFjMjFiMWYyMTIxYzRjNGU5ZDM3MDQ0YTc3NjZmZGQwYzk2ZCJ9fX0=";
     public static final String LEMON_SHAVED_ICE = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYWJhMjYwYWUzMjIzMzIzMDQ5ODg5ZjEzODlkODQ3NjVlOGU4OGFmYmQ4MzkxYjA5ZjFiZWI1OTMxYzQ0MzM5In19fQ==";
-    public static final String CANDY_APPLE = "";
-    public static final String DONUT = "";
-    public static final String DONUT_GOLD = "";
-    public static final String DONUT_PINK = "";
-    public static final String CHEESECAKE = "";
-    public static final String CUPCAKE = "";
-    public static final String BOBA_BROWN = "";
-
+    public static final String CANDY_APPLE = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZTJiMzViZGE1ZWJkZjEzNWY0ZTcxY2U0OTcyNmZiZWM1NzM5ZjBhZGVkZjAxYzUxOWUyYWVhN2Y1MTk1MWVhMiJ9fX0="; // https://minecraft-heads.com/custom-heads/plants/450-apple
+    public static final String DONUT_PINK = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTM1NzJhMWJhMDY2MzI0NWQ1N2JjMTQ2Yjk3OWU5MWMwN2EwMmExYzg5YWQzZjg3NTFiYWZlMmFiMTg4NjQ0In19fQ=="; // https://minecraft-heads.com/custom-heads/food%20&%20drinks/50702-donut-pink
+    public static final String DONUT_GOLD = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZGY1OTI1ZWQ1MDM2MWY5Yjc5MWRkMDgyODkxMTE4ZTYwYjljM2ZhZWQ2Nzc1MDQ5ZmYyOTM4YmU4MTMxMDQ1MSJ9fX0="; // https://minecraft-heads.com/custom-heads/food%20&%20drinks/40165-glazed-donut
+    public static final String DONUT_BROWN = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTlkYTU0ZmYzNjZlNzM4ZTMxZGU5MjkxOTk4NmFiYjRkNTBjYTk0NGZhOTkyNmFmNjM3NThiNzQ0OGYxOCJ9fX0="; // https://minecraft-heads.com/custom-heads/food%20&%20drinks/27-donut-chocolate
+    public static final String CHEESECAKE = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMmQ1YjI5ODg4ZjFmZGZiNTIxNzA5NWFiOTFjMjhhMTgyOGIxNGViNDIzNTQzNWI2ODI3NzFhMmY3YTQxYmRhNiJ9fX0="; // https://minecraft-heads.com/custom-heads/food%20&%20drinks/51324-cake    
+    public static final String CUPCAKE = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTk3YTdiMDFiNjUyNjk0ZmYzZDMzMjI3M2E2MGVjMTRhZDk0NGY5ZWJlYzAxYmVkZWVmNmU5YjEyOGQxOTdlZCJ9fX0="; // https://minecraft-heads.com/custom-heads/food%20&%20drinks/59957-strawberry-shortcake-cupcake-red
+    public static final String POPPED_SORGHUM = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvY2M5Y2M5YjU0OTcyODRjYTc1YTBjMGE2NzExMzE2MjUxZmI3YzYzYjcyODI5MDhiZmZlNjI1N2RkYzM0MSJ9fX0="; // https://minecraft-heads.com/custom-heads/food%20&%20drinks/1740-popcorn
 }

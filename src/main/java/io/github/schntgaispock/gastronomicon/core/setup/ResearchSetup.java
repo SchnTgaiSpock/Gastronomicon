@@ -61,6 +61,7 @@ public class ResearchSetup {
                 GastroStacks.REINFORCED_SICKLE)
             .register();
         GastroResearch.RAW_INGREDIENTS.register();
+        GastroResearch.PROCESSED_INGREDIENTS.register();
         GastroResearch.FOOD.register();
     }
 

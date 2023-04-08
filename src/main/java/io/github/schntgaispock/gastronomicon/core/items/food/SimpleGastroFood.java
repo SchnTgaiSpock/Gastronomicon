@@ -1,6 +1,5 @@
 package io.github.schntgaispock.gastronomicon.core.items.food;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -106,34 +105,34 @@ public class SimpleGastroFood extends UnplaceableItem implements RecipeDisplayIt
     @Override
     @Nonnull
     public List<ItemStack> getDisplayRecipes() {
-        final List<ItemStack> display = new ArrayList<ItemStack>();
-        display.add(GastroStacks.GUIDE_TOOLS_REQUIRED);
-        display.add(GastroStacks.GUIDE_CONTAINER_REQUIRED);
+        final ItemStack[] display = new ItemStack[18];
+        display[0] = GastroStacks.GUIDE_TOOLS_REQUIRED;
+        display[1] = GastroStacks.GUIDE_CONTAINER_REQUIRED;
 
         final ItemStack[] tools = getGastroRecipe().getTools().toArray(ItemStack[]::new);
         final ItemStack container = getGastroRecipe().getInputs().getContainer().getDisplayItem();
 
         if (CollectionUtil.isEmpty(tools)) {
-            display.add(GastroStacks.GUIDE_NONE);
+            display[2] = GastroStacks.GUIDE_NONE;
         } else {
-            display.add(tools[0]);
+            display[2] = tools[0];
         }
 
         if (container == null || container.getType() == Material.AIR) {
-            display.add(GastroStacks.GUIDE_NONE);
+            display[3] = GastroStacks.GUIDE_NONE;
         } else {
-            display.add(container);
+            display[3] = container;
         }
 
         for (int i = 1; i < tools.length; i++) {
-            display.add(tools[i]);
-            display.add(new ItemStack(Material.AIR));
+            display[2 + 2*i] = tools[i];
+            display[3 + 2*i] = new ItemStack(Material.AIR);
         }
 
-        display.set(16, topRightDisplayItem);
-        display.set(17, getGastroRecipe().getInputs().getShapedness().getGuideItem());
+        display[16] = topRightDisplayItem;
+        display[17] = getGastroRecipe().getInputs().getShapedness().getGuideItem();
 
-        return display;
+        return Arrays.asList(display);
     }
 
 }

@@ -17,6 +17,7 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
+import io.github.mooy1.infinitylib.core.AddonConfig;
 import io.github.mooy1.infinitylib.machines.MenuBlock;
 import io.github.schntgaispock.gastronomicon.Gastronomicon;
 import io.github.schntgaispock.gastronomicon.api.events.PlayerGastroFoodCraftEvent;
@@ -100,6 +101,9 @@ public abstract class GastroWorkstation extends MenuBlock {
         super.onNewInstance(menu, b);
 
         menu.addMenuClickHandler(CRAFT_BUTTON_SLOT, (player, slot, item, action) -> {
+            if (!canCraft(menu, b, player))
+                return false;
+
             // Check if there is a free slot to craft
             Integer freeSlot = null;
             for (int s : getOutputSlots()) {
@@ -110,9 +114,8 @@ public abstract class GastroWorkstation extends MenuBlock {
                 }
             }
 
-            if (freeSlot == null) {
+            if (freeSlot == null)
                 return false;
-            }
 
             // Get the items in the menu
             final ItemStack[] ingredients = Arrays.stream(getInputSlots()).mapToObj(s -> {
@@ -155,7 +158,6 @@ public abstract class GastroWorkstation extends MenuBlock {
                 } else if (lastInputHashAndRecipe.containsKey(menu.getLocation())) {
                     lastInputHashAndRecipe.get(menu.getLocation()).first(hash);
                     lastInputHashAndRecipe.get(menu.getLocation()).second(recipe);
-                    // TODO: save hashes in RecipeRegistry
                 } else {
                     lastInputHashAndRecipe.put(menu.getLocation(), new Pair<>(hash, recipe));
                 }
@@ -165,7 +167,8 @@ public abstract class GastroWorkstation extends MenuBlock {
             // Call the event
             final PlayerGastroFoodCraftEvent craftEvent = new PlayerGastroFoodCraftEvent(player, recipe);
             if (!craftEvent.callEvent()) {
-                if (craftEvent.getMessage() != null) Gastronomicon.sendMessage(player, Component.text(craftEvent.getMessage()));
+                if (craftEvent.getMessage() != null)
+                    Gastronomicon.sendMessage(player, Component.text(craftEvent.getMessage()));
                 return false;
             }
 
@@ -173,8 +176,13 @@ public abstract class GastroWorkstation extends MenuBlock {
             final ItemStack output;
             final ItemStack[] toReturn;
             if (recipeOutputs.length > 1 && recipeOutputs[0] instanceof final SlimefunItemStack sfItem) {
-                final double proficiency = Gastronomicon.getInstance().getPlayerData()
-                    .getInt(player.getUniqueId() + ".proficiencies." + sfItem.getItemId(), 0);
+                final AddonConfig playerData = Gastronomicon.getInstance().getPlayerData();
+                final String proficiencyPath = player.getUniqueId() + ".proficiencies." + sfItem.getItemId();
+                final double proficiency = playerData.getInt(proficiencyPath, 0);
+
+                // Add 1 to proficiency
+                playerData.set(proficiencyPath, proficiency + 1);
+
                 final double perfectProbabilityMultipliers = 1;
                 final double perfectProbability = NumberUtil.clamp(
                     NumberUtil.clamp(0, proficiency / 864, 0.25) * perfectProbabilityMultipliers,
@@ -214,7 +222,8 @@ public abstract class GastroWorkstation extends MenuBlock {
             });
             for (final int containerSlot : getContainerSlots()) {
                 final ItemStack i = menu.getItemInSlot(containerSlot);
-                if (i != null && hashRecipePair.second() != null && hashRecipePair.second().getInputs().getContainer().matches(i)) {
+                if (i != null && hashRecipePair.second() != null
+                    && hashRecipePair.second().getInputs().getContainer().matches(i)) {
                     i.subtract();
                     break;
                 }
@@ -224,6 +233,20 @@ public abstract class GastroWorkstation extends MenuBlock {
         });
 
     }
+
+    /**
+     * Check for basic crafting eligibility, like enough energy/water
+     * 
+     * @param menu
+     *            The current menu
+     * @param b
+     *            The workstation block
+     * @param p
+     *            The player trying to craft
+     * @return Whether or not the player can craft something in this workstation.
+     *         Do not check for recipes here
+     */
+    protected abstract boolean canCraft(BlockMenu menu, Block b, Player p);
 
     @Nullable
     @ParametersAreNonnullByDefault
@@ -245,6 +268,8 @@ public abstract class GastroWorkstation extends MenuBlock {
         return null;
     }
 
-    protected int getOtherHash(Player player, BlockMenu menu) { return 0; }
+    protected int getOtherHash(Player player, BlockMenu menu) {
+        return 0;
+    }
 
 }

@@ -9,5 +9,6 @@ import lombok.experimental.UtilityClass;
 public class GastroKeys {
     
     public static final NamespacedKey CHEF_ANDROID_FOOD = Gastronomicon.key("chef-android/food");
+    public static final NamespacedKey FERMENTER_WATER = Gastronomicon.key("fermenter/water");
 
 }
