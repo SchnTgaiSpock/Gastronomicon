@@ -13,15 +13,15 @@ version: ${project.version}
 api-version: 1.16
 
 depend:
-- Slimefun
+  - Slimefun
 
 softdepend:
-- SlimeHUD
-- ExoticGarden
-- DynaTech # For automation
+  - SlimeHUD
+  - ExoticGarden
+  - DynaTech # For automation
 
 loadbefore:
-- SlimeCustomizer
+  - SlimeCustomizer
 
 commands:
   gastronomicon:
@@ -43,4 +43,3 @@ permissions:
       description: Ability to change a player's Gastronomicon profile
       default: false
       op: false
-    

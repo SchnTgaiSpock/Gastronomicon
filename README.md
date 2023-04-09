@@ -23,8 +23,10 @@ API documentation can be found on the wiki at <https://github.com/SchnTgaiSpock/
 
 ## Changelog
 
-<!-- ### Version 1.0.0 -->
-- WIP
+### Version 0.1.0
+
+- First Beta release
+- First API release
 
 ## Credits
 
