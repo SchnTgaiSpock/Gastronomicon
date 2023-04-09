@@ -12,7 +12,7 @@ For more gameplay details, please see the Wiki at <https://github.com/SchnTgaiSp
 
 - Paper (or its forks)
 - Slimefun DEV 1040 (RC 33) or higher
-- Minecraft 1.19+
+- Minecraft 1.17+
 - Java 16+
 
 *Exotic Garden is not required but heavily recommended!*
