@@ -5,11 +5,14 @@ import javax.annotation.Nonnull;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.Sound;
+import org.bukkit.SoundCategory;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.data.Directional;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockFromToEvent;
 import org.bukkit.event.block.BlockGrowEvent;
 import org.bukkit.inventory.ItemStack;
 
@@ -68,6 +71,21 @@ public class SeedListener implements Listener {
             seed.getHarvestDrops(e.getBlock().getState(), new ItemStack(Material.AIR), false).forEach(
                 drop -> e.getBlock().getWorld().dropItemNaturally(e.getBlock().getLocation(), drop));
             BlockStorage.clearBlockInfo(e.getBlock().getLocation(), false);
+        }
+    }
+
+    @EventHandler
+    public void onLiquidCropDestroy(BlockFromToEvent e) {
+        final Block b = e.getToBlock();
+        final AbstractSeed seed = getGastroSeed(b);
+
+        if (seed != null) {
+            e.setCancelled(true); // too bad there is no way to cancel drops!
+            b.getWorld().playSound(b.getLocation(), Sound.BLOCK_CROP_BREAK, SoundCategory.BLOCKS, 1, 1);
+            seed.getHarvestDrops(e.getBlock().getState(), new ItemStack(Material.AIR), false).forEach(
+                drop -> e.getBlock().getWorld().dropItemNaturally(e.getBlock().getLocation(), drop));
+            b.setType(Material.AIR);
+            BlockStorage.clearBlockInfo(b, true);
         }
     }
 
