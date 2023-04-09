@@ -13,6 +13,7 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.attributes.MachineProcessHolder;
 import io.github.thebusybiscuit.slimefun4.core.machines.MachineProcessor;
+import io.github.thebusybiscuit.slimefun4.implementation.handlers.SimpleBlockBreakHandler;
 import io.github.thebusybiscuit.slimefun4.implementation.operations.CraftingOperation;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
@@ -83,6 +84,16 @@ public class FishingNet extends SlimefunItem implements InventoryBlock, MachineP
             @Override
             public boolean isSynchronized() {
                 return false;
+            }
+        });
+
+        addItemHandler(new SimpleBlockBreakHandler() {
+            @Override
+            public void onBlockBreak(Block b) {
+                final BlockMenu inv = BlockStorage.getInventory(b);
+                if (inv != null)
+                    inv.dropItems(b.getLocation(), getOutputSlots());
+                machineProcessor.endOperation(b);
             }
         });
     }

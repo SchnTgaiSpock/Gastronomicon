@@ -180,8 +180,8 @@ public class GastroStacks {
         "&aClick to train");
     public static final ItemStack MENU_INPUT_BORDER = new CustomItemStack(Material.BLUE_STAINED_GLASS_PANE,
         "&9Input");
-    public static final ItemStack MENU_ANDROID_BORDER = new CustomItemStack(Material.CYAN_STAINED_GLASS_PANE,
-        "&3Android");
+    public static final ItemStack MENU_ANDROID_BORDER = new CustomItemStack(Material.LIGHT_BLUE_STAINED_GLASS_PANE,
+        GastroTheme.ELECTRIC.getColor() + "Chef Android");
     public static final ItemStack MENU_NOT_ENOUGH_ENERGY = new CustomItemStack(Material.RED_STAINED_GLASS_PANE,
         "&cNot enough energy");
     public static final ItemStack MENU_NO_ANDROID = new CustomItemStack(Material.RED_STAINED_GLASS_PANE,

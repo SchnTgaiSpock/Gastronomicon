@@ -1,7 +1,9 @@
 package io.github.schntgaispock.gastronomicon.core.items.workstations.automatic;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Consumer;
 
 import javax.annotation.Nonnull;
 
@@ -28,9 +30,11 @@ import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockBreakHandler;
 import io.github.thebusybiscuit.slimefun4.core.machines.MachineProcessor;
 import io.github.thebusybiscuit.slimefun4.core.networks.energy.EnergyNetComponentType;
+import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.handlers.SimpleBlockBreakHandler;
 import io.github.thebusybiscuit.slimefun4.implementation.operations.CraftingOperation;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
 import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
 import lombok.Getter;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ClickAction;
@@ -40,6 +44,8 @@ import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.MachineRecip
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
+import me.mrCookieSlime.Slimefun.api.inventory.DirtyChestMenu;
+import me.mrCookieSlime.Slimefun.api.item_transport.ItemTransportFlow;
 
 @Getter
 @SuppressWarnings("deprecation")
@@ -73,6 +79,50 @@ public class ElectricKitchen extends AContainer {
         setEnergyConsumption(energyConsumption);
         setProcessingSpeed(speed);
         machineProcessor.setProgressBar(progressBar);
+    }
+
+    @Override
+    public void createPreset(SlimefunItem item, String title, Consumer<BlockMenuPreset> setup) {
+        new BlockMenuPreset(item.getId(), title) { // Modified from InventoryBlock
+
+            @Override
+            public void init() {
+                setup.accept(this);
+            }
+
+            @Override
+            public int[] getSlotsAccessedByItemTransport(ItemTransportFlow flow) {
+                if (flow == ItemTransportFlow.INSERT) {
+                    return getInputSlots();
+                } else {
+                    return getOutputSlots();
+                }
+            }
+
+            @Override
+            public int[] getSlotsAccessedByItemTransport(DirtyChestMenu menu, ItemTransportFlow flow, ItemStack item) {
+                if (flow == ItemTransportFlow.INSERT) {
+                    final int[] slots = Arrays.stream(getInputSlots())
+                        .mapToObj(slot -> new Pair<>(slot, menu.getItemInSlot(slot))) // get pairs of (slot, item in slot)
+                        .filter(pair -> pair.second() != null && pair.second().getType() == item.getType()) // get all the slots/items which are the same type as the requested item
+                        .mapToInt(pair -> pair.first()) // return only those slots
+                        .toArray();
+
+                    return slots.length == 0 ? getInputSlots() : slots; // length of 0 means the item isn't in the current input slots
+                } else {
+                    return getOutputSlots();
+                }
+            }
+
+            @Override
+            public boolean canOpen(Block b, Player p) {
+                if (p.hasPermission("slimefun.inventory.bypass")) {
+                    return true;
+                } else {
+                    return item.canUse(p, false) && Slimefun.getProtectionManager().hasPermission(p, b.getLocation(), Interaction.INTERACT_BLOCK);
+                }
+            }
+        };
     }
 
     @Override
@@ -140,19 +190,19 @@ public class ElectricKitchen extends AContainer {
     protected MachineRecipe findNextRecipe(BlockMenu menu) {
         final ItemStack android = menu.getItemInSlot(ANDROID_SLOT);
         if (android == null) {
-            menu.addItem(STATUS_SLOT, GastroStacks.MENU_NO_ANDROID);
+            menu.replaceExistingItem(STATUS_SLOT, GastroStacks.MENU_NO_ANDROID);
             return null;
         }
 
         final String foodId = android.getItemMeta().getPersistentDataContainer().get(GastroKeys.CHEF_ANDROID_FOOD,
             PersistentDataType.STRING);
         if (foodId == null) {
-            menu.addItem(STATUS_SLOT, GastroStacks.MENU_NO_ANDROID);
+            menu.replaceExistingItem(STATUS_SLOT, GastroStacks.MENU_NO_ANDROID);
             return null;
         }
         final SlimefunItem food = SlimefunItem.getById(foodId);
         if (food == null || !(food instanceof final SimpleGastroFood gastroFood)) {
-            menu.addItem(STATUS_SLOT, GastroStacks.MENU_NO_ANDROID);
+            menu.replaceExistingItem(STATUS_SLOT, GastroStacks.MENU_NO_ANDROID);
             return null;
         }
 
@@ -189,7 +239,7 @@ public class ElectricKitchen extends AContainer {
                     }
                 }
                 if (!matched) {
-                    menu.addItem(STATUS_SLOT, GastroStacks.MENU_INCORRECT_RECIPE);
+                    menu.replaceExistingItem(STATUS_SLOT, GastroStacks.MENU_INCORRECT_RECIPE);
                     return null;
                 }
             }
@@ -233,7 +283,7 @@ public class ElectricKitchen extends AContainer {
                     getMachineProcessor().endOperation(b);
                 }
             } else {
-                inv.addItem(STATUS_SLOT, GastroStacks.MENU_NOT_ENOUGH_ENERGY);
+                inv.replaceExistingItem(STATUS_SLOT, GastroStacks.MENU_NOT_ENOUGH_ENERGY);
             }
         } else {
             final MachineRecipe next = findNextRecipe(inv);

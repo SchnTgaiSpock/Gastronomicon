@@ -73,7 +73,7 @@ public class ChefAndroidTrainer extends MenuBlock {
     @Override
     protected void setup(BlockMenuPreset preset) {
         preset.drawBackground(BACKGROUND_ITEM, BACKGROUND_SLOTS);
-        preset.drawBackground(GastroStacks.MENU_INGREDIENT_BORDER, INPUT_BORDER_SLOTS);
+        preset.drawBackground(GastroStacks.MENU_ANDROID_BORDER, INPUT_BORDER_SLOTS);
         preset.drawBackground(OUTPUT_BORDER, OUTPUT_BORDER_SLOTS);
         preset.drawBackground(GastroStacks.MENU_FOOD_BORDER, FOOD_BORDER_SLOTS);
         preset.drawBackground(GastroStacks.MENU_TRAIN_BUTTON, new int[] { TRAIN_SLOT });
