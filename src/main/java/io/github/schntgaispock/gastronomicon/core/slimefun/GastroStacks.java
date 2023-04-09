@@ -888,12 +888,12 @@ public class GastroStacks {
     public static final SlimefunItemStack SORGHUM_FLOUR = ThemedItemStack.ingredient(
         "GN_SORGHUM_FLOUR",
         Material.SUGAR,
-        "Barley Flour");
+        "Sorghum Flour");
 
     public static final SlimefunItemStack RYE_FLOUR = ThemedItemStack.ingredient(
         "GN_RYE_FLOUR",
         Material.SUGAR,
-        "Barley Flour");
+        "Rye Flour");
 
     public static final SlimefunItemStack DOUGH = ThemedItemStack.ingredient(
         "GN_DOUGH",

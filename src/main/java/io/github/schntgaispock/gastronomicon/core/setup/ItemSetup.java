@@ -1062,6 +1062,16 @@ public class ItemSetup {
             new HashSet<>(), // I don't know how to get shapeless recipes to work with groups, so this is the
                              // best I can do
             GastroStacks.DOUGH));
+        RecipeRegistry.registerRecipe(new ShapedGastroRecipe(
+            GastroRecipeType.CULINARY_WORKBENCH,
+            RecipeUtil.collection(GastroStacks.RYE_FLOUR, GastroStacks.WATER_BOTTLE),
+            new HashSet<>(),
+            GastroStacks.DOUGH));
+        RecipeRegistry.registerRecipe(new ShapedGastroRecipe(
+            GastroRecipeType.CULINARY_WORKBENCH,
+            RecipeUtil.collection(GastroStacks.SORGHUM_FLOUR, GastroStacks.WATER_BOTTLE),
+            new HashSet<>(),
+            GastroStacks.DOUGH));
 
         new SimpleGastroFoodBuilder()
             .type(GastroRecipeType.MULTI_STOVE)
