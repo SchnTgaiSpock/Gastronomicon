@@ -178,7 +178,7 @@ public abstract class GastroWorkstation extends MenuBlock {
             if (recipeOutputs.length > 1 && recipeOutputs[0] instanceof final SlimefunItemStack sfItem) {
                 final AddonConfig playerData = Gastronomicon.getInstance().getPlayerData();
                 final String proficiencyPath = player.getUniqueId() + ".proficiencies." + sfItem.getItemId();
-                final double proficiency = playerData.getInt(proficiencyPath, 0);
+                final int proficiency = playerData.getInt(proficiencyPath, 0);
 
                 // Add 1 to proficiency
                 playerData.set(proficiencyPath, proficiency + 1);

@@ -535,24 +535,29 @@ public class FoodEffect {
     public static FoodEffect teleport(int radius) {
         final int r = NumberUtil.clamp(radius, 1, 10);
         final int pr = (int) Math.ceil(r * PERFECT_MULTIPLIER_TELEPORT);
-        return new FoodEffect("&7Teleports you somewhere within " + r + " blocks away", "&7Teleports you somewhere within " + pr + " blocks away",
+        return new FoodEffect("&7Teleports you somewhere within " + r + " blocks away",
+            "&7Teleports you somewhere within " + pr + " blocks away",
             (Player player, Boolean isPerfect) -> {
-                Location playerLocation = player.getLocation();
-                int playerX = (int) playerLocation.getX();
-                int playerY = (int) playerLocation.getY();
-                int playerZ = (int) playerLocation.getZ();
-                int teleportRadius = isPerfect ? pr : r;
+                final Location playerLocation = player.getLocation();
+                final int playerX = playerLocation.getBlockX();
+                final int playerY = playerLocation.getBlockY();
+                final int playerZ = playerLocation.getBlockZ();
+                final int teleportRadius = isPerfect ? pr : r;
                 // Performs 10 + radius^3 tries, if it can't find a safe spot to teleport to, it
-                // stops
+                // stops.
                 for (int i = 0; i < 10 + Math.pow(r, 3); i++) {
-                    int newX = playerX + NumberUtil.getRandom().nextInt(teleportRadius);
-                    int newY = playerY + NumberUtil.getRandom().nextInt(teleportRadius);
-                    int newZ = playerZ + NumberUtil.getRandom().nextInt(teleportRadius);
+                    final int newX = playerX + NumberUtil.getRandom().nextInt(teleportRadius);
+                    final int newY = playerY + NumberUtil.getRandom().nextInt(teleportRadius);
+                    final int newZ = playerZ + NumberUtil.getRandom().nextInt(teleportRadius);
 
                     if (player.getWorld().getBlockAt(newX, newY - 1, newZ).getType().isSolid() &&
                         player.getWorld().getBlockAt(newX, newY, newZ).isEmpty() &&
                         player.getWorld().getBlockAt(newX, newY + 1, newZ).isEmpty()) {
+                        
+                        final Vector facing = player.getLocation().getDirection();
                         player.teleport(new Location(player.getWorld(), newX, newY, newZ));
+                        player.getLocation().setDirection(facing);
+
                         player.playSound(player.getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT,
                             SoundCategory.PLAYERS, 1.0f, 1.0f);
                         return;
@@ -564,7 +569,7 @@ public class FoodEffect {
     }
 
     /**
-     * Returns a FoodEffect that launces the player in a certain direction
+     * Returns a FoodEffect that launches the player in a certain direction
      * 
      * @param velocity
      *            The change in the players velocity

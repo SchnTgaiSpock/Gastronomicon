@@ -61,7 +61,7 @@
     "fruit": "GN_BANANA",
     "palette": [
         "JUNGLE_LOG",
-        "MANGROVE_LEAVES"
+        "JUNGLE_LEAVES"
     ],
     "root": [2, 3]
 }

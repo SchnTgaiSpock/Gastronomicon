@@ -1,7 +1,5 @@
 package io.github.schntgaispock.gastronomicon.core.command;
 
-import java.util.HashMap;
-
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -10,6 +8,7 @@ import org.bukkit.entity.Player;
 
 import io.github.mooy1.infinitylib.core.AddonConfig;
 import io.github.schntgaispock.gastronomicon.Gastronomicon;
+import io.github.schntgaispock.gastronomicon.api.items.GastroTheme;
 import io.github.schntgaispock.gastronomicon.core.items.food.GastroFood;
 
 /**
@@ -62,8 +61,10 @@ public class GastroCommandExecutor implements CommandExecutor {
             case 4:
                 if (args[0].equals("proficiency") && args[1].equals("get")) {
                     final Player target = Bukkit.getServer().getPlayerExact(args[3]);
-                    if (target == null)
+                    if (target == null) {
+                        Gastronomicon.sendMessage(player, "&cUnknown player!");
                         return false;
+                    }
                     if (target.getUniqueId() == player.getUniqueId()) {
                         return commandProficiencyGet(player, args[2]);
                     } else {
@@ -79,25 +80,32 @@ public class GastroCommandExecutor implements CommandExecutor {
                         if (!Gastronomicon.checkPermission(
                             player,
                             "gastronomicon.modifyprofile",
-                            "§#4ee530§lGastronomicon&7> &cYou do not have permission to modify profiles!"))
+                            GastroTheme.PERFECT_FOOD.getColor()
+                                + "§lGastronomicon&7> &cYou do not have permission to modify profiles!"))
                             return true;
-                            
+
                         final int amount;
                         try {
                             amount = Integer.parseInt(args[3]);
                         } catch (NumberFormatException e) {
-                            return false;
+                            Gastronomicon.sendMessage(player, "&cAmount must be a number!");
+                            return true;
                         }
-                        if (amount < 0)
-                            return false;
+                        if (amount < 0) {
+                            Gastronomicon.sendMessage(player, "&cAmount must be positive!");
+                            return true;
+                        }
 
                         final Player target = Bukkit.getServer().getPlayerExact(args[4]);
-                        if (target == null)
-                            return false;
+                        if (target == null) {
+                            Gastronomicon.sendMessage(player, "&cUnknown player!");
+                            return true;
+                        }
 
                         final String foodId = args[2];
                         if (!GastroFood.getGastroFoodIds().stream().filter(str -> !str.startsWith("GN_PERFECT"))
                             .anyMatch(str -> str.equals(foodId))) {
+                            Gastronomicon.sendMessage(player, "&cUnknown food!");
                             return true;
                         }
                         return commandProficiencyModify(player, target, args[1], foodId, amount);
@@ -113,16 +121,19 @@ public class GastroCommandExecutor implements CommandExecutor {
 
     private void sendProficiencies(Player player, Player toCheck) {
         Gastronomicon.sendMessage(player, Gastronomicon.getInstance().getPlayerData()
-            .getObject(player.getUniqueId() + ".proficiencies", HashMap.class).toString());
+            .get(player.getUniqueId() + ".proficiencies", "Something went wrong!").toString());
     }
 
     private void sendInfo(Player player) {
         player.sendMessage(
             "",
-            "§#c91df4§lGastronomicon §8- §7Version " + Gastronomicon.getInstance().getPluginVersion(),
+            GastroTheme.PERFECT_FOOD.getColor() + "§lGastronomicon §8- §7Version "
+                + Gastronomicon.getInstance().getPluginVersion(),
             "§f------",
-            "§#c91df4§lWiki §f- §7https://github.com/SchnTgaiSpock/Gastronomicon/wiki",
-            "§#c91df4§lIssues §f- §7https://github.com/SchnTgaiSpock/Gastronomicon/issues",
+            GastroTheme.PERFECT_FOOD.getColor()
+                + "§lWiki §f- §7https://github.com/SchnTgaiSpock/Gastronomicon/wiki",
+            GastroTheme.PERFECT_FOOD.getColor()
+                + "§lIssues §f- §7https://github.com/SchnTgaiSpock/Gastronomicon/issues",
             "");
     }
 
@@ -133,7 +144,7 @@ public class GastroCommandExecutor implements CommandExecutor {
 
     private void sendCredits(Player player) {
         player.sendMessage(
-            "§#c91df4§lGastronomicon §8- §7Credits:",
+            GastroTheme.PERFECT_FOOD.getColor() + "§lGastronomicon §8- §7Credits:",
             "§f------",
             "§7Some head textures were taken and/or modified from https://minecraft-heads.com/ and https://headdb.org/");
     }
@@ -142,9 +153,10 @@ public class GastroCommandExecutor implements CommandExecutor {
         if (!Gastronomicon.checkPermission(
             player,
             "gastronomicon.checkprofile",
-            "§#4ee530§lGastronomicon&7> &cYou do not have perission to check your profile!"))
+            GastroTheme.PERFECT_FOOD.getColor()
+                + "§lGastronomicon&7> &cYou do not have permission to check your profile!"))
             return true;
-        Gastronomicon.sendMessage(player, "§#4ee530Proficiencies:");
+        Gastronomicon.sendMessage(player, "Proficiencies:");
         sendProficiencies(player, player);
         return true;
     }
@@ -153,10 +165,11 @@ public class GastroCommandExecutor implements CommandExecutor {
         if (!Gastronomicon.checkPermission(
             player,
             "gastronomicon.checkotherprofile",
-            "§#4ee530§lGastronomicon&7> &cYou do not have perission to check another player's profile!"))
+            GastroTheme.PERFECT_FOOD.getColor()
+                + "§lGastronomicon&7> &cYou do not have permission to check another player's profile!"))
             return true;
 
-        Gastronomicon.sendMessage(player, "§#4ee530" + other.getName() + "'s Proficiencies:");
+        Gastronomicon.sendMessage(player, other.getName() + "'s Proficiencies:");
         sendProficiencies(player, other);
         return true;
     }
@@ -165,7 +178,8 @@ public class GastroCommandExecutor implements CommandExecutor {
         if (!Gastronomicon.checkPermission(
             player,
             "gastronomicon.checkprofile",
-            "§#4ee530§lGastronomicon&7> &cYou do not have perission to check your profile!"))
+            GastroTheme.PERFECT_FOOD.getColor()
+                + "§lGastronomicon&7> &cYou do not have permission to check your profile!"))
             return true;
 
         if (!GastroFood.getGastroFoodIds().stream().filter(str -> !str.startsWith("GN_PERFECT"))
@@ -174,7 +188,7 @@ public class GastroCommandExecutor implements CommandExecutor {
             return true;
         }
         final AddonConfig playerData = Gastronomicon.getInstance().getPlayerData();
-        final int prof = playerData.getInt(player.getUniqueId().toString() + "proficiencies" + foodId, 0);
+        final int prof = playerData.getInt(player.getUniqueId().toString() + ".proficiencies." + foodId, 0);
         Gastronomicon.sendMessage(player, foodId + ": " + prof);
         return true;
     }
@@ -183,7 +197,8 @@ public class GastroCommandExecutor implements CommandExecutor {
         if (!Gastronomicon.checkPermission(
             player,
             "gastronomicon.checkotherprofile",
-            "§#4ee530§lGastronomicon&7> &cYou do not have perission to check another player's profile!"))
+            GastroTheme.PERFECT_FOOD.getColor()
+                + "§lGastronomicon&7> &cYou do not have permission to check another player's profile!"))
             return true;
 
         if (!GastroFood.getGastroFoodIds().stream().filter(str -> !str.startsWith("GN_PERFECT"))
@@ -192,7 +207,7 @@ public class GastroCommandExecutor implements CommandExecutor {
             return true;
         }
         final AddonConfig playerData = Gastronomicon.getInstance().getPlayerData();
-        final int prof = playerData.getInt(player.getUniqueId().toString() + "proficiencies" + foodId, 0);
+        final int prof = playerData.getInt(other.getUniqueId().toString() + ".proficiencies." + foodId, 0);
         Gastronomicon.sendMessage(player, foodId + ": " + prof);
         return true;
     }
@@ -203,16 +218,23 @@ public class GastroCommandExecutor implements CommandExecutor {
         switch (mode) {
             case "set":
                 playerData.set(proficiencyPath, amount);
+                Gastronomicon.sendMessage(player,
+                    "Successefully set " + foodId + " proficiency to " + amount + "for " + other.getName());
                 break;
             case "add":
-                playerData.set(proficiencyPath, playerData.getInt(proficiencyPath) + amount);
+                playerData.set(proficiencyPath, playerData.getInt(proficiencyPath, 0) + amount);
+                Gastronomicon.sendMessage(player,
+                    "Successefully added " + amount + " " + foodId + " proficiency for " + other.getName());
                 break;
             case "sub":
                 playerData.set(proficiencyPath,
-                    Math.min(playerData.getInt(proficiencyPath) - amount, 0));
+                    Math.min(playerData.getInt(proficiencyPath, 0) - amount, 0));
+                Gastronomicon.sendMessage(player,
+                "Successefully removed " + amount + " " + foodId + " proficiency for " + other.getName());
                 break;
 
             default:
+                Gastronomicon.sendMessage(player, "Unknown mode!");
                 return false;
         }
         playerData.save();

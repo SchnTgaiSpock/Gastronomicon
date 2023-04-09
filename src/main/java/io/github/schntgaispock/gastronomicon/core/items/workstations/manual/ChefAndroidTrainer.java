@@ -11,6 +11,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 
+import io.github.mooy1.infinitylib.core.AddonConfig;
 import io.github.mooy1.infinitylib.machines.MenuBlock;
 import io.github.schntgaispock.gastronomicon.Gastronomicon;
 import io.github.schntgaispock.gastronomicon.core.items.food.GastroFood;
@@ -50,11 +51,11 @@ public class ChefAndroidTrainer extends MenuBlock {
     public ChefAndroidTrainer(SlimefunItemStack item, ItemStack[] recipe) {
         super(GastroGroups.BASIC_MACHINES, item, RecipeType.ENHANCED_CRAFTING_TABLE, recipe);
     }
-    
+
     @Nonnull
     protected BlockBreakHandler onBlockBreak() {
         return new SimpleBlockBreakHandler() {
-            
+
             @Override
             public void onBlockBreak(Block b) {
                 BlockMenu inv = BlockStorage.getInventory(b);
@@ -85,7 +86,8 @@ public class ChefAndroidTrainer extends MenuBlock {
 
         menu.addMenuClickHandler(TRAIN_SLOT, (player, slot, item, action) -> {
             final ItemStack input = menu.getItemInSlot(getInputSlots()[0]);
-            if (input == null || input.getAmount() <= 0 || input.getType() == Material.AIR) return false;
+            if (input == null || input.getAmount() <= 0 || input.getType() == Material.AIR)
+                return false;
 
             final ItemStack foodItem = menu.getItemInSlot(FOOD_SLOT);
             if (foodItem == null) {
@@ -103,22 +105,36 @@ public class ChefAndroidTrainer extends MenuBlock {
                 Gastronomicon.sendMessage(player, "&ePlease place a valid food item in the middle slot");
                 return false;
             } else if (sfItem instanceof final SimpleGastroFood food) {
-                final ItemStack modified = input.asOne();
-                input.subtract(1);
                 final String name;
                 final String id;
-                if (food instanceof final GastroFood gFood && gFood.isPerfect()) {
-                    id = food.getId().replace("GN_PERFECT_", "GN_");
-                    final SlimefunItem regularItem = SlimefunItem.getById(id);
-                    if (regularItem == null) {
-                        Gastronomicon.sendMessage(player, "&ePlease place a valid food item in the middle slot");
+                if (food instanceof final GastroFood gFood) {
+                    if (gFood.isPerfect()) {
+                        id = food.getId().replace("GN_PERFECT_", "GN_");
+                        final SlimefunItem regularItem = SlimefunItem.getById(id);
+                        if (regularItem == null) {
+                            Gastronomicon.sendMessage(player, "&ePlease place a valid food item in the middle slot");
+                            return false;
+                        }
+                        name = regularItem.getItemName();
+                    } else {
+                        name = food.getItemName();
+                        id = food.getId();
+                    }
+                    final AddonConfig playerData = Gastronomicon.getInstance().getPlayerData();
+                    final String proficiencyPath = player.getUniqueId() + ".proficiencies." + id;
+                    final int proficiency = playerData.getInt(proficiencyPath, 0);
+                    final int threshold = Gastronomicon.config().getInt("proficiency-threshold");
+
+                    if (proficiency < threshold) {
+                        Gastronomicon.sendMessage(player, "&eYou are not proficient enough in this recipe! Required: " + proficiency + "/" + threshold);
                         return false;
                     }
-                    name = regularItem.getItemName();
                 } else {
                     name = food.getItemName();
                     id = food.getId();
                 }
+                final ItemStack modified = input.asOne();
+                input.subtract(1);
                 modified.setLore(Arrays.asList("§7" + ChatUtils.removeColorCodes(name)));
                 final ItemMeta meta = modified.getItemMeta();
                 final PersistentDataContainer pdc = meta.getPersistentDataContainer();
@@ -126,9 +142,9 @@ public class ChefAndroidTrainer extends MenuBlock {
                 modified.setItemMeta(meta);
                 menu.pushItem(modified, getOutputSlots());
             }
-            
+
             return false;
         });
     }
-    
+
 }

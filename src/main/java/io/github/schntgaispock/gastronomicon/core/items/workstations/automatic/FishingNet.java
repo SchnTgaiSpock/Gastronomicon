@@ -100,7 +100,7 @@ public class FishingNet extends SlimefunItem implements InventoryBlock, MachineP
     }
     
     protected MachineRecipe findNextRecipe(BlockMenu menu) {
-        return new MachineRecipe(40 / getSpeed(), new ItemStack[] { new ItemStack(Material.AIR) }, new ItemStack[] { CollectionUtil.choice(FISH) });
+        return new MachineRecipe(240 / getSpeed(), new ItemStack[] { new ItemStack(Material.AIR) }, new ItemStack[] { CollectionUtil.choice(FISH) });
     }
 
     protected void tick(Block b) {

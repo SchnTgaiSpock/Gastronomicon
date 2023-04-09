@@ -364,6 +364,8 @@ public class GastroStacks {
         "GN_FERMENTER",
         Material.BARREL,
         "Fermenter",
+        "&eShift + Right-click &pwith a water",
+        "bucket or water bottle to refill",
         StringUtil.waterUsed(2000, " Buffer"),
         StringUtil.waterUsed(125, "/Craft"));
 
@@ -372,6 +374,8 @@ public class GastroStacks {
         "GN_LARGE_FERMENTER",
         Material.BARREL,
         "Large Fermenter",
+        "&eShift + Right-click &7with a water",
+        "bucket or water bottle to refill",
         StringUtil.waterUsed(16000, " Buffer"),
         StringUtil.waterUsed(125, "/Craft"));
 
@@ -398,14 +402,14 @@ public class GastroStacks {
         GastroTheme.ELECTRIC,
         "GN_FISHING_NET_II",
         Material.IRON_BARS,
-        "Fishing Net",
+        "Fishing Net &7- &eII",
         LoreBuilder.speed(2));
 
     public static final SlimefunItemStack FISHING_NET_III = ThemedItemStack.of(
         GastroTheme.ELECTRIC,
         "GN_FISHING_NET_III",
         Material.IRON_BARS,
-        "Fishing Net",
+        "Fishing Net &7- &eIII",
         LoreBuilder.speed(4));
 
     public static final SlimefunItemStack ELECTRIC_KITCHEN_I = ThemedItemStack.of(
@@ -1524,7 +1528,7 @@ public class GastroStacks {
         .build();
 
     public static final FoodItemStack RICE_BALL = new FoodItemStackBuilder()
-        .id("GN_RICE_BALLS")
+        .id("GN_RICE_BALL")
         .texture(HeadTextures.RICE_BALL)
         .name("Rice Ball")
         .hunger(4)

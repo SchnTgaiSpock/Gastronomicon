@@ -1,4 +1,4 @@
-# Gastronomicon (WIP)
+# Gastronomicon
 
 A Slimefun addon that adds even more foodstuffs to the game. Best used along with [ExoticGarden](https://github.com/TheBusyBiscuit/ExoticGarden).
 
