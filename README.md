@@ -19,7 +19,7 @@ For more gameplay details, please see the Wiki at <https://github.com/SchnTgaiSp
 
 ## API
 
-API documentation can be found on the wiki at <https://github.com/SchnTgaiSpock/Gastronomicon/CustomFood>
+API documentation can be found on the wiki at <https://github.com/SchnTgaiSpock/Gastronomicon/wiki/Custom-Food>
 
 ## Changelog
 
