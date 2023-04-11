@@ -64,7 +64,7 @@ public class SimpleGastroFood extends UnplaceableItem implements RecipeDisplayIt
                 .toArray(ItemStack[]::new));
 
         if (type == GastroRecipeType.MULTI_STOVE) {
-            topRightDisplayItem = Temperature.MEDIUM.getItem();
+            topRightDisplayItem = temperature.getItem().clone();
             topRightDisplayItem.setLore(Collections.emptyList());
             gastroRecipe = new MultiStoveRecipe(ingredients, container, tools, outputs, Temperature.MEDIUM);
         } else {
