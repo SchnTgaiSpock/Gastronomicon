@@ -805,7 +805,7 @@ public class GastroStacks {
     public static final SlimefunItemStack RAW_TUNA = ThemedItemStack.ingredient(
         "GN_RAW_TUNA",
         Material.COD,
-        "Raw Pike");
+        "Raw Tuna");
 
     public static final SlimefunItemStack COOKED_TUNA = ThemedItemStack.ingredient(
         "GN_COOKED_TUNA",
