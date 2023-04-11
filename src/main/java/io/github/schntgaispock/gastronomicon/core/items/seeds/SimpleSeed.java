@@ -59,13 +59,21 @@ public class SimpleSeed extends AbstractSeed {
             addItemHandler(new BlockPlaceHandler(true) {
                 @Override
                 public void onBlockPlacerPlace(BlockPlacerPlaceEvent e) {
+                    if (e.getBlock().getState().getLightLevel() <= 7) {
+                        e.setCancelled(true);
+                        BlockStorage.clearBlockInfo(e.getBlock(), true);
+                        return;
+                    }
                     e.getBlock().setType(displayBlock);
                 }
 
                 @Override
                 public void onPlayerPlace(BlockPlaceEvent e) {
-                    if (!e.canBuild()) {
+                    if (e.getBlock().getState().getLightLevel() <= 7 ||
+                        !e.canBuild()) {
                         e.setCancelled(true);
+                        BlockStorage.clearBlockInfo(e.getBlock(), true);
+                        return;
                     }
 
                     e.getBlock().setType(displayBlock);
@@ -76,7 +84,7 @@ public class SimpleSeed extends AbstractSeed {
                 @Override
                 public void onPlayerPlace(@Nonnull BlockPlaceEvent e) {
                     e.setCancelled(true);
-                    BlockStorage.clearBlockInfo(e.getBlock(), false);
+                    BlockStorage.clearBlockInfo(e.getBlock(), true);
                 }
             });
 
@@ -94,6 +102,12 @@ public class SimpleSeed extends AbstractSeed {
                 final Block above = b.getLocation().add(0, 1, 0).getBlock();
                 if (!above.isEmpty() || !Slimefun.getProtectionManager().hasPermission(event.getPlayer(), above,
                     Interaction.PLACE_BLOCK)) {
+                    return;
+                }
+
+                if (above.getState().getLightLevel() <= 7) {
+                    event.cancel();
+                    BlockStorage.clearBlockInfo(above, true);
                     return;
                 }
 

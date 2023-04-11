@@ -8,11 +8,14 @@ import java.util.logging.Level;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 import org.bukkit.block.BlockState;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
 
 import io.github.schntgaispock.gastronomicon.Gastronomicon;
 import io.github.schntgaispock.gastronomicon.util.RecipeUtil;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
+import io.github.thebusybiscuit.slimefun4.core.handlers.BlockPlaceHandler;
+import me.mrCookieSlime.Slimefun.api.BlockStorage;
 
 /**
  * A DuplicatingGastroSeed grows upward.
@@ -36,6 +39,20 @@ public class DuplicatingSeed extends AbstractSeed {
     public DuplicatingSeed(SlimefunItemStack item, SlimefunItemStack harvestSource) {
         this(item, RecipeUtil.singleCenter(harvestSource));
     }
+
+    @Override
+    public void preRegister() {
+        addItemHandler(new BlockPlaceHandler(true) {
+            @Override
+            public void onPlayerPlace(BlockPlaceEvent e) {
+                if (e.getBlock().getState().getLightLevel() <= 7) {
+                    e.setCancelled(true);
+                    BlockStorage.clearBlockInfo(e.getBlock(), true);
+                }
+            }
+        });
+    }
+    
 
     @Override
     public boolean isMature(BlockState b) {

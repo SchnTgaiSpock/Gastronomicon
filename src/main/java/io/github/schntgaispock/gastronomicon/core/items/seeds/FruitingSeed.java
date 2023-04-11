@@ -52,7 +52,7 @@ public class FruitingSeed extends SimpleSeed {
     public FruitingSeed(SlimefunItemStack item, SlimefunItemStack harvestSource, String fruitingBodyId) {
         this(item, null, RecipeUtil.singleCenter(harvestSource), fruitingBodyId);
     }
-
+    
     @Override
     public boolean isMature(BlockState b) {
         return false;

@@ -14,6 +14,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockFromToEvent;
 import org.bukkit.event.block.BlockGrowEvent;
+import org.bukkit.event.entity.EntityChangeBlockEvent;
 import org.bukkit.inventory.ItemStack;
 
 import com.destroystokyo.paper.event.block.BlockDestroyEvent;
@@ -70,7 +71,7 @@ public class SeedListener implements Listener {
             e.setWillDrop(false);
             seed.getHarvestDrops(e.getBlock().getState(), new ItemStack(Material.AIR), false).forEach(
                 drop -> e.getBlock().getWorld().dropItemNaturally(e.getBlock().getLocation(), drop));
-            BlockStorage.clearBlockInfo(e.getBlock().getLocation(), false);
+            BlockStorage.clearBlockInfo(e.getBlock(), true);
         }
     }
 
@@ -86,6 +87,13 @@ public class SeedListener implements Listener {
                 drop -> e.getBlock().getWorld().dropItemNaturally(e.getBlock().getLocation(), drop));
             b.setType(Material.AIR);
             BlockStorage.clearBlockInfo(b, true);
+        }
+    }
+
+    @EventHandler
+    public void onVillagerCropDestroy(EntityChangeBlockEvent e) {
+        if (getGastroSeed(e.getBlock()) != null) {
+            e.setCancelled(true);
         }
     }
 

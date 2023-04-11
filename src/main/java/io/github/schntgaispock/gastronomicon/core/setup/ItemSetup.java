@@ -343,7 +343,7 @@ public class ItemSetup {
                 SlimefunItems.CLOTH, null, SlimefunItems.CLOTH
             }).register(gn);
 
-        new SlimefunItem(
+        new UnplaceableItem(
             GastroGroups.TOOLS,
             GastroStacks.WOODEN_SICKLE,
             RecipeType.ENHANCED_CRAFTING_TABLE,
@@ -353,7 +353,7 @@ public class ItemSetup {
                 STICK, null, null
             }).register(gn);
 
-        new SlimefunItem(
+        new UnplaceableItem(
             GastroGroups.TOOLS,
             GastroStacks.STEEL_SICKLE,
             RecipeType.ENHANCED_CRAFTING_TABLE,
@@ -363,7 +363,7 @@ public class ItemSetup {
                 STICK, null, null
             }).register(gn);
 
-        new SlimefunItem(
+        new UnplaceableItem(
             GastroGroups.TOOLS,
             GastroStacks.REINFORCED_SICKLE,
             RecipeType.ENHANCED_CRAFTING_TABLE,
@@ -521,6 +521,7 @@ public class ItemSetup {
         new CropSeed(
             GastroStacks.BARLEY_SEEDS,
             Material.WHEAT,
+            RecipeUtil.singleCenter(Material.GRASS),
             GastroStacks.BARLEY)
                 .register(gn);
 
@@ -534,6 +535,7 @@ public class ItemSetup {
         new CropSeed(
             GastroStacks.RYE_SEEDS,
             Material.WHEAT,
+            RecipeUtil.singleCenter(Material.GRASS),
             GastroStacks.RYE)
                 .register(gn);
 
@@ -547,6 +549,7 @@ public class ItemSetup {
         new CropSeed(
             GastroStacks.SORGHUM_SEEDS,
             Material.WHEAT,
+            RecipeUtil.singleCenter(Material.GRASS),
             GastroStacks.SORGHUM)
                 .register(gn);
 
@@ -560,6 +563,7 @@ public class ItemSetup {
         new CropSeed(
             GastroStacks.TURNIP_SEEDS,
             Material.BEETROOTS,
+            RecipeUtil.singleCenter(Material.GRASS),
             GastroStacks.TURNIP)
                 .register(gn);
 
