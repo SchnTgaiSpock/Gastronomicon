@@ -147,7 +147,7 @@ public class ItemSetup {
             GastroGroups.TOOLS,
             GastroStacks.ROLLING_PIN,
             RecipeType.ENHANCED_CRAFTING_TABLE,
-            RecipeUtil.row(STICK, 2))
+            RecipeUtil.row(STICK, 1))
                 .register(gn);
         new UnplaceableItem(
             GastroGroups.TOOLS,
@@ -251,7 +251,7 @@ public class ItemSetup {
             GastroGroups.TOOLS,
             GastroStacks.STEEL_WIRE,
             RecipeType.ENHANCED_CRAFTING_TABLE,
-            RecipeUtil.row(SlimefunItems.STEEL_INGOT, 2),
+            RecipeUtil.row(SlimefunItems.STEEL_INGOT, 1),
             GastroStacks.STEEL_WIRE.asQuantity(8))
                 .register(gn);
         new SlimefunItem(
@@ -481,7 +481,7 @@ public class ItemSetup {
             4096, 256, 10,
             new ItemStack[] {
                 SlimefunItems.REINFORCED_PLATE, GastroStacks.CHEF_ANDROID, SlimefunItems.REINFORCED_PLATE,
-                SlimefunItems.ELECTRIC_MOTOR, GastroStacks.ELECTRIC_KITCHEN_I, SlimefunItems.ELECTRIC_MOTOR,
+                SlimefunItems.ELECTRIC_MOTOR, GastroStacks.ELECTRIC_KITCHEN_II, SlimefunItems.ELECTRIC_MOTOR,
                 SlimefunItems.REINFORCED_PLATE, SlimefunItems.REINFORCED_PLATE, SlimefunItems.REINFORCED_PLATE
             }).register(gn);
 
@@ -577,7 +577,7 @@ public class ItemSetup {
         new FruitingSeed(
             GastroStacks.SQUASH_SEEDS,
             Material.MELON_STEM,
-            GastroStacks.SQUASH,
+            RecipeUtil.singleCenter(Material.GRASS),
             "GN_SQUASH")
                 .register(gn);
 
@@ -723,13 +723,13 @@ public class ItemSetup {
             GastroGroups.RAW_INGREDIENTS,
             GastroStacks.CANTALOUPE,
             GastroRecipeType.HARVEST,
-            RecipeUtil.singleCenter(GastroStacks.SQUASH_SEEDS))
+            RecipeUtil.singleCenter(GastroStacks.CANTALOUPE_SEEDS))
                 .register(gn);
 
         new FruitingSeed(
             GastroStacks.CANTALOUPE_SEEDS,
             Material.MELON_STEM,
-            GastroStacks.CANTALOUPE,
+            RecipeUtil.singleCenter(Material.GRASS),
             "GN_CANTALOUPE")
                 .register(gn);
 
@@ -743,7 +743,7 @@ public class ItemSetup {
         new FruitingSeed(
             GastroStacks.HONEYDEW_MELON_SEEDS,
             Material.MELON_STEM,
-            GastroStacks.HONEYDEW_MELON,
+            RecipeUtil.singleCenter(Material.GRASS),
             "GN_HONEYDEW_MELON")
                 .register(gn);
 

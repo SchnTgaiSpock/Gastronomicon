@@ -43,6 +43,10 @@ public class Refridgerator extends GastroWorkstation implements EnergyNetCompone
 
     @Override
     protected boolean canCraft(BlockMenu menu, Block b, Player p) {
+        final int charge = getCharge(b.getLocation());
+        if (charge < getEnergyPerUse()) return false;
+
+        setCharge(b.getLocation(), charge - getEnergyPerUse());
         return true;
     }
     
