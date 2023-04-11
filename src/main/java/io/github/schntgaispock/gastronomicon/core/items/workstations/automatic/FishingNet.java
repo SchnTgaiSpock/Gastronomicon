@@ -142,6 +142,4 @@ public class FishingNet extends SlimefunItem implements InventoryBlock, MachineP
             }
         }
     }
-
-    // TODO: fix on break
 }
