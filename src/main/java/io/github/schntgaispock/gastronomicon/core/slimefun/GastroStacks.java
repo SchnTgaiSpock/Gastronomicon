@@ -17,7 +17,9 @@ import io.github.schntgaispock.gastronomicon.api.items.FoodItemStack;
 import io.github.schntgaispock.gastronomicon.api.items.FoodItemStackBuilder;
 import io.github.schntgaispock.gastronomicon.api.items.GastroTheme;
 import io.github.schntgaispock.gastronomicon.api.items.ThemedItemStack;
+import io.github.schntgaispock.gastronomicon.api.loot.LootTable;
 import io.github.schntgaispock.gastronomicon.core.listeners.WildHarvestListener;
+import io.github.schntgaispock.gastronomicon.core.listeners.WildHarvestListener.Climate;
 import io.github.schntgaispock.gastronomicon.util.StringUtil;
 import io.github.schntgaispock.gastronomicon.util.item.HeadTextures;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -526,24 +528,50 @@ public class GastroStacks {
         Material.MANGROVE_PROPAGULE,
         "Bok Choy");
 
+    public static final SlimefunItemStack BOK_CHOY_SEEDS = ThemedItemStack.ingredient(
+        "GN_BOK_CHOY_SEEDS",
+        Material.MELON_SEEDS,
+        "Bok Choy Seeds");
+
     public static final SlimefunItemStack BROCCOLI = ThemedItemStack.ingredient(
         "GN_BROCCOLI",
         Material.OAK_SAPLING,
         "Broccoli");
 
+    public static final SlimefunItemStack BROCCOLI_SEEDS = ThemedItemStack.ingredient(
+        "GN_BROCCOLI_SEEDS",
+        Material.MELON_SEEDS,
+        "Broccoli Seeds");
+
     public static final SlimefunItemStack CUCUMBER = ThemedItemStack.ingredient(
         "GN_CUCUMBER",
         Material.SEA_PICKLE,
         "Cucumber");
+
+    public static final SlimefunItemStack CUCUMBER_SEEDS = ThemedItemStack.ingredient(
+        "GN_CUCUMBER_SEEDS",
+        Material.PUMPKIN_SEEDS,
+        "Cucumber Seeds");
+
     public static final SlimefunItemStack BASIL = ThemedItemStack.ingredient(
         "GN_BASIL",
         Material.KELP,
         "Basil");
 
+    public static final SlimefunItemStack BASIL_SEEDS = ThemedItemStack.ingredient(
+        "GN_BASIL_SEEDS",
+        Material.MELON_SEEDS,
+        "Basil Seeds");
+
     public static final SlimefunItemStack SPINACH = ThemedItemStack.ingredient(
         "GN_SPINACH",
         Material.BIG_DRIPLEAF,
         "Spinach");
+
+    public static final SlimefunItemStack SPINACH_SEEDS = ThemedItemStack.ingredient(
+        "GN_SPINACH_SEEDS",
+        Material.BEETROOT_SEEDS,
+        "Spinach Seeds");
 
     public static final SlimefunItemStack BRUSSLES_SPROUTS = ThemedItemStack.ingredient(
         "GN_BRUSSLES_SPROUTS",
@@ -555,15 +583,30 @@ public class GastroStacks {
         Material.FERN,
         "Mint");
 
+    public static final SlimefunItemStack MINT_SEEDS = ThemedItemStack.ingredient(
+        "GN_MINT_SEEDS",
+        Material.MELON_SEEDS,
+        "Mint Seeds");
+
     public static final SlimefunItemStack CHILI_PEPPER = ThemedItemStack.ingredient(
         "GN_CHILI_PEPPER",
         Material.RED_CANDLE,
         "Chili Pepper");
 
+    public static final SlimefunItemStack CHILI_PEPPER_SEEDS = ThemedItemStack.ingredient(
+        "GN_CHILI_PEPPER_SEEDS",
+        Material.PUMPKIN_SEEDS,
+        "Chili Pepper Seeds");
+
     public static final SlimefunItemStack PARSLEY = ThemedItemStack.ingredient(
         "GN_PARSLEY",
         Material.SMALL_DRIPLEAF,
         "Parsley");
+
+    public static final SlimefunItemStack PARSLEY_SEEDS = ThemedItemStack.ingredient(
+        "GN_PARSLEY_SEEDS",
+        Material.MELON_SEEDS,
+        "Parsley Seeds");
 
     public static final SlimefunItemStack CASSAVA = ThemedItemStack.ingredient(
         "GN_CASSAVA",
@@ -595,15 +638,30 @@ public class GastroStacks {
         Material.BAMBOO,
         "Asparagus");
 
+    public static final SlimefunItemStack ASPARAGUS_SEEDS = ThemedItemStack.ingredient(
+        "GN_ASPARAGUS_SEEDS",
+        Material.MELON_SEEDS,
+        "Asparagus Seeds");
+
     public static final SlimefunItemStack GREEN_ONION = ThemedItemStack.ingredient(
         "GN_GREEN_ONION",
         Material.MANGROVE_PROPAGULE,
         "Green Onion");
 
+    public static final SlimefunItemStack GREEN_ONION_SEEDS = ThemedItemStack.ingredient(
+        "GN_GREEN_ONION_SEEDS",
+        Material.MELON_SEEDS,
+        "Green Onion Seeds");
+
     public static final SlimefunItemStack CAULIFLOWER = ThemedItemStack.ingredient(
         "GN_CAULIFLOWER",
         Material.BIRCH_SAPLING,
         "Cauliflower");
+
+    public static final SlimefunItemStack CAULIFLOWER_SEEDS = ThemedItemStack.ingredient(
+        "GN_CAULIFLOWER_SEEDS",
+        Material.PUMPKIN_SEEDS,
+        "Cauliflower Seeds");
 
     public static final SlimefunItemStack AVOCADO = ThemedItemStack.ingredient(
         "GN_AVOCADO",
@@ -655,6 +713,16 @@ public class GastroStacks {
         Material.PUMPKIN_SEEDS,
         "Sesame Seeds");
 
+    public static final SlimefunItemStack VANILLA_BEANS = ThemedItemStack.ingredient(
+        "GN_VANILLA_BEANS",
+        HeadTextures.VANILLA,
+        "Vanilla Beans");
+        
+    public static final SlimefunItemStack VANILLA_PLANT = ThemedItemStack.ingredient(
+        "GN_VANILLA_PLANT",
+        Material.VINE,
+        "Vanilla Plant");
+
     // -- Grown from trees --
 
     public static final SlimefunItemStack LYCHEE = ThemedItemStack.ingredient(
@@ -673,14 +741,6 @@ public class GastroStacks {
         "GN_BANANA_SAPLING",
         Material.OAK_SAPLING,
         "Banana Sapling");
-    public static final SlimefunItemStack VANILLA_BEANS = ThemedItemStack.ingredient(
-        "GN_VANILLA_BEANS",
-        HeadTextures.VANILLA,
-        "Vanilla Beans");
-    public static final SlimefunItemStack VANILLA_SAPLING = ThemedItemStack.ingredient(
-        "GN_VANILLA_SAPLING",
-        Material.OAK_SAPLING,
-        "Vanilla Sapling");
 
     // -- Harvested --
 
@@ -818,41 +878,119 @@ public class GastroStacks {
         "Shrimp");
 
     static {
-        WildHarvestListener.registerDrops(
-            Material.GRASS,
-            RICE, QUINOA, OATS, SOYBEANS, BARLEY_SEEDS, RYE_SEEDS, SORGHUM_SEEDS, TURNIP_SEEDS, SQUASH_SEEDS,
-            CELERY, BOK_CHOY, BROCCOLI, CUCUMBER, BASIL, SPINACH,
-            BRUSSLES_SPROUTS, MINT, CHILI_PEPPER, PARSLEY, CASSAVA, LENTILS, PEANUTS, BEANS, PEAS, ASPARAGUS,
-            GREEN_ONION, CAULIFLOWER, AVOCADO_PIT, TURMERIC, CUMIN_SEEDS, LYCHEE_SAPLING,
-            BANANA_SAPLING, VANILLA_SAPLING, RED_BEANS, CANTALOUPE_SEEDS, HONEYDEW_MELON_SEEDS, SESAME_SEEDS);
+        final LootTable<ItemStack> DRY_CLIMATE_GRASS_DROPS = LootTable.builder(ItemStack.class)
+            .add(GastroStacks.CASSAVA,
+                GastroStacks.LENTILS,
+                GastroStacks.CUMIN_SEEDS,
+                GastroStacks.HONEYDEW_MELON_SEEDS)
+            .build();
+        final LootTable<ItemStack> TEMPERATE_CLIMATE_GRASS_DROPS = LootTable.builder(ItemStack.class)
+            .add(6,
+                GastroStacks.RICE,
+                GastroStacks.OATS,
+                GastroStacks.SOYBEANS,
+                GastroStacks.BARLEY_SEEDS,
+                GastroStacks.RYE_SEEDS)
+            .add(4,
+                GastroStacks.TURNIP_SEEDS,
+                GastroStacks.RED_BEANS,
+                GastroStacks.CANTALOUPE_SEEDS,
+                GastroStacks.HONEYDEW_MELON_SEEDS,
+                GastroStacks.SESAME_SEEDS,
+                GastroStacks.PEANUTS,
+                GastroStacks.PEAS)
+            .add(3,
+                GastroStacks.BOK_CHOY_SEEDS,
+                GastroStacks.CUCUMBER_SEEDS,
+                GastroStacks.BASIL_SEEDS,
+                GastroStacks.SPINACH_SEEDS,
+                GastroStacks.MINT_SEEDS,
+                GastroStacks.CHILI_PEPPER_SEEDS,
+                GastroStacks.PARSLEY_SEEDS,
+                GastroStacks.CASSAVA,
+                GastroStacks.LENTILS,
+                GastroStacks.ASPARAGUS_SEEDS,
+                GastroStacks.GREEN_ONION_SEEDS,
+                GastroStacks.CAULIFLOWER_SEEDS,
+                GastroStacks.AVOCADO_PIT,
+                GastroStacks.TURMERIC,
+                GastroStacks.CUMIN_SEEDS,
+                GastroStacks.VANILLA_PLANT)
+            .add(2,
+                GastroStacks.LYCHEE_SAPLING,
+                GastroStacks.BANANA_SAPLING)
+            .build();
+        final LootTable<ItemStack> COLD_CLIMATE_GRASS_DROPS = LootTable.builder(ItemStack.class)
+            .add(6,
+                GastroStacks.QUINOA,
+                GastroStacks.OATS,
+                GastroStacks.RYE_SEEDS)
+            .add(4,
+                GastroStacks.TURNIP_SEEDS,
+                GastroStacks.SQUASH_SEEDS,
+                GastroStacks.PEAS)
+            .add(3,
+                GastroStacks.CELERY,
+                GastroStacks.BROCCOLI_SEEDS,
+                GastroStacks.BRUSSLES_SPROUTS)
+            .add(2,
+                GastroStacks.LYCHEE_SAPLING)
+            .build();
+        final LootTable<ItemStack> SNOWY_CLIMATE_GRASS_DROPS = LootTable.builder(ItemStack.class)
+            .add(GastroStacks.RYE_SEEDS)
+            .build();
+        final LootTable<ItemStack> FERN_DROPS = LootTable.builder(ItemStack.class)
+            .add(GastroStacks.FIDDLEHEADS)
+            .build();
+        final LootTable<ItemStack> DIRT_DROPS = LootTable.builder(ItemStack.class)
+            .add(GastroStacks.ENOKI_MUSHROOMS,
+                GastroStacks.KING_OYSTER_MUSHROOM,
+                GastroStacks.BUTTON_MUSHROOM)
+            .build();
+        final LootTable<ItemStack> PODZOL_DROPS = LootTable.builder(ItemStack.class)
+            .add(4,
+                GastroStacks.ENOKI_MUSHROOMS,
+                GastroStacks.KING_OYSTER_MUSHROOM,
+                GastroStacks.BUTTON_MUSHROOM)
+            .add(GastroStacks.TRUFFLE)
+            .build();
+        final LootTable<ItemStack> SEAGRASS_DROPS = LootTable.builder(ItemStack.class)
+            .add(GastroStacks.CLAM)
+            .build();
 
-        WildHarvestListener.registerDrops(
-            Material.FERN,
-            FIDDLEHEADS, CELERY, BOK_CHOY, BROCCOLI, CUCUMBER, BASIL, SPINACH,
-            BRUSSLES_SPROUTS, MINT, PARSLEY, LENTILS, PEAS, ASPARAGUS, GREEN_ONION, CAULIFLOWER);
+        final LootTable<ItemStack> SQUID_DROPS = LootTable.builder(ItemStack.class)
+            .add(GastroStacks.RAW_SQUID)
+            .build();
+        final LootTable<ItemStack> GUARDIAN_DROPS = LootTable.builder(ItemStack.class)
+            .add(GastroStacks.GUARDIAN_FIN)
+            .build();
+        final LootTable<ItemStack> GOAT_DROPS = LootTable.builder(ItemStack.class)
+            .add(GastroStacks.RAW_CHEVON)
+            .build();
+        final LootTable<ItemStack> SALMON_DROPS = LootTable.builder(ItemStack.class)
+            .add(GastroStacks.SALMON_ROE)
+            .build();
 
-        WildHarvestListener.registerDrops(
-            Material.PODZOL,
-            TRUFFLE, ENOKI_MUSHROOMS, KING_OYSTER_MUSHROOM, BUTTON_MUSHROOM);
-
-        WildHarvestListener.registerDrops(
-            Material.MYCELIUM,
-            TRUFFLE, ENOKI_MUSHROOMS, KING_OYSTER_MUSHROOM, BUTTON_MUSHROOM);
-
-        WildHarvestListener.registerDrops(
-            Material.SEAGRASS, CLAM);
-
-        WildHarvestListener.registerDrops(EntityType.GOAT, RAW_CHEVON);
-        WildHarvestListener.registerDrops(EntityType.SALMON, SALMON_ROE);
-        WildHarvestListener.registerDrops(EntityType.GUARDIAN, GUARDIAN_FIN);
-        WildHarvestListener.registerDrops(EntityType.ELDER_GUARDIAN, GUARDIAN_FIN);
-        WildHarvestListener.registerDrops(EntityType.SQUID, RAW_SQUID);
-        WildHarvestListener.registerDrops(EntityType.GLOW_SQUID, RAW_SQUID);
-
-        // WildHarvestListener.registerFishingDrops(Material.COD, RAW_MACKEREL, RAW_EEL,
-        // RAW_TROUT, SHRIMP);
-        // WildHarvestListener.registerFishingDrops(Material.SALMON, RAW_BASS, RAW_CARP,
-        // RAW_PIKE, RAW_TUNA);
+        WildHarvestListener.registerBlockDrops(Material.GRASS, DRY_CLIMATE_GRASS_DROPS, Climate.DRY);
+        WildHarvestListener.registerBlockDrops(Material.TALL_GRASS, DRY_CLIMATE_GRASS_DROPS, Climate.DRY);
+        WildHarvestListener.registerBlockDrops(Material.GRASS, TEMPERATE_CLIMATE_GRASS_DROPS, Climate.TEMPERATE);
+        WildHarvestListener.registerBlockDrops(Material.TALL_GRASS, TEMPERATE_CLIMATE_GRASS_DROPS, Climate.TEMPERATE);
+        WildHarvestListener.registerBlockDrops(Material.GRASS, COLD_CLIMATE_GRASS_DROPS, Climate.COLD);
+        WildHarvestListener.registerBlockDrops(Material.TALL_GRASS, COLD_CLIMATE_GRASS_DROPS, Climate.COLD);
+        WildHarvestListener.registerBlockDrops(Material.GRASS, SNOWY_CLIMATE_GRASS_DROPS, Climate.SNOWY);
+        WildHarvestListener.registerBlockDrops(Material.TALL_GRASS, SNOWY_CLIMATE_GRASS_DROPS, Climate.SNOWY);
+        WildHarvestListener.registerBlockDrops(Material.FERN, FERN_DROPS);
+        WildHarvestListener.registerBlockDrops(Material.LARGE_FERN, FERN_DROPS);
+        WildHarvestListener.registerBlockDrops(Material.PODZOL, PODZOL_DROPS);
+        WildHarvestListener.registerBlockDrops(Material.DIRT, DIRT_DROPS);
+        WildHarvestListener.registerBlockDrops(Material.GRASS_BLOCK, DIRT_DROPS);
+        WildHarvestListener.registerBlockDrops(Material.ROOTED_DIRT, DIRT_DROPS);
+        WildHarvestListener.registerBlockDrops(Material.MYCELIUM, DIRT_DROPS);
+        WildHarvestListener.registerBlockDrops(Material.SEAGRASS, SEAGRASS_DROPS);
+        WildHarvestListener.registerMobDrops(EntityType.SQUID, SQUID_DROPS);
+        WildHarvestListener.registerMobDrops(EntityType.GUARDIAN, GUARDIAN_DROPS);
+        WildHarvestListener.registerMobDrops(EntityType.GOAT, GOAT_DROPS);
+        WildHarvestListener.registerMobDrops(EntityType.SALMON, SALMON_DROPS);
     }
 
     // -- From traps --

@@ -25,6 +25,7 @@ import io.github.schntgaispock.gastronomicon.core.items.seeds.DuplicatingSeed;
 import io.github.schntgaispock.gastronomicon.core.items.seeds.FruitingSeed;
 import io.github.schntgaispock.gastronomicon.core.items.seeds.SimpleSapling;
 import io.github.schntgaispock.gastronomicon.core.items.seeds.SimpleSeed;
+import io.github.schntgaispock.gastronomicon.core.items.seeds.VineSeed;
 import io.github.schntgaispock.gastronomicon.core.items.workstations.automatic.ElectricKitchen;
 import io.github.schntgaispock.gastronomicon.core.items.workstations.automatic.FishingNet;
 import io.github.schntgaispock.gastronomicon.core.items.workstations.manual.ChefAndroidTrainer;
@@ -586,34 +587,74 @@ public class ItemSetup {
             RecipeUtil.singleCenter(Material.GRASS))
                 .register(gn);
 
-        new SimpleSeed(
+        new SlimefunItem(
+            GastroGroups.RAW_INGREDIENTS,
             GastroStacks.BOK_CHOY,
-            Material.POTATOES,
+            GastroRecipeType.HARVEST,
             RecipeUtil.singleCenter(Material.GRASS))
                 .register(gn);
 
-        new SimpleSeed(
+        new CropSeed(
+            GastroStacks.BOK_CHOY_SEEDS,
+            Material.POTATOES,
+            RecipeUtil.singleCenter(Material.GRASS),
+            GastroStacks.BOK_CHOY)
+                .register(gn);
+
+        new SlimefunItem(
+            GastroGroups.RAW_INGREDIENTS,
             GastroStacks.BROCCOLI,
-            Material.CARROTS,
+            GastroRecipeType.HARVEST,
             RecipeUtil.singleCenter(Material.GRASS))
                 .register(gn);
 
-        new SimpleSeed(
+        new CropSeed(
+            GastroStacks.BROCCOLI_SEEDS,
+            Material.POTATOES,
+            RecipeUtil.singleCenter(Material.GRASS),
+            GastroStacks.BROCCOLI)
+                .register(gn);
+
+        new SlimefunItem(
+            GastroGroups.RAW_INGREDIENTS,
             GastroStacks.CUCUMBER,
-            Material.POTATOES,
+            GastroRecipeType.HARVEST,
             RecipeUtil.singleCenter(Material.GRASS))
                 .register(gn);
 
-        new SimpleSeed(
+        new CropSeed(
+            GastroStacks.CUCUMBER_SEEDS,
+            Material.POTATOES,
+            RecipeUtil.singleCenter(Material.GRASS),
+            GastroStacks.CUCUMBER)
+                .register(gn);
+
+        new SlimefunItem(
+            GastroGroups.RAW_INGREDIENTS,
             GastroStacks.BASIL,
-            Material.POTATOES,
+            GastroRecipeType.HARVEST,
             RecipeUtil.singleCenter(Material.GRASS))
                 .register(gn);
 
-        new SimpleSeed(
-            GastroStacks.SPINACH,
+        new CropSeed(
+            GastroStacks.BASIL_SEEDS,
             Material.POTATOES,
+            RecipeUtil.singleCenter(Material.GRASS),
+            GastroStacks.BASIL)
+                .register(gn);
+
+        new SlimefunItem(
+            GastroGroups.RAW_INGREDIENTS,
+            GastroStacks.SPINACH,
+            GastroRecipeType.HARVEST,
             RecipeUtil.singleCenter(Material.GRASS))
+                .register(gn);
+
+        new CropSeed(
+            GastroStacks.SPINACH_SEEDS,
+            Material.POTATOES,
+            RecipeUtil.singleCenter(Material.GRASS),
+            GastroStacks.SPINACH)
                 .register(gn);
 
         new SimpleSeed(
@@ -622,22 +663,46 @@ public class ItemSetup {
             RecipeUtil.singleCenter(Material.GRASS))
                 .register(gn);
 
-        new SimpleSeed(
+        new SlimefunItem(
+            GastroGroups.RAW_INGREDIENTS,
             GastroStacks.MINT,
-            Material.POTATOES,
+            GastroRecipeType.HARVEST,
             RecipeUtil.singleCenter(Material.GRASS))
                 .register(gn);
 
-        new SimpleSeed(
+        new CropSeed(
+            GastroStacks.MINT_SEEDS,
+            Material.POTATOES,
+            RecipeUtil.singleCenter(Material.GRASS),
+            GastroStacks.MINT)
+                .register(gn);
+
+        new SlimefunItem(
+            GastroGroups.RAW_INGREDIENTS,
             GastroStacks.CHILI_PEPPER,
-            Material.POTATOES,
+            GastroRecipeType.HARVEST,
             RecipeUtil.singleCenter(Material.GRASS))
                 .register(gn);
 
-        new SimpleSeed(
-            GastroStacks.PARSLEY,
+        new CropSeed(
+            GastroStacks.CHILI_PEPPER_SEEDS,
             Material.POTATOES,
+            RecipeUtil.singleCenter(Material.GRASS),
+            GastroStacks.CHILI_PEPPER)
+                .register(gn);
+
+        new SlimefunItem(
+            GastroGroups.RAW_INGREDIENTS,
+            GastroStacks.PARSLEY,
+            GastroRecipeType.HARVEST,
             RecipeUtil.singleCenter(Material.GRASS))
+                .register(gn);
+
+        new CropSeed(
+            GastroStacks.PARSLEY_SEEDS,
+            Material.POTATOES,
+            RecipeUtil.singleCenter(Material.GRASS),
+            GastroStacks.PARSLEY)
                 .register(gn);
 
         new SimpleSeed(
@@ -670,22 +735,46 @@ public class ItemSetup {
             RecipeUtil.singleCenter(Material.GRASS))
                 .register(gn);
 
-        new SimpleSeed(
+        new SlimefunItem(
+            GastroGroups.RAW_INGREDIENTS,
             GastroStacks.ASPARAGUS,
+            GastroRecipeType.HARVEST,
+            RecipeUtil.singleCenter(Material.GRASS))
+                .register(gn);
+
+        new CropSeed(
+            GastroStacks.ASPARAGUS_SEEDS,
             Material.CARROTS,
-            RecipeUtil.singleCenter(Material.GRASS))
+            RecipeUtil.singleCenter(Material.GRASS),
+            GastroStacks.ASPARAGUS)
                 .register(gn);
 
-        new SimpleSeed(
+        new SlimefunItem(
+            GastroGroups.RAW_INGREDIENTS,
             GastroStacks.GREEN_ONION,
-            Material.POTATOES,
+            GastroRecipeType.HARVEST,
             RecipeUtil.singleCenter(Material.GRASS))
                 .register(gn);
 
-        new SimpleSeed(
-            GastroStacks.CAULIFLOWER,
+        new CropSeed(
+            GastroStacks.GREEN_ONION_SEEDS,
             Material.POTATOES,
+            RecipeUtil.singleCenter(Material.GRASS),
+            GastroStacks.GREEN_ONION)
+                .register(gn);
+
+        new SlimefunItem(
+            GastroGroups.RAW_INGREDIENTS,
+            GastroStacks.CAULIFLOWER,
+            GastroRecipeType.HARVEST,
             RecipeUtil.singleCenter(Material.GRASS))
+                .register(gn);
+
+        new CropSeed(
+            GastroStacks.CAULIFLOWER_SEEDS,
+            Material.POTATOES,
+            RecipeUtil.singleCenter(Material.GRASS),
+            GastroStacks.CAULIFLOWER)
                 .register(gn);
 
         new SlimefunItem(
@@ -753,6 +842,18 @@ public class ItemSetup {
             RecipeUtil.singleCenter(Material.GRASS))
                 .register(gn);
 
+        new UnplaceableItem(
+            GastroGroups.RAW_INGREDIENTS,
+            GastroStacks.VANILLA_BEANS,
+            GastroRecipeType.BREAK,
+            RecipeUtil.singleCenter(GastroStacks.VANILLA_PLANT))
+                .register(gn);
+
+        new VineSeed(
+            GastroStacks.VANILLA_PLANT,
+            RecipeUtil.singleCenter(Material.GRASS))
+                .register(gn);
+
         // -- Grown from trees
 
         new UnplaceableItem(
@@ -779,20 +880,6 @@ public class ItemSetup {
         new SimpleSapling(
             GastroGroups.RAW_INGREDIENTS,
             GastroStacks.BANANA_SAPLING,
-            GastroRecipeType.BREAK,
-            RecipeUtil.singleCenter(Material.GRASS))
-                .register(gn);
-
-        new UnplaceableItem(
-            GastroGroups.RAW_INGREDIENTS,
-            GastroStacks.VANILLA_BEANS,
-            GastroRecipeType.BREAK,
-            RecipeUtil.singleCenter(GastroStacks.VANILLA_SAPLING))
-                .register(gn);
-
-        new SimpleSapling(
-            GastroGroups.RAW_INGREDIENTS,
-            GastroStacks.VANILLA_SAPLING,
             GastroRecipeType.BREAK,
             RecipeUtil.singleCenter(Material.GRASS))
                 .register(gn);

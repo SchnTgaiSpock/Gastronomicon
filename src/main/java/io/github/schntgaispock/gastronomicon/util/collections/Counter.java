@@ -4,10 +4,12 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
+import java.util.stream.Stream;
 
 import javax.annotation.Nullable;
 
 import io.github.thebusybiscuit.slimefun4.libraries.commons.lang.Validate;
+import lombok.Getter;
 
 public class Counter<T> {
 
@@ -15,7 +17,7 @@ public class Counter<T> {
     private final @Nullable Function<T, Integer> hashFunction;
     private Integer max;
     private Integer min;
-    private int total = 0;
+    private @Getter int total = 0;
 
     public Counter(Function<T, Integer> hashFunction) {
         this.hashFunction = hashFunction;
@@ -182,6 +184,10 @@ public class Counter<T> {
             .append(total)
             .append("}");
         return string.toString();
+    }
+
+    public Stream<Pair<T, Integer>> stream() {
+        return map.values().stream();
     }
 
 }

@@ -46,29 +46,33 @@ public class DynaTechSetup {
         register(60, GastroStacks.RYE_SEEDS.asQuantity(2), GastroStacks.RYE.asQuantity(2));
         register(60, GastroStacks.SORGHUM_SEEDS.asQuantity(2), GastroStacks.SORGHUM.asQuantity(2));
         register(60, GastroStacks.TURNIP_SEEDS.asQuantity(2), GastroStacks.TURNIP.asQuantity(2));
-        register(60, GastroStacks.SQUASH_SEEDS.asQuantity(2), GastroStacks.SQUASH.clone());
+        register(60, GastroStacks.SQUASH_SEEDS.asQuantity(2), GastroStacks.SQUASH.asQuantity(1));
         register(60, GastroStacks.CELERY.asQuantity(3));
-        register(60, GastroStacks.BOK_CHOY.asQuantity(3));
-        register(60, GastroStacks.BROCCOLI.asQuantity(3));
-        register(60, GastroStacks.CUCUMBER.asQuantity(3));
-        register(60, GastroStacks.BASIL.asQuantity(3));
-        register(60, GastroStacks.SPINACH.asQuantity(3));
+        register(60, GastroStacks.BOK_CHOY_SEEDS.asQuantity(2), GastroStacks.BOK_CHOY.asQuantity(2));
+        register(60, GastroStacks.BROCCOLI_SEEDS.asQuantity(2), GastroStacks.BROCCOLI.asQuantity(2));
+        register(60, GastroStacks.CUCUMBER_SEEDS.asQuantity(2), GastroStacks.CUCUMBER.asQuantity(2));
+        register(60, GastroStacks.BASIL_SEEDS.asQuantity(2), GastroStacks.BASIL.asQuantity(2));
+        register(60, GastroStacks.SPINACH_SEEDS.asQuantity(2), GastroStacks.SPINACH.asQuantity(2));
         register(60, GastroStacks.BRUSSLES_SPROUTS.asQuantity(3));
-        register(60, GastroStacks.MINT.asQuantity(3));
-        register(60, GastroStacks.CHILI_PEPPER.asQuantity(3));
-        register(60, GastroStacks.PARSLEY.asQuantity(3));
+        register(60, GastroStacks.MINT_SEEDS.asQuantity(2), GastroStacks.MINT.asQuantity(2));
+        register(60, GastroStacks.CHILI_PEPPER_SEEDS.asQuantity(2), GastroStacks.CHILI_PEPPER.asQuantity(2));
+        register(60, GastroStacks.PARSLEY_SEEDS.asQuantity(2), GastroStacks.PARSLEY.asQuantity(2));
         register(60, GastroStacks.CASSAVA.asQuantity(3));
         register(60, GastroStacks.LENTILS.asQuantity(3));
         register(60, GastroStacks.PEANUTS.asQuantity(3));
         register(60, GastroStacks.BEANS.asQuantity(3));
         register(60, GastroStacks.PEAS.asQuantity(3));
-        register(60, GastroStacks.ASPARAGUS.asQuantity(3));
-        register(60, GastroStacks.GREEN_ONION.asQuantity(3));
-        register(60, GastroStacks.CAULIFLOWER.asQuantity(3));
+        register(60, GastroStacks.ASPARAGUS_SEEDS.asQuantity(2), GastroStacks.ASPARAGUS.asQuantity(2));
+        register(60, GastroStacks.GREEN_ONION_SEEDS.asQuantity(2), GastroStacks.GREEN_ONION.asQuantity(2));
+        register(60, GastroStacks.CAULIFLOWER_SEEDS.asQuantity(2), GastroStacks.CAULIFLOWER.asQuantity(2));
         register(60, GastroStacks.AVOCADO_PIT.asQuantity(2), GastroStacks.AVOCADO.asQuantity(2));
         register(60, GastroStacks.TURMERIC.asQuantity(3));
         register(60, GastroStacks.CUMIN_SEEDS.asQuantity(3));
         register(60, GastroStacks.RED_BEANS.asQuantity(3));
+        register(60, GastroStacks.HONEYDEW_MELON_SEEDS.asQuantity(2), GastroStacks.CAULIFLOWER.asQuantity(1));
+        register(60, GastroStacks.CANTALOUPE_SEEDS.asQuantity(2), GastroStacks.CAULIFLOWER.asQuantity(1));
+        register(60, GastroStacks.SESAME_SEEDS.asQuantity(3));
+        register(60, GastroStacks.VANILLA_PLANT.asQuantity(2), GastroStacks.VANILLA_BEANS.asQuantity(2));
         register(90,
             GastroStacks.LYCHEE_SAPLING.asQuantity(4),
             GastroStacks.LYCHEE.asQuantity(4),
@@ -79,16 +83,11 @@ public class DynaTechSetup {
             GastroStacks.BANANA.asQuantity(4),
             new ItemStack(Material.JUNGLE_LOG, 4),
             new ItemStack(Material.MANGROVE_LEAVES, 6));
-        register(90,
-            GastroStacks.VANILLA_SAPLING.asQuantity(4),
-            GastroStacks.VANILLA_BEANS.asQuantity(4),
-            new ItemStack(Material.SPRUCE_LOG, 4),
-            new ItemStack(Material.ACACIA_LEAVES, 6));
-        register(60, GastroStacks.FIDDLEHEADS.asQuantity(3));
-        register(60, GastroStacks.TRUFFLE.asQuantity(3));
-        register(60, GastroStacks.ENOKI_MUSHROOMS.asQuantity(3));
-        register(60, GastroStacks.KING_OYSTER_MUSHROOM.asQuantity(3));
-        register(60, GastroStacks.BUTTON_MUSHROOM.asQuantity(3));
+        register(60, GastroStacks.FIDDLEHEADS.asQuantity(2));
+        register(60, GastroStacks.TRUFFLE.asQuantity(2));
+        register(60, GastroStacks.ENOKI_MUSHROOMS.asQuantity(2));
+        register(60, GastroStacks.KING_OYSTER_MUSHROOM.asQuantity(2));
+        register(60, GastroStacks.BUTTON_MUSHROOM.asQuantity(2));
     }
 
 }
