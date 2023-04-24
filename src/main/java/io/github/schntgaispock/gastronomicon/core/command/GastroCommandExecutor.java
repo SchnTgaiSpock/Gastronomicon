@@ -9,7 +9,7 @@ import org.bukkit.entity.Player;
 import io.github.mooy1.infinitylib.core.AddonConfig;
 import io.github.schntgaispock.gastronomicon.Gastronomicon;
 import io.github.schntgaispock.gastronomicon.api.items.GastroTheme;
-import io.github.schntgaispock.gastronomicon.core.items.food.GastroFood;
+import io.github.schntgaispock.gastronomicon.core.slimefun.items.food.GastroFood;
 
 /**
  * Functionality for the '/gastronomicon' command

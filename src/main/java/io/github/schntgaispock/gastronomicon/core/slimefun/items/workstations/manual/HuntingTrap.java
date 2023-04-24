@@ -1,4 +1,4 @@
-package io.github.schntgaispock.gastronomicon.core.items.workstations.manual;
+package io.github.schntgaispock.gastronomicon.core.slimefun.items.workstations.manual;
 
 import java.util.HashMap;
 import java.util.Map;

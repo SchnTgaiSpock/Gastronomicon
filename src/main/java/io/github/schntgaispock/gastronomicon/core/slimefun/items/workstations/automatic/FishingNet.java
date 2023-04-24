@@ -1,4 +1,4 @@
-package io.github.schntgaispock.gastronomicon.core.items.workstations.automatic;
+package io.github.schntgaispock.gastronomicon.core.slimefun.items.workstations.automatic;
 
 import org.bukkit.Material;
 import org.bukkit.block.Block;

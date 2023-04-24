@@ -13,7 +13,7 @@ import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.potion.PotionType;
 
 import io.github.schntgaispock.gastronomicon.Gastronomicon;
-import io.github.schntgaispock.gastronomicon.core.items.workstations.manual.Fermenter;
+import io.github.schntgaispock.gastronomicon.core.slimefun.items.workstations.manual.Fermenter;
 import io.github.schntgaispock.gastronomicon.util.ChunkPDC;
 import io.github.schntgaispock.gastronomicon.util.item.GastroKeys;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;

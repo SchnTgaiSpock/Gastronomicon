@@ -6,7 +6,7 @@ import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
-import io.github.schntgaispock.gastronomicon.core.items.food.GastroFood;
+import io.github.schntgaispock.gastronomicon.core.slimefun.items.food.GastroFood;
 import lombok.Getter;
 import lombok.Setter;
 

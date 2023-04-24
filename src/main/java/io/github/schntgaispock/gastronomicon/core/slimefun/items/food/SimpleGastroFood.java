@@ -1,4 +1,4 @@
-package io.github.schntgaispock.gastronomicon.core.items.food;
+package io.github.schntgaispock.gastronomicon.core.slimefun.items.food;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -19,9 +19,9 @@ import io.github.schntgaispock.gastronomicon.api.recipes.ShapedGastroRecipe;
 import io.github.schntgaispock.gastronomicon.api.recipes.ShapelessGastroRecipe;
 import io.github.schntgaispock.gastronomicon.api.recipes.GastroRecipe.RecipeShape;
 import io.github.schntgaispock.gastronomicon.api.recipes.components.RecipeComponent;
-import io.github.schntgaispock.gastronomicon.core.items.UnplaceableSolid;
-import io.github.schntgaispock.gastronomicon.core.items.workstations.manual.MultiStove.Temperature;
 import io.github.schntgaispock.gastronomicon.core.slimefun.GastroStacks;
+import io.github.schntgaispock.gastronomicon.core.slimefun.items.UnplaceableSolid;
+import io.github.schntgaispock.gastronomicon.core.slimefun.items.workstations.manual.MultiStove.Temperature;
 import io.github.schntgaispock.gastronomicon.core.slimefun.recipes.GastroRecipeType;
 import io.github.schntgaispock.gastronomicon.util.StringUtil;
 import io.github.schntgaispock.gastronomicon.util.collections.CollectionUtil;

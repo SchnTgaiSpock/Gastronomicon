@@ -19,7 +19,7 @@ import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
 
 import io.github.schntgaispock.gastronomicon.Gastronomicon;
-import io.github.schntgaispock.gastronomicon.core.items.food.GastroFood;
+import io.github.schntgaispock.gastronomicon.core.slimefun.items.food.GastroFood;
 import io.github.schntgaispock.gastronomicon.util.NumberUtil;
 import io.github.schntgaispock.gastronomicon.util.item.ItemUtil;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;

@@ -1,4 +1,4 @@
-package io.github.schntgaispock.gastronomicon.core.items.food;
+package io.github.schntgaispock.gastronomicon.core.slimefun.items.food;
 
 import java.util.Arrays;
 import java.util.Set;
@@ -12,8 +12,8 @@ import io.github.schntgaispock.gastronomicon.api.items.FoodItemStack;
 import io.github.schntgaispock.gastronomicon.api.recipes.GastroRecipe.RecipeShape;
 import io.github.schntgaispock.gastronomicon.api.recipes.components.RecipeComponent;
 import io.github.schntgaispock.gastronomicon.api.recipes.components.SingleRecipeComponent;
-import io.github.schntgaispock.gastronomicon.core.items.workstations.manual.MultiStove.Temperature;
 import io.github.schntgaispock.gastronomicon.core.slimefun.GastroResearch;
+import io.github.schntgaispock.gastronomicon.core.slimefun.items.workstations.manual.MultiStove.Temperature;
 import io.github.schntgaispock.gastronomicon.core.slimefun.recipes.GastroRecipeType;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;

@@ -1,4 +1,4 @@
-package io.github.schntgaispock.gastronomicon.core.items.seeds;
+package io.github.schntgaispock.gastronomicon.core.slimefun.items.seeds;
 
 import java.util.ArrayList;
 import java.util.Arrays;

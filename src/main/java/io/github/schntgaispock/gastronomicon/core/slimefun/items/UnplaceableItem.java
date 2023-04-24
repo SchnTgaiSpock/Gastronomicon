@@ -1,4 +1,4 @@
-package io.github.schntgaispock.gastronomicon.core.items;
+package io.github.schntgaispock.gastronomicon.core.slimefun.items;
 
 import org.bukkit.inventory.ItemStack;
 

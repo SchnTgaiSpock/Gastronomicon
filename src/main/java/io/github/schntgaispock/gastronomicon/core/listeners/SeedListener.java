@@ -21,10 +21,10 @@ import org.bukkit.inventory.ItemStack;
 import com.destroystokyo.paper.event.block.BlockDestroyEvent;
 
 import io.github.schntgaispock.gastronomicon.Gastronomicon;
-import io.github.schntgaispock.gastronomicon.core.items.seeds.AbstractSeed;
-import io.github.schntgaispock.gastronomicon.core.items.seeds.DuplicatingSeed;
-import io.github.schntgaispock.gastronomicon.core.items.seeds.FruitingSeed;
-import io.github.schntgaispock.gastronomicon.core.items.seeds.VineSeed;
+import io.github.schntgaispock.gastronomicon.core.slimefun.items.seeds.AbstractSeed;
+import io.github.schntgaispock.gastronomicon.core.slimefun.items.seeds.DuplicatingSeed;
+import io.github.schntgaispock.gastronomicon.core.slimefun.items.seeds.FruitingSeed;
+import io.github.schntgaispock.gastronomicon.core.slimefun.items.seeds.VineSeed;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
 
@@ -50,7 +50,7 @@ public class SeedListener implements Listener {
                             continue;
                         }
 
-                        Directional stemData = (Directional) checking.getBlockData();
+                        final Directional stemData = (Directional) checking.getBlockData();
 
                         if (stemData.getFacing().getOppositeFace().equals(face)) {
                             assignGastroSeed(BlockStorage.check(checking), e.getNewState().getLocation());

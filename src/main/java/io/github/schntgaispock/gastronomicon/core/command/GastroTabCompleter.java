@@ -11,7 +11,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 
-import io.github.schntgaispock.gastronomicon.core.items.food.GastroFood;
+import io.github.schntgaispock.gastronomicon.core.slimefun.items.food.GastroFood;
 
 /**
  * Tab completion for the '/gastronomicon' command

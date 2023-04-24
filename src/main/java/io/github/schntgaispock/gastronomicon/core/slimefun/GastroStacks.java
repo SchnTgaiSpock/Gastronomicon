@@ -18,8 +18,8 @@ import io.github.schntgaispock.gastronomicon.api.items.FoodItemStackBuilder;
 import io.github.schntgaispock.gastronomicon.api.items.GastroTheme;
 import io.github.schntgaispock.gastronomicon.api.items.ThemedItemStack;
 import io.github.schntgaispock.gastronomicon.api.loot.LootTable;
+import io.github.schntgaispock.gastronomicon.core.Climate;
 import io.github.schntgaispock.gastronomicon.core.listeners.WildHarvestListener;
-import io.github.schntgaispock.gastronomicon.core.listeners.WildHarvestListener.Climate;
 import io.github.schntgaispock.gastronomicon.util.StringUtil;
 import io.github.schntgaispock.gastronomicon.util.item.HeadTextures;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -87,10 +87,9 @@ public class GastroStacks {
 
     public static final ItemStack GUIDE_RECIPE_KILL = new CustomItemStack(
         Material.IRON_SWORD,
-        "&bKilling Mobs",
-        "&7This item is obtained by",
-        "&7killing the displayed",
-        "&7mobs.");
+        "&bMob Drops",
+        "&7This item is dropped by",
+        "&7the displayed mobs.");
 
     public static final ItemStack GUIDE_RECIPE_TRAP = new CustomItemStack(
         Material.COBWEB,
@@ -141,6 +140,14 @@ public class GastroStacks {
     public static final ItemStack GUIDE_CONTAINER_REQUIRED = new CustomItemStack(
         Material.PURPLE_STAINED_GLASS_PANE,
         "&5Container Required");
+
+    public static final ItemStack GUIDE_BIOME_REQUIRED = new CustomItemStack(
+        Material.LIME_STAINED_GLASS_PANE,
+        "&aBiome Required");
+
+    public static final ItemStack GUIDE_CLIMATE_REQUIRED = new CustomItemStack(
+        Material.LIGHT_BLUE_STAINED_GLASS_PANE,
+        "&bClimate Required");
 
     public static final ItemStack GUIDE_NONE = new CustomItemStack(
         Material.BARRIER,
@@ -321,19 +328,22 @@ public class GastroStacks {
         GastroTheme.TOOL,
         "GN_WOODEN_SICKLE",
         Material.WOODEN_HOE,
-        "Wooden Sickle");
+        "Wooden Sickle",
+        "Increases drops from some crops");
 
     public static final SlimefunItemStack STEEL_SICKLE = ThemedItemStack.of(
         GastroTheme.TOOL,
         "GN_STEEL_SICKLE",
         Material.IRON_HOE,
-        "Steel Sickle");
+        "Steel Sickle",
+        "Increases drops from some crops");
 
     public static final SlimefunItemStack REINFORCED_SICKLE = ThemedItemStack.of(
         GastroTheme.TOOL,
         "GN_REINFORCED_SICKLE",
         Material.NETHERITE_HOE,
-        "Reinforced Sickle");
+        "Reinforced Sickle",
+        "Increases drops from some crops");
 
     // ---- Basic Machines ----
 
@@ -434,7 +444,7 @@ public class GastroStacks {
         GastroTheme.ELECTRIC,
         "GN_ELECTRIC_KITCHEN_II",
         Material.FURNACE,
-        "Electric Kitchen &7- &eII  ",
+        "Electric Kitchen &7- &eII",
         LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE),
         LoreBuilder.powerBuffer(1024),
         LoreBuilder.powerPerSecond(64),
@@ -723,7 +733,7 @@ public class GastroStacks {
         "GN_VANILLA_BEANS",
         HeadTextures.VANILLA,
         "Vanilla Beans");
-        
+
     public static final SlimefunItemStack VANILLA_PLANT = ThemedItemStack.ingredient(
         "GN_VANILLA_PLANT",
         Material.VINE,

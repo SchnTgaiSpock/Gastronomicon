@@ -1,4 +1,4 @@
-package io.github.schntgaispock.gastronomicon.core.items.workstations.manual;
+package io.github.schntgaispock.gastronomicon.core.slimefun.items.workstations.manual;
 
 import java.util.Arrays;
 
@@ -14,10 +14,10 @@ import org.bukkit.persistence.PersistentDataType;
 import io.github.mooy1.infinitylib.core.AddonConfig;
 import io.github.mooy1.infinitylib.machines.MenuBlock;
 import io.github.schntgaispock.gastronomicon.Gastronomicon;
-import io.github.schntgaispock.gastronomicon.core.items.food.GastroFood;
-import io.github.schntgaispock.gastronomicon.core.items.food.SimpleGastroFood;
 import io.github.schntgaispock.gastronomicon.core.slimefun.GastroGroups;
 import io.github.schntgaispock.gastronomicon.core.slimefun.GastroStacks;
+import io.github.schntgaispock.gastronomicon.core.slimefun.items.food.GastroFood;
+import io.github.schntgaispock.gastronomicon.core.slimefun.items.food.SimpleGastroFood;
 import io.github.schntgaispock.gastronomicon.util.item.GastroKeys;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;

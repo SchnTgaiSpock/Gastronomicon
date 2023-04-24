@@ -1,4 +1,4 @@
-package io.github.schntgaispock.gastronomicon.core.items.workstations.automatic;
+package io.github.schntgaispock.gastronomicon.core.slimefun.items.workstations.automatic;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -17,9 +17,9 @@ import org.bukkit.persistence.PersistentDataType;
 
 import io.github.schntgaispock.gastronomicon.api.recipes.GastroRecipe;
 import io.github.schntgaispock.gastronomicon.api.recipes.components.RecipeComponent;
-import io.github.schntgaispock.gastronomicon.core.items.food.SimpleGastroFood;
 import io.github.schntgaispock.gastronomicon.core.slimefun.GastroGroups;
 import io.github.schntgaispock.gastronomicon.core.slimefun.GastroStacks;
+import io.github.schntgaispock.gastronomicon.core.slimefun.items.food.SimpleGastroFood;
 import io.github.schntgaispock.gastronomicon.util.collections.Counter;
 import io.github.schntgaispock.gastronomicon.util.collections.Pair;
 import io.github.schntgaispock.gastronomicon.util.item.GastroKeys;
