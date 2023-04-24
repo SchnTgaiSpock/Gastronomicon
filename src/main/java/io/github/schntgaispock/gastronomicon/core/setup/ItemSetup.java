@@ -13,6 +13,8 @@ import org.bukkit.block.Biome;
 import org.bukkit.inventory.ItemStack;
 
 import io.github.schntgaispock.gastronomicon.Gastronomicon;
+import io.github.schntgaispock.gastronomicon.api.food.GastroFoodBuilder;
+import io.github.schntgaispock.gastronomicon.api.food.SimpleGastroFoodBuilder;
 import io.github.schntgaispock.gastronomicon.api.recipes.MultiStoveRecipe;
 import io.github.schntgaispock.gastronomicon.api.recipes.RecipeRegistry;
 import io.github.schntgaispock.gastronomicon.api.recipes.ShapedGastroRecipe;
@@ -21,8 +23,6 @@ import io.github.schntgaispock.gastronomicon.core.slimefun.GastroGroups;
 import io.github.schntgaispock.gastronomicon.core.slimefun.GastroStacks;
 import io.github.schntgaispock.gastronomicon.core.slimefun.items.UnplaceableItem;
 import io.github.schntgaispock.gastronomicon.core.slimefun.items.UnplaceableSolid;
-import io.github.schntgaispock.gastronomicon.core.slimefun.items.food.GastroFoodBuilder;
-import io.github.schntgaispock.gastronomicon.core.slimefun.items.food.SimpleGastroFoodBuilder;
 import io.github.schntgaispock.gastronomicon.core.slimefun.items.seeds.CropSeed;
 import io.github.schntgaispock.gastronomicon.core.slimefun.items.seeds.DuplicatingSeed;
 import io.github.schntgaispock.gastronomicon.core.slimefun.items.seeds.FruitingSeed;
