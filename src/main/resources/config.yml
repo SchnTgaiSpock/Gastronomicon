@@ -15,9 +15,9 @@ proficiency-threshold: 256
 
 drops:
   # The chance for dropping Gastronomicon seeds when an appropriate block is broken [0 ... 1]
-  block-break-chance: 0.25
+  block-break-chance: 0.15
   # The chance for dropping Gastronomicon mob drops when an appropriate mob is killed [0 ... 1]
-  mob-kill-chance: 0.25
+  mob-kill-chance: 0.35
 
 profile:
   # Titles based on total proficient food

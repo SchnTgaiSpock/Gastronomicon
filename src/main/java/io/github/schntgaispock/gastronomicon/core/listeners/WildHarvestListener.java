@@ -23,7 +23,6 @@ import io.github.schntgaispock.gastronomicon.Gastronomicon;
 import io.github.schntgaispock.gastronomicon.api.loot.LootTable;
 import io.github.schntgaispock.gastronomicon.core.Climate;
 import io.github.schntgaispock.gastronomicon.util.NumberUtil;
-import io.github.schntgaispock.gastronomicon.util.item.ItemUtil;
 
 public class WildHarvestListener implements Listener {
 
@@ -31,8 +30,8 @@ public class WildHarvestListener implements Listener {
     private static final Map<Material, LootTable<ItemStack>> dropsByBlock = new HashMap<>();
     private static final Map<EntityType, LootTable<ItemStack>> dropsByMob = new HashMap<>();
 
-    private static double BLOCK_BREAK_DROP_CHANCE = 0.25;
-    private static double MOB_KILL_DROP_CHANCE = 0.25;
+    private static double BLOCK_BREAK_DROP_CHANCE = 0.15;
+    private static double MOB_KILL_DROP_CHANCE = 0.35;
 
     public static void registerBlockDrops(Material material, LootTable<ItemStack> table, Climate climate) {
         Map<Material, LootTable<ItemStack>> climateDrops = dropsByClimateByBlock.get(climate);
@@ -54,13 +53,13 @@ public class WildHarvestListener implements Listener {
     @Nullable
     @ParametersAreNonnullByDefault
     public static LootTable<ItemStack> getDrops(Material dropFrom, Climate climate) {
-        return dropsByClimateByBlock.containsKey(climate)
-            ? (dropsByClimateByBlock.get(climate).containsKey(dropFrom)
-                ? dropsByClimateByBlock.get(climate).get(dropFrom)
-                : null)
-            : (dropsByBlock.containsKey(dropFrom) 
-                ? dropsByBlock.get(dropFrom)
-                : null);
+        if (dropsByClimateByBlock.containsKey(climate) && dropsByClimateByBlock.get(climate).containsKey(dropFrom)) {
+            return dropsByClimateByBlock.get(climate).get(dropFrom);
+        } else if (dropsByBlock.containsKey(dropFrom)) {
+            return dropsByBlock.get(dropFrom);
+        } else {
+            return null;
+        }
     }
 
     @Nullable
@@ -75,13 +74,14 @@ public class WildHarvestListener implements Listener {
             return;
 
         final LootTable<ItemStack> drops = getDrops(b.getType(), Climate.of(b.getBiome()));
+        System.out.println(drops);
         if (drops == null)
             return;
 
         final ItemStack weapon = e.getPlayer().getInventory().getItemInMainHand();
         final int fortune = weapon == null ? 0
-            : weapon.getEnchantmentLevel(Enchantment.LOOT_BONUS_BLOCKS) + ItemUtil.getSickleTier(weapon);
-        if (NumberUtil.flip(Math.min(drops.size() * 0.05, BLOCK_BREAK_DROP_CHANCE) * (1 + fortune * 0.5))) {
+            : weapon.getEnchantmentLevel(Enchantment.LOOT_BONUS_BLOCKS);
+        if (NumberUtil.flip(Math.min(drops.size() * 0.03, BLOCK_BREAK_DROP_CHANCE) * (1 + fortune * 0.5))) {
             // Slightly lower the drop chance in items with few drops
             e.getBlock().getWorld().dropItemNaturally(e.getBlock().getLocation(), drops.generate());
         }

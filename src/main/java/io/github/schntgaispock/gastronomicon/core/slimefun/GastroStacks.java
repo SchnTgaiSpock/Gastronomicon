@@ -72,14 +72,14 @@ public class GastroStacks {
         GastroTheme.PERFECT_FOOD.getColor() + "Gastronomicon");
 
     public static final ItemStack GUIDE_RECIPE_BREAK = new CustomItemStack(
-        Material.IRON_HOE,
+        Material.IRON_PICKAXE,
         "&bBreaking Blocks",
         "&7This item is obtained by",
         "&7breaking the displayed",
         "&7blocks.");
 
     public static final ItemStack GUIDE_RECIPE_HARVEST = new CustomItemStack(
-        Material.GRASS,
+        Material.IRON_HOE,
         "&bHarvesting Crops",
         "&7This item is obtained by",
         "&7harvesting the displayed",

@@ -9,6 +9,7 @@ import java.util.concurrent.ThreadLocalRandom;
 import io.github.schntgaispock.gastronomicon.util.collections.Pair;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
+import lombok.ToString;
 
 /**
  * This class implements a stabilized Vose's Alias Method taken from
@@ -16,6 +17,7 @@ import lombok.RequiredArgsConstructor;
  * Vose in "A linear algorithm for generating random numbers with a
  * given distribution," in IEEE Transactions on Software Engineering
  */
+@ToString(of = "drops")
 @RequiredArgsConstructor(access = AccessLevel.PROTECTED)
 public class LootTable<T> {
 

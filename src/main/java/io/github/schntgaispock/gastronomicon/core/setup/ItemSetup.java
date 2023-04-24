@@ -899,7 +899,7 @@ public class ItemSetup {
             GastroGroups.RAW_INGREDIENTS,
             GastroStacks.TRUFFLE,
             GastroRecipeType.BREAK,
-            RecipeUtil.singleCenter(Material.DIRT))
+            RecipeUtil.singleCenter(Material.PODZOL))
                 .register(gn);
 
         new UnplaceableSolid(
