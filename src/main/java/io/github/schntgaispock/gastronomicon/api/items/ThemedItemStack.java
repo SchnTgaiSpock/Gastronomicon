@@ -41,7 +41,7 @@ public class ThemedItemStack extends SlimefunItemStack {
             fLore[0] = "";
 
             for (int i = 0; i < lore.length; i++) {
-                fLore[i + 1] = theme.getLoreColor() + lore[i];
+                fLore[i + 1] = theme.getLoreColor() + lore[i].replace("&r", theme.getLoreColor().toString());
             }
 
             return new ThemedItemStack(id, material, theme.getColor() + name, fLore);

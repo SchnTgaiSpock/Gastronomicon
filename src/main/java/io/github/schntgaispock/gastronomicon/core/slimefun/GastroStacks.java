@@ -292,13 +292,17 @@ public class GastroStacks {
         GastroTheme.TRAP,
         "GN_CRAB_TRAP",
         Material.OAK_TRAPDOOR,
-        "Crab Trap");
+        "Crab Trap",
+        "Place on the ground and wait",
+        "until white particles appear");
 
     public static final SlimefunItemStack HUNTING_TRAP = ThemedItemStack.of(
         GastroTheme.TRAP,
         "GN_HUNTING_TRAP",
         Material.IRON_TRAPDOOR,
-        "Hunting Trap");
+        "Hunting Trap",
+        "Place on the ground and wait",
+        "until white particles appear");
 
     // -- Other --
 
@@ -366,8 +370,9 @@ public class GastroStacks {
         "GN_FERMENTER",
         Material.BARREL,
         "Fermenter",
-        "&eShift + Right-click &pwith a water",
+        "&eShift + Right-click &rwith a water",
         "bucket or water bottle to refill",
+        "",
         StringUtil.waterUsed(2000, " Buffer"),
         StringUtil.waterUsed(125, "/Craft"));
 
@@ -376,8 +381,9 @@ public class GastroStacks {
         "GN_LARGE_FERMENTER",
         Material.BARREL,
         "Large Fermenter",
-        "&eShift + Right-click &7with a water",
+        "&eShift + Right-click &rwith a water",
         "bucket or water bottle to refill",
+        "",
         StringUtil.waterUsed(16000, " Buffer"),
         StringUtil.waterUsed(125, "/Craft"));
 

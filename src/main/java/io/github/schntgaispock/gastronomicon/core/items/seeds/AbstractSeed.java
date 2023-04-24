@@ -35,6 +35,8 @@ public abstract class AbstractSeed extends SlimefunItem {
 
             @Override
             public void onPlayerBreak(BlockBreakEvent e, ItemStack item, List<ItemStack> drops) {
+                if (!dropsOnPlayerBreak()) return;
+                
                 drops.clear();
                 drops.addAll(getHarvestDrops(e.getBlock().getState(), item, true));
             }
@@ -42,6 +44,10 @@ public abstract class AbstractSeed extends SlimefunItem {
     }
 
     public abstract List<ItemStack> getHarvestDrops(BlockState e, ItemStack item, boolean brokenByPlayer);
+
+    protected boolean dropsOnPlayerBreak() {
+        return true;
+    }
 
     public abstract boolean isMature(BlockState b);
 

@@ -127,7 +127,7 @@ public class SeedListener implements Listener {
         if (cropBlock == null)
             return null;
         switch (cropBlock.getType()) {
-            case WHEAT, POTATOES, CARROTS, BEETROOTS, PUMPKIN_STEM, ATTACHED_PUMPKIN_STEM, MELON_STEM, ATTACHED_MELON_STEM, SUGAR_CANE, CACTUS:
+            case WHEAT, POTATOES, CARROTS, BEETROOTS, PUMPKIN_STEM, ATTACHED_PUMPKIN_STEM, MELON_STEM, ATTACHED_MELON_STEM, SUGAR_CANE, CACTUS, VINE:
                 break;
             default:
                 return null;

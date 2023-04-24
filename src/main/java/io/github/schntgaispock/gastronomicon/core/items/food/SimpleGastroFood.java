@@ -19,7 +19,7 @@ import io.github.schntgaispock.gastronomicon.api.recipes.ShapedGastroRecipe;
 import io.github.schntgaispock.gastronomicon.api.recipes.ShapelessGastroRecipe;
 import io.github.schntgaispock.gastronomicon.api.recipes.GastroRecipe.RecipeShape;
 import io.github.schntgaispock.gastronomicon.api.recipes.components.RecipeComponent;
-import io.github.schntgaispock.gastronomicon.core.items.UnplaceableItem;
+import io.github.schntgaispock.gastronomicon.core.items.UnplaceableSolid;
 import io.github.schntgaispock.gastronomicon.core.items.workstations.manual.MultiStove.Temperature;
 import io.github.schntgaispock.gastronomicon.core.slimefun.GastroStacks;
 import io.github.schntgaispock.gastronomicon.core.slimefun.recipes.GastroRecipeType;
@@ -33,7 +33,7 @@ import lombok.Getter;
 
 @Getter
 @SuppressWarnings("deprecation")
-public class SimpleGastroFood extends UnplaceableItem implements RecipeDisplayItem {
+public class SimpleGastroFood extends UnplaceableSolid implements RecipeDisplayItem {
 
     private final GastroRecipe gastroRecipe;
     protected final ItemStack topRightDisplayItem;
