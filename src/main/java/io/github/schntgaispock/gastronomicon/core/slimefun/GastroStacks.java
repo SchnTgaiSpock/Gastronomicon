@@ -300,16 +300,18 @@ public class GastroStacks {
         "GN_CRAB_TRAP",
         Material.OAK_TRAPDOOR,
         "Crab Trap",
-        "Place on the ground and wait",
-        "until white particles appear");
+        "Used to catch crabs.",
+        "Place on the ground and right click",
+        "when white particles appear");
 
     public static final SlimefunItemStack HUNTING_TRAP = ThemedItemStack.of(
         GastroTheme.TRAP,
         "GN_HUNTING_TRAP",
         Material.IRON_TRAPDOOR,
         "Hunting Trap",
-        "Place on the ground and wait",
-        "until white particles appear");
+        "Used to catch certain animals.",
+        "Place on the ground and right click",
+        "when white particles appear");
 
     // -- Other --
 
@@ -380,7 +382,7 @@ public class GastroStacks {
         "GN_FERMENTER",
         Material.BARREL,
         "Fermenter",
-        "&eShift + Right-click &rwith a water",
+        "&eShift Right Click &rwith a water",
         "bucket or water bottle to refill",
         "",
         StringUtil.waterUsed(2000, " Buffer"),
@@ -391,7 +393,7 @@ public class GastroStacks {
         "GN_LARGE_FERMENTER",
         Material.BARREL,
         "Large Fermenter",
-        "&eShift + Right-click &rwith a water",
+        "&eShift Right Click &rwith a water",
         "bucket or water bottle to refill",
         "",
         StringUtil.waterUsed(16000, " Buffer"),
@@ -1417,7 +1419,7 @@ public class GastroStacks {
     public static final FoodItemStack CHICKEN_AND_QUINOA_SOUP = new FoodItemStackBuilder()
         .id("GN_CHICKEN_AND_QUINOA_SOUP")
         .texture(HeadTextures.SOUP)
-        .name("Chicken And Quinoa Soup")
+        .name("Chicken and Quinoa Soup")
         .hunger(14, 1.25)
         .effects(
             FoodEffect.removePotionEffect(PotionEffectType.POISON),
@@ -1521,7 +1523,7 @@ public class GastroStacks {
     public static final FoodItemStack CREAM_OF_BROCCOLI_SOUP = new FoodItemStackBuilder()
         .id("GN_CREAM_OF_BROCCOLI_SOUP")
         .texture(HeadTextures.CREAM_SOUP)
-        .name("Cream of Celery Soup")
+        .name("Cream of Broccoli Soup")
         .hunger(9, 1.75)
         .effects(FoodEffect.heal(2))
         .build();
@@ -1653,7 +1655,7 @@ public class GastroStacks {
     public static final FoodItemStack BUTTER_CHICKEN_WITH_NAAN_BREAD = new FoodItemStackBuilder()
         .id("GN_BUTTER_CHICKEN_WITH_NAAN_BREAD")
         .texture(HeadTextures.STEW)
-        .name("Butter Chicken With Naan Bread")
+        .name("Butter Chicken with Naan Bread")
         .hunger(12)
         .effects(FoodEffect.positivePotionEffect(PotionEffectType.INCREASE_DAMAGE, 30, 1))
         .build();
@@ -2171,7 +2173,7 @@ public class GastroStacks {
         .name("V7")
         .hunger(6, 0.75)
         .effects(
-            FoodEffect.positivePotionEffect(PotionEffectType.REGENERATION, 20, 2))
+            FoodEffect.positivePotionEffect(PotionEffectType.REGENERATION, 20, 0))
         .build();
 
     public static final FoodItemStack BUBBLE_MILK_TEA = new FoodItemStackBuilder()

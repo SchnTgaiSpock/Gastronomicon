@@ -46,14 +46,12 @@ public abstract class HuntingTrap extends SimpleSlimefunItem<BlockUseHandler> {
 
             @Override
             public void onBlockPlacerPlace(BlockPlacerPlaceEvent e) {
-                if (canCatch(e.getBlock().getLocation()))
-                    startCatch(e.getBlock().getLocation());
+                startCatch(e.getBlock().getLocation());
             }
 
             @Override
             public void onPlayerPlace(BlockPlaceEvent e) {
-                if (canCatch(e.getBlock().getLocation()))
-                    startCatch(e.getBlock().getLocation());
+                startCatch(e.getBlock().getLocation());
             }
 
         });
@@ -69,8 +67,13 @@ public abstract class HuntingTrap extends SimpleSlimefunItem<BlockUseHandler> {
         });
 
         addItemHandler(new BlockTicker() {
+            
+            private boolean active = true;
+
             @Override
             public void tick(Block b, SlimefunItem item, Config config) {
+                if (!active) return;
+
                 if (triggeredTraps.containsKey(b.getLocation())) {
                     if (triggeredTraps.get(b.getLocation())) {
                         b.getWorld().spawnParticle(
@@ -84,7 +87,7 @@ public abstract class HuntingTrap extends SimpleSlimefunItem<BlockUseHandler> {
                             true);
                     }
                 } else {
-                    startCatch(b.getLocation());
+                    active = startCatch(b.getLocation());
                 }
             }
 
@@ -114,8 +117,10 @@ public abstract class HuntingTrap extends SimpleSlimefunItem<BlockUseHandler> {
 
     protected abstract boolean canCatch(Location l);
 
-    private void startCatch(Location l) {
+    private boolean startCatch(Location l) {
         triggeredTraps.put(l, false);
+        if (!canCatch(l))
+            return false;
 
         Gastronomicon.scheduleSyncDelayedTask(() -> {
             final String id = BlockStorage.checkID(l);
@@ -124,6 +129,8 @@ public abstract class HuntingTrap extends SimpleSlimefunItem<BlockUseHandler> {
                 triggeredTraps.put(l, true);
             }
         }, 20 * (long) NumberUtil.clamp(ThreadLocalRandom.current().nextGaussian(120, 30), 60, 180));
+
+        return true;
     }
 
     private void dropCatch(Location l) {

@@ -26,7 +26,6 @@ import lombok.Getter;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.text.format.TextDecoration;
-import net.md_5.bungee.api.ChatColor;
 
 @Getter
 public class Gastronomicon extends AbstractAddon {
@@ -137,7 +136,7 @@ public class Gastronomicon extends AbstractAddon {
     }
 
     public static void sendMessage(Player player, String message) {
-        player.sendMessage(ChatColor.of("#c91df4") + "§lGastronomicon§7§l> §7" + StringUtil.formatColors(message));
+        player.sendMessage(/* ChatColor.of("#c91df4") + "§lGastronomicon§7§l> §7" + */ StringUtil.formatColors(message));
     }
 
     public static void sendMessage(Player player, Component message) {

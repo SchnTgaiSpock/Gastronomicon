@@ -4,7 +4,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 import org.bukkit.Sound;
 import org.bukkit.SoundCategory;
@@ -15,13 +14,9 @@ import io.github.schntgaispock.gastronomicon.api.events.PlayerGastroFoodConsumeE
 import io.github.schntgaispock.gastronomicon.api.food.FoodEffect;
 import io.github.schntgaispock.gastronomicon.api.items.FoodItemStack;
 import io.github.schntgaispock.gastronomicon.api.recipes.GastroRecipe;
-import io.github.schntgaispock.gastronomicon.api.recipes.GastroRecipe.RecipeShape;
-import io.github.schntgaispock.gastronomicon.api.recipes.components.RecipeComponent;
-import io.github.schntgaispock.gastronomicon.core.slimefun.GastroGroups;
-import io.github.schntgaispock.gastronomicon.core.slimefun.items.workstations.manual.MultiStove.Temperature;
-import io.github.schntgaispock.gastronomicon.core.slimefun.recipes.GastroRecipeType;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.api.events.PlayerRightClickEvent;
+import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.researches.Research;
 import io.github.thebusybiscuit.slimefun4.core.handlers.ItemUseHandler;
@@ -34,37 +29,15 @@ public class GastroFood extends SimpleGastroFood {
 
     private final @Getter FoodItemStack item;
     private final @Getter boolean perfect;
+    private final ItemStack recipeDisplayOutput;
 
-    protected GastroFood(Research research, FoodItemStack item, GastroRecipe recipe, ItemStack topRightDisplayItem,
-        boolean perfect) {
-        super(research, GastroGroups.FOOD, item, recipe, topRightDisplayItem, !perfect);
-
-        this.item = item;
-        this.perfect = perfect;
-    }
-
-    protected GastroFood(Research research, FoodItemStack item, GastroRecipeType type, RecipeShape shape,
-        RecipeComponent<?>[] ingredients, @Nullable RecipeComponent<?> container, Set<ItemStack> tools,
-        Temperature temperature, int outputAmount, boolean perfect) {
-        super(research, GastroGroups.FOOD, item, type, shape, ingredients, container, tools,
-            new ItemStack[] { item.asQuantity(outputAmount), item.asPerfect().asQuantity(outputAmount) }, temperature,
-            !perfect);
+    public GastroFood(Research research, ItemGroup group, FoodItemStack item, GastroRecipe recipe,
+        ItemStack topRightDisplayItem, ItemStack recipeDisplayOutput, boolean perfect) {
+        super(research, group, item, recipe, topRightDisplayItem, recipeDisplayOutput, !perfect);
 
         this.item = item;
         this.perfect = perfect;
-    }
-
-    public GastroFood(Research research, FoodItemStack item, RecipeComponent<?>[] ingredients,
-        @Nullable RecipeComponent<?> container, Set<ItemStack> tools, Temperature temperature, int outputAmount) {
-        this(research, item, GastroRecipeType.MULTI_STOVE, RecipeShape.SHAPELESS, ingredients, container, tools,
-            temperature, outputAmount,
-            false);
-    }
-
-    public GastroFood(Research research, FoodItemStack item, GastroRecipeType type, RecipeShape shape,
-        RecipeComponent<?>[] ingredients, @Nullable RecipeComponent<?> container, Set<ItemStack> tools,
-        int outputAmount) {
-        this(research, item, type, shape, ingredients, container, tools, Temperature.MEDIUM, outputAmount, false);
+        this.recipeDisplayOutput = recipeDisplayOutput;
     }
 
     @Override
@@ -119,8 +92,9 @@ public class GastroFood extends SimpleGastroFood {
         super.register(addon);
         if (!isPerfect()) {
             getGastroFoodIds().add(getId());
-            new GastroFood(getResearch(), item.asPerfect(), getGastroRecipe(), topRightDisplayItem, true).hide()
-                .register(addon);
+            new GastroFood(getResearch(), getItemGroup(), item.asPerfect(), getGastroRecipe(), topRightDisplayItem,
+                recipeDisplayOutput, true).hide()
+                    .register(addon);
         }
     }
 

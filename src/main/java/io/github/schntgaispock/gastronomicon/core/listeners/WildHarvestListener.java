@@ -74,7 +74,6 @@ public class WildHarvestListener implements Listener {
             return;
 
         final LootTable<ItemStack> drops = getDrops(b.getType(), Climate.of(b.getBiome()));
-        System.out.println(drops);
         if (drops == null)
             return;
 

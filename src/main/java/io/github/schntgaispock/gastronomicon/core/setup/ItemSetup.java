@@ -88,7 +88,6 @@ public class ItemSetup {
         final ItemStack RASPBERRY = getItem("RASPBERRY");
         final ItemStack PEACH = getItem("PEACH");
         final ItemStack PINEAPPLE = getItem("PINEAPPLE");
-        final ItemStack BANANA = getItem("BANANA");
         final ItemStack LEMON = getItem("LEMON");
         final ItemStack YEAST = getItem("YEAST");
         final ItemStack BROWN_SUGAR = getItem("BROWN_SUGAR");
@@ -136,7 +135,7 @@ public class ItemSetup {
         final ItemStack MELON_SLICE = new ItemStack(Material.MELON_SLICE);
         final ItemStack GLASS_BOTTLE = new ItemStack(Material.GLASS_BOTTLE);
         final ItemStack BEETROOT = new ItemStack(Material.BEETROOT);
-        final ItemStack COOKED_COD = new ItemStack(Material.COOKED_COD);
+        final ItemStack RAW_COD = new ItemStack(Material.COD);
         final ItemStack BRICKS = new ItemStack(Material.BRICKS);
         final ItemStack PINK_DYE = new ItemStack(Material.PINK_DYE);
 
@@ -300,7 +299,7 @@ public class ItemSetup {
             @Override
             protected ItemStack getCatch(Location l) {
                 final List<ItemStack> possibleDrops = dropsByBiome.get(l.getBlock().getBiome());
-                if (possibleDrops == null)
+                if (possibleDrops == null || possibleDrops.isEmpty())
                     return null;
                 return CollectionUtil.choice(possibleDrops);
             }
@@ -592,7 +591,7 @@ public class ItemSetup {
             GastroGroups.RAW_INGREDIENTS,
             GastroStacks.BOK_CHOY,
             GastroRecipeType.HARVEST,
-            RecipeUtil.singleCenter(Material.GRASS))
+            RecipeUtil.singleCenter(GastroStacks.BOK_CHOY_SEEDS))
                 .register(gn);
 
         new CropSeed(
@@ -606,7 +605,7 @@ public class ItemSetup {
             GastroGroups.RAW_INGREDIENTS,
             GastroStacks.BROCCOLI,
             GastroRecipeType.HARVEST,
-            RecipeUtil.singleCenter(Material.GRASS))
+            RecipeUtil.singleCenter(GastroStacks.BROCCOLI_SEEDS))
                 .register(gn);
 
         new CropSeed(
@@ -620,7 +619,7 @@ public class ItemSetup {
             GastroGroups.RAW_INGREDIENTS,
             GastroStacks.CUCUMBER,
             GastroRecipeType.HARVEST,
-            RecipeUtil.singleCenter(Material.GRASS))
+            RecipeUtil.singleCenter(GastroStacks.CUCUMBER_SEEDS))
                 .register(gn);
 
         new CropSeed(
@@ -634,7 +633,7 @@ public class ItemSetup {
             GastroGroups.RAW_INGREDIENTS,
             GastroStacks.BASIL,
             GastroRecipeType.HARVEST,
-            RecipeUtil.singleCenter(Material.GRASS))
+            RecipeUtil.singleCenter(GastroStacks.BASIL_SEEDS))
                 .register(gn);
 
         new CropSeed(
@@ -648,7 +647,7 @@ public class ItemSetup {
             GastroGroups.RAW_INGREDIENTS,
             GastroStacks.SPINACH,
             GastroRecipeType.HARVEST,
-            RecipeUtil.singleCenter(Material.GRASS))
+            RecipeUtil.singleCenter(GastroStacks.SPINACH_SEEDS))
                 .register(gn);
 
         new CropSeed(
@@ -668,7 +667,7 @@ public class ItemSetup {
             GastroGroups.RAW_INGREDIENTS,
             GastroStacks.MINT,
             GastroRecipeType.HARVEST,
-            RecipeUtil.singleCenter(Material.GRASS))
+            RecipeUtil.singleCenter(GastroStacks.MINT_SEEDS))
                 .register(gn);
 
         new CropSeed(
@@ -682,7 +681,7 @@ public class ItemSetup {
             GastroGroups.RAW_INGREDIENTS,
             GastroStacks.CHILI_PEPPER,
             GastroRecipeType.HARVEST,
-            RecipeUtil.singleCenter(Material.GRASS))
+            RecipeUtil.singleCenter(GastroStacks.CHILI_PEPPER_SEEDS))
                 .register(gn);
 
         new CropSeed(
@@ -696,7 +695,7 @@ public class ItemSetup {
             GastroGroups.RAW_INGREDIENTS,
             GastroStacks.PARSLEY,
             GastroRecipeType.HARVEST,
-            RecipeUtil.singleCenter(Material.GRASS))
+            RecipeUtil.singleCenter(GastroStacks.PARSLEY_SEEDS))
                 .register(gn);
 
         new CropSeed(
@@ -740,7 +739,7 @@ public class ItemSetup {
             GastroGroups.RAW_INGREDIENTS,
             GastroStacks.ASPARAGUS,
             GastroRecipeType.HARVEST,
-            RecipeUtil.singleCenter(Material.GRASS))
+            RecipeUtil.singleCenter(GastroStacks.ASPARAGUS_SEEDS))
                 .register(gn);
 
         new CropSeed(
@@ -754,7 +753,7 @@ public class ItemSetup {
             GastroGroups.RAW_INGREDIENTS,
             GastroStacks.GREEN_ONION,
             GastroRecipeType.HARVEST,
-            RecipeUtil.singleCenter(Material.GRASS))
+            RecipeUtil.singleCenter(GastroStacks.GREEN_ONION_SEEDS))
                 .register(gn);
 
         new CropSeed(
@@ -768,7 +767,7 @@ public class ItemSetup {
             GastroGroups.RAW_INGREDIENTS,
             GastroStacks.CAULIFLOWER,
             GastroRecipeType.HARVEST,
-            RecipeUtil.singleCenter(Material.GRASS))
+            RecipeUtil.singleCenter(GastroStacks.CAULIFLOWER_SEEDS))
                 .register(gn);
 
         new CropSeed(
@@ -1883,28 +1882,28 @@ public class ItemSetup {
             .type(GastroRecipeType.MULTI_STOVE)
             .item(GastroStacks.SHRIMP_DUMPLINGS)
             .ingredients(GastroStacks.COOKED_RICE, GastroStacks.SHRIMP, GastroStacks.GREEN_ONION)
-            .tools(GastroStacks.ROLLING_PIN)
+            .tools(GastroStacks.ROLLING_PIN, GastroStacks.STEEL_POT)
             .register(gn);
 
         new GastroFoodBuilder()
             .type(GastroRecipeType.MULTI_STOVE)
             .item(GastroStacks.CHICKEN_POTSTICKERS)
             .ingredients(CHICKEN, GastroStacks.DOUGH, GastroStacks.SOY_SAUCE, GastroStacks.GREEN_ONION)
-            .tools(GastroStacks.ROLLING_PIN)
+            .tools(GastroStacks.ROLLING_PIN, GastroStacks.FRYING_PAN)
             .register(gn);
 
         new GastroFoodBuilder()
             .type(GastroRecipeType.MULTI_STOVE)
             .item(GastroStacks.BEEF_POTSTICKERS)
             .ingredients(BEEF, GastroStacks.DOUGH, GastroStacks.SOY_SAUCE, GastroStacks.GREEN_ONION)
-            .tools(GastroStacks.ROLLING_PIN)
+            .tools(GastroStacks.ROLLING_PIN, GastroStacks.FRYING_PAN)
             .register(gn);
 
         new GastroFoodBuilder()
             .type(GastroRecipeType.MULTI_STOVE)
             .item(GastroStacks.PIEROGIES)
             .ingredients(POTATO, GastroStacks.DOUGH, SlimefunItems.BUTTER)
-            .tools(GastroStacks.ROLLING_PIN, GastroStacks.PEELER)
+            .tools(GastroStacks.ROLLING_PIN, GastroStacks.PEELER, GastroStacks.BAKING_TRAY)
             .register(gn);
 
         if (egAvailable)
@@ -1912,13 +1911,13 @@ public class ItemSetup {
                 .type(GastroRecipeType.MULTI_STOVE)
                 .item(GastroStacks.BACON_PIEROGIES)
                 .ingredients(BACON, POTATO, GastroStacks.DOUGH, SlimefunItems.BUTTER)
-                .tools(GastroStacks.ROLLING_PIN, GastroStacks.PEELER)
+                .tools(GastroStacks.ROLLING_PIN, GastroStacks.PEELER, GastroStacks.BAKING_TRAY)
                 .register(gn);
 
         new GastroFoodBuilder()
             .type(GastroRecipeType.MULTI_STOVE)
             .item(GastroStacks.CUSTARD_BUNS)
-            .ingredients(POTATO, GastroStacks.DOUGH, SlimefunItems.BUTTER)
+            .ingredients(GastroStacks.DOUGH, GastroStacks.CUSTARD)
             .register(gn);
 
         new GastroFoodBuilder()
@@ -2001,6 +2000,7 @@ public class ItemSetup {
             .amount(3)
             .ingredients(
                 WATER_BUCKET, GastroStacks.COOKED_RICE, GastroStacks.RED_BEAN_PASTE, SUGAR)
+            .tools(GastroStacks.STEEL_POT)
             .temperature(Temperature.LOW)
             .register(gn);
 
@@ -2010,6 +2010,7 @@ public class ItemSetup {
             .amount(3)
             .ingredients(
                 WATER_BUCKET, GastroStacks.COOKED_RICE, GastroStacks.PEANUTS, SUGAR)
+            .tools(GastroStacks.STEEL_POT)
             .temperature(Temperature.LOW)
             .register(gn);
 
@@ -2019,6 +2020,7 @@ public class ItemSetup {
             .amount(3)
             .ingredients(
                 WATER_BUCKET, GastroStacks.COOKED_RICE, GastroStacks.SESAME_SEEDS, SUGAR)
+            .tools(GastroStacks.STEEL_POT)
             .temperature(Temperature.LOW)
             .register(gn);
 
@@ -2037,9 +2039,9 @@ public class ItemSetup {
             .register(gn);
 
         new GastroFoodBuilder()
-            .type(GastroRecipeType.CULINARY_WORKBENCH)
+            .type(GastroRecipeType.MULTI_STOVE)
             .item(GastroStacks.FISH_AND_CHIPS)
-            .ingredients(COOKED_COD, POTATO, SlimefunItems.SALT)
+            .ingredients(RAW_COD, POTATO, SlimefunItems.SALT)
             .register(gn);
 
         new GastroFoodBuilder()
@@ -2058,34 +2060,34 @@ public class ItemSetup {
         new GastroFoodBuilder()
             .type(GastroRecipeType.MULTI_STOVE)
             .item(GastroStacks.DOUBLE_CHOCOLATE_MUFFIN)
-            .amount(2)
             .ingredients(GastroStacks.DOUGH, MILK_BUCKET, SlimefunItems.BUTTER, EGG, SUGAR, COCOA_BEANS, COCOA_BEANS)
             .tools(GastroStacks.BAKING_TRAY, GastroStacks.WHISK)
+            .amount(3)
             .register(gn);
 
         new GastroFoodBuilder()
             .type(GastroRecipeType.MULTI_STOVE)
             .item(GastroStacks.CARROT_MUFFIN)
-            .amount(2)
             .ingredients(GastroStacks.DOUGH, MILK_BUCKET, SlimefunItems.BUTTER, EGG, SUGAR, CARROT)
             .tools(GastroStacks.BAKING_TRAY, GastroStacks.WHISK)
+            .amount(3)
             .register(gn);
 
         if (egAvailable) {
             new GastroFoodBuilder()
                 .type(GastroRecipeType.MULTI_STOVE)
                 .item(GastroStacks.CRANBERRY_MUFFIN)
-                .amount(2)
                 .ingredients(GastroStacks.DOUGH, MILK_BUCKET, SlimefunItems.BUTTER, EGG, SUGAR, CRANBERRY)
                 .tools(GastroStacks.BAKING_TRAY, GastroStacks.WHISK)
+                .amount(3)
                 .register(gn);
 
             new GastroFoodBuilder()
                 .type(GastroRecipeType.MULTI_STOVE)
                 .item(GastroStacks.RAISIN_MUFFIN)
-                .amount(2)
                 .ingredients(GastroStacks.DOUGH, MILK_BUCKET, SlimefunItems.BUTTER, EGG, SUGAR, GRAPE)
                 .tools(GastroStacks.BAKING_TRAY, GastroStacks.WHISK)
+                .amount(3)
                 .register(gn);
         }
 
@@ -2243,7 +2245,7 @@ public class ItemSetup {
         new GastroFoodBuilder()
             .type(GastroRecipeType.CULINARY_WORKBENCH)
             .item(GastroStacks.BANANA_SHAVED_ICE)
-            .ingredients(ICE, BANANA)
+            .ingredients(ICE, GastroStacks.BANANA)
             .container(GastroStacks.STEEL_BOWL)
             .tools(GastroStacks.BLENDER)
             .register(gn);
@@ -2271,6 +2273,7 @@ public class ItemSetup {
             .item(GastroStacks.DONUT)
             .ingredients(GastroStacks.DOUGH, YEAST, MILK_BUCKET, SlimefunItems.BUTTER, SUGAR, PINK_DYE)
             .tools(GastroStacks.BAKING_TRAY)
+            .amount(2)
             .register(gn);
 
         new GastroFoodBuilder()
@@ -2278,6 +2281,7 @@ public class ItemSetup {
             .item(GastroStacks.HONEY_DIP_DONUT)
             .ingredients(GastroStacks.DOUGH, YEAST, MILK_BUCKET, SlimefunItems.BUTTER, SUGAR, HONEY_BOTTLE)
             .tools(GastroStacks.BAKING_TRAY)
+            .amount(2)
             .register(gn);
 
         new GastroFoodBuilder()
@@ -2285,6 +2289,7 @@ public class ItemSetup {
             .item(GastroStacks.GOLDEN_CHOCOLATE_DONUT)
             .ingredients(GastroStacks.DOUGH, YEAST, MILK_BUCKET, SlimefunItems.BUTTER, SUGAR, HONEY_BOTTLE, COCOA_BEANS)
             .tools(GastroStacks.BAKING_TRAY)
+            .amount(2)
             .register(gn);
 
         new GastroFoodBuilder()
@@ -2300,6 +2305,7 @@ public class ItemSetup {
             .item(GastroStacks.STRAWBERRY_CUPCAKE)
             .ingredients(GastroStacks.DOUGH, YEAST, MILK_BUCKET, SlimefunItems.BUTTER, SUGAR, STRAWBERRY)
             .tools(GastroStacks.BAKING_TRAY)
+            .amount(2)
             .register(gn);
 
         new GastroFoodBuilder()
@@ -2307,6 +2313,7 @@ public class ItemSetup {
             .item(GastroStacks.LEMON_TART)
             .ingredients(LEMON, SUGAR, EGG)
             .tools(GastroStacks.BAKING_TRAY)
+            .amount(3)
             .register(gn);
 
         new GastroFoodBuilder()

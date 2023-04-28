@@ -173,6 +173,9 @@ public class Counter<T> {
         return string.toString();
     }
 
+    /**
+     * Useful for debugging
+     */
     public String details() {
         final StringBuilder string = new StringBuilder(toString());
         string.deleteCharAt(string.length() - 1)
