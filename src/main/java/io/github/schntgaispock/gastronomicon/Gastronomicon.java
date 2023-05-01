@@ -67,10 +67,15 @@ public class Gastronomicon extends AbstractAddon {
                 log(Level.WARNING, "Please update SlimeHUD to version 1.2.0 or higher!");
             }
         }
-
-        if (!isPluginEnabled("ExoticGarden")) {
-            log(Level.WARNING, "ExoticGarden was not found on this server!");
-            log(Level.WARNING, "Recipes that require ExoticGarden items will be hidden.");
+        
+        //If disable-exotic-garden-recipes is true "!" will change it to false and the rest of the code won't run.
+        //If disable-exotic-garden-recipes is false "!" will change it to true and the rest of the code will run checking for ExoticGarden.
+        
+        if(!getConfig().getBoolean("disable-exotic-garden-recipes")){
+            if (!isPluginEnabled("ExoticGarden")) {
+                log(Level.WARNING, "ExoticGarden was not found on this server!");
+                log(Level.WARNING, "Recipes that require ExoticGarden items will be hidden.");
+            }
         }
 
         if (isPluginEnabled("DynaTech") && !getConfig().getBoolean("disable-dynatech-integration")) {
