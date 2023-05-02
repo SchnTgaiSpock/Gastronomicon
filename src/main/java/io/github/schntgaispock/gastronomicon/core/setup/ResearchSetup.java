@@ -27,7 +27,7 @@ public class ResearchSetup {
         GastroResearch.CULINARY_WORKBENCH.addItems(GastroStacks.CULINARY_WORKBENCH).register();
         GastroResearch.MULTI_STOVE.addItems(GastroStacks.MULTI_STOVE).register();
         GastroResearch.GRAIN_MILL.addItems(GastroStacks.MILL).register();
-        GastroResearch.REFRIDGERATOR.addItems(GastroStacks.REFRIDGERATOR).register();
+        GastroResearch.REFRIGERATOR.addItems(GastroStacks.REFRIGERATOR).register();
         GastroResearch.FERMENTER.addItems(GastroStacks.FERMENTER, GastroStacks.LARGE_FERMENTER).register();
         GastroResearch.CHEFS_HAT.addItems(GastroStacks.CHEFS_HAT).register();
         GastroResearch.TRAPS

@@ -112,11 +112,11 @@ public class GastroStacks {
         "&7Multi-Stove with the tool(s)",
         "&7listed below.");
 
-    public static final ItemStack GUIDE_RECIPE_REFRIDGERATOR = new CustomItemStack(
+    public static final ItemStack GUIDE_RECIPE_REFRIGERATOR = new CustomItemStack(
         Material.IRON_BLOCK,
-        "&bRefridgerator",
+        "&bRefrigerator",
         "&7Craft this item as shown in a",
-        "&7Refridgerator with the tool(s)",
+        "&7Refrigerator with the tool(s)",
         "&7listed below.");
 
     public static final ItemStack GUIDE_RECIPE_MILL = new CustomItemStack(
@@ -363,11 +363,11 @@ public class GastroStacks {
         LoreBuilder.powerBuffer(1024),
         LoreBuilder.power(64, "/Craft"));
 
-    public static final SlimefunItemStack REFRIDGERATOR = ThemedItemStack.of(
+    public static final SlimefunItemStack REFRIGERATOR = ThemedItemStack.of(
         GastroTheme.MECHANICAL,
         "GN_REFRIDGERATOR",
         Material.IRON_BLOCK,
-        "Refridgerator",
+        "Refrigerator",
         LoreBuilder.powerBuffer(1024),
         LoreBuilder.power(64, "/Craft"));
 

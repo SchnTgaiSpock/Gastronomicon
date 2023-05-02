@@ -13,12 +13,12 @@ import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
 
 @Getter
-public class Refridgerator extends GastroWorkstation implements EnergyNetComponent {
+public class Refrigerator extends GastroWorkstation implements EnergyNetComponent {
 
     private final int capacity;
     private final int energyPerUse;
 
-    public Refridgerator(SlimefunItemStack item, ItemStack[] recipe, int capacity, int energyPerUse) {
+    public Refrigerator(SlimefunItemStack item, ItemStack[] recipe, int capacity, int energyPerUse) {
         super(item, recipe);
 
         this.capacity = capacity;
@@ -33,7 +33,7 @@ public class Refridgerator extends GastroWorkstation implements EnergyNetCompone
 
     @Override
     public GastroRecipeType getGastroRecipeType() {
-        return GastroRecipeType.REFRIDGERATOR;
+        return GastroRecipeType.REFRIGERATOR;
     }
 
     @Override

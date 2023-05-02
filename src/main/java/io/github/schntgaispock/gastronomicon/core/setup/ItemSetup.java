@@ -37,7 +37,7 @@ import io.github.schntgaispock.gastronomicon.core.slimefun.items.workstations.ma
 import io.github.schntgaispock.gastronomicon.core.slimefun.items.workstations.manual.GrainMill;
 import io.github.schntgaispock.gastronomicon.core.slimefun.items.workstations.manual.HuntingTrap;
 import io.github.schntgaispock.gastronomicon.core.slimefun.items.workstations.manual.MultiStove;
-import io.github.schntgaispock.gastronomicon.core.slimefun.items.workstations.manual.Refridgerator;
+import io.github.schntgaispock.gastronomicon.core.slimefun.items.workstations.manual.Refrigerator;
 import io.github.schntgaispock.gastronomicon.core.slimefun.items.workstations.manual.MultiStove.Temperature;
 import io.github.schntgaispock.gastronomicon.core.slimefun.recipes.GastroRecipeType;
 import io.github.schntgaispock.gastronomicon.util.RecipeUtil;
@@ -393,8 +393,8 @@ public class ItemSetup {
             },
             256, 16).register(gn);
 
-        new Refridgerator(
-            GastroStacks.REFRIDGERATOR,
+        new Refrigerator(
+            GastroStacks.REFRIGERATOR,
             new ItemStack[] {
                 SlimefunItems.STEEL_INGOT, SlimefunItems.STEEL_INGOT, SlimefunItems.STEEL_INGOT,
                 SlimefunItems.COOLING_UNIT, IRON_TRAPDOOR, SlimefunItems.COOLING_UNIT,
@@ -464,7 +464,7 @@ public class ItemSetup {
             256, 16, 1,
             new ItemStack[] {
                 GastroStacks.CULINARY_WORKBENCH, SlimefunItems.CARBONADO_EDGED_CAPACITOR, GastroStacks.MULTI_STOVE,
-                GastroStacks.REFRIDGERATOR, GastroStacks.MILL, GastroStacks.FERMENTER,
+                GastroStacks.REFRIGERATOR, GastroStacks.MILL, GastroStacks.FERMENTER,
                 SlimefunItems.BLISTERING_INGOT_3, SlimefunItems.CARGO_MOTOR, SlimefunItems.BLISTERING_INGOT_3
             }).register(gn);
 
@@ -2092,42 +2092,42 @@ public class ItemSetup {
         }
 
         new GastroFoodBuilder()
-            .type(GastroRecipeType.REFRIDGERATOR)
+            .type(GastroRecipeType.REFRIGERATOR)
             .item(GastroStacks.VANILLA_ICE_CREAM)
             .amount(2)
             .ingredients(MILK_BUCKET, SlimefunItems.HEAVY_CREAM, SUGAR, GastroStacks.VANILLA_BEANS)
             .register(gn);
 
         new GastroFoodBuilder()
-            .type(GastroRecipeType.REFRIDGERATOR)
+            .type(GastroRecipeType.REFRIGERATOR)
             .item(GastroStacks.CHOCOLATE_ICE_CREAM)
             .amount(2)
             .ingredients(MILK_BUCKET, SlimefunItems.HEAVY_CREAM, SUGAR, COCOA_BEANS)
             .register(gn);
 
         new GastroFoodBuilder()
-            .type(GastroRecipeType.REFRIDGERATOR)
+            .type(GastroRecipeType.REFRIGERATOR)
             .item(GastroStacks.MINT_CHOCOLATE_ICE_CREAM)
             .amount(2)
             .ingredients(MILK_BUCKET, SlimefunItems.HEAVY_CREAM, SUGAR, GastroStacks.MINT, COCOA_BEANS)
             .register(gn);
 
         new GastroFoodBuilder()
-            .type(GastroRecipeType.REFRIDGERATOR)
+            .type(GastroRecipeType.REFRIGERATOR)
             .item(GastroStacks.COOKIE_DOUGH_ICE_CREAM)
             .amount(2)
             .ingredients(MILK_BUCKET, SlimefunItems.HEAVY_CREAM, SUGAR, GastroStacks.DOUGH)
             .register(gn);
 
         new GastroFoodBuilder()
-            .type(GastroRecipeType.REFRIDGERATOR)
+            .type(GastroRecipeType.REFRIGERATOR)
             .item(GastroStacks.PEANUT_BUTTER_ICE_CREAM)
             .amount(2)
             .ingredients(MILK_BUCKET, SlimefunItems.HEAVY_CREAM, SUGAR, GastroStacks.PEANUT_BUTTER)
             .register(gn);
 
         new GastroFoodBuilder()
-            .type(GastroRecipeType.REFRIDGERATOR)
+            .type(GastroRecipeType.REFRIGERATOR)
             .item(GastroStacks.RED_BEAN_ICE_CREAM)
             .amount(2)
             .ingredients(MILK_BUCKET, SlimefunItems.HEAVY_CREAM, SUGAR, GastroStacks.RED_BEAN_PASTE)
@@ -2135,84 +2135,84 @@ public class ItemSetup {
 
         if (egAvailable) {
             new GastroFoodBuilder()
-                .type(GastroRecipeType.REFRIDGERATOR)
+                .type(GastroRecipeType.REFRIGERATOR)
                 .item(GastroStacks.GREEN_TEA_ICE_CREAM)
                 .amount(2)
                 .ingredients(MILK_BUCKET, SlimefunItems.HEAVY_CREAM, SUGAR, TEA_LEAF)
                 .register(gn);
 
             new GastroFoodBuilder()
-                .type(GastroRecipeType.REFRIDGERATOR)
+                .type(GastroRecipeType.REFRIGERATOR)
                 .item(GastroStacks.STRAWBERRY_ICE_CREAM)
                 .amount(2)
                 .ingredients(MILK_BUCKET, SlimefunItems.HEAVY_CREAM, SUGAR, STRAWBERRY)
                 .register(gn);
 
             new GastroFoodBuilder()
-                .type(GastroRecipeType.REFRIDGERATOR)
+                .type(GastroRecipeType.REFRIGERATOR)
                 .item(GastroStacks.BLUEBERRY_ICE_CREAM)
                 .amount(2)
                 .ingredients(MILK_BUCKET, SlimefunItems.HEAVY_CREAM, SUGAR, BLUEBERRY)
                 .register(gn);
 
             new GastroFoodBuilder()
-                .type(GastroRecipeType.REFRIDGERATOR)
+                .type(GastroRecipeType.REFRIGERATOR)
                 .item(GastroStacks.CRANBERRY_ICE_CREAM)
                 .amount(2)
                 .ingredients(MILK_BUCKET, SlimefunItems.HEAVY_CREAM, SUGAR, CRANBERRY)
                 .register(gn);
 
             new GastroFoodBuilder()
-                .type(GastroRecipeType.REFRIDGERATOR)
+                .type(GastroRecipeType.REFRIGERATOR)
                 .item(GastroStacks.COWBERRY_ICE_CREAM)
                 .amount(2)
                 .ingredients(MILK_BUCKET, SlimefunItems.HEAVY_CREAM, SUGAR, COWBERRY)
                 .register(gn);
 
             new GastroFoodBuilder()
-                .type(GastroRecipeType.REFRIDGERATOR)
+                .type(GastroRecipeType.REFRIGERATOR)
                 .item(GastroStacks.COCONUT_ICE_CREAM)
                 .amount(2)
                 .ingredients(MILK_BUCKET, SlimefunItems.HEAVY_CREAM, SUGAR, COCONUT)
                 .register(gn);
 
             new GastroFoodBuilder()
-                .type(GastroRecipeType.REFRIDGERATOR)
+                .type(GastroRecipeType.REFRIGERATOR)
                 .item(GastroStacks.CHERRY_ICE_CREAM)
                 .amount(2)
                 .ingredients(MILK_BUCKET, SlimefunItems.HEAVY_CREAM, SUGAR, CHERRY)
                 .register(gn);
 
             new GastroFoodBuilder()
-                .type(GastroRecipeType.REFRIDGERATOR)
+                .type(GastroRecipeType.REFRIGERATOR)
                 .item(GastroStacks.RASPBERRY_ICE_CREAM)
                 .amount(2)
                 .ingredients(MILK_BUCKET, SlimefunItems.HEAVY_CREAM, SUGAR, RASPBERRY)
                 .register(gn);
 
             new GastroFoodBuilder()
-                .type(GastroRecipeType.REFRIDGERATOR)
+                .type(GastroRecipeType.REFRIGERATOR)
                 .item(GastroStacks.CARAMEL_ICE_CREAM)
                 .amount(2)
                 .ingredients(MILK_BUCKET, SlimefunItems.HEAVY_CREAM, SUGAR, GastroStacks.CARAMEL)
                 .register(gn);
 
             new GastroFoodBuilder()
-                .type(GastroRecipeType.REFRIDGERATOR)
+                .type(GastroRecipeType.REFRIGERATOR)
                 .item(GastroStacks.ORANGE_ICE_CREAM)
                 .amount(2)
                 .ingredients(MILK_BUCKET, SlimefunItems.HEAVY_CREAM, SUGAR, ORANGE)
                 .register(gn);
 
             new GastroFoodBuilder()
-                .type(GastroRecipeType.REFRIDGERATOR)
+                .type(GastroRecipeType.REFRIGERATOR)
                 .item(GastroStacks.PEACH_ICE_CREAM)
                 .amount(2)
                 .ingredients(MILK_BUCKET, SlimefunItems.HEAVY_CREAM, SUGAR, PEACH)
                 .register(gn);
 
             new GastroFoodBuilder()
-                .type(GastroRecipeType.REFRIDGERATOR)
+                .type(GastroRecipeType.REFRIGERATOR)
                 .item(GastroStacks.PINEAPPLE_ICE_CREAM)
                 .amount(2)
                 .ingredients(MILK_BUCKET, SlimefunItems.HEAVY_CREAM, SUGAR, PINEAPPLE)
@@ -2220,7 +2220,7 @@ public class ItemSetup {
         }
 
         new GastroFoodBuilder()
-            .type(GastroRecipeType.REFRIDGERATOR)
+            .type(GastroRecipeType.REFRIGERATOR)
             .item(GastroStacks.CHORUS_ICE_CREAM)
             .amount(2)
             .ingredients(MILK_BUCKET, SlimefunItems.HEAVY_CREAM, SUGAR, CHORUS_FRUIT)

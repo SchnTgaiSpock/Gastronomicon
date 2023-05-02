@@ -18,7 +18,7 @@ public class GastroRecipeType extends RecipeType {
     public static final GastroRecipeType TRAP = new GastroRecipeType("trap", GastroStacks.GUIDE_RECIPE_TRAP);
     public static final GastroRecipeType CULINARY_WORKBENCH = new GastroRecipeType("culinary_workbench", GastroStacks.GUIDE_RECIPE_CULINARY_WORKBENCH);
     public static final GastroRecipeType MULTI_STOVE = new GastroRecipeType("multi_stove", GastroStacks.GUIDE_RECIPE_MULTI_STOVE);
-    public static final GastroRecipeType REFRIDGERATOR = new GastroRecipeType("refridgerator", GastroStacks.GUIDE_RECIPE_REFRIDGERATOR);
+    public static final GastroRecipeType REFRIGERATOR = new GastroRecipeType("refrigerator", GastroStacks.GUIDE_RECIPE_REFRIGERATOR);
     public static final GastroRecipeType MILL = new GastroRecipeType("mill", GastroStacks.GUIDE_RECIPE_MILL);
     public static final GastroRecipeType FERMENTER = new GastroRecipeType("fermenter", GastroStacks.GUIDE_RECIPE_FERMENTER);
 

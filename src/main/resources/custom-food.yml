@@ -47,7 +47,7 @@
 #
 # Recipe format:
 # - shape: SHAPED / SHAPELESS
-# - workbench: CULINARY_WORKBENCH / MULTI_STOVE / REFRIDGERATOR / GRAIN_MILL / FERMENTER
+# - workbench: CULINARY_WORKBENCH / MULTI_STOVE / REFRIGERATOR / GRAIN_MILL / FERMENTER
 # - ingredients: [list: MATERIAL / SLIMEFUN_ID]
 # - (OPTIONAL) tools: [list: str]
 # - (OPTIONAL) container: MATERIAL / SLIMEFUN_ID
