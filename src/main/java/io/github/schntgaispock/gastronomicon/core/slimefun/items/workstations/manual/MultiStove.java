@@ -22,6 +22,7 @@ import lombok.RequiredArgsConstructor;
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
+import org.mini2Dx.gettext.GetText;
 
 @Getter
 @SuppressWarnings("deprecation")
@@ -52,20 +53,20 @@ public class MultiStove extends GastroWorkstation implements EnergyNetComponent 
 
     public static final ItemStack TEMPERATURE_BUTTON_LOW = new CustomItemStack(
         Material.YELLOW_STAINED_GLASS_PANE,
-        "&7Temperature: &eLOW",
+        GetText.tr("&7Temperature: &eLOW"),
         "",
-        "&bLeft-click &7to increase");
+        GetText.tr("&bLeft-click &7to increase"));
     public static final ItemStack TEMPERATURE_BUTTON_MEDIUM = new CustomItemStack(
         Material.ORANGE_STAINED_GLASS_PANE,
-        "&7Temperature: &6MEDIUM",
+        GetText.tr("&7Temperature: &6MEDIUM"),
         "",
-        "&bLeft-click &7to increase",
-        "&bRight-click &7to decrease");
+        GetText.tr("&bLeft-click &7to increase"),
+        GetText.tr("&bRight-click &7to decrease"));
     public static final ItemStack TEMPERATURE_BUTTON_HIGH = new CustomItemStack(
         Material.RED_STAINED_GLASS_PANE,
-        "&7Temperature: &cHIGH",
+        GetText.tr("&7Temperature: &cHIGH"),
         "",
-        "&bRight-click &7to decrease");
+        GetText.tr("&bRight-click &7to decrease"));
     public static final int TEMPERATURE_BUTTON_SLOT = 52;
     public static final String TEMPERATURE_KEY = "gastronomicon:multi_stove/temperature";
 

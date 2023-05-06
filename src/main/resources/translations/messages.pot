@@ -1,0 +1,1763 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-05-05 11:28+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: main/java/io/github/schntgaispock/gastronomicon/Gastronomicon.java:86
+msgid "SlimeHUD was found on this server!"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/Gastronomicon.java:87
+msgid "Setting up Gastronomicon for SlimeHUD..."
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/Gastronomicon.java:90
+msgid "This server is using an incompatitable version of SlimeHUD"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/Gastronomicon.java:91
+msgid "Please update SlimeHUD to version 1.2.0 or higher!"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/Gastronomicon.java:99
+msgid "ExoticGarden was not found on this server!"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/Gastronomicon.java:100
+msgid "Recipes that require ExoticGarden items will be hidden."
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/Gastronomicon.java:105
+msgid "DynaTech was found on this server!"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/Gastronomicon.java:106
+msgid "Registering Gastronomicon crops with DynaTech..."
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/Gastronomicon.java:109
+msgid "This server is using an incompatitable version of DynaTech"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/Gastronomicon.java:110
+msgid "Please keep Gastronomicon and DynaTech up to date!"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/api/food/FoodEffect.java:97
+msgid "&aHealth +"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/api/food/FoodEffect.java:371
+msgid "&bClears "
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/api/food/FoodEffect.java:371
+msgid " effects"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/api/food/FoodEffect.java:388
+msgid "&eXP +"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/api/food/FoodEffect.java:398
+#: main/java/io/github/schntgaispock/gastronomicon/api/food/FoodEffect.java:399
+#, java-format
+msgid "&7Gives {0}x {1}"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/api/food/FoodEffect.java:509
+msgid "&fAir +"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/api/food/FoodEffect.java:524
+msgid "&6Warmth +"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/api/food/FoodEffect.java:539
+#: main/java/io/github/schntgaispock/gastronomicon/api/food/FoodEffect.java:540
+msgid "&7Teleports you somewhere within "
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/api/food/FoodEffect.java:539
+#: main/java/io/github/schntgaispock/gastronomicon/api/food/FoodEffect.java:540
+msgid " blocks away"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/api/food/FoodEffect.java:588
+msgid "&fExtinguish yourself"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/api/food/FoodEffect.java:600
+msgid "&fClear all effects"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/api/items/FoodItemStack.java:83
+msgid "&7When consumed:"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/api/recipes/GastroRecipe.java:40
+msgid "&7This recipe is &fshaped"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/api/recipes/GastroRecipe.java:41
+msgid "&7This recipe is &fshapeless"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/api/trees/TreeStructure.java:45
+msgid "Loaded all trees"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/Climate.java:16
+msgid "&eDry"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/Climate.java:17
+msgid "&eTemperate"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/Climate.java:18
+msgid "&eCold"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/Climate.java:19
+msgid "&eSnowy"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/Climate.java:20
+msgid "&eNether"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/Climate.java:21
+msgid "&eEnd"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/command/GastroCommandExecutor.java:53
+#: main/java/io/github/schntgaispock/gastronomicon/core/command/GastroCommandExecutor.java:66
+#: main/java/io/github/schntgaispock/gastronomicon/core/command/GastroCommandExecutor.java:102
+msgid "&cUnknown player!"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/command/GastroCommandExecutor.java:85
+msgid "§lGastronomicon&7> &cYou do not have permission to modify profiles!"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/command/GastroCommandExecutor.java:92
+msgid "&cAmount must be a number!"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/command/GastroCommandExecutor.java:96
+msgid "&cAmount must be positive!"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/command/GastroCommandExecutor.java:109
+#: main/java/io/github/schntgaispock/gastronomicon/core/command/GastroCommandExecutor.java:188
+#: main/java/io/github/schntgaispock/gastronomicon/core/command/GastroCommandExecutor.java:207
+msgid "&cUnknown food!"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/command/GastroCommandExecutor.java:131
+msgid "§lGastronomicon §8- §7Version "
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/command/GastroCommandExecutor.java:135
+msgid "§lWiki §f- §7https://github.com/SchnTgaiSpock/Gastronomicon/wiki"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/command/GastroCommandExecutor.java:137
+msgid "§lIssues §f- §7https://github.com/SchnTgaiSpock/Gastronomicon/issues"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/command/GastroCommandExecutor.java:142
+msgid "The help section is a WIP! "
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/command/GastroCommandExecutor.java:143
+msgid "For now, please see https://github.com/SchnTgaiSpock/Gastronomicon"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/command/GastroCommandExecutor.java:148
+msgid "§lGastronomicon §8- §7Credits:"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/command/GastroCommandExecutor.java:150
+msgid ""
+"§7Some head textures were taken and/or modified from https://minecraft-heads."
+"com/ and https://headdb.org/"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/command/GastroCommandExecutor.java:158
+#: main/java/io/github/schntgaispock/gastronomicon/core/command/GastroCommandExecutor.java:183
+msgid "§lGastronomicon&7> &cYou do not have permission to check your profile!"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/command/GastroCommandExecutor.java:160
+msgid "Proficiencies:"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/command/GastroCommandExecutor.java:170
+#: main/java/io/github/schntgaispock/gastronomicon/core/command/GastroCommandExecutor.java:202
+msgid ""
+"§lGastronomicon&7> &cYou do not have permission to check another player's "
+"profile!"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/command/GastroCommandExecutor.java:173
+msgid "'s Proficiencies:"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/command/GastroCommandExecutor.java:223
+#, java-format
+msgid "Successefully set {0} proficiency to {1} for {2}"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/command/GastroCommandExecutor.java:228
+#, java-format
+msgid "Successefully added {0} {1} proficiency for {2}"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/command/GastroCommandExecutor.java:234
+#, java-format
+msgid "Successefully removed {0} {1} proficiency for {2}"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/command/GastroCommandExecutor.java:238
+msgid "Unknown mode!"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroResearch.java:13
+msgid "Basic Tools"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroResearch.java:14
+msgid "Steel Tools"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroResearch.java:15
+msgid "The First Step"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroResearch.java:16
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:363
+msgid "Multi-Stove"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroResearch.java:17
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:379
+msgid "Grain Mill"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroResearch.java:18
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:371
+msgid "Refrigerator"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroResearch.java:19
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:385
+msgid "Fermenter"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroResearch.java:20
+msgid "Traps"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroResearch.java:21
+msgid "Fishing Nets"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroResearch.java:22
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:194
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:407
+msgid "Chef Android"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroResearch.java:23
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:440
+msgid "Electric Kitchen"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroResearch.java:24
+msgid "Gathering Tools"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroResearch.java:25
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:65
+msgid "Raw Ingredients"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroResearch.java:26
+msgid "Processed Ingredients"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroResearch.java:27
+msgid "Haute Cuisine"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroResearch.java:28
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:323
+msgid "Chef's Hat"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:53
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:181
+msgid "Tools"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:57
+msgid "Basic Machines"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:61
+msgid "Electric Machines"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:69
+msgid "Food"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:73
+msgid "Gastronomicon"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:77
+msgid "&bBreaking Blocks"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:78
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:85
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:98
+msgid "&7This item is obtained by"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:79
+msgid "&7breaking the displayed"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:80
+msgid "&7blocks."
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:84
+msgid "&bHarvesting Crops"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:86
+msgid "&7harvesting the displayed"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:87
+msgid "&7crops."
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:91
+msgid "&bMob Drops"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:92
+msgid "&7This item is dropped by"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:93
+msgid "&7the displayed mobs."
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:97
+msgid "&bTrapping"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:99
+msgid "&7catching it in the displayed"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:100
+msgid "&7trap."
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:104
+msgid "&bCulinary Workbench"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:105
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:112
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:119
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:126
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:133
+msgid "&7Craft this item as shown in a"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:106
+msgid "&7Culinary Workbench with the tool(s)"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:107
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:114
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:121
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:128
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:135
+msgid "&7listed below."
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:111
+msgid "&bMulti-Stove"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:113
+msgid "&7Multi-Stove with the tool(s)"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:118
+msgid "&bRefrigerator"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:120
+msgid "&7Refrigerator with the tool(s)"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:125
+msgid "&bMill"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:127
+msgid "&7Grain Mill with the tool(s)"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:132
+msgid "&bFermenter"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:134
+msgid "&7Fermenter with the tool(s)"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:139
+msgid "Tools Required"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:143
+msgid "&5Container Required"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:147
+msgid "&aBiome Required"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:151
+msgid "&bClimate Required"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:155
+msgid "&cNone"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:159
+msgid "&fGoat"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:163
+msgid "&fSalmon"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:167
+msgid "&fGuardian"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:171
+msgid "&fSquid"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:177
+msgid "&9Ingredients"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:179
+msgid "&5Container"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:183
+msgid "&6Output"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:185
+msgid "&aClick to craft"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:188
+msgid "&fFood Slot"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:188
+msgid "&7Place food in the slot below"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:190
+msgid "&aClick to train"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:192
+msgid "&9Input"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:196
+msgid "&cNot enough energy"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:198
+msgid "&cNo android detected"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:200
+msgid "&cIncorrect recipe"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:202
+msgid "&cNot in water"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:207
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:419
+msgid "Fishing Net"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:219
+msgid "Kitchen Knife"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:225
+msgid "Rolling Pin"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:231
+msgid "Blender"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:237
+msgid "Mortar and Pestle"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:243
+msgid "Peeler"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:249
+msgid "Whisk"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:255
+msgid "Distillation Chamber"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:263
+msgid "Baking Tray"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:269
+msgid "Frying Pan"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:275
+msgid "Steel Pot"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:283
+msgid "Steel Bowl"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:291
+msgid "Steel Wire"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:297
+msgid "Steel Spring"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:303
+msgid "Crab Trap"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:304
+msgid "Used to catch crabs."
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:305
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:314
+msgid "Place on the ground and right click"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:306
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:315
+msgid "when white particles appear"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:312
+msgid "Hunting Trap"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:313
+msgid "Used to catch certain animals."
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:334
+msgid "Wooden Sickle"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:335
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:342
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:349
+msgid "Increases drops from some crops"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:341
+msgid "Steel Sickle"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:348
+msgid "Reinforced Sickle"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:357
+msgid "Culinary Workbench"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:365
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:373
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:390
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:401
+msgid "/Craft"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:386
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:397
+msgid "&eShift Right Click &rwith a water"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:387
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:398
+msgid "bucket or water bottle to refill"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:389
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:400
+msgid " Buffer"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:396
+msgid "Large Fermenter"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:413
+msgid "Chef Android Trainer"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:426
+msgid "Fishing Net &7- &eII"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:433
+msgid "Fishing Net &7- &eIII"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:450
+msgid "Electric Kitchen &7- &eII"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:460
+msgid "Electric Kitchen &7- &eIII"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:473
+msgid "Rice"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:478
+msgid "Quinoa"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:483
+msgid "Oats"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:488
+msgid "Soybeans"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:493
+msgid "Barley"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:498
+msgid "Barley Seeds"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:503
+msgid "Rye"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:508
+msgid "Rye Seeds"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:513
+msgid "Sorghum"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:518
+msgid "Sorghum Seeds"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:523
+msgid "Turnip"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:528
+msgid "Turnip Seeds"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:533
+msgid "Squash"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:538
+msgid "Squash Seeds"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:543
+msgid "Celery"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:548
+msgid "Bok Choy"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:553
+msgid "Bok Choy Seeds"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:558
+msgid "Broccoli"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:563
+msgid "Broccoli Seeds"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:568
+msgid "Cucumber"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:573
+msgid "Cucumber Seeds"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:578
+msgid "Basil"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:583
+msgid "Basil Seeds"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:588
+msgid "Spinach"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:593
+msgid "Spinach Seeds"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:598
+msgid "Brussles Sprouts"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:603
+msgid "Mint"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:608
+msgid "Mint Seeds"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:613
+msgid "Chili Pepper"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:618
+msgid "Chili Pepper Seeds"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:623
+msgid "Parsley"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:628
+msgid "Parsley Seeds"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:633
+msgid "Cassava"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:638
+msgid "Lentils"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:643
+msgid "Peanuts"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:648
+msgid "Beans"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:653
+msgid "Peas"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:658
+msgid "Asparagus"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:663
+msgid "Asparagus Seeds"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:668
+msgid "Green Onion"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:673
+msgid "Green Onion Seeds"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:678
+msgid "Cauliflower"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:683
+msgid "Cauliflower Seeds"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:688
+msgid "Avocado"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:693
+msgid "Avocado Pit"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:698
+msgid "Turmeric"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:703
+msgid "Cumin Seeds"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:708
+msgid "Red Beans"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:713
+msgid "Cantaloupe"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:718
+msgid "Cantaloupe Seeds"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:723
+msgid "Honeydew Melon"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:728
+msgid "Honeydew Melon Seeds"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:733
+msgid "Sesame Seeds"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:738
+msgid "Vanilla Beans"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:743
+msgid "Vanilla Plant"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:750
+msgid "Lychee"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:754
+msgid "Lychee Sapling"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:758
+msgid "Banana"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:762
+msgid "Banana Sapling"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:769
+msgid "Fiddleheads"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:774
+msgid "Truffle"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:779
+msgid "Enoki Mushrooms"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:784
+msgid "King Oyster Mushroom"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:789
+msgid "Button Mushroom"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:794
+msgid "Clam"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:801
+msgid "Raw Chevon"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:806
+msgid "Cooked Chevon"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:811
+msgid "Salmon Roe"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:816
+msgid "Guardian Fin"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:821
+msgid "Raw Squid"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:826
+msgid "Cooked Squid"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:833
+msgid "Raw Mackerel"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:837
+msgid "Cooked Mackerel"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:842
+msgid "Raw Eel"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:846
+msgid "Cooked Eel"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:851
+msgid "Raw Trout"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:855
+msgid "Cooked Trout"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:860
+msgid "Raw Bass"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:864
+msgid "Cooked Bass"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:869
+msgid "Raw Carp"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:873
+msgid "Cooked Carp"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:878
+msgid "Raw Pike"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:882
+msgid "Cooked Pike"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:887
+msgid "Raw Tuna"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:892
+msgid "Cooked Tuna"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:897
+msgid "Shrimp"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1020
+msgid "Crab"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1025
+msgid "Raw Turkey"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1029
+msgid "Cooked Turkey"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1038
+msgid "Cooked Rice"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1043
+msgid "Barley Flour"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1048
+msgid "Sorghum Flour"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1053
+msgid "Rye Flour"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1058
+msgid "Dough"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1063
+msgid "Toast"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1068
+msgid "Naan Bread"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1073
+msgid "Peanut Butter"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1085
+msgid "Fried Egg"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1090
+msgid "Hard-boiled Egg"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1095
+msgid "Scrambled Eggs"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1100
+msgid "Custard"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1105
+msgid "Caramel"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1110
+msgid "Marmalade"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1115
+msgid "Ketchup"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1127
+msgid "Pulled Pork"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1132
+msgid "Ground Beef"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1137
+msgid "Baked Beans"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1142
+msgid "Miso"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1147
+msgid "Tofu"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1152
+msgid "Soy Sauce"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1164
+msgid "Turmeric Powder"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1169
+msgid "Red Bean Paste"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1174
+msgid "Tapioca Starch"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1179
+msgid "Tapioca Pearls"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1188
+msgid "PB&J Sandwich"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1196
+msgid "Marmalade Sandwich"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1204
+msgid "Baked Beans and Toast"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1212
+msgid "Avocado Toast"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1220
+msgid "Tuna Sandwich"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1228
+msgid "Breakfast Sandwich"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1236
+msgid "Ham Sandwich"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1244
+msgid "Egg Salad Sandwich"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1252
+msgid "Roast Beef Sandwich"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1262
+msgid "Greek Salad"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1272
+msgid "Caesar Salad"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1282
+msgid "Fiddlehead Salad"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1294
+msgid "Pan-seared Salmon"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1301
+msgid "Fried Shrimp"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1309
+msgid "Tempura Shrimp"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1317
+msgid "Tempura Broccoli"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1325
+msgid "Fried Calamari"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1334
+msgid "Chicken Pesto Pasta"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1342
+msgid "Squid Ink Pasta"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1349
+msgid "Glowing Squid Ink Pasta"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1357
+msgid "Tuna Casserole"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1365
+msgid "Chicken Ravioli"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1373
+msgid "Mushroom Ravioli"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1383
+msgid "Oatmeal"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1393
+msgid "Barley Porridge"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1403
+msgid "Congee"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1413
+msgid "Chicken Soup"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1423
+msgid "Chicken and Quinoa Soup"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1433
+msgid "Chicken Noodle Soup"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1444
+msgid "Chicken Noodle Soup w/ Bok Choy"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1455
+msgid "Split Pea Soup"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1463
+msgid "Ham and Split Pea Soup"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1471
+msgid "Lentil Soup"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1479
+msgid "Beef and Lentil Soup"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1487
+msgid "Carrot Soup"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1495
+msgid "Mushroom Barley Soup"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1503
+msgid "Chicken Barley Soup"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1511
+msgid "Beef Barley Soup"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1519
+msgid "Cream of Mushroom Soup"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1527
+msgid "Cream of Broccoli Soup"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1535
+msgid "Cream of Asparagus Soup"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1543
+msgid "Cream of Cauliflower Soup"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1551
+msgid "Miso Soup"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1559
+msgid "Guardian Fin Soup"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1567
+msgid "Broccoli Chowder"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1574
+msgid "Salmon Chowder"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1581
+msgid "Potato Chowder"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1588
+msgid "Corn Chowder"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1595
+msgid "Beef Stew"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1603
+msgid "Clam Stew"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1611
+msgid "Crab Hotpot"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1621
+msgid "BBQ Steak"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1628
+msgid "BBQ Pork"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1635
+msgid "BBQ Chicken"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1642
+msgid "BBQ Mutton"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1649
+msgid "Butter Chicken"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1659
+msgid "Butter Chicken with Naan Bread"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1667
+msgid "Shrimp Fried Rice"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1674
+msgid "Curry Rice"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1682
+msgid "Rice Omelette"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1690
+msgid "Rice Ball"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1699
+msgid "Beef Udon"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1707
+msgid "Chicken Udon"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1715
+msgid "Vegetable Udon"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1723
+msgid "Stir-fry Noodles"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1730
+msgid "Shrimp Dumplings"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1737
+msgid "Chicken Potstickers"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1744
+msgid "Beef Potstickers"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1751
+msgid "Pierogies"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1758
+msgid "Bacon Pierogies"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1765
+msgid "Custard Buns"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1772
+msgid "Red Bean Buns"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1779
+msgid "Taiyaki"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1788
+msgid "Tempura Shrimp Roll"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1795
+msgid "Dynamite Roll"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1802
+msgid "Kappa Roll"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1809
+msgid "California Roll"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1816
+msgid "Salmon Roe Sushi Roll"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1823
+msgid "Red Bean Glutinous Rice Balls"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1830
+msgid "Peanut Glutinous Rice Balls"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1837
+msgid "Sesame Glutinous Rice Balls"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1846
+msgid "Mashed Potatoes"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1853
+msgid "Mashed Turnips"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1860
+msgid "Fish and Chips"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1867
+msgid "Turkey Roast"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1874
+msgid "Chocolate Truffle"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1883
+msgid "Double Chocolate Muffin"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1890
+msgid "Carrot Muffin"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1897
+msgid "Cranberry Muffin"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1904
+msgid "Raisin Muffin"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1913
+msgid "Vanilla Ice Cream"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1920
+msgid "Chocolate Ice Cream"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1927
+msgid "Mint Ice Cream"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1934
+msgid "Cookie Dough Ice Cream"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1941
+msgid "Peanut Butter Ice Cream"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1948
+msgid "Red Bean Ice Cream"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1955
+msgid "Green Tea Ice Cream"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1962
+msgid "Strawberry Ice Cream"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1969
+msgid "Blueberry Ice Cream"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1976
+msgid "Cranberry Ice Cream"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1983
+msgid "Cowberry Ice Cream"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1990
+msgid "Coconut Ice Cream"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:1997
+msgid "Cherry Ice Cream"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:2004
+msgid "Raspberry Ice Cream"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:2011
+msgid "Caramel Ice Cream"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:2018
+msgid "Orange Ice Cream"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:2025
+msgid "Peach Ice Cream"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:2032
+msgid "Pineapple Ice Cream"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:2039
+msgid "Chorus Ice Cream"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:2047
+msgid "Shaved Ice"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:2054
+msgid "Strawberry Shaved Ice"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:2061
+msgid "Banana Shaved Ice"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:2068
+msgid "Lemon Shaved Ice"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:2077
+msgid "Candy Apple"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:2084
+msgid "Donut"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:2091
+msgid "Honey Dip Donut"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:2098
+msgid "Golden Chocolate Donut"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:2105
+msgid "Strawberry Cheesecake"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:2112
+msgid "Strawberry Cupcake"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:2119
+msgid "Lemon Tart"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:2127
+msgid "Chorus Pie"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:2135
+msgid "Popped Sorghum"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:2142
+msgid "Enchanted Golden Carrot"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:2157
+msgid "Enchanted Glistering Melon Slice"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:2174
+msgid "V7"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:2183
+msgid "Bubble Milk Tea"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:2197
+msgid "Cantaloupe Bubble Tea"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:2211
+msgid "Honeydew Melon Bubble Tea"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:2225
+msgid "Apple Bubble Tea"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:2241
+msgid "Red Wine"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:2259
+msgid "Beer"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:2277
+msgid "Apple Cider"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:2295
+msgid "Rice Wine"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:2313
+msgid "Vodka"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:2331
+msgid "Rum"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/GastroStacks.java:2349
+msgid "Whiskey"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/items/food/SimpleGastroFood.java:49
+msgid "&7Tools/Container Required:"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/items/workstations/manual/ChefAndroidTrainer.java:95
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/items/workstations/manual/ChefAndroidTrainer.java:106
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/items/workstations/manual/ChefAndroidTrainer.java:116
+msgid "&ePlease place a valid food item in the middle slot"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/items/workstations/manual/ChefAndroidTrainer.java:100
+msgid "The output slot is full!"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/items/workstations/manual/ChefAndroidTrainer.java:130
+msgid "&eYou are not proficient enough in this recipe! Required: "
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/items/workstations/manual/MultiStove.java:56
+msgid "&7Temperature: &eLOW"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/items/workstations/manual/MultiStove.java:58
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/items/workstations/manual/MultiStove.java:63
+msgid "&bLeft-click &7to increase"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/items/workstations/manual/MultiStove.java:61
+msgid "&7Temperature: &6MEDIUM"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/items/workstations/manual/MultiStove.java:64
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/items/workstations/manual/MultiStove.java:69
+msgid "&bRight-click &7to decrease"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/core/slimefun/items/workstations/manual/MultiStove.java:67
+msgid "&7Temperature: &cHIGH"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/integration/SlimeHUDSetup.java:29
+#: main/java/io/github/schntgaispock/gastronomicon/integration/SlimeHUDSetup.java:31
+msgid "No android"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/integration/SlimeHUDSetup.java:39
+msgid "&7| Not in water"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/util/item/ItemUtil.java:73
+msgid "Slowness"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/util/item/ItemUtil.java:74
+msgid "Haste"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/util/item/ItemUtil.java:75
+msgid "Mining Fatigue"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/util/item/ItemUtil.java:76
+msgid "Strength"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/util/item/ItemUtil.java:77
+msgid "Instant Health"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/util/item/ItemUtil.java:78
+msgid "Instant Damage"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/util/item/ItemUtil.java:79
+msgid "Nausea"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/util/item/ItemUtil.java:80
+msgid "Resistance"
+msgstr ""
+
+#: main/java/io/github/schntgaispock/gastronomicon/util/item/ItemUtil.java:81
+msgid "Bad Luck"
+msgstr ""

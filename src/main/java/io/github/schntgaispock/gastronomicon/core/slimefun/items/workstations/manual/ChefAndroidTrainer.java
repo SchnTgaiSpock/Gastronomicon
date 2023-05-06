@@ -29,6 +29,7 @@ import lombok.Getter;
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
+import org.mini2Dx.gettext.GetText;
 
 @Getter
 public class ChefAndroidTrainer extends MenuBlock {
@@ -91,18 +92,18 @@ public class ChefAndroidTrainer extends MenuBlock {
 
             final ItemStack foodItem = menu.getItemInSlot(FOOD_SLOT);
             if (foodItem == null) {
-                Gastronomicon.sendMessage(player, "&ePlease place a valid food item in the middle slot");
+                Gastronomicon.sendMessage(player, GetText.tr("&ePlease place a valid food item in the middle slot"));
                 return false;
             }
 
             if (menu.getItemInSlot(getOutputSlots()[0]) != null) {
-                Gastronomicon.sendMessage(player, "The output slot is full!");
+                Gastronomicon.sendMessage(player, GetText.tr("The output slot is full!"));
                 return false;
             }
 
             final SlimefunItem sfItem = SlimefunItem.getByItem(foodItem);
             if (sfItem == null) {
-                Gastronomicon.sendMessage(player, "&ePlease place a valid food item in the middle slot");
+                Gastronomicon.sendMessage(player, GetText.tr("&ePlease place a valid food item in the middle slot"));
                 return false;
             } else if (sfItem instanceof final SimpleGastroFood food) {
                 final String name;
@@ -112,7 +113,7 @@ public class ChefAndroidTrainer extends MenuBlock {
                         id = food.getId().replace("GN_PERFECT_", "GN_");
                         final SlimefunItem regularItem = SlimefunItem.getById(id);
                         if (regularItem == null) {
-                            Gastronomicon.sendMessage(player, "&ePlease place a valid food item in the middle slot");
+                            Gastronomicon.sendMessage(player, GetText.tr("&ePlease place a valid food item in the middle slot"));
                             return false;
                         }
                         name = regularItem.getItemName();
@@ -126,7 +127,7 @@ public class ChefAndroidTrainer extends MenuBlock {
                     final int threshold = Gastronomicon.config().getInt("proficiency-threshold");
 
                     if (proficiency < threshold) {
-                        Gastronomicon.sendMessage(player, "&eYou are not proficient enough in this recipe! Required: " + proficiency + "/" + threshold);
+                        Gastronomicon.sendMessage(player, GetText.tr("&eYou are not proficient enough in this recipe! Required: ") + proficiency + "/" + threshold);
                         return false;
                     }
                 } else {

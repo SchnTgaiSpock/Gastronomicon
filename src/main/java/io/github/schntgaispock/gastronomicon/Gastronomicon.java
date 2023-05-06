@@ -1,10 +1,14 @@
 package io.github.schntgaispock.gastronomicon;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Locale;
 import java.util.logging.Level;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import org.antlr.v4.runtime.misc.ParseCancellationException;
 import org.bstats.bukkit.Metrics;
 import org.bstats.charts.SimplePie;
 import org.bukkit.Bukkit;
@@ -26,6 +30,8 @@ import lombok.Getter;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.text.format.TextDecoration;
+import org.mini2Dx.gettext.GetText;
+import org.mini2Dx.gettext.PoFile;
 
 @Getter
 public class Gastronomicon extends AbstractAddon {
@@ -36,7 +42,7 @@ public class Gastronomicon extends AbstractAddon {
     private AddonConfig customFood;
 
     public Gastronomicon() {
-        super("SchnTgaiSpock", "Gastronomicon", "master", "options.auto-update");
+        super("SlimeTraditionalTranslation", "Gastronomicon", "master", "options.auto-update");
     }
 
     @Override
@@ -52,6 +58,24 @@ public class Gastronomicon extends AbstractAddon {
         metrics.addCustomChart(
             new SimplePie("exoticgardenInstalled", () -> Boolean.toString(isPluginEnabled("ExoticGarden"))));
 
+        GetText.setLocale(Locale.TRADITIONAL_CHINESE);
+        InputStream inputStream = getClass().getResourceAsStream("/translations/zh_tw.po");
+        if (inputStream == null) {
+            getLogger().severe("錯誤！無法找到翻譯檔案，請回報給翻譯者。");
+            getServer().getPluginManager().disablePlugin(this);
+            return;
+        } else {
+            getLogger().info("載入繁體翻譯檔案...");
+            try {
+                PoFile poFile = new PoFile(Locale.TRADITIONAL_CHINESE, inputStream);
+                GetText.add(poFile);
+            } catch (ParseCancellationException | IOException e) {
+                getLogger().severe("錯誤！讀取翻譯時發生錯誤，請回報給翻譯者：" + e.getMessage());
+                getServer().getPluginManager().disablePlugin(this);
+                return;
+            }
+        }
+
         ItemSetup.setup();
         ResearchSetup.setup();
         ListenerSetup.setup();
@@ -59,12 +83,12 @@ public class Gastronomicon extends AbstractAddon {
 
         if (isPluginEnabled("SlimeHUD")) {
             try {
-                log(Level.INFO, "SlimeHUD was found on this server!");
-                log(Level.INFO, "Setting up Gastronomicon for SlimeHUD...");
+                log(Level.INFO, GetText.tr("SlimeHUD was found on this server!"));
+                log(Level.INFO, GetText.tr("Setting up Gastronomicon for SlimeHUD..."));
                 SlimeHUDSetup.setup();
             } catch (NoClassDefFoundError e) {
-                log(Level.WARNING, "This server is using an incompatitable version of SlimeHUD");
-                log(Level.WARNING, "Please update SlimeHUD to version 1.2.0 or higher!");
+                log(Level.WARNING, GetText.tr("This server is using an incompatitable version of SlimeHUD"));
+                log(Level.WARNING, GetText.tr("Please update SlimeHUD to version 1.2.0 or higher!"));
             }
         }
         
@@ -72,18 +96,18 @@ public class Gastronomicon extends AbstractAddon {
         // If disable-exotic-garden-recipes is false "!" will change it to true and the rest of the code will run checking for ExoticGarden.
         
         if (!getConfig().getBoolean("disable-exotic-garden-recipes") && !isPluginEnabled("ExoticGarden")) {
-            log(Level.WARNING, "ExoticGarden was not found on this server!");
-            log(Level.WARNING, "Recipes that require ExoticGarden items will be hidden.");
+            log(Level.WARNING, GetText.tr("ExoticGarden was not found on this server!"));
+            log(Level.WARNING, GetText.tr("Recipes that require ExoticGarden items will be hidden."));
         }
 
         if (isPluginEnabled("DynaTech") && !getConfig().getBoolean("disable-dynatech-integration")) {
             try {
-                log(Level.INFO, "DynaTech was found on this server!");
-                log(Level.INFO, "Registering Gastronomicon crops with DynaTech...");
+                log(Level.INFO, GetText.tr("DynaTech was found on this server!"));
+                log(Level.INFO, GetText.tr("Registering Gastronomicon crops with DynaTech..."));
                 DynaTechSetup.setup();
             } catch (NoClassDefFoundError e) {
-                log(Level.WARNING, "This server is using an incompatitable version of DynaTech");
-                log(Level.WARNING, "Please keep Gastronomicon and DynaTech up to date!");
+                log(Level.WARNING, GetText.tr("This server is using an incompatitable version of DynaTech"));
+                log(Level.WARNING, GetText.tr("Please keep Gastronomicon and DynaTech up to date!"));
             }
         }
 

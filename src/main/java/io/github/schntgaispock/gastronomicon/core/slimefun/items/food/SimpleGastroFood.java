@@ -20,6 +20,7 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.researches.Research;
 import io.github.thebusybiscuit.slimefun4.core.attributes.RecipeDisplayItem;
 import lombok.Getter;
+import org.mini2Dx.gettext.GetText;
 
 @Getter
 public class SimpleGastroFood extends UnplaceableSolid implements RecipeDisplayItem {
@@ -45,7 +46,7 @@ public class SimpleGastroFood extends UnplaceableSolid implements RecipeDisplayI
     @Override
     @Nonnull
     public String getRecipeSectionLabel(@Nonnull Player p) {
-        return StringUtil.formatColors("&7Tools/Container Required:");
+        return StringUtil.formatColors(GetText.tr("&7Tools/Container Required:"));
     }
 
     @Override

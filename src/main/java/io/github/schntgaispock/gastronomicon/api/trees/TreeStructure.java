@@ -20,6 +20,7 @@ import io.github.thebusybiscuit.slimefun4.libraries.dough.skins.PlayerSkin;
 import lombok.Getter;
 import lombok.ToString;
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
+import org.mini2Dx.gettext.GetText;
 
 @Getter
 @ToString
@@ -41,7 +42,7 @@ public final class TreeStructure {
             }
         }
 
-        Gastronomicon.info("Loaded all trees");
+        Gastronomicon.info(GetText.tr("Loaded all trees"));
     }
 
     private final int[][][] blocks;

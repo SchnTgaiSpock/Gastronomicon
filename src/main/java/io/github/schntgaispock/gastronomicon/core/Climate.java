@@ -9,15 +9,16 @@ import org.bukkit.inventory.ItemStack;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import org.mini2Dx.gettext.GetText;
 
 @RequiredArgsConstructor
 public enum Climate {
-    DRY(new CustomItemStack(Material.SAND, "&eDry")),
-    TEMPERATE(new CustomItemStack(Material.GRASS_BLOCK, "&eTemperate")),
-    COLD(new CustomItemStack(Material.ICE, "&eCold")),
-    SNOWY(new CustomItemStack(Material.SNOW, "&eSnowy")),
-    NETHER(new CustomItemStack(Material.CRIMSON_NYLIUM, "&eNether")),
-    END(new CustomItemStack(Material.END_STONE, "&eEnd"));
+    DRY(new CustomItemStack(Material.SAND, GetText.tr("&eDry"))),
+    TEMPERATE(new CustomItemStack(Material.GRASS_BLOCK, GetText.tr("&eTemperate"))),
+    COLD(new CustomItemStack(Material.ICE, GetText.tr("&eCold"))),
+    SNOWY(new CustomItemStack(Material.SNOW, GetText.tr("&eSnowy"))),
+    NETHER(new CustomItemStack(Material.CRIMSON_NYLIUM, GetText.tr("&eNether"))),
+    END(new CustomItemStack(Material.END_STONE, GetText.tr("&eEnd")));
 
     private final @Getter ItemStack displayItem;
 

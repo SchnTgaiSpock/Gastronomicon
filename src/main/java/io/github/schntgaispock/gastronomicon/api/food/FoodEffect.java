@@ -27,6 +27,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
+import org.mini2Dx.gettext.GetText;
 
 /**
  * Represents an effect that activates when a player eats a {@link GastroFood}
@@ -93,7 +94,7 @@ public class FoodEffect {
     public static FoodEffect heal(int health) {
         final int h = Math.max(health, 1);
         final int ph = (int) Math.ceil(h * PERFECT_MULTIPLIER_HEALTH);
-        return new FoodEffect("&aHealth +" + h, "&aHealth +" + ph, (Player player, Boolean isPerfect) -> {
+        return new FoodEffect(GetText.tr("&aHealth +") + h, GetText.tr("&aHealth +") + ph, (Player player, Boolean isPerfect) -> {
             player.setHealth(Math.min(player.getHealth() + (isPerfect ? ph : h),
                 player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue()));
         });
@@ -367,7 +368,7 @@ public class FoodEffect {
     @Nonnull
     @ParametersAreNonnullByDefault
     public static FoodEffect removePotionEffect(PotionEffectType type) {
-        final String desc = "&bClears " + ItemUtil.getPotionName(type) + " effects";
+        final String desc = GetText.tr("&bClears ") + ItemUtil.getPotionName(type) + GetText.tr(" effects");
         return new FoodEffect(desc, desc, (Player player, Boolean isPerfect) -> {
             player.removePotionEffect(type);
         });
@@ -384,7 +385,7 @@ public class FoodEffect {
     public static FoodEffect xp(int xp) {
         final int x = Math.max(xp, 1);
         final int px = (int) Math.ceil(x * PERFECT_MULTIPLIER_XP);
-        return new FoodEffect("&eXP +" + Math.round(x), "&eXP +" + px, (Player player, Boolean isPerfect) -> {
+        return new FoodEffect(GetText.tr("&eXP +") + Math.round(x), GetText.tr("&eXP +") + px, (Player player, Boolean isPerfect) -> {
             player.giveExp(isPerfect ? px : x);
         });
     }
@@ -394,8 +395,8 @@ public class FoodEffect {
         final int pa = (int) Math.ceil(a * PERFECT_MULTIPLIER_ITEM_AMOUNT);
         final String name = item.hasItemMeta() ? item.getItemMeta().getDisplayName() : item.getType().name();
         return new FoodEffect(
-            "&7Gives " + a + "x " + name,
-            "&7Gives " + pa + "x " + name,
+            GetText.tr("&7Gives {0}x {1}", a, name),
+            GetText.tr("&7Gives {0}x {1}", pa, name),
             (Player player, Boolean isPerfect) -> {
                 player.getInventory().addItem(item);
             });
@@ -505,7 +506,7 @@ public class FoodEffect {
     public static FoodEffect air(int amount) {
         final int a = Math.max(amount, 1);
         final int pa = (int) Math.ceil(a * PERFECT_MULTIPLIER_AIR);
-        return new FoodEffect("&fAir +" + a, "&fAir +" + pa, (Player player, Boolean isPerfect) -> {
+        return new FoodEffect(GetText.tr("&fAir +") + a, GetText.tr("&fAir +") + pa, (Player player, Boolean isPerfect) -> {
             player.setRemainingAir(Math.min(player.getRemainingAir() + (isPerfect ? pa : a), 20));
         });
     }
@@ -520,7 +521,7 @@ public class FoodEffect {
     public static FoodEffect warm(int amount) {
         final int a = Math.max(amount, 1);
         final int pa = (int) Math.ceil(a * PERFECT_MULTIPLIER_WARM);
-        return new FoodEffect("&6Warmth +" + a, "&6Warmth +" + pa, (Player player, Boolean isPerfect) -> {
+        return new FoodEffect(GetText.tr("&6Warmth +") + a, GetText.tr("&6Warmth +") + pa, (Player player, Boolean isPerfect) -> {
             player.setFreezeTicks(Math.max(player.getFreezeTicks() - (isPerfect ? pa : a), 0));
         });
     }
@@ -535,8 +536,8 @@ public class FoodEffect {
     public static FoodEffect teleport(int radius) {
         final int r = NumberUtil.clamp(radius, 1, 10);
         final int pr = (int) Math.ceil(r * PERFECT_MULTIPLIER_TELEPORT);
-        return new FoodEffect("&7Teleports you somewhere within " + r + " blocks away",
-            "&7Teleports you somewhere within " + pr + " blocks away",
+        return new FoodEffect(GetText.tr("&7Teleports you somewhere within ") + r + GetText.tr(" blocks away"),
+                GetText.tr("&7Teleports you somewhere within ") + pr + GetText.tr(" blocks away"),
             (Player player, Boolean isPerfect) -> {
                 final Location playerLocation = player.getLocation();
                 final int playerX = playerLocation.getBlockX();
@@ -584,7 +585,7 @@ public class FoodEffect {
         });
     };
 
-    private static final FoodEffect extinguish = new FoodEffect("&fExtinguish yourself",
+    private static final FoodEffect extinguish = new FoodEffect(GetText.tr("&fExtinguish yourself"),
         (Player player, Boolean isPerfect) -> {
             player.setFireTicks(0);
         });
@@ -596,7 +597,7 @@ public class FoodEffect {
         return extinguish;
     }
 
-    private static final FoodEffect clearPotionEffects = new FoodEffect("&fClear all effects",
+    private static final FoodEffect clearPotionEffects = new FoodEffect(GetText.tr("&fClear all effects"),
         (Player player, Boolean isPerfect) -> {
             Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(),
                 "/effect " + player.getName() + " clear");

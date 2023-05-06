@@ -14,6 +14,7 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import lombok.experimental.UtilityClass;
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
+import org.mini2Dx.gettext.GetText;
 
 @UtilityClass
 public class SlimeHUDSetup {
@@ -25,9 +26,9 @@ public class SlimeHUDSetup {
             final BlockMenu menu = BlockStorage.getInventory(request.getLocation());
             if (menu == null) return "";
             final ItemStack item = menu.getItemInSlot(15);
-            if (item == null) return "No android";
+            if (item == null) return GetText.tr("No android");
             final SlimefunItem sfItem = SlimefunItem.getByItem(item);
-            if (sfItem == null || !sfItem.getId().equals("GN_CHEF_ANDROID")) return "No android";
+            if (sfItem == null || !sfItem.getId().equals("GN_CHEF_ANDROID")) return GetText.tr("No android");
             final List<String> lore = item.getLore();
             if (lore == null || lore.size() < 1) return "";
             return "&7| " + lore.get(0);
@@ -35,7 +36,7 @@ public class SlimeHUDSetup {
 
         // Fishing Net
         SlimeHUD.getHudController().registerCustomHandler(FishingNet.class, request -> {
-            return ((FishingNet) request.getSlimefunItem()).getMachineProcessor().getOperation(request.getLocation()) == null ? "&7| Not in water" : "";
+            return ((FishingNet) request.getSlimefunItem()).getMachineProcessor().getOperation(request.getLocation()) == null ? GetText.tr("&7| Not in water") : "";
         });
 
         // Fermenter
