@@ -17,6 +17,8 @@ import io.github.schntgaispock.gastronomicon.core.slimefun.items.workstations.ma
 import io.github.schntgaispock.gastronomicon.util.ChunkPDC;
 import io.github.schntgaispock.gastronomicon.util.item.GastroKeys;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
+import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
 
 public class FermenterRefillListener implements Listener {
@@ -29,6 +31,9 @@ public class FermenterRefillListener implements Listener {
 
         final Block b = e.getClickedBlock();
         if (b == null)
+            return;
+
+        if (!Slimefun.getProtectionManager().hasPermission(e.getPlayer(), b, Interaction.INTERACT_BLOCK))
             return;
 
         final SlimefunItem sfItem = BlockStorage.check(b);

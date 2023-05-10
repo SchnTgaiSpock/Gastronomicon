@@ -23,6 +23,8 @@ import io.github.schntgaispock.gastronomicon.Gastronomicon;
 import io.github.schntgaispock.gastronomicon.api.loot.LootTable;
 import io.github.schntgaispock.gastronomicon.core.Climate;
 import io.github.schntgaispock.gastronomicon.util.NumberUtil;
+import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
 
 public class WildHarvestListener implements Listener {
 
@@ -75,6 +77,9 @@ public class WildHarvestListener implements Listener {
 
         final LootTable<ItemStack> drops = getDrops(b.getType(), Climate.of(b.getBiome()));
         if (drops == null)
+            return;
+
+        if (!Slimefun.getProtectionManager().hasPermission(e.getPlayer(), e.getBlock(), Interaction.BREAK_BLOCK))
             return;
 
         final ItemStack weapon = e.getPlayer().getInventory().getItemInMainHand();
