@@ -87,7 +87,7 @@ public class WildHarvestListener implements Listener {
             : weapon.getEnchantmentLevel(Enchantment.LOOT_BONUS_BLOCKS);
         if (NumberUtil.flip(Math.min(drops.size() * 0.03, BLOCK_BREAK_DROP_CHANCE) * (1 + fortune * 0.5))) {
             // Slightly lower the drop chance in items with few drops
-            e.getBlock().getWorld().dropItemNaturally(e.getBlock().getLocation(), drops.generate());
+            e.getBlock().getWorld().dropItemNaturally(e.getBlock().getLocation(), drops.generate().clone());
         }
     }
 
@@ -101,7 +101,7 @@ public class WildHarvestListener implements Listener {
         final int looting = (killer == null || killer.getInventory().getItemInMainHand() == null) ? 0
             : killer.getInventory().getItemInMainHand().getEnchantmentLevel(Enchantment.LOOT_BONUS_MOBS);
         if (NumberUtil.flip(MOB_KILL_DROP_CHANCE * (1 + looting * 0.5))) {
-            e.getDrops().add(drops.generate());
+            e.getDrops().add(drops.generate().clone());
         }
     }
 
