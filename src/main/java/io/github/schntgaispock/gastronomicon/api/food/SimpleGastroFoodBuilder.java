@@ -143,8 +143,7 @@ public class SimpleGastroFoodBuilder {
         if (recipeType == GastroRecipeType.MULTI_STOVE) {
             topRightDisplayItem = temperature.getItem().clone();
             topRightDisplayItem.setLore(Collections.emptyList());
-            recipe = new MultiStoveRecipe(ingredients, container, tools,
-            outputs, Temperature.MEDIUM);
+            recipe = new MultiStoveRecipe(ingredients, container, tools, outputs, temperature);
         } else {
             topRightDisplayItem = new ItemStack(Material.AIR);
             if (shape == RecipeShape.SHAPED) {
