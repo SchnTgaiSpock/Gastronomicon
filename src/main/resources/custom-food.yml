@@ -43,7 +43,7 @@
 # 
 # It is not possible to define custom effects types in this file; in order to
 # create food with custom effects, you must add it in a plugin.
-# See https://github.com/SchnTgaiSpock/Gastronomicon/wiki/CustomFood on how to do so.
+# See https://schn.pages.dev/gastronomicon/custom-food on how to do so.
 #
 # Recipe format:
 # - shape: SHAPED / SHAPELESS

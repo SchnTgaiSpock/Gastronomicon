@@ -82,7 +82,7 @@ public class DynaTechSetup {
             GastroStacks.BANANA_SAPLING.asQuantity(4),
             GastroStacks.BANANA.asQuantity(4),
             new ItemStack(Material.JUNGLE_LOG, 4),
-            new ItemStack(Material.MANGROVE_LEAVES, 6));
+            new ItemStack(Material.JUNGLE_LEAVES, 6));
         register(60, GastroStacks.FIDDLEHEADS.asQuantity(2));
         register(60, GastroStacks.TRUFFLE.asQuantity(2));
         register(60, GastroStacks.ENOKI_MUSHROOMS.asQuantity(2));
