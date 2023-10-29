@@ -19,7 +19,7 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import lombok.Getter;
 
 /**
- * A CropGastroSeed drops additional crops when harvested
+ * A CropSeed drops additional crops when harvested
  */
 public class CropSeed extends SimpleSeed {
 

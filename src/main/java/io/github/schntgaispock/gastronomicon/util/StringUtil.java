@@ -18,4 +18,8 @@ public class StringUtil {
         return "&8⇨ &9🪣 &7" + mB + " mB" + suffix;
     }
 
+    public static String kebabCase(String str) {
+        return str.replace("_", "-").replace(" ", "-").toLowerCase();
+    }
+
 }

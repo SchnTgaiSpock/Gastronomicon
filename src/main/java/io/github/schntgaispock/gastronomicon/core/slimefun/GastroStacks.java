@@ -3,7 +3,6 @@ package io.github.schntgaispock.gastronomicon.core.slimefun;
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.EntityType;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
@@ -17,9 +16,6 @@ import io.github.schntgaispock.gastronomicon.api.items.FoodItemStack;
 import io.github.schntgaispock.gastronomicon.api.items.FoodItemStackBuilder;
 import io.github.schntgaispock.gastronomicon.api.items.GastroTheme;
 import io.github.schntgaispock.gastronomicon.api.items.ThemedItemStack;
-import io.github.schntgaispock.gastronomicon.api.loot.LootTable;
-import io.github.schntgaispock.gastronomicon.core.Climate;
-import io.github.schntgaispock.gastronomicon.core.listeners.WildHarvestListener;
 import io.github.schntgaispock.gastronomicon.util.StringUtil;
 import io.github.schntgaispock.gastronomicon.util.item.HeadTextures;
 import io.github.thebusybiscuit.slimefun4.api.MinecraftVersion;
@@ -896,125 +892,6 @@ public class GastroStacks {
         "GN_SHRIMP",
         Material.COD,
         "Shrimp");
-
-    static {
-        final LootTable<ItemStack> DRY_CLIMATE_GRASS_DROPS = LootTable.builder(ItemStack.class)
-            .add(GastroStacks.CASSAVA,
-                GastroStacks.LENTILS,
-                GastroStacks.CUMIN_SEEDS,
-                GastroStacks.HONEYDEW_MELON_SEEDS,
-                GastroStacks.SORGHUM_SEEDS)
-            .build();
-        final LootTable<ItemStack> TEMPERATE_CLIMATE_GRASS_DROPS = LootTable.builder(ItemStack.class)
-            .add(6,
-                GastroStacks.RICE,
-                GastroStacks.OATS,
-                GastroStacks.SOYBEANS,
-                GastroStacks.BARLEY_SEEDS,
-                GastroStacks.RYE_SEEDS,
-                GastroStacks.SORGHUM_SEEDS)
-            .add(4,
-                GastroStacks.TURNIP_SEEDS,
-                GastroStacks.RED_BEANS,
-                GastroStacks.CANTALOUPE_SEEDS,
-                GastroStacks.HONEYDEW_MELON_SEEDS,
-                GastroStacks.SESAME_SEEDS,
-                GastroStacks.PEANUTS,
-                GastroStacks.BEANS,
-                GastroStacks.PEAS)
-            .add(3,
-                GastroStacks.BOK_CHOY_SEEDS,
-                GastroStacks.CUCUMBER_SEEDS,
-                GastroStacks.BASIL_SEEDS,
-                GastroStacks.SPINACH_SEEDS,
-                GastroStacks.MINT_SEEDS,
-                GastroStacks.CHILI_PEPPER_SEEDS,
-                GastroStacks.PARSLEY_SEEDS,
-                GastroStacks.CASSAVA,
-                GastroStacks.LENTILS,
-                GastroStacks.ASPARAGUS_SEEDS,
-                GastroStacks.GREEN_ONION_SEEDS,
-                GastroStacks.CAULIFLOWER_SEEDS,
-                GastroStacks.AVOCADO_PIT,
-                GastroStacks.TURMERIC,
-                GastroStacks.CUMIN_SEEDS,
-                GastroStacks.VANILLA_PLANT)
-            .add(2,
-                GastroStacks.LYCHEE_SAPLING,
-                GastroStacks.BANANA_SAPLING)
-            .build();
-        final LootTable<ItemStack> COLD_CLIMATE_GRASS_DROPS = LootTable.builder(ItemStack.class)
-            .add(6,
-                GastroStacks.QUINOA,
-                GastroStacks.OATS,
-                GastroStacks.RYE_SEEDS)
-            .add(4,
-                GastroStacks.TURNIP_SEEDS,
-                GastroStacks.SQUASH_SEEDS,
-                GastroStacks.PEAS)
-            .add(3,
-                GastroStacks.CELERY,
-                GastroStacks.BROCCOLI_SEEDS,
-                GastroStacks.BRUSSLES_SPROUTS)
-            .add(2,
-                GastroStacks.LYCHEE_SAPLING)
-            .build();
-        final LootTable<ItemStack> SNOWY_CLIMATE_GRASS_DROPS = LootTable.builder(ItemStack.class)
-            .add(GastroStacks.RYE_SEEDS)
-            .build();
-        final LootTable<ItemStack> FERN_DROPS = LootTable.builder(ItemStack.class)
-            .add(GastroStacks.FIDDLEHEADS)
-            .build();
-        final LootTable<ItemStack> DIRT_DROPS = LootTable.builder(ItemStack.class)
-            .add(GastroStacks.ENOKI_MUSHROOMS,
-                GastroStacks.KING_OYSTER_MUSHROOM,
-                GastroStacks.BUTTON_MUSHROOM)
-            .build();
-        final LootTable<ItemStack> PODZOL_DROPS = LootTable.builder(ItemStack.class)
-            .add(4,
-                GastroStacks.ENOKI_MUSHROOMS,
-                GastroStacks.KING_OYSTER_MUSHROOM,
-                GastroStacks.BUTTON_MUSHROOM)
-            .add(GastroStacks.TRUFFLE)
-            .build();
-        final LootTable<ItemStack> SEAGRASS_DROPS = LootTable.builder(ItemStack.class)
-            .add(GastroStacks.CLAM)
-            .build();
-
-        final LootTable<ItemStack> SQUID_DROPS = LootTable.builder(ItemStack.class)
-            .add(GastroStacks.RAW_SQUID)
-            .build();
-        final LootTable<ItemStack> GUARDIAN_DROPS = LootTable.builder(ItemStack.class)
-            .add(GastroStacks.GUARDIAN_FIN)
-            .build();
-        final LootTable<ItemStack> GOAT_DROPS = LootTable.builder(ItemStack.class)
-            .add(GastroStacks.RAW_CHEVON)
-            .build();
-        final LootTable<ItemStack> SALMON_DROPS = LootTable.builder(ItemStack.class)
-            .add(GastroStacks.SALMON_ROE)
-            .build();
-
-        WildHarvestListener.registerBlockDrops(Material.GRASS, DRY_CLIMATE_GRASS_DROPS, Climate.DRY);
-        WildHarvestListener.registerBlockDrops(Material.TALL_GRASS, DRY_CLIMATE_GRASS_DROPS, Climate.DRY);
-        WildHarvestListener.registerBlockDrops(Material.GRASS, TEMPERATE_CLIMATE_GRASS_DROPS, Climate.TEMPERATE);
-        WildHarvestListener.registerBlockDrops(Material.TALL_GRASS, TEMPERATE_CLIMATE_GRASS_DROPS, Climate.TEMPERATE);
-        WildHarvestListener.registerBlockDrops(Material.GRASS, COLD_CLIMATE_GRASS_DROPS, Climate.COLD);
-        WildHarvestListener.registerBlockDrops(Material.TALL_GRASS, COLD_CLIMATE_GRASS_DROPS, Climate.COLD);
-        WildHarvestListener.registerBlockDrops(Material.GRASS, SNOWY_CLIMATE_GRASS_DROPS, Climate.SNOWY);
-        WildHarvestListener.registerBlockDrops(Material.TALL_GRASS, SNOWY_CLIMATE_GRASS_DROPS, Climate.SNOWY);
-        WildHarvestListener.registerBlockDrops(Material.FERN, FERN_DROPS);
-        WildHarvestListener.registerBlockDrops(Material.LARGE_FERN, FERN_DROPS);
-        WildHarvestListener.registerBlockDrops(Material.PODZOL, PODZOL_DROPS);
-        WildHarvestListener.registerBlockDrops(Material.DIRT, DIRT_DROPS);
-        WildHarvestListener.registerBlockDrops(Material.GRASS_BLOCK, DIRT_DROPS);
-        WildHarvestListener.registerBlockDrops(Material.ROOTED_DIRT, DIRT_DROPS);
-        WildHarvestListener.registerBlockDrops(Material.MYCELIUM, DIRT_DROPS);
-        WildHarvestListener.registerBlockDrops(Material.SEAGRASS, SEAGRASS_DROPS);
-        WildHarvestListener.registerMobDrops(EntityType.SQUID, SQUID_DROPS);
-        WildHarvestListener.registerMobDrops(EntityType.GUARDIAN, GUARDIAN_DROPS);
-        WildHarvestListener.registerMobDrops(EntityType.GOAT, GOAT_DROPS);
-        WildHarvestListener.registerMobDrops(EntityType.SALMON, SALMON_DROPS);
-    }
 
     // -- From traps --
 

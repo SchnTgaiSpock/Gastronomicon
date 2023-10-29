@@ -29,12 +29,12 @@ public class LootTable<T> {
     @RequiredArgsConstructor(access = AccessLevel.PROTECTED)
     public static class LootTableBuilder<T> {
 
-        private int totalWeight = 0;
-        private final LinkedHashMap<T, Integer> weightedDrops = new LinkedHashMap<>();
+        protected int totalWeight = 0;
+        protected final LinkedHashMap<T, Integer> weightedDrops = new LinkedHashMap<>();
 
         @SafeVarargs
         public final LootTableBuilder<T> add(int weight, T... drops) {
-            for (T drop : drops) {
+            for (final T drop : drops) {
                 weightedDrops.put(drop, weight);
                 totalWeight += weight;
             }
@@ -92,7 +92,15 @@ public class LootTable<T> {
         return new LootTableBuilder<T>();
     }
 
+    public static <T, U> ItemLootTableBuilder builder() {
+        return new ItemLootTableBuilder();
+    }
+
     public T generate() {
+        if (drops.size() == 0) {
+            return null;
+        }
+        
         final int roll = ThreadLocalRandom.current().nextInt(drops.size());
         if (ThreadLocalRandom.current().nextDouble() * totalWeight < prob[roll]) {
             return drops.get(roll);

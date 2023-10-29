@@ -4,9 +4,10 @@ A Slimefun addon that adds even more foodstuffs to the game. Best used along wit
 
 This addon automatically integrates with DynaTech for crop automation. Both DynaTech and ExoticGarden integrations can be manually disabled in `config.yml`
 
-## Gameplay
+## Links
 
-For more gameplay details, please see the Wiki at <https://schn.pages.dev/gastronomicon>
+- Wiki: <https://schn.pages.dev/gastronomicon>
+- Download: <https://thebusybiscuit.github.io/builds/SchnTgaiSpock/Gastronomicon/master/>
 
 ## Requirements
 
@@ -20,19 +21,6 @@ For more gameplay details, please see the Wiki at <https://schn.pages.dev/gastro
 ## API
 
 API documentation can be found on the wiki at <https://schn.pages.dev/gastronomicon/custom-food>
-
-## Changelog
-
-### Version 1.0.5
-
-- Fixed 1.18 incompatibilities
-- Fixed Banana Saplings giving the wrong type of leaf in DynaTech Growth Chambers
-- Moved wiki links to <https://schn.pages.dev/gastronomicon>
-
-### Version 0.1.0
-
-- First Beta release
-- First API release
 
 ## Credits
 

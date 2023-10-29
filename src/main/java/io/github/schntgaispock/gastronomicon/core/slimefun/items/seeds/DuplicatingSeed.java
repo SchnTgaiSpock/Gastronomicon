@@ -18,7 +18,7 @@ import io.github.thebusybiscuit.slimefun4.core.handlers.BlockPlaceHandler;
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
 
 /**
- * A DuplicatingGastroSeed grows upward.
+ * A DuplicatingSeed grows upward.
  * <br>
  * <br>
  * The only <code>ItemStack</code>s allowed are cacti and sugar cane

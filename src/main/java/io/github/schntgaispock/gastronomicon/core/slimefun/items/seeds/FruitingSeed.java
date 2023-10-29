@@ -17,7 +17,7 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import lombok.Getter;
 
 /**
- * A FruitingGastroSeed grows a separate block next to the plant to harvest
+ * A FruitingSeed grows a separate block next to the plant to harvest
  * <br>
  * <br>
  * The only allowed <code>displayBlock</code>s are pumpkin and melon stems

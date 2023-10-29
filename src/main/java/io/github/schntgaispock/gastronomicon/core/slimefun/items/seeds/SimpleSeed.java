@@ -29,7 +29,7 @@ import lombok.Getter;
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
 
 /**
- * A SimpleGastroSeed only drops itself when harvested.
+ * A SimpleSeed only drops itself when harvested.
  */
 public class SimpleSeed extends AbstractSeed {
 
