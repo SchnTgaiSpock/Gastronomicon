@@ -62,11 +62,9 @@ public class WildHarvestListener implements Listener {
             return blockDropChanceCache.get(mat);
         }
 
-        System.out.println("drops.block-break-chances." + StringUtil.kebabCase(mat.name()));
         final double chance = Gastronomicon.getInstance()
             .getConfig()
             .getDouble("drops.block-break-chances." + StringUtil.kebabCase(mat.name()), 0.15);
-        System.out.println(chance);
         blockDropChanceCache.put(mat, chance);
         return chance;
     }
