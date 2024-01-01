@@ -96,12 +96,14 @@ public abstract class GastroWorkstation extends MenuBlock {
         menu.dropItems(l, getContainerSlots());
     }
 
+    protected void onSuccessfulCraft(Block b) {}
+
     @Override
     protected void onNewInstance(BlockMenu menu, Block b) {
         super.onNewInstance(menu, b);
 
         menu.addMenuClickHandler(CRAFT_BUTTON_SLOT, (player, slot, item, action) -> {
-            if (!canCraft(menu, b, player))
+            if (!canCraft(menu, b, player, true))
                 return false;
 
             // Check if there is a free slot to craft
@@ -154,6 +156,7 @@ public abstract class GastroWorkstation extends MenuBlock {
                 // Otherwise start search
                 recipe = findRecipe(ingredients, containers, tools, player, menu);
                 if (recipe == null) {
+                    Gastronomicon.sendMessage(player, "&eUnknown recipe!");
                     return false;
                 } else if (lastInputHashAndRecipe.containsKey(menu.getLocation())) {
                     lastInputHashAndRecipe.get(menu.getLocation()).first(hash);
@@ -171,6 +174,8 @@ public abstract class GastroWorkstation extends MenuBlock {
                     Gastronomicon.sendMessage(player, Component.text(craftEvent.getMessage()));
                 return false;
             }
+
+            onSuccessfulCraft(b);
 
             // Calculate the crafting result
             final ItemStack output;
@@ -243,10 +248,11 @@ public abstract class GastroWorkstation extends MenuBlock {
      *            The workstation block
      * @param p
      *            The player trying to craft
+     * @param sendMessage Whether or not to send a message to the player
      * @return Whether or not the player can craft something in this workstation.
      *         Do not check for recipes here
      */
-    protected abstract boolean canCraft(BlockMenu menu, Block b, Player p);
+    protected abstract boolean canCraft(BlockMenu menu, Block b, Player p, boolean sendMessage);
 
     @Nullable
     @ParametersAreNonnullByDefault

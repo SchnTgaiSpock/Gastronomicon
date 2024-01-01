@@ -27,7 +27,7 @@ public class CulinaryWorkbench extends GastroWorkstation {
     }
 
     @Override
-    protected boolean canCraft(BlockMenu menu, Block b, Player p) {
+    protected boolean canCraft(BlockMenu menu, Block b, Player p, boolean sendMessage) {
         return true;
     }
     

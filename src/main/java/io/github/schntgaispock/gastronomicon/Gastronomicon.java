@@ -1,7 +1,5 @@
 package io.github.schntgaispock.gastronomicon;
 
-import java.util.logging.Level;
-
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
@@ -22,6 +20,7 @@ import io.github.schntgaispock.gastronomicon.core.setup.ItemSetup;
 import io.github.schntgaispock.gastronomicon.integration.DynaTechSetup;
 import io.github.schntgaispock.gastronomicon.integration.SlimeHUDSetup;
 import io.github.schntgaispock.gastronomicon.util.StringUtil;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.updater.BlobBuildUpdater;
 import lombok.Getter;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
@@ -40,12 +39,22 @@ public class Gastronomicon extends AbstractAddon {
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public void enable() {
         instance = this;
 
-        getLogger().info("#======================================#");
-        getLogger().info("#    Gastronomicon by SchnTgaiSpock    #");
-        getLogger().info("#======================================#");
+        info("#======================================#");
+        info("#    Gastronomicon by SchnTgaiSpock    #");
+        info("#======================================#");
+
+        if (getConfig().getBoolean("options.auto-update")) {
+            if (getDescription().getVersion().startsWith("Dev - ")) {
+                new BlobBuildUpdater(this, getFile(), "Gastronomicon", "Dev").start();
+            } else {
+                info("This is an unofficial build of Gastronomicon, so auto updates are disabled!");
+                info("You can download the official build here: https://blob.build/project/Gastronomicon");
+            }
+        }
 
         final Metrics metrics = new Metrics(this, 16941);
 
@@ -59,12 +68,12 @@ public class Gastronomicon extends AbstractAddon {
 
         if (isPluginEnabled("SlimeHUD")) {
             try {
-                log(Level.INFO, "SlimeHUD was found on this server!");
-                log(Level.INFO, "Setting up Gastronomicon for SlimeHUD...");
+                info("SlimeHUD was found on this server!");
+                info("Setting up Gastronomicon for SlimeHUD...");
                 SlimeHUDSetup.setup();
             } catch (NoClassDefFoundError e) {
-                log(Level.WARNING, "This server is using an incompatitable version of SlimeHUD");
-                log(Level.WARNING, "Please update SlimeHUD to version 1.2.0 or higher!");
+                warn("This server is using an incompatitable version of SlimeHUD");
+                warn("Please update SlimeHUD to version 1.2.0 or higher!");
             }
         }
         
@@ -72,18 +81,18 @@ public class Gastronomicon extends AbstractAddon {
         // If disable-exotic-garden-recipes is false "!" will change it to true and the rest of the code will run checking for ExoticGarden.
         
         if (!getConfig().getBoolean("disable-exotic-garden-recipes") && !isPluginEnabled("ExoticGarden")) {
-            log(Level.WARNING, "ExoticGarden was not found on this server!");
-            log(Level.WARNING, "Recipes that require ExoticGarden items will be hidden.");
+            warn("ExoticGarden was not found on this server!");
+            warn("Recipes that require ExoticGarden items will be hidden.");
         }
 
         if (isPluginEnabled("DynaTech") && !getConfig().getBoolean("disable-dynatech-integration")) {
             try {
-                log(Level.INFO, "DynaTech was found on this server!");
-                log(Level.INFO, "Registering Gastronomicon crops with DynaTech...");
+                info("DynaTech was found on this server!");
+                info("Registering Gastronomicon crops with DynaTech...");
                 DynaTechSetup.setup();
             } catch (NoClassDefFoundError e) {
-                log(Level.WARNING, "This server is using an incompatitable version of DynaTech");
-                log(Level.WARNING, "Please keep Gastronomicon and DynaTech up to date!");
+                warn("This server is using an incompatitable version of DynaTech");
+                warn("Please keep Gastronomicon and DynaTech up to date!");
             }
         }
 

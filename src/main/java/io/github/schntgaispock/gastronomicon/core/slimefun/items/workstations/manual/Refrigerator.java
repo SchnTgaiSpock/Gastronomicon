@@ -4,6 +4,7 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
+import io.github.schntgaispock.gastronomicon.Gastronomicon;
 import io.github.schntgaispock.gastronomicon.core.slimefun.recipes.GastroRecipeType;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.core.attributes.EnergyNetComponent;
@@ -42,12 +43,20 @@ public class Refrigerator extends GastroWorkstation implements EnergyNetComponen
     }
 
     @Override
-    protected boolean canCraft(BlockMenu menu, Block b, Player p) {
+    protected boolean canCraft(BlockMenu menu, Block b, Player p, boolean sendMessage) {
         final int charge = getCharge(b.getLocation());
-        if (charge < getEnergyPerUse()) return false;
+        if (charge < getEnergyPerUse()) {
+            Gastronomicon.sendMessage(p, "&eNot enough energy!");
+            return false;
+        }
 
-        setCharge(b.getLocation(), charge - getEnergyPerUse());
         return true;
+    }
+
+    @Override
+    protected void onSuccessfulCraft(Block b) {
+        final int charge = getCharge(b.getLocation());
+        setCharge(b.getLocation(), charge - getEnergyPerUse());
     }
     
 }

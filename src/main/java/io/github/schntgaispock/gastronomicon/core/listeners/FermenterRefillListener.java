@@ -1,6 +1,7 @@
 package io.github.schntgaispock.gastronomicon.core.listeners;
 
 import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.SoundCategory;
@@ -28,6 +29,10 @@ public class FermenterRefillListener implements Listener {
     public void onRefill(PlayerInteractEvent e) {
         if (e.getAction() != Action.RIGHT_CLICK_BLOCK || !e.getPlayer().isSneaking())
             return;
+
+        if (e.getItem() == null) {
+            return;
+        }
 
         final Block b = e.getClickedBlock();
         if (b == null)
@@ -72,7 +77,10 @@ public class FermenterRefillListener implements Listener {
 
         ChunkPDC.set(b, GastroKeys.FERMENTER_WATER, Math.min(water + refill, fermenter.getCapacity()));
         b.getWorld().playSound(b.getLocation(), Sound.ITEM_BUCKET_FILL, SoundCategory.PLAYERS, 1f, 1f);
-        e.getItem().setType(ret);
+
+        if (e.getPlayer().getGameMode() != GameMode.CREATIVE) {
+            e.getItem().setType(ret);
+        }
     }
 
     public static void setup() {

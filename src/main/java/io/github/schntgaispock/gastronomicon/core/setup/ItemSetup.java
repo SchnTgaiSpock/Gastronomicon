@@ -1793,9 +1793,7 @@ public class ItemSetup {
                 .ingredients(BBQ_SAUCE, MUTTON)
                 .temperature(Temperature.HIGH)
                 .register(gn);
-        }
 
-        if (egAvailable) {
             new GastroFoodBuilder()
                 .type(GastroRecipeType.MULTI_STOVE)
                 .item(GastroStacks.BUTTER_CHICKEN)
@@ -2234,13 +2232,14 @@ public class ItemSetup {
             .tools(GastroStacks.BLENDER)
             .register(gn);
 
-        new GastroFoodBuilder()
-            .type(GastroRecipeType.CULINARY_WORKBENCH)
-            .item(GastroStacks.STRAWBERRY_SHAVED_ICE)
-            .ingredients(ICE, STRAWBERRY)
-            .container(GastroStacks.STEEL_BOWL)
-            .tools(GastroStacks.BLENDER)
-            .register(gn);
+        if (egAvailable)
+            new GastroFoodBuilder()
+                .type(GastroRecipeType.CULINARY_WORKBENCH)
+                .item(GastroStacks.STRAWBERRY_SHAVED_ICE)
+                .ingredients(ICE, STRAWBERRY)
+                .container(GastroStacks.STEEL_BOWL)
+                .tools(GastroStacks.BLENDER)
+                .register(gn);
 
         new GastroFoodBuilder()
             .type(GastroRecipeType.CULINARY_WORKBENCH)
@@ -2250,13 +2249,14 @@ public class ItemSetup {
             .tools(GastroStacks.BLENDER)
             .register(gn);
 
-        new GastroFoodBuilder()
-            .type(GastroRecipeType.CULINARY_WORKBENCH)
-            .item(GastroStacks.LEMON_SHAVED_ICE)
-            .ingredients(ICE, LEMON)
-            .container(GastroStacks.STEEL_BOWL)
-            .tools(GastroStacks.BLENDER)
-            .register(gn);
+        if (egAvailable)
+            new GastroFoodBuilder()
+                .type(GastroRecipeType.CULINARY_WORKBENCH)
+                .item(GastroStacks.LEMON_SHAVED_ICE)
+                .ingredients(ICE, LEMON)
+                .container(GastroStacks.STEEL_BOWL)
+                .tools(GastroStacks.BLENDER)
+                .register(gn);
 
         new GastroFoodBuilder()
             .type(GastroRecipeType.CULINARY_WORKBENCH)
@@ -2268,53 +2268,56 @@ public class ItemSetup {
                 null, STICK, null)
             .register(gn);
 
-        new GastroFoodBuilder()
-            .type(GastroRecipeType.MULTI_STOVE)
-            .item(GastroStacks.DONUT)
-            .ingredients(GastroStacks.DOUGH, YEAST, MILK_BUCKET, SlimefunItems.BUTTER, SUGAR, PINK_DYE)
-            .tools(GastroStacks.BAKING_TRAY)
-            .amount(2)
-            .register(gn);
+        if (egAvailable) {
+            new GastroFoodBuilder()
+                .type(GastroRecipeType.MULTI_STOVE)
+                .item(GastroStacks.DONUT)
+                .ingredients(GastroStacks.DOUGH, YEAST, MILK_BUCKET, SlimefunItems.BUTTER, SUGAR, PINK_DYE)
+                .tools(GastroStacks.BAKING_TRAY)
+                .amount(2)
+                .register(gn);
 
-        new GastroFoodBuilder()
-            .type(GastroRecipeType.MULTI_STOVE)
-            .item(GastroStacks.HONEY_DIP_DONUT)
-            .ingredients(GastroStacks.DOUGH, YEAST, MILK_BUCKET, SlimefunItems.BUTTER, SUGAR, HONEY_BOTTLE)
-            .tools(GastroStacks.BAKING_TRAY)
-            .amount(2)
-            .register(gn);
+            new GastroFoodBuilder()
+                .type(GastroRecipeType.MULTI_STOVE)
+                .item(GastroStacks.HONEY_DIP_DONUT)
+                .ingredients(GastroStacks.DOUGH, YEAST, MILK_BUCKET, SlimefunItems.BUTTER, SUGAR, HONEY_BOTTLE)
+                .tools(GastroStacks.BAKING_TRAY)
+                .amount(2)
+                .register(gn);
 
-        new GastroFoodBuilder()
-            .type(GastroRecipeType.MULTI_STOVE)
-            .item(GastroStacks.GOLDEN_CHOCOLATE_DONUT)
-            .ingredients(GastroStacks.DOUGH, YEAST, MILK_BUCKET, SlimefunItems.BUTTER, SUGAR, HONEY_BOTTLE, COCOA_BEANS)
-            .tools(GastroStacks.BAKING_TRAY)
-            .amount(2)
-            .register(gn);
+            new GastroFoodBuilder()
+                .type(GastroRecipeType.MULTI_STOVE)
+                .item(GastroStacks.GOLDEN_CHOCOLATE_DONUT)
+                .ingredients(GastroStacks.DOUGH, YEAST, MILK_BUCKET, SlimefunItems.BUTTER, SUGAR, HONEY_BOTTLE,
+                    COCOA_BEANS)
+                .tools(GastroStacks.BAKING_TRAY)
+                .amount(2)
+                .register(gn);
 
-        new GastroFoodBuilder()
-            .type(GastroRecipeType.MULTI_STOVE)
-            .item(GastroStacks.STRAWBERRY_CHEESECAKE)
-            .ingredients(GastroStacks.DOUGH, YEAST, MILK_BUCKET, SlimefunItems.BUTTER, SUGAR, SlimefunItems.CHEESE,
-                STRAWBERRY)
-            .tools(GastroStacks.BAKING_TRAY)
-            .register(gn);
+            new GastroFoodBuilder()
+                .type(GastroRecipeType.MULTI_STOVE)
+                .item(GastroStacks.STRAWBERRY_CHEESECAKE)
+                .ingredients(GastroStacks.DOUGH, YEAST, MILK_BUCKET, SlimefunItems.BUTTER, SUGAR, SlimefunItems.CHEESE,
+                    STRAWBERRY)
+                .tools(GastroStacks.BAKING_TRAY)
+                .register(gn);
 
-        new GastroFoodBuilder()
-            .type(GastroRecipeType.MULTI_STOVE)
-            .item(GastroStacks.STRAWBERRY_CUPCAKE)
-            .ingredients(GastroStacks.DOUGH, YEAST, MILK_BUCKET, SlimefunItems.BUTTER, SUGAR, STRAWBERRY)
-            .tools(GastroStacks.BAKING_TRAY)
-            .amount(2)
-            .register(gn);
+            new GastroFoodBuilder()
+                .type(GastroRecipeType.MULTI_STOVE)
+                .item(GastroStacks.STRAWBERRY_CUPCAKE)
+                .ingredients(GastroStacks.DOUGH, YEAST, MILK_BUCKET, SlimefunItems.BUTTER, SUGAR, STRAWBERRY)
+                .tools(GastroStacks.BAKING_TRAY)
+                .amount(2)
+                .register(gn);
 
-        new GastroFoodBuilder()
-            .type(GastroRecipeType.MULTI_STOVE)
-            .item(GastroStacks.LEMON_TART)
-            .ingredients(LEMON, SUGAR, EGG)
-            .tools(GastroStacks.BAKING_TRAY)
-            .amount(3)
-            .register(gn);
+            new GastroFoodBuilder()
+                .type(GastroRecipeType.MULTI_STOVE)
+                .item(GastroStacks.LEMON_TART)
+                .ingredients(LEMON, SUGAR, EGG)
+                .tools(GastroStacks.BAKING_TRAY)
+                .amount(3)
+                .register(gn);
+        }
 
         new GastroFoodBuilder()
             .type(GastroRecipeType.MULTI_STOVE)
@@ -2344,17 +2347,17 @@ public class ItemSetup {
             .ingredients(RecipeUtil.cyclic(SlimefunItems.GOLD_24K_BLOCK, MELON_SLICE))
             .register(gn);
 
-        new GastroFoodBuilder()
-            .type(GastroRecipeType.CULINARY_WORKBENCH)
-            .item(GastroStacks.V7)
-            .shape(RecipeShape.SHAPELESS)
-            .ingredients(TOMATO, CARROT, GastroStacks.CELERY, BEETROOT, LETTUCE, GastroStacks.PARSLEY,
-                GastroStacks.SPINACH)
-            .tools(GastroStacks.BLENDER)
-            .container(SlimefunItems.TIN_CAN)
-            .register(gn);
-
         if (egAvailable) {
+            new GastroFoodBuilder()
+                .type(GastroRecipeType.CULINARY_WORKBENCH)
+                .item(GastroStacks.V7)
+                .shape(RecipeShape.SHAPELESS)
+                .ingredients(TOMATO, CARROT, GastroStacks.CELERY, BEETROOT, LETTUCE, GastroStacks.PARSLEY,
+                    GastroStacks.SPINACH)
+                .tools(GastroStacks.BLENDER)
+                .container(SlimefunItems.TIN_CAN)
+                .register(gn);
+
             new GastroFoodBuilder()
                 .type(GastroRecipeType.CULINARY_WORKBENCH)
                 .item(GastroStacks.BUBBLE_MILK_TEA)

@@ -6,6 +6,7 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
 
+import io.github.schntgaispock.gastronomicon.Gastronomicon;
 import io.github.schntgaispock.gastronomicon.core.slimefun.recipes.GastroRecipeType;
 import io.github.schntgaispock.gastronomicon.util.ChunkPDC;
 import io.github.schntgaispock.gastronomicon.util.item.GastroKeys;
@@ -51,13 +52,20 @@ public class Fermenter extends GastroWorkstation {
     }
 
     @Override
-    protected boolean canCraft(BlockMenu menu, Block b, Player p) {
+    protected boolean canCraft(BlockMenu menu, Block b, Player p, boolean sendMessage) {
         final int water = ChunkPDC.getOrCreateDefault(b, GastroKeys.FERMENTER_WATER, 0);
-        if (water < getMbPerCraft())
+        if (water < getMbPerCraft()) {
+            Gastronomicon.sendMessage(p, "&eNot enough water!");
             return false;
+        }
 
-        ChunkPDC.set(b, GastroKeys.FERMENTER_WATER, water - getMbPerCraft());
         return true;
+    }
+
+    @Override
+    protected void onSuccessfulCraft(Block b) {
+        final int water = ChunkPDC.getOrCreateDefault(b, GastroKeys.FERMENTER_WATER, 0);
+        ChunkPDC.set(b, GastroKeys.FERMENTER_WATER, water - getMbPerCraft());
     }
 
 }

@@ -40,7 +40,8 @@ public class SlimeHUDSetup {
 
         // Fermenter
         SlimeHUD.getHudController().registerCustomHandler(Fermenter.class, request -> {
-            return "&7| &9🪣 &7" + ChunkPDC.getOrCreateDefault(request.getLocation().getBlock(), GastroKeys.FERMENTER_WATER, 0) + " mB";
+            final Fermenter fermenter = (Fermenter) request.getSlimefunItem();
+            return "&7| &9🪣 &7" + ChunkPDC.getOrCreateDefault(request.getLocation().getBlock(), GastroKeys.FERMENTER_WATER, 0) + "/" + fermenter.getCapacity() + " mB";
         });
     }
 
