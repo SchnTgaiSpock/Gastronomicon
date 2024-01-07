@@ -7,12 +7,11 @@ This addon automatically integrates with DynaTech for crop automation. Both Dyna
 ## Links
 
 - Wiki: <https://schn.pages.dev/gastronomicon>
-- Download: <https://thebusybiscuit.github.io/builds/SchnTgaiSpock/Gastronomicon/master/>
+- Download: <https://blob.build/project/Gastronomicon>
 
 ## Requirements
 
 - Paper (or its forks)
-- Slimefun DEV 1040 (RC 33) or higher
 - Minecraft 1.17+
 - Java 16+
 
