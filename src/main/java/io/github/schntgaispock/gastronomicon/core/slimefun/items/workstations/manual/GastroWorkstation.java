@@ -33,6 +33,7 @@ import io.github.schntgaispock.gastronomicon.util.collections.Pair;
 import io.github.schntgaispock.gastronomicon.util.item.ItemUtil;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.items.ItemUtils;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
 import net.kyori.adventure.text.Component;
@@ -223,7 +224,7 @@ public abstract class GastroWorkstation extends MenuBlock {
             Arrays.stream(getInputSlots()).forEach(s -> {
                 final ItemStack i = menu.getItemInSlot(s);
                 if (i != null)
-                    i.subtract();
+                    ItemUtils.consumeItem(i, 1, true);
             });
             for (final int containerSlot : getContainerSlots()) {
                 final ItemStack i = menu.getItemInSlot(containerSlot);

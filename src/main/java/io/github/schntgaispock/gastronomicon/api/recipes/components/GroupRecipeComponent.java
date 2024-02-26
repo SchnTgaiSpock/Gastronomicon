@@ -46,7 +46,6 @@ public class GroupRecipeComponent extends RecipeComponent<Set<ItemStack>> {
     }
 
     @Override
-    @SuppressWarnings("null")
     public boolean matches(@Nullable ItemStack item) {
         if (item == null) {
             return false;

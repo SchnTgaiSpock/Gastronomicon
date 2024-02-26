@@ -27,7 +27,6 @@ public class Counter<T> {
         this(null);
     }
 
-    @SuppressWarnings("null")
     private int hash(T item) {
         if (item == null)
             return 0;

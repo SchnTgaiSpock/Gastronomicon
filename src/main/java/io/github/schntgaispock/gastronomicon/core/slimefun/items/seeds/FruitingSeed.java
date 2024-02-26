@@ -27,7 +27,6 @@ public class FruitingSeed extends SimpleSeed {
     private final @Getter SlimefunItem fruitingBody;
 
     @ParametersAreNonnullByDefault
-    @SuppressWarnings("null")
     public FruitingSeed(SlimefunItemStack item, @Nullable Material displayBlock, ItemStack[] gatherSources, String fruitingBodyId) {
         super(item, displayBlock, gatherSources);
 
