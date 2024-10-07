@@ -1,5 +1,7 @@
 package io.github.schntgaispock.gastronomicon.util.item;
 
+import java.util.Optional;
+
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 
@@ -17,7 +19,7 @@ public class ItemUtil {
 
     public static int hashIgnoreAmount(ItemStack stack) {
         if (stack == null) return 0;
-        
+
         int hash = 1;
 
         hash = hash * 31 + stack.getType().hashCode();
@@ -61,7 +63,7 @@ public class ItemUtil {
     }
 
     @ParametersAreNonnullByDefault
-    public static void giveItems(Player player, ItemStack[] items) {
+    public static void giveItems(Player player, ItemStack... items) {
         player.getInventory().addItem(items).forEach((__, item) -> {
             player.getWorld().dropItemNaturally(player.getLocation(), item);
         });
@@ -80,6 +82,42 @@ public class ItemUtil {
             case "UNLUCK" -> "Bad Luck";
             default -> WordUtils.capitalizeFully(type.getName().replaceAll("_", " "));
         };
+    }
+
+    /**
+     * Copied from Slimefun's ItemUtils, this version returns the empty container
+     * version of the item instead of replacing it
+     * 
+     * @param item
+     * @param amount
+     * @param replaceConsumables
+     */
+    public static Optional<Material> consumeItem(@Nonnull ItemStack item, int amount, boolean replaceConsumables) {
+        if (item.getType() != Material.AIR && item.getAmount() > 0) {
+            if (replaceConsumables) {
+                switch (item.getType()) {
+                    case POTION:
+                    case DRAGON_BREATH:
+                    case HONEY_BOTTLE:
+                        item.setAmount(0);
+                        return Optional.of(Material.GLASS_BOTTLE);
+                    case WATER_BUCKET:
+                    case LAVA_BUCKET:
+                    case MILK_BUCKET:
+                        item.setAmount(0);
+                        return Optional.of(Material.BUCKET);
+                    default:
+                        break;
+                }
+            }
+
+            if (item.getAmount() <= amount) {
+                item.setAmount(0);
+            } else {
+                item.setAmount(item.getAmount() - amount);
+            }
+        }
+        return Optional.empty();
     }
 
 }

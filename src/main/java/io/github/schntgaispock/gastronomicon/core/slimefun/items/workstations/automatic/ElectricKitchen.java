@@ -1,5 +1,6 @@
 package io.github.schntgaispock.gastronomicon.core.slimefun.items.workstations.automatic;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -164,7 +165,7 @@ public class ElectricKitchen extends AContainer {
         draw(preset, GastroStacks.MENU_OUTPUT_BORDER, OUTPUT_BORDER);
         draw(preset, GastroStacks.MENU_NO_ANDROID, STATUS_SLOT);
 
-        for (int i : getOutputSlots()) { // From AContainer
+        for (final int i : getOutputSlots()) { // From AContainer
             preset.addMenuClickHandler(i, new AdvancedMenuClickHandler() {
                 @Override
                 public boolean onClick(Player p, int slot, ItemStack cursor, ClickAction action) {
@@ -248,14 +249,22 @@ public class ElectricKitchen extends AContainer {
             hashRecipePair.second(found);
         }
 
-        final MachineRecipe newRecipe = new MachineRecipe(60 / getSpeed(), found.entries().stream().filter(pair -> {
-            return pair.first() != null;
-        }).map(pair -> {
+        final ArrayList<ItemStack> inputs = new ArrayList<>();
+        final ArrayList<ItemStack> outputs = new ArrayList<>();
+        outputs.add(recipe.getOutputs()[0]);
+
+        for (final var pair : found.entries()) {
+            if (pair.first() == null) continue;
+
             final ItemStack input = menu.getItemInSlot(pair.first());
             final ItemStack clone = input.asQuantity(pair.second());
-            input.subtract(pair.second());
-            return clone;
-        }).toArray(ItemStack[]::new), new ItemStack[] { recipe.getOutputs()[0] });
+            inputs.add(clone);
+            ItemUtil.consumeItem(input, pair.second(), true).ifPresent(mat -> {
+                outputs.add(new ItemStack(mat));
+            });
+        }
+
+        final MachineRecipe newRecipe = new MachineRecipe(60 / getSpeed(), inputs.toArray(ItemStack[]::new), outputs.toArray(ItemStack[]::new));
 
         return newRecipe;
     }

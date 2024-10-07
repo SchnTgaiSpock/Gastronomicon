@@ -33,7 +33,6 @@ import io.github.schntgaispock.gastronomicon.util.collections.Pair;
 import io.github.schntgaispock.gastronomicon.util.item.ItemUtil;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
-import io.github.thebusybiscuit.slimefun4.libraries.dough.items.ItemUtils;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
 import net.kyori.adventure.text.Component;
@@ -201,6 +200,23 @@ public abstract class GastroWorkstation extends MenuBlock {
                 toReturn = Arrays.copyOfRange(recipeOutputs, 1, recipeOutputs.length);
             }
 
+            // Subtract inputs
+            Arrays.stream(getInputSlots()).forEach(s -> {
+                final ItemStack i = menu.getItemInSlot(s);
+                if (i != null)
+                    ItemUtil.consumeItem(i, 1, true).ifPresent(mat -> {
+                        player.getOpenInventory().getTopInventory().setItem(s, new ItemStack(mat));
+                    });
+            });
+            for (final int containerSlot : getContainerSlots()) {
+                final ItemStack i = menu.getItemInSlot(containerSlot);
+                if (i != null && hashRecipePair.second() != null
+                    && hashRecipePair.second().getInputs().getContainer().matches(i)) {
+                    i.subtract();
+                    break;
+                }
+            }
+
             // Place the result in the inventory
             final Inventory inv = player.getOpenInventory().getTopInventory();
 
@@ -217,21 +233,6 @@ public abstract class GastroWorkstation extends MenuBlock {
                         currentlyInOutput.add();
                         break;
                     }
-                }
-            }
-
-            // Subtract inputs
-            Arrays.stream(getInputSlots()).forEach(s -> {
-                final ItemStack i = menu.getItemInSlot(s);
-                if (i != null)
-                    ItemUtils.consumeItem(i, 1, true);
-            });
-            for (final int containerSlot : getContainerSlots()) {
-                final ItemStack i = menu.getItemInSlot(containerSlot);
-                if (i != null && hashRecipePair.second() != null
-                    && hashRecipePair.second().getInputs().getContainer().matches(i)) {
-                    i.subtract();
-                    break;
                 }
             }
             ItemUtil.giveItems(player, toReturn);

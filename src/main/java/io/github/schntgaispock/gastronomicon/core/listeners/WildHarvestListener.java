@@ -10,6 +10,7 @@ import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.enchantments.Enchantment;
@@ -98,6 +99,11 @@ public class WildHarvestListener implements Listener {
 
     @EventHandler
     public void onBlockBreak(BlockBreakEvent e) {
+        final Player p = e.getPlayer();
+        if (p.getGameMode() != GameMode.SURVIVAL) {
+            return;
+        }
+
         if (worldsDisabledIn.contains(e.getBlock().getWorld().getName())) {
             return;
         }
@@ -110,10 +116,10 @@ public class WildHarvestListener implements Listener {
         if (drops == null)
             return;
 
-        if (!Slimefun.getProtectionManager().hasPermission(e.getPlayer(), e.getBlock(), Interaction.BREAK_BLOCK))
+        if (!Slimefun.getProtectionManager().hasPermission(p, e.getBlock(), Interaction.BREAK_BLOCK))
             return;
 
-        final ItemStack weapon = e.getPlayer().getInventory().getItemInMainHand();
+        final ItemStack weapon = p.getInventory().getItemInMainHand();
         final int fortune = weapon == null ? 0
             : weapon.getEnchantmentLevel(Enchantment.LOOT_BONUS_BLOCKS);
         if (NumberUtil.flip(getDropChance(b.getType()) * (1 + fortune * 0.5))) {
