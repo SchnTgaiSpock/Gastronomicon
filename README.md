@@ -13,7 +13,7 @@ This addon automatically integrates with DynaTech for crop automation. Both Dyna
 
 - Paper (or its forks)
 - Minecraft 1.17+
-- Java 16+
+- Java 17+
 
 *Exotic Garden is not required but heavily recommended!*
 
@@ -25,4 +25,4 @@ API documentation can be found on the wiki at <https://schn.pages.dev/gastronomi
 
 Some head textures were taken and/or modified from [minecraft-heads.com](https://minecraft-heads.com/)
 
-[![minecraft-heads banner](https://minecraft-heads.com/images/banners/minecraft-heads_fullbanner_468x60.png)](https://minecraft-heads.com/)
+[![minecraft-heads banner](https://images.minecraft-heads.com/banners/minecraft-heads.webp)](https://minecraft-heads.com/)
